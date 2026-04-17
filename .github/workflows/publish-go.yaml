@@ -27,5 +27,5 @@ jobs:
       - name: Tagging
         uses: rickstaa/action-create-tag@v1
         with:
-          tag: go/${{ steps.version.outputs.VERSION }}
+          tag: ${{ steps.version.outputs.VERSION }}
           tag_exists_error: true
