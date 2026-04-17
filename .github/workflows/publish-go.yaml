@@ -3,10 +3,10 @@ name: Publish Go Library
 on:
   workflow_dispatch:
   push:
-    # paths:
-    #   - 'go/**'
+    paths:
+      - 'go/**'
     branches:
-      - publishing
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
@@ -27,5 +27,5 @@ jobs:
       - name: Tagging
         uses: rickstaa/action-create-tag@v1
         with:
-          tag: ${{ steps.version.outputs.VERSION }}
+          tag: go/${{ steps.version.outputs.VERSION }}
           tag_exists_error: true
