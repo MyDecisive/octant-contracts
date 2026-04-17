@@ -35,7 +35,7 @@ jobs:
         working-directory: ./ts
       - run: npm version ${{ steps.version.outputs.VERSION }}
         working-directory: ./ts
-      - run: npm publish
+      - run: npm publish --tag latest
         working-directory: ./ts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
