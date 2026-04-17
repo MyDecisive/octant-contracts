@@ -1,0 +1,40 @@
+name: Publish TS Library
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'ts/**'
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  tag:
+    name: Publish TS Library
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Retrieve Version
+        id: version
+        run: echo "VERSION=$(yq ".version" version.yaml)" >> "$GITHUB_OUTPUT"
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@mydecisive'
+      - run: npm ci
+        working-directory: ./ts
+      - run: npm version ${{ steps.version.outputs.VERSION }}
+        working-directory: ./ts
+      - run: npm publish
+        working-directory: ./ts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

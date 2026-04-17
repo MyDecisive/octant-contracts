@@ -1,0 +1,39 @@
+name: Proto Validate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+    paths:
+      - proto/**
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  run-buf:
+    name: run-buf
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run buf CLI
+        uses: bufbuild/buf-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          push: false
+          archive: false
+      - name: Check Buf Generate
+        run: |
+          buf generate --error-format github-actions
+          if output=$(git status --porcelain) && [ -n "$output" ]; then
+            echo "Please run 'buf generate' to update the following generated code:"
+            echo "$output"
+            exit 1
+          fi
