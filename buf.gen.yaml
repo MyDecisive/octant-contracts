@@ -16,7 +16,7 @@ plugins:
   - remote: buf.build/connectrpc/go
     out: go/pkg
     opt: paths=source_relative
-  - remote: buf.build/bufbuild/es:v1.7.2
+  - remote: buf.build/bufbuild/es:v2.11.0
     out: ts/dist
     opt: target=ts
     include_imports: true
