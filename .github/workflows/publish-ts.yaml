@@ -3,8 +3,8 @@ name: Publish TS Library
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'ts/**'
+    # paths:
+    #   - 'ts/**'
     branches:
       - publishing
 
