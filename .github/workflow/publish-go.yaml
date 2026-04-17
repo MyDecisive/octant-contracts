@@ -3,10 +3,10 @@ name: Publish Go Library
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'go/**'
+    # paths:
+    #   - 'go/**'
     branches:
-      - main
+      - publishing
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
