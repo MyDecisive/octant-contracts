@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package octant.v1alpha;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+// ArgoCDService provides an interface for managing an argo cd integration.
+service ArgoCDService {
+  // TestConnection uses the provided request data to test the argo connection.
+  rpc TestConnection(TestConnectionRequest) returns (TestConnectionResponse) {}
+  // SaveArgoConnection saves the argo connection details.
+  rpc SaveArgoConnection(SaveArgoConnectionRequest) returns (google.protobuf.Empty) {}
+}
+
+message TestConnectionRequest {
+  // argo_endpoint is the endpoint to the argo cd cluster to communicate with.
+  string argo_endpoint = 1 [(buf.validate.field).required = true];
+  // argo_account_token is the generated token for the account to use for communicating with the argo cd API.
+  string argo_account_token = 2 [(buf.validate.field).required = true];
+}
+
+message SaveArgoConnectionRequest {
+  // argo_endpoint is the endpoint to the argo cd cluster to communicate with.
+  string argo_endpoint = 1 [(buf.validate.field).required = true];
+  // argo_account_token is the generated token for the account to use for communicating with the argo cd API.
+  string argo_account_token = 2 [(buf.validate.field).required = true];
+}
+
+message TestConnectionResponse {
+  // success indicates whether the operation was succesful or not.
+  bool success = 1;
+}

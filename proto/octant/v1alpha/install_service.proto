@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package octant.v1alpha;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+// InstallService provides an interface for managing the MDAI smart hub installation.
+service InstallService {
+  // InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
+  rpc InstallMDAIHub(InstallMDAIHubRequest) returns (google.protobuf.Empty) {}
+  // GetInstallStatus creates a response stream with mdai install status updates.
+  rpc GetInstallStatus(GetInstallStatusRequest) returns (stream GetInstallStatusResponse) {}
+}
+
+message InstallMDAIHubRequest {
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 1 [(buf.validate.field).required = true];
+}
+
+message GetInstallStatusRequest {
+  // hub_name is the name of the mdai hub.
+  string hub_name = 1 [(buf.validate.field).required = true];
+}
+
+message GetInstallStatusResponse {
+  // install_status is the status of the installation.
+  InstallStatus install_status = 1 [(buf.validate.field).required = true];
+  // details will contain any necessary details for states that have extra information.
+  string details = 2;
+}
+
+enum InstallStatus {
+  INSTALL_STATUS_UNSPECIFIED = 0;
+  INSTALL_STATUS_INSTALLING = 1;
+  INSTALL_STATUS_ERROR = 2;
+  INSTALL_STATUS_INSTALLED = 3;
+}
