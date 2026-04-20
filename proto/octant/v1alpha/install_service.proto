@@ -7,7 +7,7 @@ import "google/protobuf/empty.proto";
 
 // InstallService provides an interface for managing the MDAI smart hub installation.
 service InstallService {
-  // SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
+  // InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
   rpc InstallMDAIHub(InstallMDAIHubRequest) returns (google.protobuf.Empty) {}
   // GetInstallStatus creates a response stream with mdai install status updates.
   rpc GetInstallStatus(GetInstallStatusRequest) returns (stream GetInstallStatusResponse) {}
