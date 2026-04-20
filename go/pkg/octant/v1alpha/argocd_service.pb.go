@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ArgoConnectionDetails struct {
+type TestConnectionRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// argo_endpoint is the endpoint to the argo cd cluster to communicate with.
 	ArgoEndpoint string `protobuf:"bytes,1,opt,name=argo_endpoint,json=argoEndpoint,proto3" json:"argo_endpoint,omitempty"`
@@ -33,20 +33,20 @@ type ArgoConnectionDetails struct {
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *ArgoConnectionDetails) Reset() {
-	*x = ArgoConnectionDetails{}
+func (x *TestConnectionRequest) Reset() {
+	*x = TestConnectionRequest{}
 	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ArgoConnectionDetails) String() string {
+func (x *TestConnectionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoConnectionDetails) ProtoMessage() {}
+func (*TestConnectionRequest) ProtoMessage() {}
 
-func (x *ArgoConnectionDetails) ProtoReflect() protoreflect.Message {
+func (x *TestConnectionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -58,19 +58,73 @@ func (x *ArgoConnectionDetails) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoConnectionDetails.ProtoReflect.Descriptor instead.
-func (*ArgoConnectionDetails) Descriptor() ([]byte, []int) {
+// Deprecated: Use TestConnectionRequest.ProtoReflect.Descriptor instead.
+func (*TestConnectionRequest) Descriptor() ([]byte, []int) {
 	return file_octant_v1alpha_argocd_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ArgoConnectionDetails) GetArgoEndpoint() string {
+func (x *TestConnectionRequest) GetArgoEndpoint() string {
 	if x != nil {
 		return x.ArgoEndpoint
 	}
 	return ""
 }
 
-func (x *ArgoConnectionDetails) GetArgoAccountToken() string {
+func (x *TestConnectionRequest) GetArgoAccountToken() string {
+	if x != nil {
+		return x.ArgoAccountToken
+	}
+	return ""
+}
+
+type SaveArgoConnectionRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// argo_endpoint is the endpoint to the argo cd cluster to communicate with.
+	ArgoEndpoint string `protobuf:"bytes,1,opt,name=argo_endpoint,json=argoEndpoint,proto3" json:"argo_endpoint,omitempty"`
+	// argo_account_token is the generated token for the account to use for communicating with the argo cd API.
+	ArgoAccountToken string `protobuf:"bytes,2,opt,name=argo_account_token,json=argoAccountToken,proto3" json:"argo_account_token,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *SaveArgoConnectionRequest) Reset() {
+	*x = SaveArgoConnectionRequest{}
+	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveArgoConnectionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveArgoConnectionRequest) ProtoMessage() {}
+
+func (x *SaveArgoConnectionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveArgoConnectionRequest.ProtoReflect.Descriptor instead.
+func (*SaveArgoConnectionRequest) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_argocd_service_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SaveArgoConnectionRequest) GetArgoEndpoint() string {
+	if x != nil {
+		return x.ArgoEndpoint
+	}
+	return ""
+}
+
+func (x *SaveArgoConnectionRequest) GetArgoAccountToken() string {
 	if x != nil {
 		return x.ArgoAccountToken
 	}
@@ -87,7 +141,7 @@ type TestConnectionResponse struct {
 
 func (x *TestConnectionResponse) Reset() {
 	*x = TestConnectionResponse{}
-	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[1]
+	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -99,7 +153,7 @@ func (x *TestConnectionResponse) String() string {
 func (*TestConnectionResponse) ProtoMessage() {}
 
 func (x *TestConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[1]
+	mi := &file_octant_v1alpha_argocd_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +166,7 @@ func (x *TestConnectionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TestConnectionResponse.ProtoReflect.Descriptor instead.
 func (*TestConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_argocd_service_proto_rawDescGZIP(), []int{1}
+	return file_octant_v1alpha_argocd_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TestConnectionResponse) GetSuccess() bool {
@@ -127,14 +181,17 @@ var File_octant_v1alpha_argocd_service_proto protoreflect.FileDescriptor
 const file_octant_v1alpha_argocd_service_proto_rawDesc = "" +
 	"\n" +
 	"#octant/v1alpha/argocd_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"z\n" +
-	"\x15ArgoConnectionDetails\x12+\n" +
+	"\x15TestConnectionRequest\x12+\n" +
+	"\rargo_endpoint\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\fargoEndpoint\x124\n" +
+	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"~\n" +
+	"\x19SaveArgoConnectionRequest\x12+\n" +
 	"\rargo_endpoint\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\fargoEndpoint\x124\n" +
 	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"2\n" +
 	"\x16TestConnectionResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xc9\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xcd\x01\n" +
 	"\rArgoCDService\x12a\n" +
-	"\x0eTestConnection\x12%.octant.v1alpha.ArgoConnectionDetails\x1a&.octant.v1alpha.TestConnectionResponse\"\x00\x12U\n" +
-	"\x12SaveArgoConnection\x12%.octant.v1alpha.ArgoConnectionDetails\x1a\x16.google.protobuf.Empty\"\x00B\xc9\x01\n" +
+	"\x0eTestConnection\x12%.octant.v1alpha.TestConnectionRequest\x1a&.octant.v1alpha.TestConnectionResponse\"\x00\x12Y\n" +
+	"\x12SaveArgoConnection\x12).octant.v1alpha.SaveArgoConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00B\xc9\x01\n" +
 	"\x12com.octant.v1alphaB\x12ArgocdServiceProtoP\x01ZFgithub.com/MyDecisive/octant-contracts/go/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
 var (
@@ -149,17 +206,18 @@ func file_octant_v1alpha_argocd_service_proto_rawDescGZIP() []byte {
 	return file_octant_v1alpha_argocd_service_proto_rawDescData
 }
 
-var file_octant_v1alpha_argocd_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_octant_v1alpha_argocd_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_octant_v1alpha_argocd_service_proto_goTypes = []any{
-	(*ArgoConnectionDetails)(nil),  // 0: octant.v1alpha.ArgoConnectionDetails
-	(*TestConnectionResponse)(nil), // 1: octant.v1alpha.TestConnectionResponse
-	(*emptypb.Empty)(nil),          // 2: google.protobuf.Empty
+	(*TestConnectionRequest)(nil),     // 0: octant.v1alpha.TestConnectionRequest
+	(*SaveArgoConnectionRequest)(nil), // 1: octant.v1alpha.SaveArgoConnectionRequest
+	(*TestConnectionResponse)(nil),    // 2: octant.v1alpha.TestConnectionResponse
+	(*emptypb.Empty)(nil),             // 3: google.protobuf.Empty
 }
 var file_octant_v1alpha_argocd_service_proto_depIdxs = []int32{
-	0, // 0: octant.v1alpha.ArgoCDService.TestConnection:input_type -> octant.v1alpha.ArgoConnectionDetails
-	0, // 1: octant.v1alpha.ArgoCDService.SaveArgoConnection:input_type -> octant.v1alpha.ArgoConnectionDetails
-	1, // 2: octant.v1alpha.ArgoCDService.TestConnection:output_type -> octant.v1alpha.TestConnectionResponse
-	2, // 3: octant.v1alpha.ArgoCDService.SaveArgoConnection:output_type -> google.protobuf.Empty
+	0, // 0: octant.v1alpha.ArgoCDService.TestConnection:input_type -> octant.v1alpha.TestConnectionRequest
+	1, // 1: octant.v1alpha.ArgoCDService.SaveArgoConnection:input_type -> octant.v1alpha.SaveArgoConnectionRequest
+	2, // 2: octant.v1alpha.ArgoCDService.TestConnection:output_type -> octant.v1alpha.TestConnectionResponse
+	3, // 3: octant.v1alpha.ArgoCDService.SaveArgoConnection:output_type -> google.protobuf.Empty
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -178,7 +236,7 @@ func file_octant_v1alpha_argocd_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_octant_v1alpha_argocd_service_proto_rawDesc), len(file_octant_v1alpha_argocd_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

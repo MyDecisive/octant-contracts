@@ -45,9 +45,9 @@ const (
 // ArgoCDServiceClient is a client for the octant.v1alpha.ArgoCDService service.
 type ArgoCDServiceClient interface {
 	// SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
-	TestConnection(context.Context, *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[v1alpha.TestConnectionResponse], error)
+	TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error)
 	// SaveArgoConnection saves the argo connection details.
-	SaveArgoConnection(context.Context, *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[emptypb.Empty], error)
+	SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewArgoCDServiceClient constructs a client for the octant.v1alpha.ArgoCDService service. By
@@ -61,13 +61,13 @@ func NewArgoCDServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 	baseURL = strings.TrimRight(baseURL, "/")
 	argoCDServiceMethods := v1alpha.File_octant_v1alpha_argocd_service_proto.Services().ByName("ArgoCDService").Methods()
 	return &argoCDServiceClient{
-		testConnection: connect.NewClient[v1alpha.ArgoConnectionDetails, v1alpha.TestConnectionResponse](
+		testConnection: connect.NewClient[v1alpha.TestConnectionRequest, v1alpha.TestConnectionResponse](
 			httpClient,
 			baseURL+ArgoCDServiceTestConnectionProcedure,
 			connect.WithSchema(argoCDServiceMethods.ByName("TestConnection")),
 			connect.WithClientOptions(opts...),
 		),
-		saveArgoConnection: connect.NewClient[v1alpha.ArgoConnectionDetails, emptypb.Empty](
+		saveArgoConnection: connect.NewClient[v1alpha.SaveArgoConnectionRequest, emptypb.Empty](
 			httpClient,
 			baseURL+ArgoCDServiceSaveArgoConnectionProcedure,
 			connect.WithSchema(argoCDServiceMethods.ByName("SaveArgoConnection")),
@@ -78,26 +78,26 @@ func NewArgoCDServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 
 // argoCDServiceClient implements ArgoCDServiceClient.
 type argoCDServiceClient struct {
-	testConnection     *connect.Client[v1alpha.ArgoConnectionDetails, v1alpha.TestConnectionResponse]
-	saveArgoConnection *connect.Client[v1alpha.ArgoConnectionDetails, emptypb.Empty]
+	testConnection     *connect.Client[v1alpha.TestConnectionRequest, v1alpha.TestConnectionResponse]
+	saveArgoConnection *connect.Client[v1alpha.SaveArgoConnectionRequest, emptypb.Empty]
 }
 
 // TestConnection calls octant.v1alpha.ArgoCDService.TestConnection.
-func (c *argoCDServiceClient) TestConnection(ctx context.Context, req *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[v1alpha.TestConnectionResponse], error) {
+func (c *argoCDServiceClient) TestConnection(ctx context.Context, req *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error) {
 	return c.testConnection.CallUnary(ctx, req)
 }
 
 // SaveArgoConnection calls octant.v1alpha.ArgoCDService.SaveArgoConnection.
-func (c *argoCDServiceClient) SaveArgoConnection(ctx context.Context, req *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[emptypb.Empty], error) {
+func (c *argoCDServiceClient) SaveArgoConnection(ctx context.Context, req *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error) {
 	return c.saveArgoConnection.CallUnary(ctx, req)
 }
 
 // ArgoCDServiceHandler is an implementation of the octant.v1alpha.ArgoCDService service.
 type ArgoCDServiceHandler interface {
 	// SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
-	TestConnection(context.Context, *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[v1alpha.TestConnectionResponse], error)
+	TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error)
 	// SaveArgoConnection saves the argo connection details.
-	SaveArgoConnection(context.Context, *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[emptypb.Empty], error)
+	SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewArgoCDServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -134,10 +134,10 @@ func NewArgoCDServiceHandler(svc ArgoCDServiceHandler, opts ...connect.HandlerOp
 // UnimplementedArgoCDServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedArgoCDServiceHandler struct{}
 
-func (UnimplementedArgoCDServiceHandler) TestConnection(context.Context, *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[v1alpha.TestConnectionResponse], error) {
+func (UnimplementedArgoCDServiceHandler) TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ArgoCDService.TestConnection is not implemented"))
 }
 
-func (UnimplementedArgoCDServiceHandler) SaveArgoConnection(context.Context, *connect.Request[v1alpha.ArgoConnectionDetails]) (*connect.Response[emptypb.Empty], error) {
+func (UnimplementedArgoCDServiceHandler) SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ArgoCDService.SaveArgoConnection is not implemented"))
 }

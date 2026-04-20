@@ -13,12 +13,12 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/argocd_service.proto.
  */
 export const file_octant_v1alpha_argocd_service: GenFile = /*@__PURE__*/
-  fileDesc("CiNvY3RhbnQvdjFhbHBoYS9hcmdvY2Rfc2VydmljZS5wcm90bxIOb2N0YW50LnYxYWxwaGEiWgoVQXJnb0Nvbm5lY3Rpb25EZXRhaWxzEh0KDWFyZ29fZW5kcG9pbnQYASABKAlCBrpIA8gBARIiChJhcmdvX2FjY291bnRfdG9rZW4YAiABKAlCBrpIA8gBASIpChZUZXN0Q29ubmVjdGlvblJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgyyQEKDUFyZ29DRFNlcnZpY2USYQoOVGVzdENvbm5lY3Rpb24SJS5vY3RhbnQudjFhbHBoYS5BcmdvQ29ubmVjdGlvbkRldGFpbHMaJi5vY3RhbnQudjFhbHBoYS5UZXN0Q29ubmVjdGlvblJlc3BvbnNlIgASVQoSU2F2ZUFyZ29Db25uZWN0aW9uEiUub2N0YW50LnYxYWxwaGEuQXJnb0Nvbm5lY3Rpb25EZXRhaWxzGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgBCyQEKEmNvbS5vY3RhbnQudjFhbHBoYUISQXJnb2NkU2VydmljZVByb3RvUAFaRmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_empty]);
+  fileDesc("CiNvY3RhbnQvdjFhbHBoYS9hcmdvY2Rfc2VydmljZS5wcm90bxIOb2N0YW50LnYxYWxwaGEiWgoVVGVzdENvbm5lY3Rpb25SZXF1ZXN0Eh0KDWFyZ29fZW5kcG9pbnQYASABKAlCBrpIA8gBARIiChJhcmdvX2FjY291bnRfdG9rZW4YAiABKAlCBrpIA8gBASJeChlTYXZlQXJnb0Nvbm5lY3Rpb25SZXF1ZXN0Eh0KDWFyZ29fZW5kcG9pbnQYASABKAlCBrpIA8gBARIiChJhcmdvX2FjY291bnRfdG9rZW4YAiABKAlCBrpIA8gBASIpChZUZXN0Q29ubmVjdGlvblJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgyzQEKDUFyZ29DRFNlcnZpY2USYQoOVGVzdENvbm5lY3Rpb24SJS5vY3RhbnQudjFhbHBoYS5UZXN0Q29ubmVjdGlvblJlcXVlc3QaJi5vY3RhbnQudjFhbHBoYS5UZXN0Q29ubmVjdGlvblJlc3BvbnNlIgASWQoSU2F2ZUFyZ29Db25uZWN0aW9uEikub2N0YW50LnYxYWxwaGEuU2F2ZUFyZ29Db25uZWN0aW9uUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAQskBChJjb20ub2N0YW50LnYxYWxwaGFCEkFyZ29jZFNlcnZpY2VQcm90b1ABWkZnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_empty]);
 
 /**
- * @generated from message octant.v1alpha.ArgoConnectionDetails
+ * @generated from message octant.v1alpha.TestConnectionRequest
  */
-export type ArgoConnectionDetails = Message<"octant.v1alpha.ArgoConnectionDetails"> & {
+export type TestConnectionRequest = Message<"octant.v1alpha.TestConnectionRequest"> & {
   /**
    * argo_endpoint is the endpoint to the argo cd cluster to communicate with.
    *
@@ -35,11 +35,37 @@ export type ArgoConnectionDetails = Message<"octant.v1alpha.ArgoConnectionDetail
 };
 
 /**
- * Describes the message octant.v1alpha.ArgoConnectionDetails.
- * Use `create(ArgoConnectionDetailsSchema)` to create a new message.
+ * Describes the message octant.v1alpha.TestConnectionRequest.
+ * Use `create(TestConnectionRequestSchema)` to create a new message.
  */
-export const ArgoConnectionDetailsSchema: GenMessage<ArgoConnectionDetails> = /*@__PURE__*/
+export const TestConnectionRequestSchema: GenMessage<TestConnectionRequest> = /*@__PURE__*/
   messageDesc(file_octant_v1alpha_argocd_service, 0);
+
+/**
+ * @generated from message octant.v1alpha.SaveArgoConnectionRequest
+ */
+export type SaveArgoConnectionRequest = Message<"octant.v1alpha.SaveArgoConnectionRequest"> & {
+  /**
+   * argo_endpoint is the endpoint to the argo cd cluster to communicate with.
+   *
+   * @generated from field: string argo_endpoint = 1;
+   */
+  argoEndpoint: string;
+
+  /**
+   * argo_account_token is the generated token for the account to use for communicating with the argo cd API.
+   *
+   * @generated from field: string argo_account_token = 2;
+   */
+  argoAccountToken: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.SaveArgoConnectionRequest.
+ * Use `create(SaveArgoConnectionRequestSchema)` to create a new message.
+ */
+export const SaveArgoConnectionRequestSchema: GenMessage<SaveArgoConnectionRequest> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_argocd_service, 1);
 
 /**
  * @generated from message octant.v1alpha.TestConnectionResponse
@@ -58,7 +84,7 @@ export type TestConnectionResponse = Message<"octant.v1alpha.TestConnectionRespo
  * Use `create(TestConnectionResponseSchema)` to create a new message.
  */
 export const TestConnectionResponseSchema: GenMessage<TestConnectionResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_argocd_service, 1);
+  messageDesc(file_octant_v1alpha_argocd_service, 2);
 
 /**
  * ArgoCDService provides an interface for managing an argo cd integration.
@@ -73,7 +99,7 @@ export const ArgoCDService: GenService<{
    */
   testConnection: {
     methodKind: "unary";
-    input: typeof ArgoConnectionDetailsSchema;
+    input: typeof TestConnectionRequestSchema;
     output: typeof TestConnectionResponseSchema;
   },
   /**
@@ -83,7 +109,7 @@ export const ArgoCDService: GenService<{
    */
   saveArgoConnection: {
     methodKind: "unary";
-    input: typeof ArgoConnectionDetailsSchema;
+    input: typeof SaveArgoConnectionRequestSchema;
     output: typeof EmptySchema;
   },
 }> = /*@__PURE__*/
