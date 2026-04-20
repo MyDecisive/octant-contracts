@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package budget.v1alpha;
+
+import "budget/v1alpha/type.proto";
+import "buf/validate/validate.proto";
+
+service BudgetService {
+  // Overall returns budeget stats.
+  rpc Overall(OverallRequest) returns (OverallResponse) {}
+  // Log returns budeget stats for logs.
+  rpc Log(LogRequest) returns (LogResponse) {}
+  // Trace returns budeget stats for traces.
+  rpc Trace(TraceRequest) returns (TraceResponse) {}
+}
+
+message OverallRequest {
+  // timeframe tells the server timeframe of the data to retrieve.
+  Timeframe timeframe = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+}
+
+message OverallResponse {
+  Overall data = 1;
+}
+
+message LogRequest {
+  // timeframe tells the server timeframe of the data to retrieve.
+  Timeframe timeframe = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+  // size limits number of services to retireve.
+  uint32 size = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).uint32 = {
+      gt: 0
+      lt: 251
+    }
+  ];
+  // page_token (pagination) used to grab next page of data.
+  string page_token = 3;
+  // search is used to filter the data so that only services with name containing the given search term will be returned.
+  string search = 4 [
+    (buf.validate.field).string.min_len = 5,
+    (buf.validate.field).string.max_len = 100
+  ];
+}
+
+message LogResponse {
+  repeated Log data = 1;
+  string next_page_token = 2;
+}
+
+message TraceRequest {
+  // timeframe tells the server timeframe of the data to retrieve.
+  Timeframe timeframe = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+  // size limits number of trace root spans to retireve.
+  uint32 size = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).uint32 = {
+      gt: 0
+      lt: 251
+    }
+  ];
+  // page_token (pagination) used to grab next page of data.
+  string page_token = 3;
+  // search is used to filter the data so that only trace root span with name containing the given search term will be returned.
+  string search = 4 [
+    (buf.validate.field).string.min_len = 5,
+    (buf.validate.field).string.max_len = 100
+  ];
+}
+
+message TraceResponse {
+  repeated Span data = 1;
+  string next_page_token = 2;
+}

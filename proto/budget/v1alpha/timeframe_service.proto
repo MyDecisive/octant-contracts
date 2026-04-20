@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package budget.v1alpha;
+
+import "budget/v1alpha/type.proto";
+import "google/protobuf/empty.proto";
+
+service TimeframeService {
+  // TimeframeStatus returns timeframe status for each timeframe.
+  rpc TimeframeStatus(google.protobuf.Empty) returns (TimeframeStatusResponse) {}
+}
+
+message TimeframeStatusResponse {
+  // Code represents the status code of a given timeframe.
+  enum Code {
+    CODE_UNSPECIFIED = 0;
+    // CODE_OK means user is allow to select the given timeframe.
+    CODE_OK = 1;
+    // CODE_NO_DATA means connection is not set, so no data to show.
+    CODE_NO_DATA = 2;
+    // CODE_NOT_ENOUGH means there are not enough data to show for the given timeframe.
+    CODE_NOT_ENOUGH = 3;
+  }
+
+  message Status {
+    // timeframe contains the timeframe.
+    Timeframe timeframe = 1;
+    // status contains the status code of the timeframe.
+    Code status = 3;
+  }
+
+  // statuses contains status of each timeframe.
+  // Note: this array will not contain duplicate timeframes.
+  repeated Status statuses = 1;
+}
