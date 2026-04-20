@@ -191,8 +191,8 @@ const file_octant_v1alpha_argocd_service_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess2\xcd\x01\n" +
 	"\rArgoCDService\x12a\n" +
 	"\x0eTestConnection\x12%.octant.v1alpha.TestConnectionRequest\x1a&.octant.v1alpha.TestConnectionResponse\"\x00\x12Y\n" +
-	"\x12SaveArgoConnection\x12).octant.v1alpha.SaveArgoConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00B\xc9\x01\n" +
-	"\x12com.octant.v1alphaB\x12ArgocdServiceProtoP\x01ZFgithub.com/MyDecisive/octant-contracts/go/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
+	"\x12SaveArgoConnection\x12).octant.v1alpha.SaveArgoConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00B\xcd\x01\n" +
+	"\x12com.octant.v1alphaB\x12ArgocdServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
 var (
 	file_octant_v1alpha_argocd_service_proto_rawDescOnce sync.Once

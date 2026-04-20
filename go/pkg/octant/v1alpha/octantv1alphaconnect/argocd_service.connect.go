@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1alpha "github.com/MyDecisive/octant-contracts/go/octant/v1alpha"
+	v1alpha "github.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"
@@ -44,7 +44,7 @@ const (
 
 // ArgoCDServiceClient is a client for the octant.v1alpha.ArgoCDService service.
 type ArgoCDServiceClient interface {
-	// SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
+	// TestConnection uses the provided request data to test the argo connection.
 	TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error)
 	// SaveArgoConnection saves the argo connection details.
 	SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error)
@@ -94,7 +94,7 @@ func (c *argoCDServiceClient) SaveArgoConnection(ctx context.Context, req *conne
 
 // ArgoCDServiceHandler is an implementation of the octant.v1alpha.ArgoCDService service.
 type ArgoCDServiceHandler interface {
-	// SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
+	// TestConnection uses the provided request data to test the argo connection.
 	TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error)
 	// SaveArgoConnection saves the argo connection details.
 	SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error)

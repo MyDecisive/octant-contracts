@@ -238,8 +238,8 @@ const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\x18INSTALL_STATUS_INSTALLED\x10\x032\xce\x01\n" +
 	"\x0eInstallService\x12Q\n" +
 	"\x0eInstallMDAIHub\x12%.octant.v1alpha.InstallMDAIHubRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n" +
-	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x000\x01B\xca\x01\n" +
-	"\x12com.octant.v1alphaB\x13InstallServiceProtoP\x01ZFgithub.com/MyDecisive/octant-contracts/go/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
+	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x000\x01B\xce\x01\n" +
+	"\x12com.octant.v1alphaB\x13InstallServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
 var (
 	file_octant_v1alpha_install_service_proto_rawDescOnce sync.Once
