@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1alpha "github.com/MyDecisive/octant-contracts/go/octant/v1alpha"
+	v1alpha "github.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"
@@ -44,7 +44,7 @@ const (
 
 // InstallServiceClient is a client for the octant.v1alpha.InstallService service.
 type InstallServiceClient interface {
-	// SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
+	// InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
 	InstallMDAIHub(context.Context, *connect.Request[v1alpha.InstallMDAIHubRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetInstallStatus creates a response stream with mdai install status updates.
 	GetInstallStatus(context.Context, *connect.Request[v1alpha.GetInstallStatusRequest]) (*connect.ServerStreamForClient[v1alpha.GetInstallStatusResponse], error)
@@ -94,7 +94,7 @@ func (c *installServiceClient) GetInstallStatus(ctx context.Context, req *connec
 
 // InstallServiceHandler is an implementation of the octant.v1alpha.InstallService service.
 type InstallServiceHandler interface {
-	// SetTotalAutomationSlots sets the total number of available slots for running concurrent orchestration tasks.
+	// InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
 	InstallMDAIHub(context.Context, *connect.Request[v1alpha.InstallMDAIHubRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetInstallStatus creates a response stream with mdai install status updates.
 	GetInstallStatus(context.Context, *connect.Request[v1alpha.GetInstallStatusRequest], *connect.ServerStream[v1alpha.GetInstallStatusResponse]) error

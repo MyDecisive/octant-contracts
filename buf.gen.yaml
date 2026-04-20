@@ -3,7 +3,7 @@ managed:
   enabled: true
   override:
     - file_option: go_package_prefix
-      value: github.com/MyDecisive/octant-contracts/go
+      value: github.com/MyDecisive/octant-contracts/go/pkg
   disable:
     - module: buf.build/googleapis/googleapis
     - module: buf.build/protocolbuffers/wellknowntypes
