@@ -115,7 +115,7 @@ type LogRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// timeframe tells the server timeframe of the data to retrieve.
 	Timeframe Timeframe `protobuf:"varint,1,opt,name=timeframe,proto3,enum=budget.v1alpha.Timeframe" json:"timeframe,omitempty"`
-	// size limits number of services to retireve.
+	// size limits number of services to retrieve.
 	Size uint32 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	// page_token (pagination) used to grab next page of data.
 	PageToken string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
@@ -239,7 +239,7 @@ type TraceRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// timeframe tells the server timeframe of the data to retrieve.
 	Timeframe Timeframe `protobuf:"varint,1,opt,name=timeframe,proto3,enum=budget.v1alpha.Timeframe" json:"timeframe,omitempty"`
-	// size limits number of trace root spans to retireve.
+	// size limits number of trace root spans to retrieve.
 	Size uint32 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	// page_token (pagination) used to grab next page of data.
 	PageToken string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`

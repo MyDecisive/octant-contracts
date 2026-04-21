@@ -32,7 +32,7 @@ message LogRequest {
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
-  // size limits number of services to retireve.
+  // size limits number of services to retrieve.
   uint32 size = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).uint32 = {
@@ -60,7 +60,7 @@ message TraceRequest {
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
-  // size limits number of trace root spans to retireve.
+  // size limits number of trace root spans to retrieve.
   uint32 size = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).uint32 = {

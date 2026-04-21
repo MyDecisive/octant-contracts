@@ -63,7 +63,7 @@ export type LogRequest = Message<"budget.v1alpha.LogRequest"> & {
   timeframe: Timeframe;
 
   /**
-   * size limits number of services to retireve.
+   * size limits number of services to retrieve.
    *
    * @generated from field: uint32 size = 2;
    */
@@ -125,7 +125,7 @@ export type TraceRequest = Message<"budget.v1alpha.TraceRequest"> & {
   timeframe: Timeframe;
 
   /**
-   * size limits number of trace root spans to retireve.
+   * size limits number of trace root spans to retrieve.
    *
    * @generated from field: uint32 size = 2;
    */
