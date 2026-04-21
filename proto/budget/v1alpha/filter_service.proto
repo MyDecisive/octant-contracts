@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package budget.v1alpha;
+
+import "budget/v1alpha/type.proto";
+import "buf/validate/validate.proto";
+
+service FilterService {
+  // GetFilter returns the current filter setting of the given filter type.
+  // If  an update is in progress, this will return with an error code `unavailable`.
+  rpc GetFilter(GetFilterRequest) returns (GetFilterResponse) {}
+  // UpdateFilter attempts to update filter setting of the given filter type.
+  // If an update is in progress, this will immediately return with an error code `unavailable`.
+  // Otherwise, this will continuously give update until the update is complete or errored.
+  rpc UpdateFilter(UpdateFilterRequest) returns (stream UpdateFilterResponse) {}
+}
+
+message GetFilterRequest {
+  // type contains the type of the filter to retrieve.
+  FilterType type = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+}
+
+message GetFilterResponse {
+  Filter data = 1;
+}
+
+message UpdateFilterRequest {
+  Filter data = 1 [(buf.validate.field).required = true];
+}
+
+message UpdateFilterResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_IN_PROGRESS = 1;
+    STATUS_COMPLETED = 2;
+    STATUS_ERR_UNKNOWN = 3;
+  }
+  Status status = 1;
+}
