@@ -40,7 +40,6 @@ const (
 
 // ConnectionServiceClient is a client for the octant.v1alpha.ConnectionService service.
 type ConnectionServiceClient interface {
-	// InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
 }
 
@@ -76,7 +75,6 @@ func (c *connectionServiceClient) GetConnectionStatus(ctx context.Context, req *
 
 // ConnectionServiceHandler is an implementation of the octant.v1alpha.ConnectionService service.
 type ConnectionServiceHandler interface {
-	// InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
 }
 

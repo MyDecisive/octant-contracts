@@ -145,8 +145,6 @@ export const ValidationAttributesSchema: GenMessage<ValidationAttributes> = /*@_
  */
 export const ConnectionService: GenService<{
   /**
-   * InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
-   *
    * @generated from rpc octant.v1alpha.ConnectionService.GetConnectionStatus
    */
   getConnectionStatus: {
