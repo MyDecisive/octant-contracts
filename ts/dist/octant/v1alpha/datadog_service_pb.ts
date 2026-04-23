@@ -13,12 +13,12 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/datadog_service.proto.
  */
 export const file_octant_v1alpha_datadog_service: GenFile = /*@__PURE__*/
-  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9kYXRhZG9nX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIigKF0dldEludGVncmF0aW9uc1Jlc3BvbnNlEg0KBW5hbWVzGAEgAygJImkKFlNhdmVJbnRlZ3JhdGlvblJlcXVlc3QSFwoEbmFtZRgBIAEoCUIJukgGcgQQBRhkEhwKB2FwaV9rZXkYAiABKAlCC7pICMgBAXIDmAEgEhgKA3VybBgDIAEoCUILukgIyAEBcgOAAgEyuwEKDkRhdGFkb2dTZXJ2aWNlElQKD0dldEludGVncmF0aW9ucxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRonLm9jdGFudC52MWFscGhhLkdldEludGVncmF0aW9uc1Jlc3BvbnNlIgASUwoPU2F2ZUludGVncmF0aW9uEiYub2N0YW50LnYxYWxwaGEuU2F2ZUludGVncmF0aW9uUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAQs4BChJjb20ub2N0YW50LnYxYWxwaGFCE0RhdGFkb2dTZXJ2aWNlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_empty]);
+  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9kYXRhZG9nX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIi8KHkdldERhdGFkb2dJbnRlZ3JhdGlvbnNSZXNwb25zZRINCgVuYW1lcxgBIAMoCSJwCh1TYXZlRGF0YWRvZ0ludGVncmF0aW9uUmVxdWVzdBIXCgRuYW1lGAEgASgJQgm6SAZyBBAFGGQSHAoHYXBpX2tleRgCIAEoCUILukgIyAEBcgOYASASGAoDdXJsGAMgASgJQgu6SAjIAQFyA4ACATLXAQoORGF0YWRvZ1NlcnZpY2USYgoWR2V0RGF0YWRvZ0ludGVncmF0aW9ucxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRouLm9jdGFudC52MWFscGhhLkdldERhdGFkb2dJbnRlZ3JhdGlvbnNSZXNwb25zZSIAEmEKFlNhdmVEYXRhZG9nSW50ZWdyYXRpb24SLS5vY3RhbnQudjFhbHBoYS5TYXZlRGF0YWRvZ0ludGVncmF0aW9uUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAQs4BChJjb20ub2N0YW50LnYxYWxwaGFCE0RhdGFkb2dTZXJ2aWNlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_empty]);
 
 /**
- * @generated from message octant.v1alpha.GetIntegrationsResponse
+ * @generated from message octant.v1alpha.GetDatadogIntegrationsResponse
  */
-export type GetIntegrationsResponse = Message<"octant.v1alpha.GetIntegrationsResponse"> & {
+export type GetDatadogIntegrationsResponse = Message<"octant.v1alpha.GetDatadogIntegrationsResponse"> & {
   /**
    * names contains the list of datadog integration names
    *
@@ -28,16 +28,16 @@ export type GetIntegrationsResponse = Message<"octant.v1alpha.GetIntegrationsRes
 };
 
 /**
- * Describes the message octant.v1alpha.GetIntegrationsResponse.
- * Use `create(GetIntegrationsResponseSchema)` to create a new message.
+ * Describes the message octant.v1alpha.GetDatadogIntegrationsResponse.
+ * Use `create(GetDatadogIntegrationsResponseSchema)` to create a new message.
  */
-export const GetIntegrationsResponseSchema: GenMessage<GetIntegrationsResponse> = /*@__PURE__*/
+export const GetDatadogIntegrationsResponseSchema: GenMessage<GetDatadogIntegrationsResponse> = /*@__PURE__*/
   messageDesc(file_octant_v1alpha_datadog_service, 0);
 
 /**
- * @generated from message octant.v1alpha.SaveIntegrationRequest
+ * @generated from message octant.v1alpha.SaveDatadogIntegrationRequest
  */
-export type SaveIntegrationRequest = Message<"octant.v1alpha.SaveIntegrationRequest"> & {
+export type SaveDatadogIntegrationRequest = Message<"octant.v1alpha.SaveDatadogIntegrationRequest"> & {
   /**
    * name contains name of the datadog integration to save
    *
@@ -57,10 +57,10 @@ export type SaveIntegrationRequest = Message<"octant.v1alpha.SaveIntegrationRequ
 };
 
 /**
- * Describes the message octant.v1alpha.SaveIntegrationRequest.
- * Use `create(SaveIntegrationRequestSchema)` to create a new message.
+ * Describes the message octant.v1alpha.SaveDatadogIntegrationRequest.
+ * Use `create(SaveDatadogIntegrationRequestSchema)` to create a new message.
  */
-export const SaveIntegrationRequestSchema: GenMessage<SaveIntegrationRequest> = /*@__PURE__*/
+export const SaveDatadogIntegrationRequestSchema: GenMessage<SaveDatadogIntegrationRequest> = /*@__PURE__*/
   messageDesc(file_octant_v1alpha_datadog_service, 1);
 
 /**
@@ -68,24 +68,24 @@ export const SaveIntegrationRequestSchema: GenMessage<SaveIntegrationRequest> = 
  */
 export const DatadogService: GenService<{
   /**
-   * GetIntegrations returns list of datadog integration names.
+   * GetDatadogIntegrations returns list of datadog integration names.
    *
-   * @generated from rpc octant.v1alpha.DatadogService.GetIntegrations
+   * @generated from rpc octant.v1alpha.DatadogService.GetDatadogIntegrations
    */
-  getIntegrations: {
+  getDatadogIntegrations: {
     methodKind: "unary";
     input: typeof EmptySchema;
-    output: typeof GetIntegrationsResponseSchema;
+    output: typeof GetDatadogIntegrationsResponseSchema;
   },
   /**
-   * SaveIntegration saves the given datadog integration.
+   * SaveDatadogIntegration saves the given datadog integration.
    * If the integration already exists, this will override the saved data with the one provided.
    *
-   * @generated from rpc octant.v1alpha.DatadogService.SaveIntegration
+   * @generated from rpc octant.v1alpha.DatadogService.SaveDatadogIntegration
    */
-  saveIntegration: {
+  saveDatadogIntegration: {
     methodKind: "unary";
-    input: typeof SaveIntegrationRequestSchema;
+    input: typeof SaveDatadogIntegrationRequestSchema;
     output: typeof EmptySchema;
   },
 }> = /*@__PURE__*/

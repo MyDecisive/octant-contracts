@@ -6,19 +6,19 @@ import "buf/validate/validate.proto";
 import "google/protobuf/empty.proto";
 
 service DatadogService {
-  // GetIntegrations returns list of datadog integration names.
-  rpc GetIntegrations(google.protobuf.Empty) returns (GetIntegrationsResponse) {}
-  // SaveIntegration saves the given datadog integration.
+  // GetDatadogIntegrations returns list of datadog integration names.
+  rpc GetDatadogIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {}
+  // SaveDatadogIntegration saves the given datadog integration.
   // If the integration already exists, this will override the saved data with the one provided.
-  rpc SaveIntegration(SaveIntegrationRequest) returns (google.protobuf.Empty) {}
+  rpc SaveDatadogIntegration(SaveDatadogIntegrationRequest) returns (google.protobuf.Empty) {}
 }
 
-message GetIntegrationsResponse {
+message GetDatadogIntegrationsResponse {
   // names contains the list of datadog integration names
   repeated string names = 1;
 }
 
-message SaveIntegrationRequest {
+message SaveDatadogIntegrationRequest {
   // name contains name of the datadog integration to save
   string name = 1 [
     (buf.validate.field).string.min_len = 5,
