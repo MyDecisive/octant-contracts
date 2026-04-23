@@ -25,6 +25,11 @@ message SaveArgoConnectionRequest {
   string argo_endpoint = 1 [(buf.validate.field).required = true];
   // argo_account_token is the generated token for the account to use for communicating with the argo cd API.
   string argo_account_token = 2 [(buf.validate.field).required = true];
+  // name contains name of the argocd integration to save
+  string name = 3 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 100
+  ];
 }
 
 message TestConnectionResponse {

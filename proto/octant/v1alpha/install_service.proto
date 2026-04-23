@@ -16,6 +16,11 @@ service InstallService {
 message InstallMDAIHubRequest {
   // namespace is the kubernetes namespace to install into.
   string namespace = 1 [(buf.validate.field).required = true];
+  // connection_name is the named octant connection configuration to use for install.
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 100
+  ];
 }
 
 message GetInstallStatusRequest {

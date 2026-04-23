@@ -83,8 +83,10 @@ type SaveArgoConnectionRequest struct {
 	ArgoEndpoint string `protobuf:"bytes,1,opt,name=argo_endpoint,json=argoEndpoint,proto3" json:"argo_endpoint,omitempty"`
 	// argo_account_token is the generated token for the account to use for communicating with the argo cd API.
 	ArgoAccountToken string `protobuf:"bytes,2,opt,name=argo_account_token,json=argoAccountToken,proto3" json:"argo_account_token,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// name contains name of the argocd integration to save
+	Name          string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SaveArgoConnectionRequest) Reset() {
@@ -127,6 +129,13 @@ func (x *SaveArgoConnectionRequest) GetArgoEndpoint() string {
 func (x *SaveArgoConnectionRequest) GetArgoAccountToken() string {
 	if x != nil {
 		return x.ArgoAccountToken
+	}
+	return ""
+}
+
+func (x *SaveArgoConnectionRequest) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -183,10 +192,11 @@ const file_octant_v1alpha_argocd_service_proto_rawDesc = "" +
 	"#octant/v1alpha/argocd_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"z\n" +
 	"\x15TestConnectionRequest\x12+\n" +
 	"\rargo_endpoint\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\fargoEndpoint\x124\n" +
-	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"~\n" +
+	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"\x9d\x01\n" +
 	"\x19SaveArgoConnectionRequest\x12+\n" +
 	"\rargo_endpoint\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\fargoEndpoint\x124\n" +
-	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"2\n" +
+	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\x12\x1d\n" +
+	"\x04name\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\x04name\"2\n" +
 	"\x16TestConnectionResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess2\xcd\x01\n" +
 	"\rArgoCDService\x12a\n" +

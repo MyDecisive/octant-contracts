@@ -78,9 +78,11 @@ func (InstallStatus) EnumDescriptor() ([]byte, []int) {
 type InstallMDAIHubRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// namespace is the kubernetes namespace to install into.
-	Namespace     string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the named octant connection configuration to use for install.
+	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *InstallMDAIHubRequest) Reset() {
@@ -116,6 +118,13 @@ func (*InstallMDAIHubRequest) Descriptor() ([]byte, []int) {
 func (x *InstallMDAIHubRequest) GetNamespace() string {
 	if x != nil {
 		return x.Namespace
+	}
+	return ""
+}
+
+func (x *InstallMDAIHubRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
 	}
 	return ""
 }
@@ -223,9 +232,10 @@ var File_octant_v1alpha_install_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\n" +
-	"$octant/v1alpha/install_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"=\n" +
+	"$octant/v1alpha/install_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"q\n" +
 	"\x15InstallMDAIHubRequest\x12$\n" +
-	"\tnamespace\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tnamespace\"<\n" +
+	"\tnamespace\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tnamespace\x122\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\x0econnectionName\"<\n" +
 	"\x17GetInstallStatusRequest\x12!\n" +
 	"\bhub_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\ahubName\"\x82\x01\n" +
 	"\x18GetInstallStatusResponse\x12L\n" +
