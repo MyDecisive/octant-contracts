@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package octant.v1alpha;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+service DatadogService {
+  // GetDatadogIntegrations returns list of datadog integration names.
+  rpc GetDatadogIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {}
+  // SaveDatadogIntegration saves the given datadog integration.
+  // If the integration already exists, this will override the saved data with the one provided.
+  rpc SaveDatadogIntegration(SaveDatadogIntegrationRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetDatadogIntegrationsResponse {
+  // names contains the list of datadog integration names
+  repeated string names = 1;
+}
+
+message SaveDatadogIntegrationRequest {
+  // name contains name of the datadog integration to save
+  string name = 1 [
+    (buf.validate.field).string.min_len = 5,
+    (buf.validate.field).string.max_len = 100
+  ];
+  string api_key = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.len = 32
+  ];
+  string url = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.host_and_port = true
+  ];
+}
