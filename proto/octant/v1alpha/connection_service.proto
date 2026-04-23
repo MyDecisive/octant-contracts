@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package octant.v1alpha;
+
+import "buf/validate/validate.proto";
+
+// ConnectService allows for interacting with MDAI Octant Connections
+service ConnectionService {
+  rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {}
+}
+
+message GetConnectionStatusRequest {
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 1 [(buf.validate.field).required = true];
+  // connection_name is the name of this connection and its resources in argo/k8s
+  string connection_name = 2 [(buf.validate.field).required = true];
+}
+
+message GetConnectionStatusResponse {
+  // receiving_data indicates if the Connection's Collector is receiving telemetry for its configured Telemetry types
+  bool receiving_data = 1;
+  // sending_data indicates if the Connection's Collector is sending telemetry for its configured Telemetry types
+  bool sending_data = 2;
+  // sending_data indicates if the data coming to the Collector fulfills validator parity or policy requirements
+  bool data_integrity = 3;
+  // validation_results is a map of granular validation details per data type (MLT)
+  map<string, ValidationResult> validation_results = 4;
+}
+
+message ValidationResult {
+  // parity indicates if the ingress telemetry payloads match the egress telemetry payloads
+  bool parity = 1;
+  // parity indicates if the egress telemetry payloads fulfill the MDAI validator policy
+  bool policy = 2;
+  // attributes is a map of attributes to per-attribute parity/policy checks
+  ValidationAttributes attributes = 3;
+}
+
+message ValidationAttributes {
+  // parity indicates if the ingress attribute matches the attribute on egress
+  map<string, bool> parity = 1;
+  // parity indicates if the attribute fulfills the MDAI validator policy for this attribute
+  map<string, bool> policy = 2;
+}
