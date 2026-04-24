@@ -232,10 +232,10 @@ var File_octant_v1alpha_install_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\n" +
-	"$octant/v1alpha/install_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"q\n" +
-	"\x15InstallMDAIHubRequest\x12$\n" +
-	"\tnamespace\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tnamespace\x122\n" +
-	"\x0fconnection_name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\x0econnectionName\"<\n" +
+	"$octant/v1alpha/install_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xb7\x01\n" +
+	"\x15InstallMDAIHubRequest\x12I\n" +
+	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"<\n" +
 	"\x17GetInstallStatusRequest\x12!\n" +
 	"\bhub_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\ahubName\"\x82\x01\n" +
 	"\x18GetInstallStatusResponse\x12L\n" +
