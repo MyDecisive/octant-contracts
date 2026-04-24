@@ -47,8 +47,9 @@ type ConnectionServiceClient interface {
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
 	// GenerateManifests generates the manifest base on the given input and this will returns
 	// the compressed zip file containing the manifests as a stream of raw bytes.
-	// Note: FE should utilize https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
-	// to render download link for the user.
+	// Note: To create a download link in the FE, the stream of file content data should be stored
+	// in a typed blob and then https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
+	// should be used.
 	GenerateManifests(context.Context, *connect.Request[v1alpha.GenerateManifestsRequest]) (*connect.ServerStreamForClient[v1alpha.GenerateManifestsResponse], error)
 }
 
@@ -100,8 +101,9 @@ type ConnectionServiceHandler interface {
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
 	// GenerateManifests generates the manifest base on the given input and this will returns
 	// the compressed zip file containing the manifests as a stream of raw bytes.
-	// Note: FE should utilize https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
-	// to render download link for the user.
+	// Note: To create a download link in the FE, the stream of file content data should be stored
+	// in a typed blob and then https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
+	// should be used.
 	GenerateManifests(context.Context, *connect.Request[v1alpha.GenerateManifestsRequest], *connect.ServerStream[v1alpha.GenerateManifestsResponse]) error
 }
 
