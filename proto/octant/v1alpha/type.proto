@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package octant.v1alpha;
+
+enum ManifestOutFormat {
+  MANIFEST_OUT_FORMAT_UNSPECIFIED = 0;
+  MANIFEST_OUT_FORMAT_JSON = 1;
+  MANIFEST_OUT_FORMAT_YAML = 2;
+}
+
+enum MLTType {
+  MLT_TYPE_UNSPECIFIED = 0;
+  MLT_TYPE_METRIC = 1;
+  MLT_TYPE_TRACE = 2;
+  MLT_TYPE_LOG = 3;
+}

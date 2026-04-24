@@ -5,13 +5,88 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
+import type { ManifestOutFormat, MLTType } from "./type_pb";
+import { file_octant_v1alpha_type } from "./type_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file octant/v1alpha/connection_service.proto.
  */
 export const file_octant_v1alpha_connection_service: GenFile = /*@__PURE__*/
-  fileDesc("CidvY3RhbnQvdjFhbHBoYS9jb25uZWN0aW9uX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIqEBChpHZXRDb25uZWN0aW9uU3RhdHVzUmVxdWVzdBI+CgluYW1lc3BhY2UYASABKAlCK7pIKMgBAXIjGD8yH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQSQwoPY29ubmVjdGlvbl9uYW1lGAIgASgJQiq6SCdyJRADGBQyH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQiqgEKG0dldENvbm5lY3Rpb25TdGF0dXNSZXNwb25zZRIWCg5yZWNlaXZpbmdfZGF0YRgBIAEoCBIUCgxzZW5kaW5nX2RhdGEYAiABKAgSFgoOZGF0YV9pbnRlZ3JpdHkYAyABKAgSRQoSdmFsaWRhdGlvbl9yZXN1bHRzGAQgASgLMikub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbCKwAQoZVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbBIuCgRsb2dzGAEgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIxCgdtZXRyaWNzGAIgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIwCgZ0cmFjZXMYAyABKAsyIC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0ImwKEFZhbGlkYXRpb25SZXN1bHQSDgoGcGFyaXR5GAEgASgIEg4KBnBvbGljeRgCIAEoCBI4CgphdHRyaWJ1dGVzGAMgASgLMiQub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMi+AEKFFZhbGlkYXRpb25BdHRyaWJ1dGVzEkAKBnBhcml0eRgBIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBhcml0eUVudHJ5EkAKBnBvbGljeRgCIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBvbGljeUVudHJ5Gi0KC1Bhcml0eUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCDoCOAEaLQoLUG9saWN5RW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgIOgI4ATKFAQoRQ29ubmVjdGlvblNlcnZpY2UScAoTR2V0Q29ubmVjdGlvblN0YXR1cxIqLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25TdGF0dXNSZXF1ZXN0Gisub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblN0YXR1c1Jlc3BvbnNlIgBC0QEKEmNvbS5vY3RhbnQudjFhbHBoYUIWQ29ubmVjdGlvblNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate]);
+  fileDesc("CidvY3RhbnQvdjFhbHBoYS9jb25uZWN0aW9uX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIqUCChhHZW5lcmF0ZU1hbmlmZXN0c1JlcXVlc3QSPgoJbmFtZXNwYWNlGAEgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEkMKD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIqukgnciUQAxgUMh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEj4KBmZvcm1hdBgDIAEoDjIhLm9jdGFudC52MWFscGhhLk1hbmlmZXN0T3V0Rm9ybWF0Qgu6SAjIAQGCAQIQARJECg90ZWxlbWV0cnlfdHlwZXMYBCADKA4yFy5vY3RhbnQudjFhbHBoYS5NTFRUeXBlQhK6SA/IAQGSAQkYASIFggECEAEiRgoZR2VuZXJhdGVNYW5pZmVzdHNSZXNwb25zZRIMCgRkYXRhGAEgASgMEg0KBXRvdGFsGAIgASgEEgwKBHR5cGUYAyABKAkioQEKGkdldENvbm5lY3Rpb25TdGF0dXNSZXF1ZXN0Ej4KCW5hbWVzcGFjZRgBIAEoCUIrukgoyAEBciMYPzIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JBJDCg9jb25uZWN0aW9uX25hbWUYAiABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCKqAQobR2V0Q29ubmVjdGlvblN0YXR1c1Jlc3BvbnNlEhYKDnJlY2VpdmluZ19kYXRhGAEgASgIEhQKDHNlbmRpbmdfZGF0YRgCIAEoCBIWCg5kYXRhX2ludGVncml0eRgDIAEoCBJFChJ2YWxpZGF0aW9uX3Jlc3VsdHMYBCABKAsyKS5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0c0J5U2lnbmFsIrABChlWYWxpZGF0aW9uUmVzdWx0c0J5U2lnbmFsEi4KBGxvZ3MYASABKAsyIC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0EjEKB21ldHJpY3MYAiABKAsyIC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0EjAKBnRyYWNlcxgDIAEoCzIgLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25SZXN1bHQibAoQVmFsaWRhdGlvblJlc3VsdBIOCgZwYXJpdHkYASABKAgSDgoGcG9saWN5GAIgASgIEjgKCmF0dHJpYnV0ZXMYAyABKAsyJC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uQXR0cmlidXRlcyL4AQoUVmFsaWRhdGlvbkF0dHJpYnV0ZXMSQAoGcGFyaXR5GAEgAygLMjAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMuUGFyaXR5RW50cnkSQAoGcG9saWN5GAIgAygLMjAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMuUG9saWN5RW50cnkaLQoLUGFyaXR5RW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgIOgI4ARotCgtQb2xpY3lFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAg6AjgBMvMBChFDb25uZWN0aW9uU2VydmljZRJwChNHZXRDb25uZWN0aW9uU3RhdHVzEioub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblN0YXR1c1JlcXVlc3QaKy5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uU3RhdHVzUmVzcG9uc2UiABJsChFHZW5lcmF0ZU1hbmlmZXN0cxIoLm9jdGFudC52MWFscGhhLkdlbmVyYXRlTWFuaWZlc3RzUmVxdWVzdBopLm9jdGFudC52MWFscGhhLkdlbmVyYXRlTWFuaWZlc3RzUmVzcG9uc2UiADABQtEBChJjb20ub2N0YW50LnYxYWxwaGFCFkNvbm5lY3Rpb25TZXJ2aWNlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate, file_octant_v1alpha_type]);
+
+/**
+ * @generated from message octant.v1alpha.GenerateManifestsRequest
+ */
+export type GenerateManifestsRequest = Message<"octant.v1alpha.GenerateManifestsRequest"> & {
+  /**
+   * namespace is the kubernetes namespace to install into.
+   *
+   * @generated from field: string namespace = 1;
+   */
+  namespace: string;
+
+  /**
+   * connection_name is the name of this connection and its resources in argo/k8s
+   *
+   * @generated from field: string connection_name = 2;
+   */
+  connectionName: string;
+
+  /**
+   * format contains output format of the manifests.
+   *
+   * @generated from field: octant.v1alpha.ManifestOutFormat format = 3;
+   */
+  format: ManifestOutFormat;
+
+  /**
+   * telemetry_types is used to generate the manifests.
+   *
+   * @generated from field: repeated octant.v1alpha.MLTType telemetry_types = 4;
+   */
+  telemetryTypes: MLTType[];
+};
+
+/**
+ * Describes the message octant.v1alpha.GenerateManifestsRequest.
+ * Use `create(GenerateManifestsRequestSchema)` to create a new message.
+ */
+export const GenerateManifestsRequestSchema: GenMessage<GenerateManifestsRequest> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_connection_service, 0);
+
+/**
+ * @generated from message octant.v1alpha.GenerateManifestsResponse
+ */
+export type GenerateManifestsResponse = Message<"octant.v1alpha.GenerateManifestsResponse"> & {
+  /**
+   * data contains a chunk of the file content as raw bytes.
+   *
+   * @generated from field: bytes data = 1;
+   */
+  data: Uint8Array;
+
+  /**
+   * total is the total number of bytes for current file.
+   *
+   * @generated from field: uint64 total = 2;
+   */
+  total: bigint;
+
+  /**
+   * type is the MIME type of the file. (e.g., zip)
+   *
+   * @generated from field: string type = 3;
+   */
+  type: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.GenerateManifestsResponse.
+ * Use `create(GenerateManifestsResponseSchema)` to create a new message.
+ */
+export const GenerateManifestsResponseSchema: GenMessage<GenerateManifestsResponse> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_connection_service, 1);
 
 /**
  * @generated from message octant.v1alpha.GetConnectionStatusRequest
@@ -37,7 +112,7 @@ export type GetConnectionStatusRequest = Message<"octant.v1alpha.GetConnectionSt
  * Use `create(GetConnectionStatusRequestSchema)` to create a new message.
  */
 export const GetConnectionStatusRequestSchema: GenMessage<GetConnectionStatusRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 0);
+  messageDesc(file_octant_v1alpha_connection_service, 2);
 
 /**
  * @generated from message octant.v1alpha.GetConnectionStatusResponse
@@ -77,7 +152,7 @@ export type GetConnectionStatusResponse = Message<"octant.v1alpha.GetConnectionS
  * Use `create(GetConnectionStatusResponseSchema)` to create a new message.
  */
 export const GetConnectionStatusResponseSchema: GenMessage<GetConnectionStatusResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 1);
+  messageDesc(file_octant_v1alpha_connection_service, 3);
 
 /**
  * @generated from message octant.v1alpha.ValidationResultsBySignal
@@ -104,7 +179,7 @@ export type ValidationResultsBySignal = Message<"octant.v1alpha.ValidationResult
  * Use `create(ValidationResultsBySignalSchema)` to create a new message.
  */
 export const ValidationResultsBySignalSchema: GenMessage<ValidationResultsBySignal> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 2);
+  messageDesc(file_octant_v1alpha_connection_service, 4);
 
 /**
  * @generated from message octant.v1alpha.ValidationResult
@@ -137,7 +212,7 @@ export type ValidationResult = Message<"octant.v1alpha.ValidationResult"> & {
  * Use `create(ValidationResultSchema)` to create a new message.
  */
 export const ValidationResultSchema: GenMessage<ValidationResult> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 3);
+  messageDesc(file_octant_v1alpha_connection_service, 5);
 
 /**
  * @generated from message octant.v1alpha.ValidationAttributes
@@ -163,7 +238,7 @@ export type ValidationAttributes = Message<"octant.v1alpha.ValidationAttributes"
  * Use `create(ValidationAttributesSchema)` to create a new message.
  */
 export const ValidationAttributesSchema: GenMessage<ValidationAttributes> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 4);
+  messageDesc(file_octant_v1alpha_connection_service, 6);
 
 /**
  * ConnectService allows for interacting with MDAI Octant Connections
@@ -180,6 +255,20 @@ export const ConnectionService: GenService<{
     methodKind: "unary";
     input: typeof GetConnectionStatusRequestSchema;
     output: typeof GetConnectionStatusResponseSchema;
+  },
+  /**
+   * GenerateManifests generates the manifest base on the given input and this will returns
+   * the compressed zip file containing the manifests as a stream of raw bytes.
+   * Note: To create a download link in the FE, the stream of file content data should be stored
+   * in a typed blob and then https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
+   * should be used.
+   *
+   * @generated from rpc octant.v1alpha.ConnectionService.GenerateManifests
+   */
+  generateManifests: {
+    methodKind: "server_streaming";
+    input: typeof GenerateManifestsRequestSchema;
+    output: typeof GenerateManifestsResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_octant_v1alpha_connection_service, 0);
