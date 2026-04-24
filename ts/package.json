@@ -1,5 +1,5 @@
 {
-  "name": "@mydecisive/octant-client",
+  "name": "@mydecisiveai/octant-client",
   "version": "0.0.0",
   "author": "MyDecisive",
   "description": "Generated TS client library for Octant API",

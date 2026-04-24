@@ -29,13 +29,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@mydecisive'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@mydecisiveai'
       - run: npm ci
         working-directory: ./ts
       - run: npm version ${{ steps.version.outputs.VERSION }}
         working-directory: ./ts
-      - run: npm publish --tag latest
+      - run: npm publish --tag latest --provenance --access public
         working-directory: ./ts
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
