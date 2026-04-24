@@ -35,6 +35,11 @@ message GenerateManifestsRequest {
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
+  // deployment_type use to tell the type of manifest to generate.
+  DeploymentType deployment_type = 5 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
   // telemetry_types is used to generate the manifests.
   repeated MLTType telemetry_types = 4 [
     (buf.validate.field).required = true,
