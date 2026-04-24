@@ -36,12 +36,20 @@ const (
 	// ConnectionServiceGetConnectionStatusProcedure is the fully-qualified name of the
 	// ConnectionService's GetConnectionStatus RPC.
 	ConnectionServiceGetConnectionStatusProcedure = "/octant.v1alpha.ConnectionService/GetConnectionStatus"
+	// ConnectionServiceGenerateManifestsProcedure is the fully-qualified name of the
+	// ConnectionService's GenerateManifests RPC.
+	ConnectionServiceGenerateManifestsProcedure = "/octant.v1alpha.ConnectionService/GenerateManifests"
 )
 
 // ConnectionServiceClient is a client for the octant.v1alpha.ConnectionService service.
 type ConnectionServiceClient interface {
 	// GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
+	// GenerateManifests generates the manifest base on the given input and this will returns
+	// the compressed zip file containing the manifests as a stream of raw bytes.
+	// Note: FE should utilize https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
+	// to render download link for the user.
+	GenerateManifests(context.Context, *connect.Request[v1alpha.GenerateManifestsRequest]) (*connect.ServerStreamForClient[v1alpha.GenerateManifestsResponse], error)
 }
 
 // NewConnectionServiceClient constructs a client for the octant.v1alpha.ConnectionService service.
@@ -61,12 +69,19 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(connectionServiceMethods.ByName("GetConnectionStatus")),
 			connect.WithClientOptions(opts...),
 		),
+		generateManifests: connect.NewClient[v1alpha.GenerateManifestsRequest, v1alpha.GenerateManifestsResponse](
+			httpClient,
+			baseURL+ConnectionServiceGenerateManifestsProcedure,
+			connect.WithSchema(connectionServiceMethods.ByName("GenerateManifests")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // connectionServiceClient implements ConnectionServiceClient.
 type connectionServiceClient struct {
 	getConnectionStatus *connect.Client[v1alpha.GetConnectionStatusRequest, v1alpha.GetConnectionStatusResponse]
+	generateManifests   *connect.Client[v1alpha.GenerateManifestsRequest, v1alpha.GenerateManifestsResponse]
 }
 
 // GetConnectionStatus calls octant.v1alpha.ConnectionService.GetConnectionStatus.
@@ -74,10 +89,20 @@ func (c *connectionServiceClient) GetConnectionStatus(ctx context.Context, req *
 	return c.getConnectionStatus.CallUnary(ctx, req)
 }
 
+// GenerateManifests calls octant.v1alpha.ConnectionService.GenerateManifests.
+func (c *connectionServiceClient) GenerateManifests(ctx context.Context, req *connect.Request[v1alpha.GenerateManifestsRequest]) (*connect.ServerStreamForClient[v1alpha.GenerateManifestsResponse], error) {
+	return c.generateManifests.CallServerStream(ctx, req)
+}
+
 // ConnectionServiceHandler is an implementation of the octant.v1alpha.ConnectionService service.
 type ConnectionServiceHandler interface {
 	// GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
+	// GenerateManifests generates the manifest base on the given input and this will returns
+	// the compressed zip file containing the manifests as a stream of raw bytes.
+	// Note: FE should utilize https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
+	// to render download link for the user.
+	GenerateManifests(context.Context, *connect.Request[v1alpha.GenerateManifestsRequest], *connect.ServerStream[v1alpha.GenerateManifestsResponse]) error
 }
 
 // NewConnectionServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -93,10 +118,18 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 		connect.WithSchema(connectionServiceMethods.ByName("GetConnectionStatus")),
 		connect.WithHandlerOptions(opts...),
 	)
+	connectionServiceGenerateManifestsHandler := connect.NewServerStreamHandler(
+		ConnectionServiceGenerateManifestsProcedure,
+		svc.GenerateManifests,
+		connect.WithSchema(connectionServiceMethods.ByName("GenerateManifests")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/octant.v1alpha.ConnectionService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ConnectionServiceGetConnectionStatusProcedure:
 			connectionServiceGetConnectionStatusHandler.ServeHTTP(w, r)
+		case ConnectionServiceGenerateManifestsProcedure:
+			connectionServiceGenerateManifestsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -108,4 +141,8 @@ type UnimplementedConnectionServiceHandler struct{}
 
 func (UnimplementedConnectionServiceHandler) GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.GetConnectionStatus is not implemented"))
+}
+
+func (UnimplementedConnectionServiceHandler) GenerateManifests(context.Context, *connect.Request[v1alpha.GenerateManifestsRequest], *connect.ServerStream[v1alpha.GenerateManifestsResponse]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.GenerateManifests is not implemented"))
 }
