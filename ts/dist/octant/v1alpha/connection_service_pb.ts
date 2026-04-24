@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/connection_service.proto.
  */
 export const file_octant_v1alpha_connection_service: GenFile = /*@__PURE__*/
-  fileDesc("CidvY3RhbnQvdjFhbHBoYS9jb25uZWN0aW9uX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIlgKGkdldENvbm5lY3Rpb25TdGF0dXNSZXF1ZXN0EhkKCW5hbWVzcGFjZRgBIAEoCUIGukgDyAEBEh8KD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIGukgDyAEBIp8CChtHZXRDb25uZWN0aW9uU3RhdHVzUmVzcG9uc2USFgoOcmVjZWl2aW5nX2RhdGEYASABKAgSFAoMc2VuZGluZ19kYXRhGAIgASgIEhYKDmRhdGFfaW50ZWdyaXR5GAMgASgIEl4KEnZhbGlkYXRpb25fcmVzdWx0cxgEIAMoCzJCLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25TdGF0dXNSZXNwb25zZS5WYWxpZGF0aW9uUmVzdWx0c0VudHJ5GloKFlZhbGlkYXRpb25SZXN1bHRzRW50cnkSCwoDa2V5GAEgASgJEi8KBXZhbHVlGAIgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdDoCOAEibAoQVmFsaWRhdGlvblJlc3VsdBIOCgZwYXJpdHkYASABKAgSDgoGcG9saWN5GAIgASgIEjgKCmF0dHJpYnV0ZXMYAyABKAsyJC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uQXR0cmlidXRlcyL4AQoUVmFsaWRhdGlvbkF0dHJpYnV0ZXMSQAoGcGFyaXR5GAEgAygLMjAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMuUGFyaXR5RW50cnkSQAoGcG9saWN5GAIgAygLMjAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMuUG9saWN5RW50cnkaLQoLUGFyaXR5RW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgIOgI4ARotCgtQb2xpY3lFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAg6AjgBMoUBChFDb25uZWN0aW9uU2VydmljZRJwChNHZXRDb25uZWN0aW9uU3RhdHVzEioub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblN0YXR1c1JlcXVlc3QaKy5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uU3RhdHVzUmVzcG9uc2UiAELRAQoSY29tLm9jdGFudC52MWFscGhhQhZDb25uZWN0aW9uU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate]);
+  fileDesc("CidvY3RhbnQvdjFhbHBoYS9jb25uZWN0aW9uX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIqEBChpHZXRDb25uZWN0aW9uU3RhdHVzUmVxdWVzdBI+CgluYW1lc3BhY2UYASABKAlCK7pIKMgBAXIjGD8yH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQSQwoPY29ubmVjdGlvbl9uYW1lGAIgASgJQiq6SCdyJRADGBQyH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQiqgEKG0dldENvbm5lY3Rpb25TdGF0dXNSZXNwb25zZRIWCg5yZWNlaXZpbmdfZGF0YRgBIAEoCBIUCgxzZW5kaW5nX2RhdGEYAiABKAgSFgoOZGF0YV9pbnRlZ3JpdHkYAyABKAgSRQoSdmFsaWRhdGlvbl9yZXN1bHRzGAQgASgLMikub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbCKwAQoZVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbBIuCgRsb2dzGAEgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIxCgdtZXRyaWNzGAIgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIwCgZ0cmFjZXMYAyABKAsyIC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0ImwKEFZhbGlkYXRpb25SZXN1bHQSDgoGcGFyaXR5GAEgASgIEg4KBnBvbGljeRgCIAEoCBI4CgphdHRyaWJ1dGVzGAMgASgLMiQub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMi+AEKFFZhbGlkYXRpb25BdHRyaWJ1dGVzEkAKBnBhcml0eRgBIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBhcml0eUVudHJ5EkAKBnBvbGljeRgCIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBvbGljeUVudHJ5Gi0KC1Bhcml0eUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCDoCOAEaLQoLUG9saWN5RW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgIOgI4ATKFAQoRQ29ubmVjdGlvblNlcnZpY2UScAoTR2V0Q29ubmVjdGlvblN0YXR1cxIqLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25TdGF0dXNSZXF1ZXN0Gisub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblN0YXR1c1Jlc3BvbnNlIgBC0QEKEmNvbS5vY3RhbnQudjFhbHBoYUIWQ29ubmVjdGlvblNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate]);
 
 /**
  * @generated from message octant.v1alpha.GetConnectionStatusRequest
@@ -67,9 +67,9 @@ export type GetConnectionStatusResponse = Message<"octant.v1alpha.GetConnectionS
   /**
    * validation_results is a map of granular validation details per data type (MLT)
    *
-   * @generated from field: map<string, octant.v1alpha.ValidationResult> validation_results = 4;
+   * @generated from field: octant.v1alpha.ValidationResultsBySignal validation_results = 4;
    */
-  validationResults: { [key: string]: ValidationResult };
+  validationResults?: ValidationResultsBySignal;
 };
 
 /**
@@ -78,6 +78,33 @@ export type GetConnectionStatusResponse = Message<"octant.v1alpha.GetConnectionS
  */
 export const GetConnectionStatusResponseSchema: GenMessage<GetConnectionStatusResponse> = /*@__PURE__*/
   messageDesc(file_octant_v1alpha_connection_service, 1);
+
+/**
+ * @generated from message octant.v1alpha.ValidationResultsBySignal
+ */
+export type ValidationResultsBySignal = Message<"octant.v1alpha.ValidationResultsBySignal"> & {
+  /**
+   * @generated from field: octant.v1alpha.ValidationResult logs = 1;
+   */
+  logs?: ValidationResult;
+
+  /**
+   * @generated from field: octant.v1alpha.ValidationResult metrics = 2;
+   */
+  metrics?: ValidationResult;
+
+  /**
+   * @generated from field: octant.v1alpha.ValidationResult traces = 3;
+   */
+  traces?: ValidationResult;
+};
+
+/**
+ * Describes the message octant.v1alpha.ValidationResultsBySignal.
+ * Use `create(ValidationResultsBySignalSchema)` to create a new message.
+ */
+export const ValidationResultsBySignalSchema: GenMessage<ValidationResultsBySignal> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_connection_service, 2);
 
 /**
  * @generated from message octant.v1alpha.ValidationResult
@@ -110,7 +137,7 @@ export type ValidationResult = Message<"octant.v1alpha.ValidationResult"> & {
  * Use `create(ValidationResultSchema)` to create a new message.
  */
 export const ValidationResultSchema: GenMessage<ValidationResult> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 2);
+  messageDesc(file_octant_v1alpha_connection_service, 3);
 
 /**
  * @generated from message octant.v1alpha.ValidationAttributes
@@ -136,7 +163,7 @@ export type ValidationAttributes = Message<"octant.v1alpha.ValidationAttributes"
  * Use `create(ValidationAttributesSchema)` to create a new message.
  */
 export const ValidationAttributesSchema: GenMessage<ValidationAttributes> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 3);
+  messageDesc(file_octant_v1alpha_connection_service, 4);
 
 /**
  * ConnectService allows for interacting with MDAI Octant Connections
@@ -145,6 +172,8 @@ export const ValidationAttributesSchema: GenMessage<ValidationAttributes> = /*@_
  */
 export const ConnectionService: GenService<{
   /**
+   * GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
+   *
    * @generated from rpc octant.v1alpha.ConnectionService.GetConnectionStatus
    */
   getConnectionStatus: {

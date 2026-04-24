@@ -85,7 +85,7 @@ type GetConnectionStatusResponse struct {
 	// sending_data indicates if the data coming to the Collector fulfills validator parity or policy requirements
 	DataIntegrity bool `protobuf:"varint,3,opt,name=data_integrity,json=dataIntegrity,proto3" json:"data_integrity,omitempty"`
 	// validation_results is a map of granular validation details per data type (MLT)
-	ValidationResults map[string]*ValidationResult `protobuf:"bytes,4,rep,name=validation_results,json=validationResults,proto3" json:"validation_results,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	ValidationResults *ValidationResultsBySignal `protobuf:"bytes,4,opt,name=validation_results,json=validationResults,proto3" json:"validation_results,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -141,9 +141,69 @@ func (x *GetConnectionStatusResponse) GetDataIntegrity() bool {
 	return false
 }
 
-func (x *GetConnectionStatusResponse) GetValidationResults() map[string]*ValidationResult {
+func (x *GetConnectionStatusResponse) GetValidationResults() *ValidationResultsBySignal {
 	if x != nil {
 		return x.ValidationResults
+	}
+	return nil
+}
+
+type ValidationResultsBySignal struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Logs          *ValidationResult      `protobuf:"bytes,1,opt,name=logs,proto3" json:"logs,omitempty"`
+	Metrics       *ValidationResult      `protobuf:"bytes,2,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	Traces        *ValidationResult      `protobuf:"bytes,3,opt,name=traces,proto3" json:"traces,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidationResultsBySignal) Reset() {
+	*x = ValidationResultsBySignal{}
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidationResultsBySignal) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidationResultsBySignal) ProtoMessage() {}
+
+func (x *ValidationResultsBySignal) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidationResultsBySignal.ProtoReflect.Descriptor instead.
+func (*ValidationResultsBySignal) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ValidationResultsBySignal) GetLogs() *ValidationResult {
+	if x != nil {
+		return x.Logs
+	}
+	return nil
+}
+
+func (x *ValidationResultsBySignal) GetMetrics() *ValidationResult {
+	if x != nil {
+		return x.Metrics
+	}
+	return nil
+}
+
+func (x *ValidationResultsBySignal) GetTraces() *ValidationResult {
+	if x != nil {
+		return x.Traces
 	}
 	return nil
 }
@@ -162,7 +222,7 @@ type ValidationResult struct {
 
 func (x *ValidationResult) Reset() {
 	*x = ValidationResult{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[2]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -174,7 +234,7 @@ func (x *ValidationResult) String() string {
 func (*ValidationResult) ProtoMessage() {}
 
 func (x *ValidationResult) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[2]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -187,7 +247,7 @@ func (x *ValidationResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidationResult.ProtoReflect.Descriptor instead.
 func (*ValidationResult) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{2}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ValidationResult) GetParity() bool {
@@ -223,7 +283,7 @@ type ValidationAttributes struct {
 
 func (x *ValidationAttributes) Reset() {
 	*x = ValidationAttributes{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[3]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -235,7 +295,7 @@ func (x *ValidationAttributes) String() string {
 func (*ValidationAttributes) ProtoMessage() {}
 
 func (x *ValidationAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[3]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -248,7 +308,7 @@ func (x *ValidationAttributes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidationAttributes.ProtoReflect.Descriptor instead.
 func (*ValidationAttributes) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{3}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ValidationAttributes) GetParity() map[string]bool {
@@ -269,18 +329,19 @@ var File_octant_v1alpha_connection_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\n" +
-	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\"s\n" +
-	"\x1aGetConnectionStatusRequest\x12$\n" +
-	"\tnamespace\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tnamespace\x12/\n" +
-	"\x0fconnection_name\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x0econnectionName\"\xe9\x02\n" +
+	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\"\xbc\x01\n" +
+	"\x1aGetConnectionStatusRequest\x12I\n" +
+	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xe8\x01\n" +
 	"\x1bGetConnectionStatusResponse\x12%\n" +
 	"\x0ereceiving_data\x18\x01 \x01(\bR\rreceivingData\x12!\n" +
 	"\fsending_data\x18\x02 \x01(\bR\vsendingData\x12%\n" +
-	"\x0edata_integrity\x18\x03 \x01(\bR\rdataIntegrity\x12q\n" +
-	"\x12validation_results\x18\x04 \x03(\v2B.octant.v1alpha.GetConnectionStatusResponse.ValidationResultsEntryR\x11validationResults\x1af\n" +
-	"\x16ValidationResultsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x126\n" +
-	"\x05value\x18\x02 \x01(\v2 .octant.v1alpha.ValidationResultR\x05value:\x028\x01\"\x88\x01\n" +
+	"\x0edata_integrity\x18\x03 \x01(\bR\rdataIntegrity\x12X\n" +
+	"\x12validation_results\x18\x04 \x01(\v2).octant.v1alpha.ValidationResultsBySignalR\x11validationResults\"\xc7\x01\n" +
+	"\x19ValidationResultsBySignal\x124\n" +
+	"\x04logs\x18\x01 \x01(\v2 .octant.v1alpha.ValidationResultR\x04logs\x12:\n" +
+	"\ametrics\x18\x02 \x01(\v2 .octant.v1alpha.ValidationResultR\ametrics\x128\n" +
+	"\x06traces\x18\x03 \x01(\v2 .octant.v1alpha.ValidationResultR\x06traces\"\x88\x01\n" +
 	"\x10ValidationResult\x12\x16\n" +
 	"\x06parity\x18\x01 \x01(\bR\x06parity\x12\x16\n" +
 	"\x06policy\x18\x02 \x01(\bR\x06policy\x12D\n" +
@@ -316,25 +377,27 @@ var file_octant_v1alpha_connection_service_proto_msgTypes = make([]protoimpl.Mes
 var file_octant_v1alpha_connection_service_proto_goTypes = []any{
 	(*GetConnectionStatusRequest)(nil),  // 0: octant.v1alpha.GetConnectionStatusRequest
 	(*GetConnectionStatusResponse)(nil), // 1: octant.v1alpha.GetConnectionStatusResponse
-	(*ValidationResult)(nil),            // 2: octant.v1alpha.ValidationResult
-	(*ValidationAttributes)(nil),        // 3: octant.v1alpha.ValidationAttributes
-	nil,                                 // 4: octant.v1alpha.GetConnectionStatusResponse.ValidationResultsEntry
+	(*ValidationResultsBySignal)(nil),   // 2: octant.v1alpha.ValidationResultsBySignal
+	(*ValidationResult)(nil),            // 3: octant.v1alpha.ValidationResult
+	(*ValidationAttributes)(nil),        // 4: octant.v1alpha.ValidationAttributes
 	nil,                                 // 5: octant.v1alpha.ValidationAttributes.ParityEntry
 	nil,                                 // 6: octant.v1alpha.ValidationAttributes.PolicyEntry
 }
 var file_octant_v1alpha_connection_service_proto_depIdxs = []int32{
-	4, // 0: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.GetConnectionStatusResponse.ValidationResultsEntry
-	3, // 1: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
-	5, // 2: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
-	6, // 3: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
-	2, // 4: octant.v1alpha.GetConnectionStatusResponse.ValidationResultsEntry.value:type_name -> octant.v1alpha.ValidationResult
-	0, // 5: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
-	1, // 6: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
-	6, // [6:7] is the sub-list for method output_type
-	5, // [5:6] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	2, // 0: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
+	3, // 1: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
+	3, // 2: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
+	3, // 3: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
+	4, // 4: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
+	5, // 5: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
+	6, // 6: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
+	0, // 7: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
+	1, // 8: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
+	8, // [8:9] is the sub-list for method output_type
+	7, // [7:8] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_octant_v1alpha_connection_service_proto_init() }
