@@ -15,14 +15,20 @@ service ArgoCDService {
 
 message TestConnectionRequest {
   // argo_endpoint is the endpoint to the argo cd cluster to communicate with.
-  string argo_endpoint = 1 [(buf.validate.field).required = true];
+  string argo_endpoint = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uri = true
+  ];
   // argo_account_token is the generated token for the account to use for communicating with the argo cd API.
   string argo_account_token = 2 [(buf.validate.field).required = true];
 }
 
 message SaveArgoConnectionRequest {
   // argo_endpoint is the endpoint to the argo cd cluster to communicate with.
-  string argo_endpoint = 1 [(buf.validate.field).required = true];
+  string argo_endpoint = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uri = true
+  ];
   // argo_account_token is the generated token for the account to use for communicating with the argo cd API.
   string argo_account_token = 2 [(buf.validate.field).required = true];
   // name contains name of the argocd integration to save
