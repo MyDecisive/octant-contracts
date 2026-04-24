@@ -30,6 +30,8 @@ type GenerateManifestsRequest struct {
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
 	// format contains output format of the manifests.
 	Format ManifestOutFormat `protobuf:"varint,3,opt,name=format,proto3,enum=octant.v1alpha.ManifestOutFormat" json:"format,omitempty"`
+	// deployment_type use to tell the type of manifest to generate.
+	DeploymentType DeploymentType `protobuf:"varint,5,opt,name=deployment_type,json=deploymentType,proto3,enum=octant.v1alpha.DeploymentType" json:"deployment_type,omitempty"`
 	// telemetry_types is used to generate the manifests.
 	TelemetryTypes []MLTType `protobuf:"varint,4,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
 	unknownFields  protoimpl.UnknownFields
@@ -85,6 +87,13 @@ func (x *GenerateManifestsRequest) GetFormat() ManifestOutFormat {
 		return x.Format
 	}
 	return ManifestOutFormat_MANIFEST_OUT_FORMAT_UNSPECIFIED
+}
+
+func (x *GenerateManifestsRequest) GetDeploymentType() DeploymentType {
+	if x != nil {
+		return x.DeploymentType
+	}
+	return DeploymentType_DEPLOYMENT_TYPE_UNSPECIFIED
 }
 
 func (x *GenerateManifestsRequest) GetTelemetryTypes() []MLTType {
@@ -464,11 +473,12 @@ var File_octant_v1alpha_connection_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\n" +
-	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x19octant/v1alpha/type.proto\"\xd8\x02\n" +
+	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x19octant/v1alpha/type.proto\"\xae\x03\n" +
 	"\x18GenerateManifestsRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12F\n" +
 	"\x06format\x18\x03 \x01(\x0e2!.octant.v1alpha.ManifestOutFormatB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x06format\x12T\n" +
+	"\x0fdeployment_type\x18\x05 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x0edeploymentType\x12T\n" +
 	"\x0ftelemetry_types\x18\x04 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\"Y\n" +
 	"\x19GenerateManifestsResponse\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\fR\x04data\x12\x14\n" +
@@ -530,27 +540,29 @@ var file_octant_v1alpha_connection_service_proto_goTypes = []any{
 	nil,                                 // 7: octant.v1alpha.ValidationAttributes.ParityEntry
 	nil,                                 // 8: octant.v1alpha.ValidationAttributes.PolicyEntry
 	(ManifestOutFormat)(0),              // 9: octant.v1alpha.ManifestOutFormat
-	(MLTType)(0),                        // 10: octant.v1alpha.MLTType
+	(DeploymentType)(0),                 // 10: octant.v1alpha.DeploymentType
+	(MLTType)(0),                        // 11: octant.v1alpha.MLTType
 }
 var file_octant_v1alpha_connection_service_proto_depIdxs = []int32{
 	9,  // 0: octant.v1alpha.GenerateManifestsRequest.format:type_name -> octant.v1alpha.ManifestOutFormat
-	10, // 1: octant.v1alpha.GenerateManifestsRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
-	4,  // 2: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
-	5,  // 3: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
-	5,  // 4: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
-	5,  // 5: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
-	6,  // 6: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
-	7,  // 7: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
-	8,  // 8: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
-	2,  // 9: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
-	0,  // 10: octant.v1alpha.ConnectionService.GenerateManifests:input_type -> octant.v1alpha.GenerateManifestsRequest
-	3,  // 11: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
-	1,  // 12: octant.v1alpha.ConnectionService.GenerateManifests:output_type -> octant.v1alpha.GenerateManifestsResponse
-	11, // [11:13] is the sub-list for method output_type
-	9,  // [9:11] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	10, // 1: octant.v1alpha.GenerateManifestsRequest.deployment_type:type_name -> octant.v1alpha.DeploymentType
+	11, // 2: octant.v1alpha.GenerateManifestsRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
+	4,  // 3: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
+	5,  // 4: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
+	5,  // 5: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
+	5,  // 6: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
+	6,  // 7: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
+	7,  // 8: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
+	8,  // 9: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
+	2,  // 10: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
+	0,  // 11: octant.v1alpha.ConnectionService.GenerateManifests:input_type -> octant.v1alpha.GenerateManifestsRequest
+	3,  // 12: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
+	1,  // 13: octant.v1alpha.ConnectionService.GenerateManifests:output_type -> octant.v1alpha.GenerateManifestsResponse
+	12, // [12:14] is the sub-list for method output_type
+	10, // [10:12] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_octant_v1alpha_connection_service_proto_init() }
