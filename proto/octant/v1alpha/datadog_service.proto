@@ -30,6 +30,6 @@ message SaveDatadogIntegrationRequest {
   ];
   string url = 3 [
     (buf.validate.field).required = true,
-    (buf.validate.field).string.host_and_port = true
+    (buf.validate.field).string.uri = true
   ];
 }

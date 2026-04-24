@@ -9,7 +9,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
  * Describes the file octant/v1alpha/type.proto.
  */
 export const file_octant_v1alpha_type: GenFile = /*@__PURE__*/
-  fileDesc("ChlvY3RhbnQvdjFhbHBoYS90eXBlLnByb3RvEg5vY3RhbnQudjFhbHBoYSp0ChFNYW5pZmVzdE91dEZvcm1hdBIjCh9NQU5JRkVTVF9PVVRfRk9STUFUX1VOU1BFQ0lGSUVEEAASHAoYTUFOSUZFU1RfT1VUX0ZPUk1BVF9KU09OEAESHAoYTUFOSUZFU1RfT1VUX0ZPUk1BVF9ZQU1MEAIqXgoHTUxUVHlwZRIYChRNTFRfVFlQRV9VTlNQRUNJRklFRBAAEhMKD01MVF9UWVBFX01FVFJJQxABEhIKDk1MVF9UWVBFX1RSQUNFEAISEAoMTUxUX1RZUEVfTE9HEANCxAEKEmNvbS5vY3RhbnQudjFhbHBoYUIJVHlwZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM");
+  fileDesc("ChlvY3RhbnQvdjFhbHBoYS90eXBlLnByb3RvEg5vY3RhbnQudjFhbHBoYSp0ChFNYW5pZmVzdE91dEZvcm1hdBIjCh9NQU5JRkVTVF9PVVRfRk9STUFUX1VOU1BFQ0lGSUVEEAASHAoYTUFOSUZFU1RfT1VUX0ZPUk1BVF9KU09OEAESHAoYTUFOSUZFU1RfT1VUX0ZPUk1BVF9ZQU1MEAIqdwoORGVwbG95bWVudFR5cGUSHwobREVQTE9ZTUVOVF9UWVBFX1VOU1BFQ0lGSUVEEAASIQodREVQTE9ZTUVOVF9UWVBFX0FSR09fU0lERUxPQUQQARIhCh1ERVBMT1lNRU5UX1RZUEVfQVJHT19NQU5JRkVTVBACKl4KB01MVFR5cGUSGAoUTUxUX1RZUEVfVU5TUEVDSUZJRUQQABITCg9NTFRfVFlQRV9NRVRSSUMQARISCg5NTFRfVFlQRV9UUkFDRRACEhAKDE1MVF9UWVBFX0xPRxADQsQBChJjb20ub2N0YW50LnYxYWxwaGFCCVR5cGVQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z");
 
 /**
  * @generated from enum octant.v1alpha.ManifestOutFormat
@@ -36,6 +36,32 @@ export enum ManifestOutFormat {
  */
 export const ManifestOutFormatSchema: GenEnum<ManifestOutFormat> = /*@__PURE__*/
   enumDesc(file_octant_v1alpha_type, 0);
+
+/**
+ * @generated from enum octant.v1alpha.DeploymentType
+ */
+export enum DeploymentType {
+  /**
+   * @generated from enum value: DEPLOYMENT_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: DEPLOYMENT_TYPE_ARGO_SIDELOAD = 1;
+   */
+  ARGO_SIDELOAD = 1,
+
+  /**
+   * @generated from enum value: DEPLOYMENT_TYPE_ARGO_MANIFEST = 2;
+   */
+  ARGO_MANIFEST = 2,
+}
+
+/**
+ * Describes the enum octant.v1alpha.DeploymentType.
+ */
+export const DeploymentTypeSchema: GenEnum<DeploymentType> = /*@__PURE__*/
+  enumDesc(file_octant_v1alpha_type, 1);
 
 /**
  * @generated from enum octant.v1alpha.MLTType
@@ -66,5 +92,5 @@ export enum MLTType {
  * Describes the enum octant.v1alpha.MLTType.
  */
 export const MLTTypeSchema: GenEnum<MLTType> = /*@__PURE__*/
-  enumDesc(file_octant_v1alpha_type, 1);
+  enumDesc(file_octant_v1alpha_type, 2);
 

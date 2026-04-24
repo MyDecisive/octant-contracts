@@ -70,6 +70,55 @@ func (ManifestOutFormat) EnumDescriptor() ([]byte, []int) {
 	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{0}
 }
 
+type DeploymentType int32
+
+const (
+	DeploymentType_DEPLOYMENT_TYPE_UNSPECIFIED   DeploymentType = 0
+	DeploymentType_DEPLOYMENT_TYPE_ARGO_SIDELOAD DeploymentType = 1
+	DeploymentType_DEPLOYMENT_TYPE_ARGO_MANIFEST DeploymentType = 2
+)
+
+// Enum value maps for DeploymentType.
+var (
+	DeploymentType_name = map[int32]string{
+		0: "DEPLOYMENT_TYPE_UNSPECIFIED",
+		1: "DEPLOYMENT_TYPE_ARGO_SIDELOAD",
+		2: "DEPLOYMENT_TYPE_ARGO_MANIFEST",
+	}
+	DeploymentType_value = map[string]int32{
+		"DEPLOYMENT_TYPE_UNSPECIFIED":   0,
+		"DEPLOYMENT_TYPE_ARGO_SIDELOAD": 1,
+		"DEPLOYMENT_TYPE_ARGO_MANIFEST": 2,
+	}
+)
+
+func (x DeploymentType) Enum() *DeploymentType {
+	p := new(DeploymentType)
+	*p = x
+	return p
+}
+
+func (x DeploymentType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DeploymentType) Descriptor() protoreflect.EnumDescriptor {
+	return file_octant_v1alpha_type_proto_enumTypes[1].Descriptor()
+}
+
+func (DeploymentType) Type() protoreflect.EnumType {
+	return &file_octant_v1alpha_type_proto_enumTypes[1]
+}
+
+func (x DeploymentType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use DeploymentType.Descriptor instead.
+func (DeploymentType) EnumDescriptor() ([]byte, []int) {
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{1}
+}
+
 type MLTType int32
 
 const (
@@ -106,11 +155,11 @@ func (x MLTType) String() string {
 }
 
 func (MLTType) Descriptor() protoreflect.EnumDescriptor {
-	return file_octant_v1alpha_type_proto_enumTypes[1].Descriptor()
+	return file_octant_v1alpha_type_proto_enumTypes[2].Descriptor()
 }
 
 func (MLTType) Type() protoreflect.EnumType {
-	return &file_octant_v1alpha_type_proto_enumTypes[1]
+	return &file_octant_v1alpha_type_proto_enumTypes[2]
 }
 
 func (x MLTType) Number() protoreflect.EnumNumber {
@@ -119,7 +168,7 @@ func (x MLTType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MLTType.Descriptor instead.
 func (MLTType) EnumDescriptor() ([]byte, []int) {
-	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{1}
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{2}
 }
 
 var File_octant_v1alpha_type_proto protoreflect.FileDescriptor
@@ -130,7 +179,11 @@ const file_octant_v1alpha_type_proto_rawDesc = "" +
 	"\x11ManifestOutFormat\x12#\n" +
 	"\x1fMANIFEST_OUT_FORMAT_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18MANIFEST_OUT_FORMAT_JSON\x10\x01\x12\x1c\n" +
-	"\x18MANIFEST_OUT_FORMAT_YAML\x10\x02*^\n" +
+	"\x18MANIFEST_OUT_FORMAT_YAML\x10\x02*w\n" +
+	"\x0eDeploymentType\x12\x1f\n" +
+	"\x1bDEPLOYMENT_TYPE_UNSPECIFIED\x10\x00\x12!\n" +
+	"\x1dDEPLOYMENT_TYPE_ARGO_SIDELOAD\x10\x01\x12!\n" +
+	"\x1dDEPLOYMENT_TYPE_ARGO_MANIFEST\x10\x02*^\n" +
 	"\aMLTType\x12\x18\n" +
 	"\x14MLT_TYPE_UNSPECIFIED\x10\x00\x12\x13\n" +
 	"\x0fMLT_TYPE_METRIC\x10\x01\x12\x12\n" +
@@ -150,10 +203,11 @@ func file_octant_v1alpha_type_proto_rawDescGZIP() []byte {
 	return file_octant_v1alpha_type_proto_rawDescData
 }
 
-var file_octant_v1alpha_type_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_octant_v1alpha_type_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_octant_v1alpha_type_proto_goTypes = []any{
 	(ManifestOutFormat)(0), // 0: octant.v1alpha.ManifestOutFormat
-	(MLTType)(0),           // 1: octant.v1alpha.MLTType
+	(DeploymentType)(0),    // 1: octant.v1alpha.DeploymentType
+	(MLTType)(0),           // 2: octant.v1alpha.MLTType
 }
 var file_octant_v1alpha_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -173,7 +227,7 @@ func file_octant_v1alpha_type_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_octant_v1alpha_type_proto_rawDesc), len(file_octant_v1alpha_type_proto_rawDesc)),
-			NumEnums:      2,
+			NumEnums:      3,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,
