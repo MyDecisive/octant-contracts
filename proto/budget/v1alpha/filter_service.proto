@@ -62,8 +62,8 @@ message UpdateFilterResponse {
     STATUS_UNSPECIFIED = 0;
     // STATUS_VALUE_UPDATED means the data have been updated in MDAI gateway.
     STATUS_VALUE_UPDATED = 1;
-    // STATUS_WAIT_PROPGATION means we are waiting for the collectors to restart with the new values.
-    STATUS_WAIT_PROPGATION = 2;
+    // STATUS_WAIT_PROPAGATION means we are waiting for the collectors to restart with the new values.
+    STATUS_WAIT_PROPAGATION = 2;
     // STATUS_COMPLETED means collectors are all updated.
     STATUS_COMPLETED = 3;
   }

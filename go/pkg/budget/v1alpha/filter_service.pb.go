@@ -28,8 +28,8 @@ const (
 	UpdateFilterResponse_STATUS_UNSPECIFIED UpdateFilterResponse_Status = 0
 	// STATUS_VALUE_UPDATED means the data have been updated in MDAI gateway.
 	UpdateFilterResponse_STATUS_VALUE_UPDATED UpdateFilterResponse_Status = 1
-	// STATUS_WAIT_PROPGATION means we are waiting for the collectors to restart with the new values.
-	UpdateFilterResponse_STATUS_WAIT_PROPGATION UpdateFilterResponse_Status = 2
+	// STATUS_WAIT_PROPAGATION means we are waiting for the collectors to restart with the new values.
+	UpdateFilterResponse_STATUS_WAIT_PROPAGATION UpdateFilterResponse_Status = 2
 	// STATUS_COMPLETED means collectors are all updated.
 	UpdateFilterResponse_STATUS_COMPLETED UpdateFilterResponse_Status = 3
 )
@@ -39,14 +39,14 @@ var (
 	UpdateFilterResponse_Status_name = map[int32]string{
 		0: "STATUS_UNSPECIFIED",
 		1: "STATUS_VALUE_UPDATED",
-		2: "STATUS_WAIT_PROPGATION",
+		2: "STATUS_WAIT_PROPAGATION",
 		3: "STATUS_COMPLETED",
 	}
 	UpdateFilterResponse_Status_value = map[string]int32{
-		"STATUS_UNSPECIFIED":     0,
-		"STATUS_VALUE_UPDATED":   1,
-		"STATUS_WAIT_PROPGATION": 2,
-		"STATUS_COMPLETED":       3,
+		"STATUS_UNSPECIFIED":      0,
+		"STATUS_VALUE_UPDATED":    1,
+		"STATUS_WAIT_PROPAGATION": 2,
+		"STATUS_COMPLETED":        3,
 	}
 )
 
@@ -306,13 +306,13 @@ const file_budget_v1alpha_filter_service_proto_rawDesc = "" +
 	"\x13UpdateFilterRequest\x122\n" +
 	"\x04data\x18\x01 \x01(\v2\x16.budget.v1alpha.FilterB\x06\xbaH\x03\xc8\x01\x01R\x04data\x12I\n" +
 	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
-	"\x0fconnection_name\x18\x03 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xc9\x01\n" +
+	"\x0fconnection_name\x18\x03 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xca\x01\n" +
 	"\x14UpdateFilterResponse\x12C\n" +
-	"\x06status\x18\x01 \x01(\x0e2+.budget.v1alpha.UpdateFilterResponse.StatusR\x06status\"l\n" +
+	"\x06status\x18\x01 \x01(\x0e2+.budget.v1alpha.UpdateFilterResponse.StatusR\x06status\"m\n" +
 	"\x06Status\x12\x16\n" +
 	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
-	"\x14STATUS_VALUE_UPDATED\x10\x01\x12\x1a\n" +
-	"\x16STATUS_WAIT_PROPGATION\x10\x02\x12\x14\n" +
+	"\x14STATUS_VALUE_UPDATED\x10\x01\x12\x1b\n" +
+	"\x17STATUS_WAIT_PROPAGATION\x10\x02\x12\x14\n" +
 	"\x10STATUS_COMPLETED\x10\x032\xc2\x01\n" +
 	"\rFilterService\x12R\n" +
 	"\tGetFilter\x12 .budget.v1alpha.GetFilterRequest\x1a!.budget.v1alpha.GetFilterResponse\"\x00\x12]\n" +
