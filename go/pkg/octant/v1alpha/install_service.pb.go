@@ -81,8 +81,10 @@ type InstallMDAIHubRequest struct {
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// connection_name is the named octant connection configuration to use for install.
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// mdai_version is the mdai hub version to use for install.
+	MdaiVersion   string `protobuf:"bytes,3,opt,name=mdai_version,json=mdaiVersion,proto3" json:"mdai_version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *InstallMDAIHubRequest) Reset() {
@@ -125,6 +127,13 @@ func (x *InstallMDAIHubRequest) GetNamespace() string {
 func (x *InstallMDAIHubRequest) GetConnectionName() string {
 	if x != nil {
 		return x.ConnectionName
+	}
+	return ""
+}
+
+func (x *InstallMDAIHubRequest) GetMdaiVersion() string {
+	if x != nil {
+		return x.MdaiVersion
 	}
 	return ""
 }
@@ -232,10 +241,11 @@ var File_octant_v1alpha_install_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\n" +
-	"$octant/v1alpha/install_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xb7\x01\n" +
+	"$octant/v1alpha/install_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x85\x02\n" +
 	"\x15InstallMDAIHubRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
-	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"<\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12L\n" +
+	"\fmdai_version\x18\x03 \x01(\tB)\xbaH&r$2\"^(\\d+\\.\\d+\\.\\d+(-[a-z]*)?)|latest$R\vmdaiVersion\"<\n" +
 	"\x17GetInstallStatusRequest\x12!\n" +
 	"\bhub_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\ahubName\"\x82\x01\n" +
 	"\x18GetInstallStatusResponse\x12L\n" +
