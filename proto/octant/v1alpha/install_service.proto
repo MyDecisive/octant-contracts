@@ -26,6 +26,10 @@ message InstallMDAIHubRequest {
     (buf.validate.field).string.max_len = 20,
     (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
   ];
+  // mdai_version is the mdai hub version to use for install.
+  string mdai_version = 3 [
+    (buf.validate.field).string.pattern = "^(\\d+\\.\\d+\\.\\d+(-[a-z]*)?)|latest$"
+  ];
 }
 
 message GetInstallStatusRequest {
