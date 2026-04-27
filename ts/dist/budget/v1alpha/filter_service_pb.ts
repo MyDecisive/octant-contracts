@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file budget/v1alpha/filter_service.proto.
  */
 export const file_budget_v1alpha_filter_service: GenFile = /*@__PURE__*/
-  fileDesc("CiNidWRnZXQvdjFhbHBoYS9maWx0ZXJfc2VydmljZS5wcm90bxIOYnVkZ2V0LnYxYWxwaGEiSQoQR2V0RmlsdGVyUmVxdWVzdBI1CgR0eXBlGAEgASgOMhouYnVkZ2V0LnYxYWxwaGEuRmlsdGVyVHlwZUILukgIyAEBggECEAEiOQoRR2V0RmlsdGVyUmVzcG9uc2USJAoEZGF0YRgBIAEoCzIWLmJ1ZGdldC52MWFscGhhLkZpbHRlciJDChNVcGRhdGVGaWx0ZXJSZXF1ZXN0EiwKBGRhdGEYASABKAsyFi5idWRnZXQudjFhbHBoYS5GaWx0ZXJCBrpIA8gBASK7AQoUVXBkYXRlRmlsdGVyUmVzcG9uc2USOwoGc3RhdHVzGAEgASgOMisuYnVkZ2V0LnYxYWxwaGEuVXBkYXRlRmlsdGVyUmVzcG9uc2UuU3RhdHVzImYKBlN0YXR1cxIWChJTVEFUVVNfVU5TUEVDSUZJRUQQABIWChJTVEFUVVNfSU5fUFJPR1JFU1MQARIUChBTVEFUVVNfQ09NUExFVEVEEAISFgoSU1RBVFVTX0VSUl9VTktOT1dOEAMywgEKDUZpbHRlclNlcnZpY2USUgoJR2V0RmlsdGVyEiAuYnVkZ2V0LnYxYWxwaGEuR2V0RmlsdGVyUmVxdWVzdBohLmJ1ZGdldC52MWFscGhhLkdldEZpbHRlclJlc3BvbnNlIgASXQoMVXBkYXRlRmlsdGVyEiMuYnVkZ2V0LnYxYWxwaGEuVXBkYXRlRmlsdGVyUmVxdWVzdBokLmJ1ZGdldC52MWFscGhhLlVwZGF0ZUZpbHRlclJlc3BvbnNlIgAwAULNAQoSY29tLmJ1ZGdldC52MWFscGhhQhJGaWx0ZXJTZXJ2aWNlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL2J1ZGdldC92MWFscGhhO2J1ZGdldHYxYWxwaGGiAgNCWFiqAg5CdWRnZXQuVjFhbHBoYcoCDkJ1ZGdldFxWMWFscGhh4gIaQnVkZ2V0XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9CdWRnZXQ6OlYxYWxwaGFiBnByb3RvMw", [file_budget_v1alpha_type, file_buf_validate_validate]);
+  fileDesc("CiNidWRnZXQvdjFhbHBoYS9maWx0ZXJfc2VydmljZS5wcm90bxIOYnVkZ2V0LnYxYWxwaGEizgEKEEdldEZpbHRlclJlcXVlc3QSNQoEdHlwZRgBIAEoDjIaLmJ1ZGdldC52MWFscGhhLkZpbHRlclR5cGVCC7pICMgBAYIBAhABEj4KCW5hbWVzcGFjZRgCIAEoCUIrukgoyAEBciMYPzIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JBJDCg9jb25uZWN0aW9uX25hbWUYAyABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCI5ChFHZXRGaWx0ZXJSZXNwb25zZRIkCgRkYXRhGAEgASgLMhYuYnVkZ2V0LnYxYWxwaGEuRmlsdGVyIsgBChNVcGRhdGVGaWx0ZXJSZXF1ZXN0EiwKBGRhdGEYASABKAsyFi5idWRnZXQudjFhbHBoYS5GaWx0ZXJCBrpIA8gBARI+CgluYW1lc3BhY2UYAiABKAlCK7pIKMgBAXIjGD8yH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQSQwoPY29ubmVjdGlvbl9uYW1lGAMgASgJQiq6SCdyJRADGBQyH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQiwQEKFFVwZGF0ZUZpbHRlclJlc3BvbnNlEjsKBnN0YXR1cxgBIAEoDjIrLmJ1ZGdldC52MWFscGhhLlVwZGF0ZUZpbHRlclJlc3BvbnNlLlN0YXR1cyJsCgZTdGF0dXMSFgoSU1RBVFVTX1VOU1BFQ0lGSUVEEAASGAoUU1RBVFVTX1ZBTFVFX1VQREFURUQQARIaChZTVEFUVVNfV0FJVF9QUk9QR0FUSU9OEAISFAoQU1RBVFVTX0NPTVBMRVRFRBADMsIBCg1GaWx0ZXJTZXJ2aWNlElIKCUdldEZpbHRlchIgLmJ1ZGdldC52MWFscGhhLkdldEZpbHRlclJlcXVlc3QaIS5idWRnZXQudjFhbHBoYS5HZXRGaWx0ZXJSZXNwb25zZSIAEl0KDFVwZGF0ZUZpbHRlchIjLmJ1ZGdldC52MWFscGhhLlVwZGF0ZUZpbHRlclJlcXVlc3QaJC5idWRnZXQudjFhbHBoYS5VcGRhdGVGaWx0ZXJSZXNwb25zZSIAMAFCzQEKEmNvbS5idWRnZXQudjFhbHBoYUISRmlsdGVyU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9idWRnZXQvdjFhbHBoYTtidWRnZXR2MWFscGhhogIDQlhYqgIOQnVkZ2V0LlYxYWxwaGHKAg5CdWRnZXRcVjFhbHBoYeICGkJ1ZGdldFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPQnVkZ2V0OjpWMWFscGhhYgZwcm90bzM", [file_budget_v1alpha_type, file_buf_validate_validate]);
 
 /**
  * @generated from message budget.v1alpha.GetFilterRequest
@@ -25,6 +25,20 @@ export type GetFilterRequest = Message<"budget.v1alpha.GetFilterRequest"> & {
    * @generated from field: budget.v1alpha.FilterType type = 1;
    */
   type: FilterType;
+
+  /**
+   * namespace is the kubernetes namespace to install into.
+   *
+   * @generated from field: string namespace = 2;
+   */
+  namespace: string;
+
+  /**
+   * connection_name is the name of this connection and its resources in argo/k8s
+   *
+   * @generated from field: string connection_name = 3;
+   */
+  connectionName: string;
 };
 
 /**
@@ -56,9 +70,26 @@ export const GetFilterResponseSchema: GenMessage<GetFilterResponse> = /*@__PURE_
  */
 export type UpdateFilterRequest = Message<"budget.v1alpha.UpdateFilterRequest"> & {
   /**
+   * data contains the filter setting data to update.
+   * `type` indicates which filter type should be updated.
+   *
    * @generated from field: budget.v1alpha.Filter data = 1;
    */
   data?: Filter;
+
+  /**
+   * namespace is the kubernetes namespace to install into.
+   *
+   * @generated from field: string namespace = 2;
+   */
+  namespace: string;
+
+  /**
+   * connection_name is the name of this connection and its resources in argo/k8s
+   *
+   * @generated from field: string connection_name = 3;
+   */
+  connectionName: string;
 };
 
 /**
@@ -95,19 +126,25 @@ export enum UpdateFilterResponse_Status {
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: STATUS_IN_PROGRESS = 1;
+   * STATUS_VALUE_UPDATED means the data have been updated in MDAI gateway.
+   *
+   * @generated from enum value: STATUS_VALUE_UPDATED = 1;
    */
-  IN_PROGRESS = 1,
+  VALUE_UPDATED = 1,
 
   /**
-   * @generated from enum value: STATUS_COMPLETED = 2;
+   * STATUS_WAIT_PROPGATION means we are waiting for the collectors to restart with the new values.
+   *
+   * @generated from enum value: STATUS_WAIT_PROPGATION = 2;
    */
-  COMPLETED = 2,
+  WAIT_PROPGATION = 2,
 
   /**
-   * @generated from enum value: STATUS_ERR_UNKNOWN = 3;
+   * STATUS_COMPLETED means collectors are all updated.
+   *
+   * @generated from enum value: STATUS_COMPLETED = 3;
    */
-  ERR_UNKNOWN = 3,
+  COMPLETED = 3,
 }
 
 /**

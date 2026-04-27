@@ -6,15 +6,33 @@ import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobu
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Timeframe } from "./type_pb";
 import { file_budget_v1alpha_type } from "./type_pb";
-import type { EmptySchema } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
+import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file budget/v1alpha/timeframe_service.proto.
  */
 export const file_budget_v1alpha_timeframe_service: GenFile = /*@__PURE__*/
-  fileDesc("CiZidWRnZXQvdjFhbHBoYS90aW1lZnJhbWVfc2VydmljZS5wcm90bxIOYnVkZ2V0LnYxYWxwaGEiowIKF1RpbWVmcmFtZVN0YXR1c1Jlc3BvbnNlEkAKCHN0YXR1c2VzGAEgAygLMi4uYnVkZ2V0LnYxYWxwaGEuVGltZWZyYW1lU3RhdHVzUmVzcG9uc2UuU3RhdHVzGnQKBlN0YXR1cxIsCgl0aW1lZnJhbWUYASABKA4yGS5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWUSPAoGc3RhdHVzGAMgASgOMiwuYnVkZ2V0LnYxYWxwaGEuVGltZWZyYW1lU3RhdHVzUmVzcG9uc2UuQ29kZSJQCgRDb2RlEhQKEENPREVfVU5TUEVDSUZJRUQQABILCgdDT0RFX09LEAESEAoMQ09ERV9OT19EQVRBEAISEwoPQ09ERV9OT1RfRU5PVUdIEAMyaAoQVGltZWZyYW1lU2VydmljZRJUCg9UaW1lZnJhbWVTdGF0dXMSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaJy5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWVTdGF0dXNSZXNwb25zZSIAQtABChJjb20uYnVkZ2V0LnYxYWxwaGFCFVRpbWVmcmFtZVNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvYnVkZ2V0L3YxYWxwaGE7YnVkZ2V0djFhbHBoYaICA0JYWKoCDkJ1ZGdldC5WMWFscGhhygIOQnVkZ2V0XFYxYWxwaGHiAhpCdWRnZXRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD0J1ZGdldDo6VjFhbHBoYWIGcHJvdG8z", [file_budget_v1alpha_type, file_google_protobuf_empty]);
+  fileDesc("CiZidWRnZXQvdjFhbHBoYS90aW1lZnJhbWVfc2VydmljZS5wcm90bxIOYnVkZ2V0LnYxYWxwaGEiXQoWVGltZWZyYW1lU3RhdHVzUmVxdWVzdBJDCg9jb25uZWN0aW9uX25hbWUYASABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCKjAgoXVGltZWZyYW1lU3RhdHVzUmVzcG9uc2USQAoIc3RhdHVzZXMYASADKAsyLi5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWVTdGF0dXNSZXNwb25zZS5TdGF0dXMadAoGU3RhdHVzEiwKCXRpbWVmcmFtZRgBIAEoDjIZLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZRI8CgZzdGF0dXMYAyABKA4yLC5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWVTdGF0dXNSZXNwb25zZS5Db2RlIlAKBENvZGUSFAoQQ09ERV9VTlNQRUNJRklFRBAAEgsKB0NPREVfT0sQARIQCgxDT0RFX05PX0RBVEEQAhITCg9DT0RFX05PVF9FTk9VR0gQAzJ4ChBUaW1lZnJhbWVTZXJ2aWNlEmQKD1RpbWVmcmFtZVN0YXR1cxImLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZVN0YXR1c1JlcXVlc3QaJy5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWVTdGF0dXNSZXNwb25zZSIAQtABChJjb20uYnVkZ2V0LnYxYWxwaGFCFVRpbWVmcmFtZVNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvYnVkZ2V0L3YxYWxwaGE7YnVkZ2V0djFhbHBoYaICA0JYWKoCDkJ1ZGdldC5WMWFscGhhygIOQnVkZ2V0XFYxYWxwaGHiAhpCdWRnZXRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD0J1ZGdldDo6VjFhbHBoYWIGcHJvdG8z", [file_budget_v1alpha_type, file_buf_validate_validate]);
+
+/**
+ * @generated from message budget.v1alpha.TimeframeStatusRequest
+ */
+export type TimeframeStatusRequest = Message<"budget.v1alpha.TimeframeStatusRequest"> & {
+  /**
+   * connection_name is the name of this connection and its resources in argo/k8s
+   *
+   * @generated from field: string connection_name = 1;
+   */
+  connectionName: string;
+};
+
+/**
+ * Describes the message budget.v1alpha.TimeframeStatusRequest.
+ * Use `create(TimeframeStatusRequestSchema)` to create a new message.
+ */
+export const TimeframeStatusRequestSchema: GenMessage<TimeframeStatusRequest> = /*@__PURE__*/
+  messageDesc(file_budget_v1alpha_timeframe_service, 0);
 
 /**
  * @generated from message budget.v1alpha.TimeframeStatusResponse
@@ -34,7 +52,7 @@ export type TimeframeStatusResponse = Message<"budget.v1alpha.TimeframeStatusRes
  * Use `create(TimeframeStatusResponseSchema)` to create a new message.
  */
 export const TimeframeStatusResponseSchema: GenMessage<TimeframeStatusResponse> = /*@__PURE__*/
-  messageDesc(file_budget_v1alpha_timeframe_service, 0);
+  messageDesc(file_budget_v1alpha_timeframe_service, 1);
 
 /**
  * @generated from message budget.v1alpha.TimeframeStatusResponse.Status
@@ -60,7 +78,7 @@ export type TimeframeStatusResponse_Status = Message<"budget.v1alpha.TimeframeSt
  * Use `create(TimeframeStatusResponse_StatusSchema)` to create a new message.
  */
 export const TimeframeStatusResponse_StatusSchema: GenMessage<TimeframeStatusResponse_Status> = /*@__PURE__*/
-  messageDesc(file_budget_v1alpha_timeframe_service, 0, 0);
+  messageDesc(file_budget_v1alpha_timeframe_service, 1, 0);
 
 /**
  * Code represents the status code of a given timeframe.
@@ -99,7 +117,7 @@ export enum TimeframeStatusResponse_Code {
  * Describes the enum budget.v1alpha.TimeframeStatusResponse.Code.
  */
 export const TimeframeStatusResponse_CodeSchema: GenEnum<TimeframeStatusResponse_Code> = /*@__PURE__*/
-  enumDesc(file_budget_v1alpha_timeframe_service, 0, 0);
+  enumDesc(file_budget_v1alpha_timeframe_service, 1, 0);
 
 /**
  * @generated from service budget.v1alpha.TimeframeService
@@ -112,7 +130,7 @@ export const TimeframeService: GenService<{
    */
   timeframeStatus: {
     methodKind: "unary";
-    input: typeof EmptySchema;
+    input: typeof TimeframeStatusRequestSchema;
     output: typeof TimeframeStatusResponseSchema;
   },
 }> = /*@__PURE__*/

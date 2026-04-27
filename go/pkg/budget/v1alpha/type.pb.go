@@ -548,12 +548,12 @@ var File_budget_v1alpha_type_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_type_proto_rawDesc = "" +
 	"\n" +
-	"\x19budget/v1alpha/type.proto\x12\x0ebudget.v1alpha\x1a\x1bbuf/validate/validate.proto\"\x92\x01\n" +
+	"\x19budget/v1alpha/type.proto\x12\x0ebudget.v1alpha\x1a\x1bbuf/validate/validate.proto\"\x9d\x01\n" +
 	"\x06Filter\x12;\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1a.budget.v1alpha.FilterTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x04type\x12*\n" +
-	"\vpct_sampled\x18\x02 \x01(\rB\t\xbaH\x06*\x04\x10e(\x00R\n" +
-	"pctSampled\x12\x1f\n" +
-	"\vinclude_err\x18\x03 \x01(\bR\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x1a.budget.v1alpha.FilterTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x04type\x12-\n" +
+	"\vpct_sampled\x18\x02 \x01(\rB\f\xbaH\t\xc8\x01\x01*\x04\x10e(\x00R\n" +
+	"pctSampled\x12'\n" +
+	"\vinclude_err\x18\x03 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"includeErr\"\xc7\x02\n" +
 	"\aOverall\x12\x12\n" +
 	"\x04cost\x18\x01 \x01(\x01R\x04cost\x12\x1d\n" +

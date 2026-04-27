@@ -25,9 +25,13 @@ const (
 type OverallRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// timeframe tells the server timeframe of the data to retrieve.
-	Timeframe     Timeframe `protobuf:"varint,1,opt,name=timeframe,proto3,enum=budget.v1alpha.Timeframe" json:"timeframe,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Timeframe Timeframe `protobuf:"varint,1,opt,name=timeframe,proto3,enum=budget.v1alpha.Timeframe" json:"timeframe,omitempty"`
+	// namespace is the kubernetes namespace to install into.
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of this connection and its resources in argo/k8s
+	ConnectionName string `protobuf:"bytes,3,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *OverallRequest) Reset() {
@@ -65,6 +69,20 @@ func (x *OverallRequest) GetTimeframe() Timeframe {
 		return x.Timeframe
 	}
 	return Timeframe_TIMEFRAME_UNSPECIFIED
+}
+
+func (x *OverallRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *OverallRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
+	}
+	return ""
 }
 
 type OverallResponse struct {
@@ -120,9 +138,13 @@ type LogRequest struct {
 	// page_token (pagination) used to grab next page of data.
 	PageToken string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
 	// search is used to filter the data so that only services with name containing the given search term will be returned.
-	Search        string `protobuf:"bytes,4,opt,name=search,proto3" json:"search,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Search string `protobuf:"bytes,4,opt,name=search,proto3" json:"search,omitempty"`
+	// namespace is the kubernetes namespace to install into.
+	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of this connection and its resources in argo/k8s
+	ConnectionName string `protobuf:"bytes,6,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *LogRequest) Reset() {
@@ -179,6 +201,20 @@ func (x *LogRequest) GetPageToken() string {
 func (x *LogRequest) GetSearch() string {
 	if x != nil {
 		return x.Search
+	}
+	return ""
+}
+
+func (x *LogRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *LogRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
 	}
 	return ""
 }
@@ -244,9 +280,13 @@ type TraceRequest struct {
 	// page_token (pagination) used to grab next page of data.
 	PageToken string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
 	// search is used to filter the data so that only trace root span with name containing the given search term will be returned.
-	Search        string `protobuf:"bytes,4,opt,name=search,proto3" json:"search,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Search string `protobuf:"bytes,4,opt,name=search,proto3" json:"search,omitempty"`
+	// namespace is the kubernetes namespace to install into.
+	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of this connection and its resources in argo/k8s
+	ConnectionName string `protobuf:"bytes,6,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *TraceRequest) Reset() {
@@ -307,6 +347,20 @@ func (x *TraceRequest) GetSearch() string {
 	return ""
 }
 
+func (x *TraceRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *TraceRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
+	}
+	return ""
+}
+
 type TraceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          []*Span                `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
@@ -363,11 +417,13 @@ var File_budget_v1alpha_budget_service_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_budget_service_proto_rawDesc = "" +
 	"\n" +
-	"#budget/v1alpha/budget_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"V\n" +
+	"#budget/v1alpha/budget_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xf6\x01\n" +
 	"\x0eOverallRequest\x12D\n" +
-	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\">\n" +
+	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\x12I\n" +
+	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x03 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\">\n" +
 	"\x0fOverallResponse\x12+\n" +
-	"\x04data\x18\x01 \x01(\v2\x17.budget.v1alpha.OverallR\x04data\"\xb7\x01\n" +
+	"\x04data\x18\x01 \x01(\v2\x17.budget.v1alpha.OverallR\x04data\"\xd7\x02\n" +
 	"\n" +
 	"LogRequest\x12D\n" +
 	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\x12!\n" +
@@ -375,17 +431,21 @@ const file_budget_v1alpha_budget_service_proto_rawDesc = "" +
 	"\xc8\x01\x01*\x05\x10\xfb\x01 \x00R\x04size\x12\x1d\n" +
 	"\n" +
 	"page_token\x18\x03 \x01(\tR\tpageToken\x12!\n" +
-	"\x06search\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18dR\x06search\"^\n" +
+	"\x06search\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18dR\x06search\x12I\n" +
+	"\tnamespace\x18\x05 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x06 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"^\n" +
 	"\vLogResponse\x12'\n" +
 	"\x04data\x18\x01 \x03(\v2\x13.budget.v1alpha.LogR\x04data\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xb9\x01\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xd9\x02\n" +
 	"\fTraceRequest\x12D\n" +
 	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\x12!\n" +
 	"\x04size\x18\x02 \x01(\rB\r\xbaH\n" +
 	"\xc8\x01\x01*\x05\x10\xfb\x01 \x00R\x04size\x12\x1d\n" +
 	"\n" +
 	"page_token\x18\x03 \x01(\tR\tpageToken\x12!\n" +
-	"\x06search\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18dR\x06search\"a\n" +
+	"\x06search\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18dR\x06search\x12I\n" +
+	"\tnamespace\x18\x05 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x06 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"a\n" +
 	"\rTraceResponse\x12(\n" +
 	"\x04data\x18\x01 \x03(\v2\x14.budget.v1alpha.SpanR\x04data\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xe7\x01\n" +

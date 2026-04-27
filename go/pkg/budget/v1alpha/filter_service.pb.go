@@ -26,24 +26,27 @@ type UpdateFilterResponse_Status int32
 
 const (
 	UpdateFilterResponse_STATUS_UNSPECIFIED UpdateFilterResponse_Status = 0
-	UpdateFilterResponse_STATUS_IN_PROGRESS UpdateFilterResponse_Status = 1
-	UpdateFilterResponse_STATUS_COMPLETED   UpdateFilterResponse_Status = 2
-	UpdateFilterResponse_STATUS_ERR_UNKNOWN UpdateFilterResponse_Status = 3
+	// STATUS_VALUE_UPDATED means the data have been updated in MDAI gateway.
+	UpdateFilterResponse_STATUS_VALUE_UPDATED UpdateFilterResponse_Status = 1
+	// STATUS_WAIT_PROPGATION means we are waiting for the collectors to restart with the new values.
+	UpdateFilterResponse_STATUS_WAIT_PROPGATION UpdateFilterResponse_Status = 2
+	// STATUS_COMPLETED means collectors are all updated.
+	UpdateFilterResponse_STATUS_COMPLETED UpdateFilterResponse_Status = 3
 )
 
 // Enum value maps for UpdateFilterResponse_Status.
 var (
 	UpdateFilterResponse_Status_name = map[int32]string{
 		0: "STATUS_UNSPECIFIED",
-		1: "STATUS_IN_PROGRESS",
-		2: "STATUS_COMPLETED",
-		3: "STATUS_ERR_UNKNOWN",
+		1: "STATUS_VALUE_UPDATED",
+		2: "STATUS_WAIT_PROPGATION",
+		3: "STATUS_COMPLETED",
 	}
 	UpdateFilterResponse_Status_value = map[string]int32{
-		"STATUS_UNSPECIFIED": 0,
-		"STATUS_IN_PROGRESS": 1,
-		"STATUS_COMPLETED":   2,
-		"STATUS_ERR_UNKNOWN": 3,
+		"STATUS_UNSPECIFIED":     0,
+		"STATUS_VALUE_UPDATED":   1,
+		"STATUS_WAIT_PROPGATION": 2,
+		"STATUS_COMPLETED":       3,
 	}
 )
 
@@ -77,9 +80,13 @@ func (UpdateFilterResponse_Status) EnumDescriptor() ([]byte, []int) {
 type GetFilterRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// type contains the type of the filter to retrieve.
-	Type          FilterType `protobuf:"varint,1,opt,name=type,proto3,enum=budget.v1alpha.FilterType" json:"type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Type FilterType `protobuf:"varint,1,opt,name=type,proto3,enum=budget.v1alpha.FilterType" json:"type,omitempty"`
+	// namespace is the kubernetes namespace to install into.
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of this connection and its resources in argo/k8s
+	ConnectionName string `protobuf:"bytes,3,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetFilterRequest) Reset() {
@@ -117,6 +124,20 @@ func (x *GetFilterRequest) GetType() FilterType {
 		return x.Type
 	}
 	return FilterType_FILTER_TYPE_UNSPECIFIED
+}
+
+func (x *GetFilterRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *GetFilterRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
+	}
+	return ""
 }
 
 type GetFilterResponse struct {
@@ -164,10 +185,16 @@ func (x *GetFilterResponse) GetData() *Filter {
 }
 
 type UpdateFilterRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          *Filter                `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// data contains the filter setting data to update.
+	// `type` indicates which filter type should be updated.
+	Data *Filter `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	// namespace is the kubernetes namespace to install into.
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of this connection and its resources in argo/k8s
+	ConnectionName string `protobuf:"bytes,3,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *UpdateFilterRequest) Reset() {
@@ -205,6 +232,20 @@ func (x *UpdateFilterRequest) GetData() *Filter {
 		return x.Data
 	}
 	return nil
+}
+
+func (x *UpdateFilterRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *UpdateFilterRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
+	}
+	return ""
 }
 
 type UpdateFilterResponse struct {
@@ -255,20 +296,24 @@ var File_budget_v1alpha_filter_service_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_filter_service_proto_rawDesc = "" +
 	"\n" +
-	"#budget/v1alpha/filter_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"O\n" +
+	"#budget/v1alpha/filter_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xef\x01\n" +
 	"\x10GetFilterRequest\x12;\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1a.budget.v1alpha.FilterTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x04type\"?\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x1a.budget.v1alpha.FilterTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x04type\x12I\n" +
+	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x03 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"?\n" +
 	"\x11GetFilterResponse\x12*\n" +
-	"\x04data\x18\x01 \x01(\v2\x16.budget.v1alpha.FilterR\x04data\"I\n" +
+	"\x04data\x18\x01 \x01(\v2\x16.budget.v1alpha.FilterR\x04data\"\xe9\x01\n" +
 	"\x13UpdateFilterRequest\x122\n" +
-	"\x04data\x18\x01 \x01(\v2\x16.budget.v1alpha.FilterB\x06\xbaH\x03\xc8\x01\x01R\x04data\"\xc3\x01\n" +
+	"\x04data\x18\x01 \x01(\v2\x16.budget.v1alpha.FilterB\x06\xbaH\x03\xc8\x01\x01R\x04data\x12I\n" +
+	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x03 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xc9\x01\n" +
 	"\x14UpdateFilterResponse\x12C\n" +
-	"\x06status\x18\x01 \x01(\x0e2+.budget.v1alpha.UpdateFilterResponse.StatusR\x06status\"f\n" +
+	"\x06status\x18\x01 \x01(\x0e2+.budget.v1alpha.UpdateFilterResponse.StatusR\x06status\"l\n" +
 	"\x06Status\x12\x16\n" +
-	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12STATUS_IN_PROGRESS\x10\x01\x12\x14\n" +
-	"\x10STATUS_COMPLETED\x10\x02\x12\x16\n" +
-	"\x12STATUS_ERR_UNKNOWN\x10\x032\xc2\x01\n" +
+	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14STATUS_VALUE_UPDATED\x10\x01\x12\x1a\n" +
+	"\x16STATUS_WAIT_PROPGATION\x10\x02\x12\x14\n" +
+	"\x10STATUS_COMPLETED\x10\x032\xc2\x01\n" +
 	"\rFilterService\x12R\n" +
 	"\tGetFilter\x12 .budget.v1alpha.GetFilterRequest\x1a!.budget.v1alpha.GetFilterResponse\"\x00\x12]\n" +
 	"\fUpdateFilter\x12#.budget.v1alpha.UpdateFilterRequest\x1a$.budget.v1alpha.UpdateFilterResponse\"\x000\x01B\xcd\x01\n" +
