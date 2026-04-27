@@ -7,9 +7,9 @@
 package budgetv1alpha
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -75,7 +75,52 @@ func (x TimeframeStatusResponse_Code) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TimeframeStatusResponse_Code.Descriptor instead.
 func (TimeframeStatusResponse_Code) EnumDescriptor() ([]byte, []int) {
-	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{0, 0}
+	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{1, 0}
+}
+
+type TimeframeStatusRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// connection_name is the name of this connection and its resources in argo/k8s
+	ConnectionName string `protobuf:"bytes,1,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *TimeframeStatusRequest) Reset() {
+	*x = TimeframeStatusRequest{}
+	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TimeframeStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TimeframeStatusRequest) ProtoMessage() {}
+
+func (x *TimeframeStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TimeframeStatusRequest.ProtoReflect.Descriptor instead.
+func (*TimeframeStatusRequest) Descriptor() ([]byte, []int) {
+	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *TimeframeStatusRequest) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
+	}
+	return ""
 }
 
 type TimeframeStatusResponse struct {
@@ -89,7 +134,7 @@ type TimeframeStatusResponse struct {
 
 func (x *TimeframeStatusResponse) Reset() {
 	*x = TimeframeStatusResponse{}
-	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[0]
+	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -101,7 +146,7 @@ func (x *TimeframeStatusResponse) String() string {
 func (*TimeframeStatusResponse) ProtoMessage() {}
 
 func (x *TimeframeStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[0]
+	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114,7 +159,7 @@ func (x *TimeframeStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TimeframeStatusResponse.ProtoReflect.Descriptor instead.
 func (*TimeframeStatusResponse) Descriptor() ([]byte, []int) {
-	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{0}
+	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *TimeframeStatusResponse) GetStatuses() []*TimeframeStatusResponse_Status {
@@ -136,7 +181,7 @@ type TimeframeStatusResponse_Status struct {
 
 func (x *TimeframeStatusResponse_Status) Reset() {
 	*x = TimeframeStatusResponse_Status{}
-	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[1]
+	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -148,7 +193,7 @@ func (x *TimeframeStatusResponse_Status) String() string {
 func (*TimeframeStatusResponse_Status) ProtoMessage() {}
 
 func (x *TimeframeStatusResponse_Status) ProtoReflect() protoreflect.Message {
-	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[1]
+	mi := &file_budget_v1alpha_timeframe_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +206,7 @@ func (x *TimeframeStatusResponse_Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TimeframeStatusResponse_Status.ProtoReflect.Descriptor instead.
 func (*TimeframeStatusResponse_Status) Descriptor() ([]byte, []int) {
-	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{0, 0}
+	return file_budget_v1alpha_timeframe_service_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *TimeframeStatusResponse_Status) GetTimeframe() Timeframe {
@@ -182,7 +227,9 @@ var File_budget_v1alpha_timeframe_service_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_timeframe_service_proto_rawDesc = "" +
 	"\n" +
-	"&budget/v1alpha/timeframe_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xc1\x02\n" +
+	"&budget/v1alpha/timeframe_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"m\n" +
+	"\x16TimeframeStatusRequest\x12S\n" +
+	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xc1\x02\n" +
 	"\x17TimeframeStatusResponse\x12J\n" +
 	"\bstatuses\x18\x01 \x03(\v2..budget.v1alpha.TimeframeStatusResponse.StatusR\bstatuses\x1a\x87\x01\n" +
 	"\x06Status\x127\n" +
@@ -192,9 +239,9 @@ const file_budget_v1alpha_timeframe_service_proto_rawDesc = "" +
 	"\x10CODE_UNSPECIFIED\x10\x00\x12\v\n" +
 	"\aCODE_OK\x10\x01\x12\x10\n" +
 	"\fCODE_NO_DATA\x10\x02\x12\x13\n" +
-	"\x0fCODE_NOT_ENOUGH\x10\x032h\n" +
-	"\x10TimeframeService\x12T\n" +
-	"\x0fTimeframeStatus\x12\x16.google.protobuf.Empty\x1a'.budget.v1alpha.TimeframeStatusResponse\"\x00B\xd0\x01\n" +
+	"\x0fCODE_NOT_ENOUGH\x10\x032x\n" +
+	"\x10TimeframeService\x12d\n" +
+	"\x0fTimeframeStatus\x12&.budget.v1alpha.TimeframeStatusRequest\x1a'.budget.v1alpha.TimeframeStatusResponse\"\x00B\xd0\x01\n" +
 	"\x12com.budget.v1alphaB\x15TimeframeServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/budget/v1alpha;budgetv1alpha\xa2\x02\x03BXX\xaa\x02\x0eBudget.V1alpha\xca\x02\x0eBudget\\V1alpha\xe2\x02\x1aBudget\\V1alpha\\GPBMetadata\xea\x02\x0fBudget::V1alphab\x06proto3"
 
 var (
@@ -210,20 +257,20 @@ func file_budget_v1alpha_timeframe_service_proto_rawDescGZIP() []byte {
 }
 
 var file_budget_v1alpha_timeframe_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_budget_v1alpha_timeframe_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_budget_v1alpha_timeframe_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_budget_v1alpha_timeframe_service_proto_goTypes = []any{
 	(TimeframeStatusResponse_Code)(0),      // 0: budget.v1alpha.TimeframeStatusResponse.Code
-	(*TimeframeStatusResponse)(nil),        // 1: budget.v1alpha.TimeframeStatusResponse
-	(*TimeframeStatusResponse_Status)(nil), // 2: budget.v1alpha.TimeframeStatusResponse.Status
-	(Timeframe)(0),                         // 3: budget.v1alpha.Timeframe
-	(*emptypb.Empty)(nil),                  // 4: google.protobuf.Empty
+	(*TimeframeStatusRequest)(nil),         // 1: budget.v1alpha.TimeframeStatusRequest
+	(*TimeframeStatusResponse)(nil),        // 2: budget.v1alpha.TimeframeStatusResponse
+	(*TimeframeStatusResponse_Status)(nil), // 3: budget.v1alpha.TimeframeStatusResponse.Status
+	(Timeframe)(0),                         // 4: budget.v1alpha.Timeframe
 }
 var file_budget_v1alpha_timeframe_service_proto_depIdxs = []int32{
-	2, // 0: budget.v1alpha.TimeframeStatusResponse.statuses:type_name -> budget.v1alpha.TimeframeStatusResponse.Status
-	3, // 1: budget.v1alpha.TimeframeStatusResponse.Status.timeframe:type_name -> budget.v1alpha.Timeframe
+	3, // 0: budget.v1alpha.TimeframeStatusResponse.statuses:type_name -> budget.v1alpha.TimeframeStatusResponse.Status
+	4, // 1: budget.v1alpha.TimeframeStatusResponse.Status.timeframe:type_name -> budget.v1alpha.Timeframe
 	0, // 2: budget.v1alpha.TimeframeStatusResponse.Status.status:type_name -> budget.v1alpha.TimeframeStatusResponse.Code
-	4, // 3: budget.v1alpha.TimeframeService.TimeframeStatus:input_type -> google.protobuf.Empty
-	1, // 4: budget.v1alpha.TimeframeService.TimeframeStatus:output_type -> budget.v1alpha.TimeframeStatusResponse
+	1, // 3: budget.v1alpha.TimeframeService.TimeframeStatus:input_type -> budget.v1alpha.TimeframeStatusRequest
+	2, // 4: budget.v1alpha.TimeframeService.TimeframeStatus:output_type -> budget.v1alpha.TimeframeStatusResponse
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -243,7 +290,7 @@ func file_budget_v1alpha_timeframe_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_budget_v1alpha_timeframe_service_proto_rawDesc), len(file_budget_v1alpha_timeframe_service_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

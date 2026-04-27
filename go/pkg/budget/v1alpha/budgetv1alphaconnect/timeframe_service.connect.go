@@ -9,7 +9,6 @@ import (
 	context "context"
 	errors "errors"
 	v1alpha "github.com/MyDecisive/octant-contracts/go/pkg/budget/v1alpha"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"
 )
@@ -42,7 +41,7 @@ const (
 // TimeframeServiceClient is a client for the budget.v1alpha.TimeframeService service.
 type TimeframeServiceClient interface {
 	// TimeframeStatus returns timeframe status for each timeframe.
-	TimeframeStatus(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.TimeframeStatusResponse], error)
+	TimeframeStatus(context.Context, *connect.Request[v1alpha.TimeframeStatusRequest]) (*connect.Response[v1alpha.TimeframeStatusResponse], error)
 }
 
 // NewTimeframeServiceClient constructs a client for the budget.v1alpha.TimeframeService service. By
@@ -56,7 +55,7 @@ func NewTimeframeServiceClient(httpClient connect.HTTPClient, baseURL string, op
 	baseURL = strings.TrimRight(baseURL, "/")
 	timeframeServiceMethods := v1alpha.File_budget_v1alpha_timeframe_service_proto.Services().ByName("TimeframeService").Methods()
 	return &timeframeServiceClient{
-		timeframeStatus: connect.NewClient[emptypb.Empty, v1alpha.TimeframeStatusResponse](
+		timeframeStatus: connect.NewClient[v1alpha.TimeframeStatusRequest, v1alpha.TimeframeStatusResponse](
 			httpClient,
 			baseURL+TimeframeServiceTimeframeStatusProcedure,
 			connect.WithSchema(timeframeServiceMethods.ByName("TimeframeStatus")),
@@ -67,18 +66,18 @@ func NewTimeframeServiceClient(httpClient connect.HTTPClient, baseURL string, op
 
 // timeframeServiceClient implements TimeframeServiceClient.
 type timeframeServiceClient struct {
-	timeframeStatus *connect.Client[emptypb.Empty, v1alpha.TimeframeStatusResponse]
+	timeframeStatus *connect.Client[v1alpha.TimeframeStatusRequest, v1alpha.TimeframeStatusResponse]
 }
 
 // TimeframeStatus calls budget.v1alpha.TimeframeService.TimeframeStatus.
-func (c *timeframeServiceClient) TimeframeStatus(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.TimeframeStatusResponse], error) {
+func (c *timeframeServiceClient) TimeframeStatus(ctx context.Context, req *connect.Request[v1alpha.TimeframeStatusRequest]) (*connect.Response[v1alpha.TimeframeStatusResponse], error) {
 	return c.timeframeStatus.CallUnary(ctx, req)
 }
 
 // TimeframeServiceHandler is an implementation of the budget.v1alpha.TimeframeService service.
 type TimeframeServiceHandler interface {
 	// TimeframeStatus returns timeframe status for each timeframe.
-	TimeframeStatus(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.TimeframeStatusResponse], error)
+	TimeframeStatus(context.Context, *connect.Request[v1alpha.TimeframeStatusRequest]) (*connect.Response[v1alpha.TimeframeStatusResponse], error)
 }
 
 // NewTimeframeServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -107,6 +106,6 @@ func NewTimeframeServiceHandler(svc TimeframeServiceHandler, opts ...connect.Han
 // UnimplementedTimeframeServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedTimeframeServiceHandler struct{}
 
-func (UnimplementedTimeframeServiceHandler) TimeframeStatus(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.TimeframeStatusResponse], error) {
+func (UnimplementedTimeframeServiceHandler) TimeframeStatus(context.Context, *connect.Request[v1alpha.TimeframeStatusRequest]) (*connect.Response[v1alpha.TimeframeStatusResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("budget.v1alpha.TimeframeService.TimeframeStatus is not implemented"))
 }

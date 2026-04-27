@@ -21,6 +21,18 @@ message GetFilterRequest {
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of this connection and its resources in argo/k8s
+  string connection_name = 3 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }
 
 message GetFilterResponse {
@@ -28,15 +40,32 @@ message GetFilterResponse {
 }
 
 message UpdateFilterRequest {
+  // data contains the filter setting data to update.
+  // `type` indicates which filter type should be updated.
   Filter data = 1 [(buf.validate.field).required = true];
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of this connection and its resources in argo/k8s
+  string connection_name = 3 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }
 
 message UpdateFilterResponse {
   enum Status {
     STATUS_UNSPECIFIED = 0;
-    STATUS_IN_PROGRESS = 1;
-    STATUS_COMPLETED = 2;
-    STATUS_ERR_UNKNOWN = 3;
+    // STATUS_VALUE_UPDATED means the data have been updated in MDAI gateway.
+    STATUS_VALUE_UPDATED = 1;
+    // STATUS_WAIT_PROPAGATION means we are waiting for the collectors to restart with the new values.
+    STATUS_WAIT_PROPAGATION = 2;
+    // STATUS_COMPLETED means collectors are all updated.
+    STATUS_COMPLETED = 3;
   }
   Status status = 1;
 }
