@@ -82,8 +82,10 @@ type TimeframeStatusRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// connection_name is the name of this connection and its resources in argo/k8s
 	ConnectionName string `protobuf:"bytes,1,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// namespace is the kubernetes namespace to install into.
+	Namespace     string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TimeframeStatusRequest) Reset() {
@@ -119,6 +121,13 @@ func (*TimeframeStatusRequest) Descriptor() ([]byte, []int) {
 func (x *TimeframeStatusRequest) GetConnectionName() string {
 	if x != nil {
 		return x.ConnectionName
+	}
+	return ""
+}
+
+func (x *TimeframeStatusRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
 	}
 	return ""
 }
@@ -227,9 +236,10 @@ var File_budget_v1alpha_timeframe_service_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_timeframe_service_proto_rawDesc = "" +
 	"\n" +
-	"&budget/v1alpha/timeframe_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"m\n" +
+	"&budget/v1alpha/timeframe_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xb8\x01\n" +
 	"\x16TimeframeStatusRequest\x12S\n" +
-	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xc1\x02\n" +
+	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12I\n" +
+	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"\xc1\x02\n" +
 	"\x17TimeframeStatusResponse\x12J\n" +
 	"\bstatuses\x18\x01 \x03(\v2..budget.v1alpha.TimeframeStatusResponse.StatusR\bstatuses\x1a\x87\x01\n" +
 	"\x06Status\x127\n" +
