@@ -37,7 +37,7 @@ message Filter {
     }
   ];
   // include_err indcates if errors should be included.
-  bool include_err = 3 [(buf.validate.field).required = true];
+  bool include_err = 3;
 }
 
 message Overall {
