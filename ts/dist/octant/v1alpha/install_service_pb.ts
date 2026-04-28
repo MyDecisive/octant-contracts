@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/install_service.proto.
  */
 export const file_octant_v1alpha_install_service: GenFile = /*@__PURE__*/
-  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9pbnN0YWxsX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIt0BChVJbnN0YWxsTURBSUh1YlJlcXVlc3QSPgoJbmFtZXNwYWNlGAEgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEkMKD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIqukgnciUQAxgUMh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEj8KDG1kYWlfdmVyc2lvbhgDIAEoCUIpukgmciQyIl4oXGQrXC5cZCtcLlxkKygtW2Etel0qKT8pfGxhdGVzdCQiMwoXR2V0SW5zdGFsbFN0YXR1c1JlcXVlc3QSGAoIaHViX25hbWUYASABKAlCBrpIA8gBASJqChhHZXRJbnN0YWxsU3RhdHVzUmVzcG9uc2USPQoOaW5zdGFsbF9zdGF0dXMYASABKA4yHS5vY3RhbnQudjFhbHBoYS5JbnN0YWxsU3RhdHVzQga6SAPIAQESDwoHZGV0YWlscxgCIAEoCSqGAQoNSW5zdGFsbFN0YXR1cxIeChpJTlNUQUxMX1NUQVRVU19VTlNQRUNJRklFRBAAEh0KGUlOU1RBTExfU1RBVFVTX0lOU1RBTExJTkcQARIYChRJTlNUQUxMX1NUQVRVU19FUlJPUhACEhwKGElOU1RBTExfU1RBVFVTX0lOU1RBTExFRBADMs4BCg5JbnN0YWxsU2VydmljZRJRCg5JbnN0YWxsTURBSUh1YhIlLm9jdGFudC52MWFscGhhLkluc3RhbGxNREFJSHViUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEmkKEEdldEluc3RhbGxTdGF0dXMSJy5vY3RhbnQudjFhbHBoYS5HZXRJbnN0YWxsU3RhdHVzUmVxdWVzdBooLm9jdGFudC52MWFscGhhLkdldEluc3RhbGxTdGF0dXNSZXNwb25zZSIAMAFCzgEKEmNvbS5vY3RhbnQudjFhbHBoYUITSW5zdGFsbFNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_empty]);
+  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9pbnN0YWxsX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIt0BChVJbnN0YWxsTURBSUh1YlJlcXVlc3QSPgoJbmFtZXNwYWNlGAEgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEkMKD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIqukgnciUQAxgUMh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEj8KDG1kYWlfdmVyc2lvbhgDIAEoCUIpukgmciQyIl4oXGQrXC5cZCtcLlxkKygtW2Etel0qKT8pfGxhdGVzdCQiOgoXR2V0SW5zdGFsbFN0YXR1c1JlcXVlc3QSHwoPY29ubmVjdGlvbl9uYW1lGAEgASgJQga6SAPIAQEiiwEKGEdldEluc3RhbGxTdGF0dXNSZXNwb25zZRI9Cg5pbnN0YWxsX3N0YXR1cxgBIAEoDjIdLm9jdGFudC52MWFscGhhLkluc3RhbGxTdGF0dXNCBrpIA8gBARIwCgdkZXRhaWxzGAIgAygLMh8ub2N0YW50LnYxYWxwaGEuUmVzb3VyY2VEZXRhaWxzIkAKD1Jlc291cmNlRGV0YWlscxIUCgRuYW1lGAEgASgJQga6SAPIAQESFwoHbWVzc2FnZRgCIAEoCUIGukgDyAEBKoYBCg1JbnN0YWxsU3RhdHVzEh4KGklOU1RBTExfU1RBVFVTX1VOU1BFQ0lGSUVEEAASHQoZSU5TVEFMTF9TVEFUVVNfSU5TVEFMTElORxABEhgKFElOU1RBTExfU1RBVFVTX0VSUk9SEAISHAoYSU5TVEFMTF9TVEFUVVNfSU5TVEFMTEVEEAMyzgEKDkluc3RhbGxTZXJ2aWNlElEKDkluc3RhbGxNREFJSHViEiUub2N0YW50LnYxYWxwaGEuSW5zdGFsbE1EQUlIdWJSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASaQoQR2V0SW5zdGFsbFN0YXR1cxInLm9jdGFudC52MWFscGhhLkdldEluc3RhbGxTdGF0dXNSZXF1ZXN0Gigub2N0YW50LnYxYWxwaGEuR2V0SW5zdGFsbFN0YXR1c1Jlc3BvbnNlIgAwAULOAQoSY29tLm9jdGFudC52MWFscGhhQhNJbnN0YWxsU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_empty]);
 
 /**
  * @generated from message octant.v1alpha.InstallMDAIHubRequest
@@ -53,11 +53,11 @@ export const InstallMDAIHubRequestSchema: GenMessage<InstallMDAIHubRequest> = /*
  */
 export type GetInstallStatusRequest = Message<"octant.v1alpha.GetInstallStatusRequest"> & {
   /**
-   * hub_name is the name of the mdai hub.
+   * connection_name is the name of the octant connection to check install status for.
    *
-   * @generated from field: string hub_name = 1;
+   * @generated from field: string connection_name = 1;
    */
-  hubName: string;
+  connectionName: string;
 };
 
 /**
@@ -81,9 +81,9 @@ export type GetInstallStatusResponse = Message<"octant.v1alpha.GetInstallStatusR
   /**
    * details will contain any necessary details for states that have extra information.
    *
-   * @generated from field: string details = 2;
+   * @generated from field: repeated octant.v1alpha.ResourceDetails details = 2;
    */
-  details: string;
+  details: ResourceDetails[];
 };
 
 /**
@@ -92,6 +92,32 @@ export type GetInstallStatusResponse = Message<"octant.v1alpha.GetInstallStatusR
  */
 export const GetInstallStatusResponseSchema: GenMessage<GetInstallStatusResponse> = /*@__PURE__*/
   messageDesc(file_octant_v1alpha_install_service, 2);
+
+/**
+ * @generated from message octant.v1alpha.ResourceDetails
+ */
+export type ResourceDetails = Message<"octant.v1alpha.ResourceDetails"> & {
+  /**
+   * name is the name of the resource (pod name, etc.)
+   *
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * message describes the state of the resource.
+   *
+   * @generated from field: string message = 2;
+   */
+  message: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.ResourceDetails.
+ * Use `create(ResourceDetailsSchema)` to create a new message.
+ */
+export const ResourceDetailsSchema: GenMessage<ResourceDetails> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_install_service, 3);
 
 /**
  * @generated from enum octant.v1alpha.InstallStatus

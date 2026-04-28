@@ -140,10 +140,10 @@ func (x *InstallMDAIHubRequest) GetMdaiVersion() string {
 
 type GetInstallStatusRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// hub_name is the name of the mdai hub.
-	HubName       string `protobuf:"bytes,1,opt,name=hub_name,json=hubName,proto3" json:"hub_name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// connection_name is the name of the octant connection to check install status for.
+	ConnectionName string `protobuf:"bytes,1,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetInstallStatusRequest) Reset() {
@@ -176,9 +176,9 @@ func (*GetInstallStatusRequest) Descriptor() ([]byte, []int) {
 	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetInstallStatusRequest) GetHubName() string {
+func (x *GetInstallStatusRequest) GetConnectionName() string {
 	if x != nil {
-		return x.HubName
+		return x.ConnectionName
 	}
 	return ""
 }
@@ -188,7 +188,7 @@ type GetInstallStatusResponse struct {
 	// install_status is the status of the installation.
 	InstallStatus InstallStatus `protobuf:"varint,1,opt,name=install_status,json=installStatus,proto3,enum=octant.v1alpha.InstallStatus" json:"install_status,omitempty"`
 	// details will contain any necessary details for states that have extra information.
-	Details       string `protobuf:"bytes,2,opt,name=details,proto3" json:"details,omitempty"`
+	Details       []*ResourceDetails `protobuf:"bytes,2,rep,name=details,proto3" json:"details,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -230,9 +230,63 @@ func (x *GetInstallStatusResponse) GetInstallStatus() InstallStatus {
 	return InstallStatus_INSTALL_STATUS_UNSPECIFIED
 }
 
-func (x *GetInstallStatusResponse) GetDetails() string {
+func (x *GetInstallStatusResponse) GetDetails() []*ResourceDetails {
 	if x != nil {
 		return x.Details
+	}
+	return nil
+}
+
+type ResourceDetails struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// name is the name of the resource (pod name, etc.)
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// message describes the state of the resource.
+	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResourceDetails) Reset() {
+	*x = ResourceDetails{}
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResourceDetails) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResourceDetails) ProtoMessage() {}
+
+func (x *ResourceDetails) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResourceDetails.ProtoReflect.Descriptor instead.
+func (*ResourceDetails) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ResourceDetails) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ResourceDetails) GetMessage() string {
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
@@ -245,12 +299,15 @@ const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\x15InstallMDAIHubRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12L\n" +
-	"\fmdai_version\x18\x03 \x01(\tB)\xbaH&r$2\"^(\\d+\\.\\d+\\.\\d+(-[a-z]*)?)|latest$R\vmdaiVersion\"<\n" +
-	"\x17GetInstallStatusRequest\x12!\n" +
-	"\bhub_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\ahubName\"\x82\x01\n" +
+	"\fmdai_version\x18\x03 \x01(\tB)\xbaH&r$2\"^(\\d+\\.\\d+\\.\\d+(-[a-z]*)?)|latest$R\vmdaiVersion\"J\n" +
+	"\x17GetInstallStatusRequest\x12/\n" +
+	"\x0fconnection_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x0econnectionName\"\xa3\x01\n" +
 	"\x18GetInstallStatusResponse\x12L\n" +
-	"\x0einstall_status\x18\x01 \x01(\x0e2\x1d.octant.v1alpha.InstallStatusB\x06\xbaH\x03\xc8\x01\x01R\rinstallStatus\x12\x18\n" +
-	"\adetails\x18\x02 \x01(\tR\adetails*\x86\x01\n" +
+	"\x0einstall_status\x18\x01 \x01(\x0e2\x1d.octant.v1alpha.InstallStatusB\x06\xbaH\x03\xc8\x01\x01R\rinstallStatus\x129\n" +
+	"\adetails\x18\x02 \x03(\v2\x1f.octant.v1alpha.ResourceDetailsR\adetails\"O\n" +
+	"\x0fResourceDetails\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\x12 \n" +
+	"\amessage\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\amessage*\x86\x01\n" +
 	"\rInstallStatus\x12\x1e\n" +
 	"\x1aINSTALL_STATUS_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19INSTALL_STATUS_INSTALLING\x10\x01\x12\x18\n" +
@@ -274,25 +331,27 @@ func file_octant_v1alpha_install_service_proto_rawDescGZIP() []byte {
 }
 
 var file_octant_v1alpha_install_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_octant_v1alpha_install_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_octant_v1alpha_install_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_octant_v1alpha_install_service_proto_goTypes = []any{
 	(InstallStatus)(0),               // 0: octant.v1alpha.InstallStatus
 	(*InstallMDAIHubRequest)(nil),    // 1: octant.v1alpha.InstallMDAIHubRequest
 	(*GetInstallStatusRequest)(nil),  // 2: octant.v1alpha.GetInstallStatusRequest
 	(*GetInstallStatusResponse)(nil), // 3: octant.v1alpha.GetInstallStatusResponse
-	(*emptypb.Empty)(nil),            // 4: google.protobuf.Empty
+	(*ResourceDetails)(nil),          // 4: octant.v1alpha.ResourceDetails
+	(*emptypb.Empty)(nil),            // 5: google.protobuf.Empty
 }
 var file_octant_v1alpha_install_service_proto_depIdxs = []int32{
 	0, // 0: octant.v1alpha.GetInstallStatusResponse.install_status:type_name -> octant.v1alpha.InstallStatus
-	1, // 1: octant.v1alpha.InstallService.InstallMDAIHub:input_type -> octant.v1alpha.InstallMDAIHubRequest
-	2, // 2: octant.v1alpha.InstallService.GetInstallStatus:input_type -> octant.v1alpha.GetInstallStatusRequest
-	4, // 3: octant.v1alpha.InstallService.InstallMDAIHub:output_type -> google.protobuf.Empty
-	3, // 4: octant.v1alpha.InstallService.GetInstallStatus:output_type -> octant.v1alpha.GetInstallStatusResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 1: octant.v1alpha.GetInstallStatusResponse.details:type_name -> octant.v1alpha.ResourceDetails
+	1, // 2: octant.v1alpha.InstallService.InstallMDAIHub:input_type -> octant.v1alpha.InstallMDAIHubRequest
+	2, // 3: octant.v1alpha.InstallService.GetInstallStatus:input_type -> octant.v1alpha.GetInstallStatusRequest
+	5, // 4: octant.v1alpha.InstallService.InstallMDAIHub:output_type -> google.protobuf.Empty
+	3, // 5: octant.v1alpha.InstallService.GetInstallStatus:output_type -> octant.v1alpha.GetInstallStatusResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_octant_v1alpha_install_service_proto_init() }
@@ -306,7 +365,7 @@ func file_octant_v1alpha_install_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_octant_v1alpha_install_service_proto_rawDesc), len(file_octant_v1alpha_install_service_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
