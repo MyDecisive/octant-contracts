@@ -42,26 +42,25 @@ message Filter {
 
 message Overall {
   message Metric {
-    //received represents the total amount of data recieved.
+    // received represents the total amount of data recieved.
     // For log, the unit is in GB; For trace, the unit is in mm Events.
     uint64 received = 1;
-    //sent represents the total amount of data send.
+    // sent represents the total amount of data send.
     // For log, the unit is in GB; For trace, the unit is in mm Events.
     uint64 sent = 2;
+    // filtered represents the difference between sent and recieved.
+    // For log, the unit is in GB; For trace, the unit is in mm Events.
+    uint64 filtered = 3;
     // cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
-    float cost_rate = 3;
+    float cost_rate = 4;
     // pct contains the percentage of total overall cost, rounding to the nearest two decimal places (e.g., 1.23%).
-    float pct = 4;
+    float pct = 5;
     // cost contains the total cost, rounding to the nearest two decimal places.
-    double cost = 5;
-    // reduction_pct contains the percentage of data volumn reduced, rounding to the nearest two decimal places (e.g., 1.23%).
-    float reduction_pct = 6;
+    double cost = 6;
   }
 
   // cost contains the total cost for log and trace, rounding to the nearest two decimal places.
   double cost = 1;
-  // saving_pct is the total cost saving percentage for log and trace, rounding to the nearest two decimal places (e.g., 1.23%).
-  float saving_pct = 2;
   // log contains overall metric data for logs.
   Metric log = 3;
   // trace contains overall metric data for traces.
@@ -71,8 +70,6 @@ message Overall {
 message Log {
   // name is the service name.
   string name = 1;
-  //received represents the amount of data recieved (in GB).
-  uint64 received = 2;
   //received represents the amount of data send (in GB).
   uint64 sent = 3;
   // pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
@@ -90,12 +87,6 @@ message Span {
   uint32 depth = 3;
   // invocations contains the number of invocations.
   uint32 invocations = 4;
-  //received represents the amount of data recieved (in mm Events).
-  uint64 received = 5;
-  //received represents the amount of data send (in mm Events).
-  uint64 sent = 6;
-  // pct contains the percentage of total trace cost, rounding to the nearest two decimal places (e.g., 1.23%).
-  float pct = 7;
   // cost contains the total cost, rounding to the nearest two decimal places.
   double cost = 8;
 }
