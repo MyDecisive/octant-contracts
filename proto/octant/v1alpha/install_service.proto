@@ -31,15 +31,22 @@ message InstallMDAIHubRequest {
 }
 
 message GetInstallStatusRequest {
-  // hub_name is the name of the mdai hub.
-  string hub_name = 1 [(buf.validate.field).required = true];
+  // connection_name is the name of the octant connection to check install status for.
+  string connection_name = 1 [(buf.validate.field).required = true];
 }
 
 message GetInstallStatusResponse {
   // install_status is the status of the installation.
   InstallStatus install_status = 1 [(buf.validate.field).required = true];
   // details will contain any necessary details for states that have extra information.
-  string details = 2;
+  repeated ResourceDetails details = 2;
+}
+
+message ResourceDetails {
+  // name is the name of the resource (pod name, etc.)
+  string name = 1 [(buf.validate.field).required = true];
+  // message describes the state of the resource.
+  string message = 2 [(buf.validate.field).required = true];
 }
 
 enum InstallStatus {
