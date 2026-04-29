@@ -7,6 +7,10 @@ import "octant/v1alpha/type.proto";
 
 // ConnectService allows for interacting with MDAI Octant Connections
 service ConnectionService {
+  // GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
+  rpc GetConnectionValidatorRuns(GetConnectionValidatorRunsRequest) returns (GetConnectionValidatorRunsResponse) {}
+  // PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
+  rpc PutConnectionValidatorRun(PutConnectionValidatorRunRequest) returns (PutConnectionValidatorRunResponse) {}
   // GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
   rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {}
   // GenerateManifests generates the manifest base on the given input and this will returns
@@ -59,6 +63,46 @@ message GenerateManifestsResponse {
   string type = 3;
 }
 
+message GetConnectionValidatorRunsRequest {
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of this connection and its resources in argo/k8s
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
+message PutConnectionValidatorRunRequest {
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of this connection and its resources in argo/k8s
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
+message PutConnectionValidatorRunResponse {
+  // validator_run_id is the created validator_run_id for the new validator run
+  string validator_run_id = 1;
+}
+
+message GetConnectionValidatorRunsResponse {
+  // validator_run_ids is the list of validator_run_ids currently available in the metrics set
+  repeated string validator_run_ids = 1;
+}
+
 message GetConnectionStatusRequest {
   // namespace is the kubernetes namespace to install into.
   string namespace = 1 [
@@ -72,6 +116,8 @@ message GetConnectionStatusRequest {
     (buf.validate.field).string.max_len = 20,
     (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
   ];
+  // validator_run_id is the Validator Run ID to get validation metrics for. Omitting this will yield empty/false validation results in the response.
+  string validator_run_id = 3;
 }
 
 message GetConnectionStatusResponse {
