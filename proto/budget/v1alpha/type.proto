@@ -29,13 +29,10 @@ message Filter {
     (buf.validate.field).enum.defined_only = true
   ];
   // pct_sampled contains the sampling percentage.
-  uint32 pct_sampled = 2 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).uint32 = {
-      gte: 0
-      lt: 101
-    }
-  ];
+  uint32 pct_sampled = 2 [(buf.validate.field).uint32 = {
+    gte: 0
+    lt: 101
+  }];
   // include_err indcates if errors should be included.
   bool include_err = 3;
 }
