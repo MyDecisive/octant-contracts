@@ -148,7 +148,7 @@ export type Log = Message<"budget.v1alpha.Log"> & {
   name: string;
 
   /**
-   * received represents the amount of data send (in GB).
+   * sent represents the amount of data send (in GB).
    *
    * @generated from field: uint64 sent = 3;
    */

@@ -258,7 +258,7 @@ type Log struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// name is the service name.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// received represents the amount of data send (in GB).
+	// sent represents the amount of data send (in GB).
 	Sent uint64 `protobuf:"varint,3,opt,name=sent,proto3" json:"sent,omitempty"`
 	// pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
 	Pct float32 `protobuf:"fixed32,4,opt,name=pct,proto3" json:"pct,omitempty"`

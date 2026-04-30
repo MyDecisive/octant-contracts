@@ -67,7 +67,7 @@ message Overall {
 message Log {
   // name is the service name.
   string name = 1;
-  //received represents the amount of data send (in GB).
+  //sent represents the amount of data send (in GB).
   uint64 sent = 3;
   // pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
   float pct = 4;
