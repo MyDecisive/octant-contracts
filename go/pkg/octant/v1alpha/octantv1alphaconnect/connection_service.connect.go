@@ -33,6 +33,15 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// ConnectionServiceGetConnectionsProcedure is the fully-qualified name of the ConnectionService's
+	// GetConnections RPC.
+	ConnectionServiceGetConnectionsProcedure = "/octant.v1alpha.ConnectionService/GetConnections"
+	// ConnectionServiceGetConnectionProcedure is the fully-qualified name of the ConnectionService's
+	// GetConnection RPC.
+	ConnectionServiceGetConnectionProcedure = "/octant.v1alpha.ConnectionService/GetConnection"
+	// ConnectionServicePutConnectionProcedure is the fully-qualified name of the ConnectionService's
+	// PutConnection RPC.
+	ConnectionServicePutConnectionProcedure = "/octant.v1alpha.ConnectionService/PutConnection"
 	// ConnectionServiceGetConnectionValidatorRunsProcedure is the fully-qualified name of the
 	// ConnectionService's GetConnectionValidatorRuns RPC.
 	ConnectionServiceGetConnectionValidatorRunsProcedure = "/octant.v1alpha.ConnectionService/GetConnectionValidatorRuns"
@@ -49,6 +58,9 @@ const (
 
 // ConnectionServiceClient is a client for the octant.v1alpha.ConnectionService service.
 type ConnectionServiceClient interface {
+	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
+	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
+	PutConnection(context.Context, *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error)
 	// GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
@@ -74,6 +86,24 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 	baseURL = strings.TrimRight(baseURL, "/")
 	connectionServiceMethods := v1alpha.File_octant_v1alpha_connection_service_proto.Services().ByName("ConnectionService").Methods()
 	return &connectionServiceClient{
+		getConnections: connect.NewClient[v1alpha.GetConnectionsRequest, v1alpha.GetConnectionsResponse](
+			httpClient,
+			baseURL+ConnectionServiceGetConnectionsProcedure,
+			connect.WithSchema(connectionServiceMethods.ByName("GetConnections")),
+			connect.WithClientOptions(opts...),
+		),
+		getConnection: connect.NewClient[v1alpha.GetConnectionRequest, v1alpha.GetConnectionResponse](
+			httpClient,
+			baseURL+ConnectionServiceGetConnectionProcedure,
+			connect.WithSchema(connectionServiceMethods.ByName("GetConnection")),
+			connect.WithClientOptions(opts...),
+		),
+		putConnection: connect.NewClient[v1alpha.PutConnectionRequest, v1alpha.PutConnectionResponse](
+			httpClient,
+			baseURL+ConnectionServicePutConnectionProcedure,
+			connect.WithSchema(connectionServiceMethods.ByName("PutConnection")),
+			connect.WithClientOptions(opts...),
+		),
 		getConnectionValidatorRuns: connect.NewClient[v1alpha.GetConnectionValidatorRunsRequest, v1alpha.GetConnectionValidatorRunsResponse](
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionValidatorRunsProcedure,
@@ -103,10 +133,28 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 
 // connectionServiceClient implements ConnectionServiceClient.
 type connectionServiceClient struct {
+	getConnections             *connect.Client[v1alpha.GetConnectionsRequest, v1alpha.GetConnectionsResponse]
+	getConnection              *connect.Client[v1alpha.GetConnectionRequest, v1alpha.GetConnectionResponse]
+	putConnection              *connect.Client[v1alpha.PutConnectionRequest, v1alpha.PutConnectionResponse]
 	getConnectionValidatorRuns *connect.Client[v1alpha.GetConnectionValidatorRunsRequest, v1alpha.GetConnectionValidatorRunsResponse]
 	putConnectionValidatorRun  *connect.Client[v1alpha.PutConnectionValidatorRunRequest, v1alpha.PutConnectionValidatorRunResponse]
 	getConnectionStatus        *connect.Client[v1alpha.GetConnectionStatusRequest, v1alpha.GetConnectionStatusResponse]
 	generateManifests          *connect.Client[v1alpha.GenerateManifestsRequest, v1alpha.GenerateManifestsResponse]
+}
+
+// GetConnections calls octant.v1alpha.ConnectionService.GetConnections.
+func (c *connectionServiceClient) GetConnections(ctx context.Context, req *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error) {
+	return c.getConnections.CallUnary(ctx, req)
+}
+
+// GetConnection calls octant.v1alpha.ConnectionService.GetConnection.
+func (c *connectionServiceClient) GetConnection(ctx context.Context, req *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error) {
+	return c.getConnection.CallUnary(ctx, req)
+}
+
+// PutConnection calls octant.v1alpha.ConnectionService.PutConnection.
+func (c *connectionServiceClient) PutConnection(ctx context.Context, req *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error) {
+	return c.putConnection.CallUnary(ctx, req)
 }
 
 // GetConnectionValidatorRuns calls octant.v1alpha.ConnectionService.GetConnectionValidatorRuns.
@@ -131,6 +179,9 @@ func (c *connectionServiceClient) GenerateManifests(ctx context.Context, req *co
 
 // ConnectionServiceHandler is an implementation of the octant.v1alpha.ConnectionService service.
 type ConnectionServiceHandler interface {
+	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
+	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
+	PutConnection(context.Context, *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error)
 	// GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
@@ -152,6 +203,24 @@ type ConnectionServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	connectionServiceMethods := v1alpha.File_octant_v1alpha_connection_service_proto.Services().ByName("ConnectionService").Methods()
+	connectionServiceGetConnectionsHandler := connect.NewUnaryHandler(
+		ConnectionServiceGetConnectionsProcedure,
+		svc.GetConnections,
+		connect.WithSchema(connectionServiceMethods.ByName("GetConnections")),
+		connect.WithHandlerOptions(opts...),
+	)
+	connectionServiceGetConnectionHandler := connect.NewUnaryHandler(
+		ConnectionServiceGetConnectionProcedure,
+		svc.GetConnection,
+		connect.WithSchema(connectionServiceMethods.ByName("GetConnection")),
+		connect.WithHandlerOptions(opts...),
+	)
+	connectionServicePutConnectionHandler := connect.NewUnaryHandler(
+		ConnectionServicePutConnectionProcedure,
+		svc.PutConnection,
+		connect.WithSchema(connectionServiceMethods.ByName("PutConnection")),
+		connect.WithHandlerOptions(opts...),
+	)
 	connectionServiceGetConnectionValidatorRunsHandler := connect.NewUnaryHandler(
 		ConnectionServiceGetConnectionValidatorRunsProcedure,
 		svc.GetConnectionValidatorRuns,
@@ -178,6 +247,12 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 	)
 	return "/octant.v1alpha.ConnectionService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case ConnectionServiceGetConnectionsProcedure:
+			connectionServiceGetConnectionsHandler.ServeHTTP(w, r)
+		case ConnectionServiceGetConnectionProcedure:
+			connectionServiceGetConnectionHandler.ServeHTTP(w, r)
+		case ConnectionServicePutConnectionProcedure:
+			connectionServicePutConnectionHandler.ServeHTTP(w, r)
 		case ConnectionServiceGetConnectionValidatorRunsProcedure:
 			connectionServiceGetConnectionValidatorRunsHandler.ServeHTTP(w, r)
 		case ConnectionServicePutConnectionValidatorRunProcedure:
@@ -194,6 +269,18 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 
 // UnimplementedConnectionServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedConnectionServiceHandler struct{}
+
+func (UnimplementedConnectionServiceHandler) GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.GetConnections is not implemented"))
+}
+
+func (UnimplementedConnectionServiceHandler) GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.GetConnection is not implemented"))
+}
+
+func (UnimplementedConnectionServiceHandler) PutConnection(context.Context, *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.PutConnection is not implemented"))
+}
 
 func (UnimplementedConnectionServiceHandler) GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.GetConnectionValidatorRuns is not implemented"))

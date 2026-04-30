@@ -7,6 +7,9 @@ import "octant/v1alpha/type.proto";
 
 // ConnectService allows for interacting with MDAI Octant Connections
 service ConnectionService {
+  rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
+  rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
+  rpc PutConnection(PutConnectionRequest) returns (PutConnectionResponse) {}
   // GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
   rpc GetConnectionValidatorRuns(GetConnectionValidatorRunsRequest) returns (GetConnectionValidatorRunsResponse) {}
   // PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
@@ -19,6 +22,88 @@ service ConnectionService {
   // in a typed blob and then https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static
   // should be used.
   rpc GenerateManifests(GenerateManifestsRequest) returns (stream GenerateManifestsResponse) {}
+}
+
+message GetConnectionsRequest {
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
+message GetConnectionResponse {
+  repeated MLTType telemetry_types = 1;
+  DeploymentType deployment_type = 2;
+
+  repeated TelemetryDestination destinations = 3 ;
+}
+
+message GetConnectionRequest {
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
+message GetConnectionsResponse {
+  repeated string connection_names = 1;
+}
+
+message PutConnectionRequest {
+  // namespace is the kubernetes namespace to install into.
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of this connection and its resources in argo/k8s
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // telemetry_types is used to generate the manifests.
+  repeated MLTType telemetry_types = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      enum: {defined_only: true}
+    }
+  ];
+  // deployment_type use to tell the type of manifest to generate.
+  DeploymentType deployment_type = 4 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+
+  repeated TelemetryDestination destinations = 5 [(buf.validate.field).required = true];
+}
+
+message TelemetryDestination {
+  IntegrationType type = 1;
+  string integrationName = 2;
+}
+
+message Deployment {
+  DeploymentType type = 1;
+  string integrationName = 2;
+}
+
+enum IntegrationType {
+  INTEGRATION_TYPE_DATADOG = 0;
+}
+
+message PutConnectionResponse {
+  // validator_run_id is the created validator_run_id for the new validator run
+  string validator_run_id = 1;
 }
 
 message GenerateManifestsRequest {
