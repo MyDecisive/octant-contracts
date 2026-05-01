@@ -78,11 +78,7 @@ message PutConnectionRequest {
       enum: {defined_only: true}
     }
   ];
-  // deployment_type use to tell the type of manifest to generate.
-  DeploymentType deployment_type = 4 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).enum.defined_only = true
-  ];
+  Deployment deployment = 4 [(buf.validate.field).required = true];
 
   repeated TelemetryDestination destinations = 5 [(buf.validate.field).required = true];
 }

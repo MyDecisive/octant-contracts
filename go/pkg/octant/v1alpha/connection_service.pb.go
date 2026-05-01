@@ -273,9 +273,8 @@ type PutConnectionRequest struct {
 	// connection_name is the name of this connection and its resources in argo/k8s
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
 	// telemetry_types is used to generate the manifests.
-	TelemetryTypes []MLTType `protobuf:"varint,3,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
-	// deployment_type use to tell the type of manifest to generate.
-	DeploymentType DeploymentType          `protobuf:"varint,4,opt,name=deployment_type,json=deploymentType,proto3,enum=octant.v1alpha.DeploymentType" json:"deployment_type,omitempty"`
+	TelemetryTypes []MLTType               `protobuf:"varint,3,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
+	Deployment     *Deployment             `protobuf:"bytes,4,opt,name=deployment,proto3" json:"deployment,omitempty"`
 	Destinations   []*TelemetryDestination `protobuf:"bytes,5,rep,name=destinations,proto3" json:"destinations,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -332,11 +331,11 @@ func (x *PutConnectionRequest) GetTelemetryTypes() []MLTType {
 	return nil
 }
 
-func (x *PutConnectionRequest) GetDeploymentType() DeploymentType {
+func (x *PutConnectionRequest) GetDeployment() *Deployment {
 	if x != nil {
-		return x.DeploymentType
+		return x.Deployment
 	}
-	return DeploymentType_DEPLOYMENT_TYPE_UNSPECIFIED
+	return nil
 }
 
 func (x *PutConnectionRequest) GetDestinations() []*TelemetryDestination {
@@ -1164,12 +1163,14 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"C\n" +
 	"\x16GetConnectionsResponse\x12)\n" +
-	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xb4\x03\n" +
+	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xa2\x03\n" +
 	"\x14PutConnectionRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12T\n" +
-	"\x0ftelemetry_types\x18\x03 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12T\n" +
-	"\x0fdeployment_type\x18\x04 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x0edeploymentType\x12P\n" +
+	"\x0ftelemetry_types\x18\x03 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12B\n" +
+	"\n" +
+	"deployment\x18\x04 \x01(\v2\x1a.octant.v1alpha.DeploymentB\x06\xbaH\x03\xc8\x01\x01R\n" +
+	"deployment\x12P\n" +
 	"\fdestinations\x18\x05 \x03(\v2$.octant.v1alpha.TelemetryDestinationB\x06\xbaH\x03\xc8\x01\x01R\fdestinations\"v\n" +
 	"\x14TelemetryDestination\x123\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1f.octant.v1alpha.IntegrationTypeR\x04type\x12)\n" +
@@ -1286,7 +1287,7 @@ var file_octant_v1alpha_connection_service_proto_depIdxs = []int32{
 	23, // 1: octant.v1alpha.GetConnectionResponse.deployment_type:type_name -> octant.v1alpha.DeploymentType
 	6,  // 2: octant.v1alpha.GetConnectionResponse.destinations:type_name -> octant.v1alpha.TelemetryDestination
 	22, // 3: octant.v1alpha.PutConnectionRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
-	23, // 4: octant.v1alpha.PutConnectionRequest.deployment_type:type_name -> octant.v1alpha.DeploymentType
+	7,  // 4: octant.v1alpha.PutConnectionRequest.deployment:type_name -> octant.v1alpha.Deployment
 	6,  // 5: octant.v1alpha.PutConnectionRequest.destinations:type_name -> octant.v1alpha.TelemetryDestination
 	0,  // 6: octant.v1alpha.TelemetryDestination.type:type_name -> octant.v1alpha.IntegrationType
 	23, // 7: octant.v1alpha.Deployment.type:type_name -> octant.v1alpha.DeploymentType
