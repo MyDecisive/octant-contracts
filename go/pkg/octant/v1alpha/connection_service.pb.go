@@ -25,16 +25,19 @@ const (
 type IntegrationType int32
 
 const (
-	IntegrationType_INTEGRATION_TYPE_DATADOG IntegrationType = 0
+	IntegrationType_INTEGRATION_TYPE_UNSPECIFIED IntegrationType = 0
+	IntegrationType_INTEGRATION_TYPE_DATADOG     IntegrationType = 1
 )
 
 // Enum value maps for IntegrationType.
 var (
 	IntegrationType_name = map[int32]string{
-		0: "INTEGRATION_TYPE_DATADOG",
+		0: "INTEGRATION_TYPE_UNSPECIFIED",
+		1: "INTEGRATION_TYPE_DATADOG",
 	}
 	IntegrationType_value = map[string]int32{
-		"INTEGRATION_TYPE_DATADOG": 0,
+		"INTEGRATION_TYPE_UNSPECIFIED": 0,
+		"INTEGRATION_TYPE_DATADOG":     1,
 	}
 )
 
@@ -387,7 +390,7 @@ func (x *TelemetryDestination) GetType() IntegrationType {
 	if x != nil {
 		return x.Type
 	}
-	return IntegrationType_INTEGRATION_TYPE_DATADOG
+	return IntegrationType_INTEGRATION_TYPE_UNSPECIFIED
 }
 
 func (x *TelemetryDestination) GetIntegrationName() string {
@@ -1228,9 +1231,10 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\x1a9\n" +
 	"\vPolicyEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01*/\n" +
-	"\x0fIntegrationType\x12\x1c\n" +
-	"\x18INTEGRATION_TYPE_DATADOG\x10\x002\xa3\x06\n" +
+	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01*Q\n" +
+	"\x0fIntegrationType\x12 \n" +
+	"\x1cINTEGRATION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18INTEGRATION_TYPE_DATADOG\x10\x012\xa3\x06\n" +
 	"\x11ConnectionService\x12a\n" +
 	"\x0eGetConnections\x12%.octant.v1alpha.GetConnectionsRequest\x1a&.octant.v1alpha.GetConnectionsResponse\"\x00\x12^\n" +
 	"\rGetConnection\x12$.octant.v1alpha.GetConnectionRequest\x1a%.octant.v1alpha.GetConnectionResponse\"\x00\x12^\n" +

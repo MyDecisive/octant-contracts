@@ -94,7 +94,8 @@ message Deployment {
 }
 
 enum IntegrationType {
-  INTEGRATION_TYPE_DATADOG = 0;
+  INTEGRATION_TYPE_UNSPECIFIED = 0;
+  INTEGRATION_TYPE_DATADOG = 1;
 }
 
 message PutConnectionResponse {
