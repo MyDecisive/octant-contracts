@@ -37,7 +37,7 @@ message GetConnectionResponse {
   repeated MLTType telemetry_types = 1;
   DeploymentType deployment_type = 2;
 
-  repeated TelemetryDestination destinations = 3 ;
+  repeated TelemetryDestination destinations = 3;
 }
 
 message GetConnectionRequest {
