@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file budget/v1alpha/type.proto.
  */
 export const file_budget_v1alpha_type: GenFile = /*@__PURE__*/
-  fileDesc("ChlidWRnZXQvdjFhbHBoYS90eXBlLnByb3RvEg5idWRnZXQudjFhbHBoYSJ0CgZGaWx0ZXISNQoEdHlwZRgBIAEoDjIaLmJ1ZGdldC52MWFscGhhLkZpbHRlclR5cGVCC7pICMgBAYIBAhABEh4KC3BjdF9zYW1wbGVkGAIgASgNQgm6SAYqBBBlKAASEwoLaW5jbHVkZV9lcnIYAyABKAgi3QEKB092ZXJhbGwSDAoEY29zdBgBIAEoARIrCgNsb2cYAyABKAsyHi5idWRnZXQudjFhbHBoYS5PdmVyYWxsLk1ldHJpYxItCgV0cmFjZRgEIAEoCzIeLmJ1ZGdldC52MWFscGhhLk92ZXJhbGwuTWV0cmljGmgKBk1ldHJpYxIQCghyZWNlaXZlZBgBIAEoAxIMCgRzZW50GAIgASgDEhAKCGZpbHRlcmVkGAMgASgDEhEKCWNvc3RfcmF0ZRgEIAEoAhILCgNwY3QYBSABKAISDAoEY29zdBgGIAEoASI8CgNMb2cSDAoEbmFtZRgBIAEoCRIMCgRzZW50GAMgASgDEgsKA3BjdBgEIAEoAhIMCgRjb3N0GAUgASgBIlYKBFNwYW4SDAoEbmFtZRgBIAEoCRIOCgZicmVhdGgYAiABKA0SDQoFZGVwdGgYAyABKA0SEwoLaW52b2NhdGlvbnMYBCABKA0SDAoEY29zdBgIIAEoASpfCglUaW1lZnJhbWUSGQoVVElNRUZSQU1FX1VOU1BFQ0lGSUVEEAASEgoOVElNRUZSQU1FXzI0SFIQARIRCg1USU1FRlJBTUVfTVREEAISEAoMVElNRUZSQU1FX0xNEAMqVQoKRmlsdGVyVHlwZRIbChdGSUxURVJfVFlQRV9VTlNQRUNJRklFRBAAEhMKD0ZJTFRFUl9UWVBFX0xPRxABEhUKEUZJTFRFUl9UWVBFX1RSQUNFEAJCxAEKEmNvbS5idWRnZXQudjFhbHBoYUIJVHlwZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9idWRnZXQvdjFhbHBoYTtidWRnZXR2MWFscGhhogIDQlhYqgIOQnVkZ2V0LlYxYWxwaGHKAg5CdWRnZXRcVjFhbHBoYeICGkJ1ZGdldFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPQnVkZ2V0OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate]);
+  fileDesc("ChlidWRnZXQvdjFhbHBoYS90eXBlLnByb3RvEg5idWRnZXQudjFhbHBoYSJ0CgZGaWx0ZXISNQoEdHlwZRgBIAEoDjIaLmJ1ZGdldC52MWFscGhhLkZpbHRlclR5cGVCC7pICMgBAYIBAhABEh4KC3BjdF9zYW1wbGVkGAIgASgNQgm6SAYqBBBlKAASEwoLaW5jbHVkZV9lcnIYAyABKAgi3QEKB092ZXJhbGwSDAoEY29zdBgBIAEoARIrCgNsb2cYAyABKAsyHi5idWRnZXQudjFhbHBoYS5PdmVyYWxsLk1ldHJpYxItCgV0cmFjZRgEIAEoCzIeLmJ1ZGdldC52MWFscGhhLk92ZXJhbGwuTWV0cmljGmgKBk1ldHJpYxIQCghyZWNlaXZlZBgBIAEoARIMCgRzZW50GAIgASgBEhAKCGZpbHRlcmVkGAMgASgBEhEKCWNvc3RfcmF0ZRgEIAEoAhILCgNwY3QYBSABKAISDAoEY29zdBgGIAEoASI8CgNMb2cSDAoEbmFtZRgBIAEoCRIMCgRzZW50GAMgASgBEgsKA3BjdBgEIAEoAhIMCgRjb3N0GAUgASgBIlYKBFNwYW4SDAoEbmFtZRgBIAEoCRIOCgZicmVhdGgYAiABKAMSDQoFZGVwdGgYAyABKAMSEwoLaW52b2NhdGlvbnMYBCABKAMSDAoEY29zdBgIIAEoASpfCglUaW1lZnJhbWUSGQoVVElNRUZSQU1FX1VOU1BFQ0lGSUVEEAASEgoOVElNRUZSQU1FXzI0SFIQARIRCg1USU1FRlJBTUVfTVREEAISEAoMVElNRUZSQU1FX0xNEAMqVQoKRmlsdGVyVHlwZRIbChdGSUxURVJfVFlQRV9VTlNQRUNJRklFRBAAEhMKD0ZJTFRFUl9UWVBFX0xPRxABEhUKEUZJTFRFUl9UWVBFX1RSQUNFEAJCxAEKEmNvbS5idWRnZXQudjFhbHBoYUIJVHlwZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9idWRnZXQvdjFhbHBoYTtidWRnZXR2MWFscGhhogIDQlhYqgIOQnVkZ2V0LlYxYWxwaGHKAg5CdWRnZXRcVjFhbHBoYeICGkJ1ZGdldFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPQnVkZ2V0OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate]);
 
 /**
  * @generated from message budget.v1alpha.Filter
@@ -87,25 +87,25 @@ export type Overall_Metric = Message<"budget.v1alpha.Overall.Metric"> & {
    * received represents the total amount of data recieved.
    * For log, the unit is in GB; For trace, the unit is in mm Events.
    *
-   * @generated from field: int64 received = 1;
+   * @generated from field: double received = 1;
    */
-  received: bigint;
+  received: number;
 
   /**
    * sent represents the total amount of data send.
    * For log, the unit is in GB; For trace, the unit is in mm Events.
    *
-   * @generated from field: int64 sent = 2;
+   * @generated from field: double sent = 2;
    */
-  sent: bigint;
+  sent: number;
 
   /**
    * filtered represents the difference between sent and recieved.
    * For log, the unit is in GB; For trace, the unit is in mm Events.
    *
-   * @generated from field: int64 filtered = 3;
+   * @generated from field: double filtered = 3;
    */
-  filtered: bigint;
+  filtered: number;
 
   /**
    * cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
@@ -150,9 +150,9 @@ export type Log = Message<"budget.v1alpha.Log"> & {
   /**
    * sent represents the amount of data send (in GB).
    *
-   * @generated from field: int64 sent = 3;
+   * @generated from field: double sent = 3;
    */
-  sent: bigint;
+  sent: number;
 
   /**
    * pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
@@ -190,23 +190,23 @@ export type Span = Message<"budget.v1alpha.Span"> & {
   /**
    * breath contains the span breath.
    *
-   * @generated from field: uint32 breath = 2;
+   * @generated from field: int64 breath = 2;
    */
-  breath: number;
+  breath: bigint;
 
   /**
    * depth contains the span depth.
    *
-   * @generated from field: uint32 depth = 3;
+   * @generated from field: int64 depth = 3;
    */
-  depth: number;
+  depth: bigint;
 
   /**
    * invocations contains the number of invocations.
    *
-   * @generated from field: uint32 invocations = 4;
+   * @generated from field: int64 invocations = 4;
    */
-  invocations: number;
+  invocations: bigint;
 
   /**
    * cost contains the total cost, rounding to the nearest two decimal places.
