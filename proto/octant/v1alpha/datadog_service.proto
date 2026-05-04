@@ -29,7 +29,6 @@ message SaveDatadogIntegrationRequest {
     (buf.validate.field).string.len = 32
   ];
   string url = 3 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.uri = true
+    (buf.validate.field).required = true
   ];
 }

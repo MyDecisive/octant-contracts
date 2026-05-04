@@ -135,11 +135,11 @@ const file_octant_v1alpha_datadog_service_proto_rawDesc = "" +
 	"\n" +
 	"$octant/v1alpha/datadog_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"6\n" +
 	"\x1eGetDatadogIntegrationsResponse\x12\x14\n" +
-	"\x05names\x18\x01 \x03(\tR\x05names\"\x83\x01\n" +
+	"\x05names\x18\x01 \x03(\tR\x05names\"~\n" +
 	"\x1dSaveDatadogIntegrationRequest\x12\x1d\n" +
 	"\x04name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18dR\x04name\x12$\n" +
-	"\aapi_key\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x98\x01 R\x06apiKey\x12\x1d\n" +
-	"\x03url\x18\x03 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x88\x01\x01R\x03url2\xd7\x01\n" +
+	"\aapi_key\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x98\x01 R\x06apiKey\x12\x18\n" +
+	"\x03url\x18\x03 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x03url2\xd7\x01\n" +
 	"\x0eDatadogService\x12b\n" +
 	"\x16GetDatadogIntegrations\x12\x16.google.protobuf.Empty\x1a..octant.v1alpha.GetDatadogIntegrationsResponse\"\x00\x12a\n" +
 	"\x16SaveDatadogIntegration\x12-.octant.v1alpha.SaveDatadogIntegrationRequest\x1a\x16.google.protobuf.Empty\"\x00B\xce\x01\n" +
