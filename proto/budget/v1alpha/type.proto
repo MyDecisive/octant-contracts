@@ -78,8 +78,8 @@ message Log {
 message Span {
   // name is the trace root span name.
   string name = 1;
-  // breath contains the span breath.
-  int64 breath = 2;
+  // breadth contains the span breadth.
+  int64 breadth = 2;
   // depth contains the span depth.
   int64 depth = 3;
   // invocations contains the number of invocations.
