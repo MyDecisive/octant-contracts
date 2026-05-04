@@ -259,7 +259,7 @@ type Log struct {
 	// name is the service name.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// sent represents the amount of data send (in GB).
-	Sent int64 `protobuf:"varint,3,opt,name=sent,proto3" json:"sent,omitempty"`
+	Sent float64 `protobuf:"fixed64,3,opt,name=sent,proto3" json:"sent,omitempty"`
 	// pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
 	Pct float32 `protobuf:"fixed32,4,opt,name=pct,proto3" json:"pct,omitempty"`
 	// cost contains the total cost, rounding to the nearest two decimal places.
@@ -305,7 +305,7 @@ func (x *Log) GetName() string {
 	return ""
 }
 
-func (x *Log) GetSent() int64 {
+func (x *Log) GetSent() float64 {
 	if x != nil {
 		return x.Sent
 	}
@@ -331,11 +331,11 @@ type Span struct {
 	// name is the trace root span name.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// breath contains the span breath.
-	Breath uint32 `protobuf:"varint,2,opt,name=breath,proto3" json:"breath,omitempty"`
+	Breath int64 `protobuf:"varint,2,opt,name=breath,proto3" json:"breath,omitempty"`
 	// depth contains the span depth.
-	Depth uint32 `protobuf:"varint,3,opt,name=depth,proto3" json:"depth,omitempty"`
+	Depth int64 `protobuf:"varint,3,opt,name=depth,proto3" json:"depth,omitempty"`
 	// invocations contains the number of invocations.
-	Invocations uint32 `protobuf:"varint,4,opt,name=invocations,proto3" json:"invocations,omitempty"`
+	Invocations int64 `protobuf:"varint,4,opt,name=invocations,proto3" json:"invocations,omitempty"`
 	// cost contains the total cost, rounding to the nearest two decimal places.
 	Cost          float64 `protobuf:"fixed64,8,opt,name=cost,proto3" json:"cost,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -379,21 +379,21 @@ func (x *Span) GetName() string {
 	return ""
 }
 
-func (x *Span) GetBreath() uint32 {
+func (x *Span) GetBreath() int64 {
 	if x != nil {
 		return x.Breath
 	}
 	return 0
 }
 
-func (x *Span) GetDepth() uint32 {
+func (x *Span) GetDepth() int64 {
 	if x != nil {
 		return x.Depth
 	}
 	return 0
 }
 
-func (x *Span) GetInvocations() uint32 {
+func (x *Span) GetInvocations() int64 {
 	if x != nil {
 		return x.Invocations
 	}
@@ -411,13 +411,13 @@ type Overall_Metric struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// received represents the total amount of data recieved.
 	// For log, the unit is in GB; For trace, the unit is in mm Events.
-	Received int64 `protobuf:"varint,1,opt,name=received,proto3" json:"received,omitempty"`
+	Received float64 `protobuf:"fixed64,1,opt,name=received,proto3" json:"received,omitempty"`
 	// sent represents the total amount of data send.
 	// For log, the unit is in GB; For trace, the unit is in mm Events.
-	Sent int64 `protobuf:"varint,2,opt,name=sent,proto3" json:"sent,omitempty"`
+	Sent float64 `protobuf:"fixed64,2,opt,name=sent,proto3" json:"sent,omitempty"`
 	// filtered represents the difference between sent and recieved.
 	// For log, the unit is in GB; For trace, the unit is in mm Events.
-	Filtered int64 `protobuf:"varint,3,opt,name=filtered,proto3" json:"filtered,omitempty"`
+	Filtered float64 `protobuf:"fixed64,3,opt,name=filtered,proto3" json:"filtered,omitempty"`
 	// cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
 	CostRate float32 `protobuf:"fixed32,4,opt,name=cost_rate,json=costRate,proto3" json:"cost_rate,omitempty"`
 	// pct contains the percentage of total overall cost, rounding to the nearest two decimal places (e.g., 1.23%).
@@ -458,21 +458,21 @@ func (*Overall_Metric) Descriptor() ([]byte, []int) {
 	return file_budget_v1alpha_type_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (x *Overall_Metric) GetReceived() int64 {
+func (x *Overall_Metric) GetReceived() float64 {
 	if x != nil {
 		return x.Received
 	}
 	return 0
 }
 
-func (x *Overall_Metric) GetSent() int64 {
+func (x *Overall_Metric) GetSent() float64 {
 	if x != nil {
 		return x.Sent
 	}
 	return 0
 }
 
-func (x *Overall_Metric) GetFiltered() int64 {
+func (x *Overall_Metric) GetFiltered() float64 {
 	if x != nil {
 		return x.Filtered
 	}
@@ -516,22 +516,22 @@ const file_budget_v1alpha_type_proto_rawDesc = "" +
 	"\x03log\x18\x03 \x01(\v2\x1e.budget.v1alpha.Overall.MetricR\x03log\x124\n" +
 	"\x05trace\x18\x04 \x01(\v2\x1e.budget.v1alpha.Overall.MetricR\x05trace\x1a\x97\x01\n" +
 	"\x06Metric\x12\x1a\n" +
-	"\breceived\x18\x01 \x01(\x03R\breceived\x12\x12\n" +
-	"\x04sent\x18\x02 \x01(\x03R\x04sent\x12\x1a\n" +
-	"\bfiltered\x18\x03 \x01(\x03R\bfiltered\x12\x1b\n" +
+	"\breceived\x18\x01 \x01(\x01R\breceived\x12\x12\n" +
+	"\x04sent\x18\x02 \x01(\x01R\x04sent\x12\x1a\n" +
+	"\bfiltered\x18\x03 \x01(\x01R\bfiltered\x12\x1b\n" +
 	"\tcost_rate\x18\x04 \x01(\x02R\bcostRate\x12\x10\n" +
 	"\x03pct\x18\x05 \x01(\x02R\x03pct\x12\x12\n" +
 	"\x04cost\x18\x06 \x01(\x01R\x04cost\"S\n" +
 	"\x03Log\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04sent\x18\x03 \x01(\x03R\x04sent\x12\x10\n" +
+	"\x04sent\x18\x03 \x01(\x01R\x04sent\x12\x10\n" +
 	"\x03pct\x18\x04 \x01(\x02R\x03pct\x12\x12\n" +
 	"\x04cost\x18\x05 \x01(\x01R\x04cost\"~\n" +
 	"\x04Span\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06breath\x18\x02 \x01(\rR\x06breath\x12\x14\n" +
-	"\x05depth\x18\x03 \x01(\rR\x05depth\x12 \n" +
-	"\vinvocations\x18\x04 \x01(\rR\vinvocations\x12\x12\n" +
+	"\x06breath\x18\x02 \x01(\x03R\x06breath\x12\x14\n" +
+	"\x05depth\x18\x03 \x01(\x03R\x05depth\x12 \n" +
+	"\vinvocations\x18\x04 \x01(\x03R\vinvocations\x12\x12\n" +
 	"\x04cost\x18\b \x01(\x01R\x04cost*_\n" +
 	"\tTimeframe\x12\x19\n" +
 	"\x15TIMEFRAME_UNSPECIFIED\x10\x00\x12\x12\n" +
