@@ -10,13 +10,13 @@ import "octant/v1alpha/type.proto";
 service ConnectionService {
   rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
-  rpc PutConnection(PutConnectionRequest) returns (PutConnectionResponse) {}
+  rpc CreateConnection(CreateConnectionRequest) returns (google.protobuf.Empty) {}
   // DeleteConnection removes an existing connection and its associated resources
   rpc DeleteConnection(DeleteConnectionRequest) returns (google.protobuf.Empty) {}
   // GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
   rpc GetConnectionValidatorRuns(GetConnectionValidatorRunsRequest) returns (GetConnectionValidatorRunsResponse) {}
-  // PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
-  rpc PutConnectionValidatorRun(PutConnectionValidatorRunRequest) returns (PutConnectionValidatorRunResponse) {}
+  // CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
+  rpc CreateConnectionValidatorRun(CreateConnectionValidatorRunRequest) returns (CreateConnectionValidatorRunResponse) {}
   // GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
   rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {}
   // GenerateManifests generates the manifest base on the given input and this will returns
@@ -60,7 +60,7 @@ message GetConnectionsResponse {
   repeated string connection_names = 1;
 }
 
-message PutConnectionRequest {
+message CreateConnectionRequest {
   // namespace is the kubernetes namespace to install into.
   string namespace = 1 [
     (buf.validate.field).required = true,
@@ -99,11 +99,6 @@ message Deployment {
 enum IntegrationType {
   INTEGRATION_TYPE_UNSPECIFIED = 0;
   INTEGRATION_TYPE_DATADOG = 1;
-}
-
-message PutConnectionResponse {
-  // validator_run_id is the created validator_run_id for the new validator run
-  string validator_run_id = 1;
 }
 
 message GenerateManifestsRequest {
@@ -163,7 +158,7 @@ message GetConnectionValidatorRunsRequest {
   ];
 }
 
-message PutConnectionValidatorRunRequest {
+message CreateConnectionValidatorRunRequest {
   // namespace is the kubernetes namespace to install into.
   string namespace = 1 [
     (buf.validate.field).required = true,
@@ -178,7 +173,7 @@ message PutConnectionValidatorRunRequest {
   ];
 }
 
-message PutConnectionValidatorRunResponse {
+message CreateConnectionValidatorRunResponse {
   // validator_run_id is the created validator_run_id for the new validator run
   string validator_run_id = 1;
 }

@@ -270,7 +270,7 @@ func (x *GetConnectionsResponse) GetConnectionNames() []string {
 	return nil
 }
 
-type PutConnectionRequest struct {
+type CreateConnectionRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// namespace is the kubernetes namespace to install into.
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
@@ -284,20 +284,20 @@ type PutConnectionRequest struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *PutConnectionRequest) Reset() {
-	*x = PutConnectionRequest{}
+func (x *CreateConnectionRequest) Reset() {
+	*x = CreateConnectionRequest{}
 	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PutConnectionRequest) String() string {
+func (x *CreateConnectionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PutConnectionRequest) ProtoMessage() {}
+func (*CreateConnectionRequest) ProtoMessage() {}
 
-func (x *PutConnectionRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateConnectionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -309,40 +309,40 @@ func (x *PutConnectionRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PutConnectionRequest.ProtoReflect.Descriptor instead.
-func (*PutConnectionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateConnectionRequest.ProtoReflect.Descriptor instead.
+func (*CreateConnectionRequest) Descriptor() ([]byte, []int) {
 	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *PutConnectionRequest) GetNamespace() string {
+func (x *CreateConnectionRequest) GetNamespace() string {
 	if x != nil {
 		return x.Namespace
 	}
 	return ""
 }
 
-func (x *PutConnectionRequest) GetConnectionName() string {
+func (x *CreateConnectionRequest) GetConnectionName() string {
 	if x != nil {
 		return x.ConnectionName
 	}
 	return ""
 }
 
-func (x *PutConnectionRequest) GetTelemetryTypes() []MLTType {
+func (x *CreateConnectionRequest) GetTelemetryTypes() []MLTType {
 	if x != nil {
 		return x.TelemetryTypes
 	}
 	return nil
 }
 
-func (x *PutConnectionRequest) GetDeployment() *Deployment {
+func (x *CreateConnectionRequest) GetDeployment() *Deployment {
 	if x != nil {
 		return x.Deployment
 	}
 	return nil
 }
 
-func (x *PutConnectionRequest) GetDestinations() []*TelemetryDestination {
+func (x *CreateConnectionRequest) GetDestinations() []*TelemetryDestination {
 	if x != nil {
 		return x.Destinations
 	}
@@ -453,51 +453,6 @@ func (x *Deployment) GetIntegrationName() string {
 	return ""
 }
 
-type PutConnectionResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// validator_run_id is the created validator_run_id for the new validator run
-	ValidatorRunId string `protobuf:"bytes,1,opt,name=validator_run_id,json=validatorRunId,proto3" json:"validator_run_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *PutConnectionResponse) Reset() {
-	*x = PutConnectionResponse{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PutConnectionResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PutConnectionResponse) ProtoMessage() {}
-
-func (x *PutConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PutConnectionResponse.ProtoReflect.Descriptor instead.
-func (*PutConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *PutConnectionResponse) GetValidatorRunId() string {
-	if x != nil {
-		return x.ValidatorRunId
-	}
-	return ""
-}
-
 type GenerateManifestsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// namespace is the kubernetes namespace to install into.
@@ -516,7 +471,7 @@ type GenerateManifestsRequest struct {
 
 func (x *GenerateManifestsRequest) Reset() {
 	*x = GenerateManifestsRequest{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[8]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -528,7 +483,7 @@ func (x *GenerateManifestsRequest) String() string {
 func (*GenerateManifestsRequest) ProtoMessage() {}
 
 func (x *GenerateManifestsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[8]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -541,7 +496,7 @@ func (x *GenerateManifestsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateManifestsRequest.ProtoReflect.Descriptor instead.
 func (*GenerateManifestsRequest) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{8}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GenerateManifestsRequest) GetNamespace() string {
@@ -593,7 +548,7 @@ type GenerateManifestsResponse struct {
 
 func (x *GenerateManifestsResponse) Reset() {
 	*x = GenerateManifestsResponse{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[9]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -605,7 +560,7 @@ func (x *GenerateManifestsResponse) String() string {
 func (*GenerateManifestsResponse) ProtoMessage() {}
 
 func (x *GenerateManifestsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[9]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -618,7 +573,7 @@ func (x *GenerateManifestsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateManifestsResponse.ProtoReflect.Descriptor instead.
 func (*GenerateManifestsResponse) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{9}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GenerateManifestsResponse) GetData() []byte {
@@ -654,7 +609,7 @@ type GetConnectionValidatorRunsRequest struct {
 
 func (x *GetConnectionValidatorRunsRequest) Reset() {
 	*x = GetConnectionValidatorRunsRequest{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[10]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -666,7 +621,7 @@ func (x *GetConnectionValidatorRunsRequest) String() string {
 func (*GetConnectionValidatorRunsRequest) ProtoMessage() {}
 
 func (x *GetConnectionValidatorRunsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[10]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +634,7 @@ func (x *GetConnectionValidatorRunsRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetConnectionValidatorRunsRequest.ProtoReflect.Descriptor instead.
 func (*GetConnectionValidatorRunsRequest) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{10}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetConnectionValidatorRunsRequest) GetNamespace() string {
@@ -696,7 +651,7 @@ func (x *GetConnectionValidatorRunsRequest) GetConnectionName() string {
 	return ""
 }
 
-type PutConnectionValidatorRunRequest struct {
+type CreateConnectionValidatorRunRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// namespace is the kubernetes namespace to install into.
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
@@ -706,21 +661,21 @@ type PutConnectionValidatorRunRequest struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *PutConnectionValidatorRunRequest) Reset() {
-	*x = PutConnectionValidatorRunRequest{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[11]
+func (x *CreateConnectionValidatorRunRequest) Reset() {
+	*x = CreateConnectionValidatorRunRequest{}
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PutConnectionValidatorRunRequest) String() string {
+func (x *CreateConnectionValidatorRunRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PutConnectionValidatorRunRequest) ProtoMessage() {}
+func (*CreateConnectionValidatorRunRequest) ProtoMessage() {}
 
-func (x *PutConnectionValidatorRunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[11]
+func (x *CreateConnectionValidatorRunRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -731,26 +686,26 @@ func (x *PutConnectionValidatorRunRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PutConnectionValidatorRunRequest.ProtoReflect.Descriptor instead.
-func (*PutConnectionValidatorRunRequest) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{11}
+// Deprecated: Use CreateConnectionValidatorRunRequest.ProtoReflect.Descriptor instead.
+func (*CreateConnectionValidatorRunRequest) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *PutConnectionValidatorRunRequest) GetNamespace() string {
+func (x *CreateConnectionValidatorRunRequest) GetNamespace() string {
 	if x != nil {
 		return x.Namespace
 	}
 	return ""
 }
 
-func (x *PutConnectionValidatorRunRequest) GetConnectionName() string {
+func (x *CreateConnectionValidatorRunRequest) GetConnectionName() string {
 	if x != nil {
 		return x.ConnectionName
 	}
 	return ""
 }
 
-type PutConnectionValidatorRunResponse struct {
+type CreateConnectionValidatorRunResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// validator_run_id is the created validator_run_id for the new validator run
 	ValidatorRunId string `protobuf:"bytes,1,opt,name=validator_run_id,json=validatorRunId,proto3" json:"validator_run_id,omitempty"`
@@ -758,21 +713,21 @@ type PutConnectionValidatorRunResponse struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *PutConnectionValidatorRunResponse) Reset() {
-	*x = PutConnectionValidatorRunResponse{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[12]
+func (x *CreateConnectionValidatorRunResponse) Reset() {
+	*x = CreateConnectionValidatorRunResponse{}
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PutConnectionValidatorRunResponse) String() string {
+func (x *CreateConnectionValidatorRunResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PutConnectionValidatorRunResponse) ProtoMessage() {}
+func (*CreateConnectionValidatorRunResponse) ProtoMessage() {}
 
-func (x *PutConnectionValidatorRunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[12]
+func (x *CreateConnectionValidatorRunResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -783,12 +738,12 @@ func (x *PutConnectionValidatorRunResponse) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PutConnectionValidatorRunResponse.ProtoReflect.Descriptor instead.
-func (*PutConnectionValidatorRunResponse) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use CreateConnectionValidatorRunResponse.ProtoReflect.Descriptor instead.
+func (*CreateConnectionValidatorRunResponse) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *PutConnectionValidatorRunResponse) GetValidatorRunId() string {
+func (x *CreateConnectionValidatorRunResponse) GetValidatorRunId() string {
 	if x != nil {
 		return x.ValidatorRunId
 	}
@@ -805,7 +760,7 @@ type GetConnectionValidatorRunsResponse struct {
 
 func (x *GetConnectionValidatorRunsResponse) Reset() {
 	*x = GetConnectionValidatorRunsResponse{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[13]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -817,7 +772,7 @@ func (x *GetConnectionValidatorRunsResponse) String() string {
 func (*GetConnectionValidatorRunsResponse) ProtoMessage() {}
 
 func (x *GetConnectionValidatorRunsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[13]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -830,7 +785,7 @@ func (x *GetConnectionValidatorRunsResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetConnectionValidatorRunsResponse.ProtoReflect.Descriptor instead.
 func (*GetConnectionValidatorRunsResponse) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{13}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetConnectionValidatorRunsResponse) GetValidatorRunIds() []string {
@@ -854,7 +809,7 @@ type GetConnectionStatusRequest struct {
 
 func (x *GetConnectionStatusRequest) Reset() {
 	*x = GetConnectionStatusRequest{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[14]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -866,7 +821,7 @@ func (x *GetConnectionStatusRequest) String() string {
 func (*GetConnectionStatusRequest) ProtoMessage() {}
 
 func (x *GetConnectionStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[14]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -879,7 +834,7 @@ func (x *GetConnectionStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetConnectionStatusRequest.ProtoReflect.Descriptor instead.
 func (*GetConnectionStatusRequest) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{14}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetConnectionStatusRequest) GetNamespace() string {
@@ -919,7 +874,7 @@ type GetConnectionStatusResponse struct {
 
 func (x *GetConnectionStatusResponse) Reset() {
 	*x = GetConnectionStatusResponse{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[15]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -931,7 +886,7 @@ func (x *GetConnectionStatusResponse) String() string {
 func (*GetConnectionStatusResponse) ProtoMessage() {}
 
 func (x *GetConnectionStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[15]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -944,7 +899,7 @@ func (x *GetConnectionStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetConnectionStatusResponse.ProtoReflect.Descriptor instead.
 func (*GetConnectionStatusResponse) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{15}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetConnectionStatusResponse) GetReceivingData() bool {
@@ -986,7 +941,7 @@ type ValidationResultsBySignal struct {
 
 func (x *ValidationResultsBySignal) Reset() {
 	*x = ValidationResultsBySignal{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[16]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -998,7 +953,7 @@ func (x *ValidationResultsBySignal) String() string {
 func (*ValidationResultsBySignal) ProtoMessage() {}
 
 func (x *ValidationResultsBySignal) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[16]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1011,7 +966,7 @@ func (x *ValidationResultsBySignal) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidationResultsBySignal.ProtoReflect.Descriptor instead.
 func (*ValidationResultsBySignal) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{16}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ValidationResultsBySignal) GetLogs() *ValidationResult {
@@ -1049,7 +1004,7 @@ type ValidationResult struct {
 
 func (x *ValidationResult) Reset() {
 	*x = ValidationResult{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[17]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1061,7 +1016,7 @@ func (x *ValidationResult) String() string {
 func (*ValidationResult) ProtoMessage() {}
 
 func (x *ValidationResult) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[17]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1074,7 +1029,7 @@ func (x *ValidationResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidationResult.ProtoReflect.Descriptor instead.
 func (*ValidationResult) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{17}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ValidationResult) GetParity() bool {
@@ -1110,7 +1065,7 @@ type ValidationAttributes struct {
 
 func (x *ValidationAttributes) Reset() {
 	*x = ValidationAttributes{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[18]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1122,7 +1077,7 @@ func (x *ValidationAttributes) String() string {
 func (*ValidationAttributes) ProtoMessage() {}
 
 func (x *ValidationAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[18]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1135,7 +1090,7 @@ func (x *ValidationAttributes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidationAttributes.ProtoReflect.Descriptor instead.
 func (*ValidationAttributes) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{18}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ValidationAttributes) GetParity() map[string]bool {
@@ -1164,7 +1119,7 @@ type DeleteConnectionRequest struct {
 
 func (x *DeleteConnectionRequest) Reset() {
 	*x = DeleteConnectionRequest{}
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[19]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1176,7 +1131,7 @@ func (x *DeleteConnectionRequest) String() string {
 func (*DeleteConnectionRequest) ProtoMessage() {}
 
 func (x *DeleteConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[19]
+	mi := &file_octant_v1alpha_connection_service_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1189,7 +1144,7 @@ func (x *DeleteConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteConnectionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{19}
+	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteConnectionRequest) GetNamespace() string {
@@ -1221,8 +1176,8 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"C\n" +
 	"\x16GetConnectionsResponse\x12)\n" +
-	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xa2\x03\n" +
-	"\x14PutConnectionRequest\x12I\n" +
+	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xa5\x03\n" +
+	"\x17CreateConnectionRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12T\n" +
 	"\x0ftelemetry_types\x18\x03 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12B\n" +
@@ -1236,9 +1191,7 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\n" +
 	"Deployment\x122\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeR\x04type\x12)\n" +
-	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"A\n" +
-	"\x15PutConnectionResponse\x12(\n" +
-	"\x10validator_run_id\x18\x01 \x01(\tR\x0evalidatorRunId\"\xae\x03\n" +
+	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"\xae\x03\n" +
 	"\x18GenerateManifestsRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12F\n" +
@@ -1251,11 +1204,11 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x04type\x18\x03 \x01(\tR\x04type\"\xc3\x01\n" +
 	"!GetConnectionValidatorRunsRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
-	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xc2\x01\n" +
-	" PutConnectionValidatorRunRequest\x12I\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"\xc5\x01\n" +
+	"#CreateConnectionValidatorRunRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
-	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"M\n" +
-	"!PutConnectionValidatorRunResponse\x12(\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"P\n" +
+	"$CreateConnectionValidatorRunResponse\x12(\n" +
 	"\x10validator_run_id\x18\x01 \x01(\tR\x0evalidatorRunId\"P\n" +
 	"\"GetConnectionValidatorRunsResponse\x12*\n" +
 	"\x11validator_run_ids\x18\x01 \x03(\tR\x0fvalidatorRunIds\"\xe6\x01\n" +
@@ -1295,11 +1248,11 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x18INTEGRATION_TYPE_DATADOG\x10\x012\xfa\x06\n" +
 	"\x11ConnectionService\x12a\n" +
 	"\x0eGetConnections\x12%.octant.v1alpha.GetConnectionsRequest\x1a&.octant.v1alpha.GetConnectionsResponse\"\x00\x12^\n" +
-	"\rGetConnection\x12$.octant.v1alpha.GetConnectionRequest\x1a%.octant.v1alpha.GetConnectionResponse\"\x00\x12^\n" +
-	"\rPutConnection\x12$.octant.v1alpha.PutConnectionRequest\x1a%.octant.v1alpha.PutConnectionResponse\"\x00\x12U\n" +
+	"\rGetConnection\x12$.octant.v1alpha.GetConnectionRequest\x1a%.octant.v1alpha.GetConnectionResponse\"\x00\x12U\n" +
+	"\x10CreateConnection\x12'.octant.v1alpha.CreateConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12U\n" +
 	"\x10DeleteConnection\x12'.octant.v1alpha.DeleteConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x85\x01\n" +
-	"\x1aGetConnectionValidatorRuns\x121.octant.v1alpha.GetConnectionValidatorRunsRequest\x1a2.octant.v1alpha.GetConnectionValidatorRunsResponse\"\x00\x12\x82\x01\n" +
-	"\x19PutConnectionValidatorRun\x120.octant.v1alpha.PutConnectionValidatorRunRequest\x1a1.octant.v1alpha.PutConnectionValidatorRunResponse\"\x00\x12p\n" +
+	"\x1aGetConnectionValidatorRuns\x121.octant.v1alpha.GetConnectionValidatorRunsRequest\x1a2.octant.v1alpha.GetConnectionValidatorRunsResponse\"\x00\x12\x8b\x01\n" +
+	"\x1cCreateConnectionValidatorRun\x123.octant.v1alpha.CreateConnectionValidatorRunRequest\x1a4.octant.v1alpha.CreateConnectionValidatorRunResponse\"\x00\x12p\n" +
 	"\x13GetConnectionStatus\x12*.octant.v1alpha.GetConnectionStatusRequest\x1a+.octant.v1alpha.GetConnectionStatusResponse\"\x00\x12l\n" +
 	"\x11GenerateManifests\x12(.octant.v1alpha.GenerateManifestsRequest\x1a).octant.v1alpha.GenerateManifestsResponse\"\x000\x01B\xd1\x01\n" +
 	"\x12com.octant.v1alphaB\x16ConnectionServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
@@ -1317,71 +1270,70 @@ func file_octant_v1alpha_connection_service_proto_rawDescGZIP() []byte {
 }
 
 var file_octant_v1alpha_connection_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_octant_v1alpha_connection_service_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_octant_v1alpha_connection_service_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_octant_v1alpha_connection_service_proto_goTypes = []any{
-	(IntegrationType)(0),                       // 0: octant.v1alpha.IntegrationType
-	(*GetConnectionsRequest)(nil),              // 1: octant.v1alpha.GetConnectionsRequest
-	(*GetConnectionResponse)(nil),              // 2: octant.v1alpha.GetConnectionResponse
-	(*GetConnectionRequest)(nil),               // 3: octant.v1alpha.GetConnectionRequest
-	(*GetConnectionsResponse)(nil),             // 4: octant.v1alpha.GetConnectionsResponse
-	(*PutConnectionRequest)(nil),               // 5: octant.v1alpha.PutConnectionRequest
-	(*TelemetryDestination)(nil),               // 6: octant.v1alpha.TelemetryDestination
-	(*Deployment)(nil),                         // 7: octant.v1alpha.Deployment
-	(*PutConnectionResponse)(nil),              // 8: octant.v1alpha.PutConnectionResponse
-	(*GenerateManifestsRequest)(nil),           // 9: octant.v1alpha.GenerateManifestsRequest
-	(*GenerateManifestsResponse)(nil),          // 10: octant.v1alpha.GenerateManifestsResponse
-	(*GetConnectionValidatorRunsRequest)(nil),  // 11: octant.v1alpha.GetConnectionValidatorRunsRequest
-	(*PutConnectionValidatorRunRequest)(nil),   // 12: octant.v1alpha.PutConnectionValidatorRunRequest
-	(*PutConnectionValidatorRunResponse)(nil),  // 13: octant.v1alpha.PutConnectionValidatorRunResponse
-	(*GetConnectionValidatorRunsResponse)(nil), // 14: octant.v1alpha.GetConnectionValidatorRunsResponse
-	(*GetConnectionStatusRequest)(nil),         // 15: octant.v1alpha.GetConnectionStatusRequest
-	(*GetConnectionStatusResponse)(nil),        // 16: octant.v1alpha.GetConnectionStatusResponse
-	(*ValidationResultsBySignal)(nil),          // 17: octant.v1alpha.ValidationResultsBySignal
-	(*ValidationResult)(nil),                   // 18: octant.v1alpha.ValidationResult
-	(*ValidationAttributes)(nil),               // 19: octant.v1alpha.ValidationAttributes
-	(*DeleteConnectionRequest)(nil),            // 20: octant.v1alpha.DeleteConnectionRequest
-	nil,                                        // 21: octant.v1alpha.ValidationAttributes.ParityEntry
-	nil,                                        // 22: octant.v1alpha.ValidationAttributes.PolicyEntry
-	(MLTType)(0),                               // 23: octant.v1alpha.MLTType
-	(DeploymentType)(0),                        // 24: octant.v1alpha.DeploymentType
-	(ManifestOutFormat)(0),                     // 25: octant.v1alpha.ManifestOutFormat
-	(*emptypb.Empty)(nil),                      // 26: google.protobuf.Empty
+	(IntegrationType)(0),                         // 0: octant.v1alpha.IntegrationType
+	(*GetConnectionsRequest)(nil),                // 1: octant.v1alpha.GetConnectionsRequest
+	(*GetConnectionResponse)(nil),                // 2: octant.v1alpha.GetConnectionResponse
+	(*GetConnectionRequest)(nil),                 // 3: octant.v1alpha.GetConnectionRequest
+	(*GetConnectionsResponse)(nil),               // 4: octant.v1alpha.GetConnectionsResponse
+	(*CreateConnectionRequest)(nil),              // 5: octant.v1alpha.CreateConnectionRequest
+	(*TelemetryDestination)(nil),                 // 6: octant.v1alpha.TelemetryDestination
+	(*Deployment)(nil),                           // 7: octant.v1alpha.Deployment
+	(*GenerateManifestsRequest)(nil),             // 8: octant.v1alpha.GenerateManifestsRequest
+	(*GenerateManifestsResponse)(nil),            // 9: octant.v1alpha.GenerateManifestsResponse
+	(*GetConnectionValidatorRunsRequest)(nil),    // 10: octant.v1alpha.GetConnectionValidatorRunsRequest
+	(*CreateConnectionValidatorRunRequest)(nil),  // 11: octant.v1alpha.CreateConnectionValidatorRunRequest
+	(*CreateConnectionValidatorRunResponse)(nil), // 12: octant.v1alpha.CreateConnectionValidatorRunResponse
+	(*GetConnectionValidatorRunsResponse)(nil),   // 13: octant.v1alpha.GetConnectionValidatorRunsResponse
+	(*GetConnectionStatusRequest)(nil),           // 14: octant.v1alpha.GetConnectionStatusRequest
+	(*GetConnectionStatusResponse)(nil),          // 15: octant.v1alpha.GetConnectionStatusResponse
+	(*ValidationResultsBySignal)(nil),            // 16: octant.v1alpha.ValidationResultsBySignal
+	(*ValidationResult)(nil),                     // 17: octant.v1alpha.ValidationResult
+	(*ValidationAttributes)(nil),                 // 18: octant.v1alpha.ValidationAttributes
+	(*DeleteConnectionRequest)(nil),              // 19: octant.v1alpha.DeleteConnectionRequest
+	nil,                                          // 20: octant.v1alpha.ValidationAttributes.ParityEntry
+	nil,                                          // 21: octant.v1alpha.ValidationAttributes.PolicyEntry
+	(MLTType)(0),                                 // 22: octant.v1alpha.MLTType
+	(DeploymentType)(0),                          // 23: octant.v1alpha.DeploymentType
+	(ManifestOutFormat)(0),                       // 24: octant.v1alpha.ManifestOutFormat
+	(*emptypb.Empty)(nil),                        // 25: google.protobuf.Empty
 }
 var file_octant_v1alpha_connection_service_proto_depIdxs = []int32{
-	23, // 0: octant.v1alpha.GetConnectionResponse.telemetry_types:type_name -> octant.v1alpha.MLTType
-	24, // 1: octant.v1alpha.GetConnectionResponse.deployment_type:type_name -> octant.v1alpha.DeploymentType
+	22, // 0: octant.v1alpha.GetConnectionResponse.telemetry_types:type_name -> octant.v1alpha.MLTType
+	23, // 1: octant.v1alpha.GetConnectionResponse.deployment_type:type_name -> octant.v1alpha.DeploymentType
 	6,  // 2: octant.v1alpha.GetConnectionResponse.destinations:type_name -> octant.v1alpha.TelemetryDestination
-	23, // 3: octant.v1alpha.PutConnectionRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
-	7,  // 4: octant.v1alpha.PutConnectionRequest.deployment:type_name -> octant.v1alpha.Deployment
-	6,  // 5: octant.v1alpha.PutConnectionRequest.destinations:type_name -> octant.v1alpha.TelemetryDestination
+	22, // 3: octant.v1alpha.CreateConnectionRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
+	7,  // 4: octant.v1alpha.CreateConnectionRequest.deployment:type_name -> octant.v1alpha.Deployment
+	6,  // 5: octant.v1alpha.CreateConnectionRequest.destinations:type_name -> octant.v1alpha.TelemetryDestination
 	0,  // 6: octant.v1alpha.TelemetryDestination.type:type_name -> octant.v1alpha.IntegrationType
-	24, // 7: octant.v1alpha.Deployment.type:type_name -> octant.v1alpha.DeploymentType
-	25, // 8: octant.v1alpha.GenerateManifestsRequest.format:type_name -> octant.v1alpha.ManifestOutFormat
-	24, // 9: octant.v1alpha.GenerateManifestsRequest.deployment_type:type_name -> octant.v1alpha.DeploymentType
-	23, // 10: octant.v1alpha.GenerateManifestsRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
-	17, // 11: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
-	18, // 12: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
-	18, // 13: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
-	18, // 14: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
-	19, // 15: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
-	21, // 16: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
-	22, // 17: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
+	23, // 7: octant.v1alpha.Deployment.type:type_name -> octant.v1alpha.DeploymentType
+	24, // 8: octant.v1alpha.GenerateManifestsRequest.format:type_name -> octant.v1alpha.ManifestOutFormat
+	23, // 9: octant.v1alpha.GenerateManifestsRequest.deployment_type:type_name -> octant.v1alpha.DeploymentType
+	22, // 10: octant.v1alpha.GenerateManifestsRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
+	16, // 11: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
+	17, // 12: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
+	17, // 13: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
+	17, // 14: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
+	18, // 15: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
+	20, // 16: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
+	21, // 17: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
 	1,  // 18: octant.v1alpha.ConnectionService.GetConnections:input_type -> octant.v1alpha.GetConnectionsRequest
 	3,  // 19: octant.v1alpha.ConnectionService.GetConnection:input_type -> octant.v1alpha.GetConnectionRequest
-	5,  // 20: octant.v1alpha.ConnectionService.PutConnection:input_type -> octant.v1alpha.PutConnectionRequest
-	20, // 21: octant.v1alpha.ConnectionService.DeleteConnection:input_type -> octant.v1alpha.DeleteConnectionRequest
-	11, // 22: octant.v1alpha.ConnectionService.GetConnectionValidatorRuns:input_type -> octant.v1alpha.GetConnectionValidatorRunsRequest
-	12, // 23: octant.v1alpha.ConnectionService.PutConnectionValidatorRun:input_type -> octant.v1alpha.PutConnectionValidatorRunRequest
-	15, // 24: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
-	9,  // 25: octant.v1alpha.ConnectionService.GenerateManifests:input_type -> octant.v1alpha.GenerateManifestsRequest
+	5,  // 20: octant.v1alpha.ConnectionService.CreateConnection:input_type -> octant.v1alpha.CreateConnectionRequest
+	19, // 21: octant.v1alpha.ConnectionService.DeleteConnection:input_type -> octant.v1alpha.DeleteConnectionRequest
+	10, // 22: octant.v1alpha.ConnectionService.GetConnectionValidatorRuns:input_type -> octant.v1alpha.GetConnectionValidatorRunsRequest
+	11, // 23: octant.v1alpha.ConnectionService.CreateConnectionValidatorRun:input_type -> octant.v1alpha.CreateConnectionValidatorRunRequest
+	14, // 24: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
+	8,  // 25: octant.v1alpha.ConnectionService.GenerateManifests:input_type -> octant.v1alpha.GenerateManifestsRequest
 	4,  // 26: octant.v1alpha.ConnectionService.GetConnections:output_type -> octant.v1alpha.GetConnectionsResponse
 	2,  // 27: octant.v1alpha.ConnectionService.GetConnection:output_type -> octant.v1alpha.GetConnectionResponse
-	8,  // 28: octant.v1alpha.ConnectionService.PutConnection:output_type -> octant.v1alpha.PutConnectionResponse
-	26, // 29: octant.v1alpha.ConnectionService.DeleteConnection:output_type -> google.protobuf.Empty
-	14, // 30: octant.v1alpha.ConnectionService.GetConnectionValidatorRuns:output_type -> octant.v1alpha.GetConnectionValidatorRunsResponse
-	13, // 31: octant.v1alpha.ConnectionService.PutConnectionValidatorRun:output_type -> octant.v1alpha.PutConnectionValidatorRunResponse
-	16, // 32: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
-	10, // 33: octant.v1alpha.ConnectionService.GenerateManifests:output_type -> octant.v1alpha.GenerateManifestsResponse
+	25, // 28: octant.v1alpha.ConnectionService.CreateConnection:output_type -> google.protobuf.Empty
+	25, // 29: octant.v1alpha.ConnectionService.DeleteConnection:output_type -> google.protobuf.Empty
+	13, // 30: octant.v1alpha.ConnectionService.GetConnectionValidatorRuns:output_type -> octant.v1alpha.GetConnectionValidatorRunsResponse
+	12, // 31: octant.v1alpha.ConnectionService.CreateConnectionValidatorRun:output_type -> octant.v1alpha.CreateConnectionValidatorRunResponse
+	15, // 32: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
+	9,  // 33: octant.v1alpha.ConnectionService.GenerateManifests:output_type -> octant.v1alpha.GenerateManifestsResponse
 	26, // [26:34] is the sub-list for method output_type
 	18, // [18:26] is the sub-list for method input_type
 	18, // [18:18] is the sub-list for extension type_name
@@ -1401,7 +1353,7 @@ func file_octant_v1alpha_connection_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_octant_v1alpha_connection_service_proto_rawDesc), len(file_octant_v1alpha_connection_service_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
