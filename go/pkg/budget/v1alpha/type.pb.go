@@ -330,8 +330,8 @@ type Span struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// name is the trace root span name.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// breath contains the span breath.
-	Breath int64 `protobuf:"varint,2,opt,name=breath,proto3" json:"breath,omitempty"`
+	// breadth contains the span breadth.
+	Breadth int64 `protobuf:"varint,2,opt,name=breadth,proto3" json:"breadth,omitempty"`
 	// depth contains the span depth.
 	Depth int64 `protobuf:"varint,3,opt,name=depth,proto3" json:"depth,omitempty"`
 	// invocations contains the number of invocations.
@@ -379,9 +379,9 @@ func (x *Span) GetName() string {
 	return ""
 }
 
-func (x *Span) GetBreath() int64 {
+func (x *Span) GetBreadth() int64 {
 	if x != nil {
-		return x.Breath
+		return x.Breadth
 	}
 	return 0
 }
@@ -526,10 +526,10 @@ const file_budget_v1alpha_type_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04sent\x18\x03 \x01(\x01R\x04sent\x12\x10\n" +
 	"\x03pct\x18\x04 \x01(\x02R\x03pct\x12\x12\n" +
-	"\x04cost\x18\x05 \x01(\x01R\x04cost\"~\n" +
+	"\x04cost\x18\x05 \x01(\x01R\x04cost\"\x80\x01\n" +
 	"\x04Span\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06breath\x18\x02 \x01(\x03R\x06breath\x12\x14\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
+	"\abreadth\x18\x02 \x01(\x03R\abreadth\x12\x14\n" +
 	"\x05depth\x18\x03 \x01(\x03R\x05depth\x12 \n" +
 	"\vinvocations\x18\x04 \x01(\x03R\vinvocations\x12\x12\n" +
 	"\x04cost\x18\b \x01(\x01R\x04cost*_\n" +
