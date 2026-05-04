@@ -1210,7 +1210,7 @@ var File_octant_v1alpha_connection_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\n" +
-	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x19octant/v1alpha/type.proto\x1a\x1bgoogle/protobuf/empty.proto\"b\n" +
+	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x19octant/v1alpha/type.proto\"b\n" +
 	"\x15GetConnectionsRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"\xec\x01\n" +
 	"\x15GetConnectionResponse\x12@\n" +
