@@ -4,12 +4,15 @@ package octant.v1alpha;
 
 import "buf/validate/validate.proto";
 import "octant/v1alpha/type.proto";
+import "google/protobuf/empty.proto";
 
 // ConnectService allows for interacting with MDAI Octant Connections
 service ConnectionService {
   rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
   rpc PutConnection(PutConnectionRequest) returns (PutConnectionResponse) {}
+  // DeleteConnection removes an existing connection and its associated resources
+  rpc DeleteConnection(DeleteConnectionRequest) returns (google.protobuf.Empty) {}
   // GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
   rpc GetConnectionValidatorRuns(GetConnectionValidatorRunsRequest) returns (GetConnectionValidatorRunsResponse) {}
   // PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
@@ -233,4 +236,19 @@ message ValidationAttributes {
   map<string, bool> parity = 1;
   // parity indicates if the attribute fulfills the MDAI validator policy for this attribute
   map<string, bool> policy = 2;
+}
+
+message DeleteConnectionRequest {
+  // namespace is the kubernetes namespace where the connection exists
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of the connection to delete
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }

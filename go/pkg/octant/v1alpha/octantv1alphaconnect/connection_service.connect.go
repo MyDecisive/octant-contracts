@@ -9,6 +9,7 @@ import (
 	context "context"
 	errors "errors"
 	v1alpha "github.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"
 )
@@ -42,6 +43,9 @@ const (
 	// ConnectionServicePutConnectionProcedure is the fully-qualified name of the ConnectionService's
 	// PutConnection RPC.
 	ConnectionServicePutConnectionProcedure = "/octant.v1alpha.ConnectionService/PutConnection"
+	// ConnectionServiceDeleteConnectionProcedure is the fully-qualified name of the ConnectionService's
+	// DeleteConnection RPC.
+	ConnectionServiceDeleteConnectionProcedure = "/octant.v1alpha.ConnectionService/DeleteConnection"
 	// ConnectionServiceGetConnectionValidatorRunsProcedure is the fully-qualified name of the
 	// ConnectionService's GetConnectionValidatorRuns RPC.
 	ConnectionServiceGetConnectionValidatorRunsProcedure = "/octant.v1alpha.ConnectionService/GetConnectionValidatorRuns"
@@ -61,6 +65,8 @@ type ConnectionServiceClient interface {
 	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
 	PutConnection(context.Context, *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error)
+	// DeleteConnection removes an existing connection and its associated resources
+	DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
@@ -104,6 +110,12 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(connectionServiceMethods.ByName("PutConnection")),
 			connect.WithClientOptions(opts...),
 		),
+		deleteConnection: connect.NewClient[v1alpha.DeleteConnectionRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ConnectionServiceDeleteConnectionProcedure,
+			connect.WithSchema(connectionServiceMethods.ByName("DeleteConnection")),
+			connect.WithClientOptions(opts...),
+		),
 		getConnectionValidatorRuns: connect.NewClient[v1alpha.GetConnectionValidatorRunsRequest, v1alpha.GetConnectionValidatorRunsResponse](
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionValidatorRunsProcedure,
@@ -136,6 +148,7 @@ type connectionServiceClient struct {
 	getConnections             *connect.Client[v1alpha.GetConnectionsRequest, v1alpha.GetConnectionsResponse]
 	getConnection              *connect.Client[v1alpha.GetConnectionRequest, v1alpha.GetConnectionResponse]
 	putConnection              *connect.Client[v1alpha.PutConnectionRequest, v1alpha.PutConnectionResponse]
+	deleteConnection           *connect.Client[v1alpha.DeleteConnectionRequest, emptypb.Empty]
 	getConnectionValidatorRuns *connect.Client[v1alpha.GetConnectionValidatorRunsRequest, v1alpha.GetConnectionValidatorRunsResponse]
 	putConnectionValidatorRun  *connect.Client[v1alpha.PutConnectionValidatorRunRequest, v1alpha.PutConnectionValidatorRunResponse]
 	getConnectionStatus        *connect.Client[v1alpha.GetConnectionStatusRequest, v1alpha.GetConnectionStatusResponse]
@@ -155,6 +168,11 @@ func (c *connectionServiceClient) GetConnection(ctx context.Context, req *connec
 // PutConnection calls octant.v1alpha.ConnectionService.PutConnection.
 func (c *connectionServiceClient) PutConnection(ctx context.Context, req *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error) {
 	return c.putConnection.CallUnary(ctx, req)
+}
+
+// DeleteConnection calls octant.v1alpha.ConnectionService.DeleteConnection.
+func (c *connectionServiceClient) DeleteConnection(ctx context.Context, req *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteConnection.CallUnary(ctx, req)
 }
 
 // GetConnectionValidatorRuns calls octant.v1alpha.ConnectionService.GetConnectionValidatorRuns.
@@ -182,6 +200,8 @@ type ConnectionServiceHandler interface {
 	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
 	PutConnection(context.Context, *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error)
+	// DeleteConnection removes an existing connection and its associated resources
+	DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// PutConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
@@ -221,6 +241,12 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 		connect.WithSchema(connectionServiceMethods.ByName("PutConnection")),
 		connect.WithHandlerOptions(opts...),
 	)
+	connectionServiceDeleteConnectionHandler := connect.NewUnaryHandler(
+		ConnectionServiceDeleteConnectionProcedure,
+		svc.DeleteConnection,
+		connect.WithSchema(connectionServiceMethods.ByName("DeleteConnection")),
+		connect.WithHandlerOptions(opts...),
+	)
 	connectionServiceGetConnectionValidatorRunsHandler := connect.NewUnaryHandler(
 		ConnectionServiceGetConnectionValidatorRunsProcedure,
 		svc.GetConnectionValidatorRuns,
@@ -253,6 +279,8 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 			connectionServiceGetConnectionHandler.ServeHTTP(w, r)
 		case ConnectionServicePutConnectionProcedure:
 			connectionServicePutConnectionHandler.ServeHTTP(w, r)
+		case ConnectionServiceDeleteConnectionProcedure:
+			connectionServiceDeleteConnectionHandler.ServeHTTP(w, r)
 		case ConnectionServiceGetConnectionValidatorRunsProcedure:
 			connectionServiceGetConnectionValidatorRunsHandler.ServeHTTP(w, r)
 		case ConnectionServicePutConnectionValidatorRunProcedure:
@@ -280,6 +308,10 @@ func (UnimplementedConnectionServiceHandler) GetConnection(context.Context, *con
 
 func (UnimplementedConnectionServiceHandler) PutConnection(context.Context, *connect.Request[v1alpha.PutConnectionRequest]) (*connect.Response[v1alpha.PutConnectionResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.PutConnection is not implemented"))
+}
+
+func (UnimplementedConnectionServiceHandler) DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.DeleteConnection is not implemented"))
 }
 
 func (UnimplementedConnectionServiceHandler) GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error) {
