@@ -48,15 +48,19 @@ message Overall {
     // filtered represents the difference between sent and recieved.
     // For log, the unit is in GB; For trace, the unit is in mm Events.
     double filtered = 3;
-    // cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
+    // cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate.
+    // Remember to round to the nearest two decimal places.
     float cost_rate = 4;
-    // pct contains the percentage of total overall cost, rounding to the nearest two decimal places (e.g., 1.23%).
+    // pct contains the percentage of total overall cost (e.g., 1.2345%).
+    // Remember to round to the nearest two decimal places.
     float pct = 5;
-    // cost contains the total cost, rounding to the nearest two decimal places.
+    // cost contains the total cost.
+    // Remember to round to the nearest two decimal places.
     double cost = 6;
   }
 
-  // cost contains the total cost for log and trace, rounding to the nearest two decimal places.
+  // cost contains the total cost for log and trace.
+  // Remember to round to the nearest two decimal places.
   double cost = 1;
   // log contains overall metric data for logs.
   Metric log = 3;
@@ -69,9 +73,11 @@ message Log {
   string name = 1;
   //sent represents the amount of data send (in GB).
   double sent = 3;
-  // pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
+  // pct contains the percentage of total log cost (e.g., 1.2345%).
+  // Remember to round to the nearest two decimal places.
   float pct = 4;
-  // cost contains the total cost, rounding to the nearest two decimal places.
+  // cost contains the total cost.
+  // Remember to round to the nearest two decimal places.
   double cost = 5;
 }
 
@@ -79,11 +85,12 @@ message Span {
   // name is the trace root span name.
   string name = 1;
   // breadth contains the span breadth.
-  int64 breadth = 2;
+  double breadth = 2;
   // depth contains the span depth.
-  int64 depth = 3;
+  double depth = 3;
   // invocations contains the number of invocations.
-  int64 invocations = 4;
-  // cost contains the total cost, rounding to the nearest two decimal places.
+  double invocations = 4;
+  // cost contains the total cost.
+  // Remember to round to the nearest two decimal places.
   double cost = 8;
 }
