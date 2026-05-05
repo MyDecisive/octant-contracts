@@ -21,7 +21,7 @@ service ConnectionService {
   // CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
   rpc CreateConnectionValidatorRun(CreateConnectionValidatorRunRequest) returns (CreateConnectionValidatorRunResponse) {}
   // DeleteConnectionValidator deletes connection validator resources
-  rpc DeleteConnectionValidator(DeleteConnectionValidatorRequest) returns(google.protobuf.Empty) {}
+  rpc DeleteConnectionValidator(DeleteConnectionValidatorRequest) returns (google.protobuf.Empty) {}
   // GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
   rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {}
   // GenerateManifests generates the manifest base on the given input and this will returns
