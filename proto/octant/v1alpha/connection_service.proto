@@ -32,6 +32,22 @@ service ConnectionService {
   rpc GenerateManifests(GenerateManifestsRequest) returns (stream GenerateManifestsResponse) {}
 }
 
+// ConnectionScope contains identifiers for a connection
+message ConnectionScope {
+  // namespace that the connection is installed in/will be installed into
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of the connection
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
 // GetConnectionsRequest are fields needed to retrieve a list of connection names
 message GetConnectionsRequest {
   // namespace is the kubernetes namespace to create the connection in. Should be the same as the MDAI Hub install.
@@ -54,18 +70,7 @@ message GetConnectionResponse {
 
 // GetConnectionRequest are fields required to fetch a connection
 message GetConnectionRequest {
-  // namespace is the k8s namespace the connection is installed in
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of the connection to fetch
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
 }
 
 // GetConnectionsResponse contains a list of all the connections in a namespace
@@ -76,20 +81,9 @@ message GetConnectionsResponse {
 
 // CreateConnectionRequest contains options for creating a connection
 message CreateConnectionRequest {
-  // namespace is the kubernetes namespace to install into.
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of this connection and its resources in argo/k8s
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
   // telemetry_types is used to generate the manifests.
-  repeated MLTType telemetry_types = 3 [
+  repeated MLTType telemetry_types = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).repeated.unique = true,
     (buf.validate.field).repeated.items = {
@@ -97,9 +91,9 @@ message CreateConnectionRequest {
     }
   ];
   // deployment contains information required for deploying the connection
-  Deployment deployment = 4 [(buf.validate.field).required = true];
+  Deployment deployment = 3 [(buf.validate.field).required = true];
   // destinations are where telemetry from this connection is sent and options needed to send it there
-  repeated TelemetryDestination destinations = 5 [(buf.validate.field).required = true];
+  repeated TelemetryDestination destinations = 4 [(buf.validate.field).required = true];
 }
 
 // TelemetryDestination is information for an integration to send telemetry to from a connection
@@ -127,25 +121,14 @@ enum IntegrationType {
 }
 
 message GenerateManifestsRequest {
-  // namespace is the kubernetes namespace to install into.
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of this connection and its resources in argo/k8s
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
   // format contains output format of the manifests.
-  ManifestOutFormat format = 3 [
+  ManifestOutFormat format = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
   // deployment_type use to tell the type of manifest to generate.
-  DeploymentType deployment_type = 5 [
+  DeploymentType deployment_type = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
@@ -170,50 +153,17 @@ message GenerateManifestsResponse {
 
 // GetConnectionValidatorRunsRequest is a request to get all available connection validator runs
 message GetConnectionValidatorRunsRequest {
-  // namespace is the namespace the connection and validator are installed into
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of this connection the validator is assigned to
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
 }
 
 // CreateConnectionValidatorRunRequest has options for creating a connection validator
 message CreateConnectionValidatorRunRequest {
-  // namespace is the kubernetes namespace the connection exists in
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of this connection and its resources in argo/k8s
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
 }
 
 // DeleteConnectionValidatorRequest contains options for deleting a connection validator
 message DeleteConnectionValidatorRequest {
-  // namespace is the kubernetes namespace the connection exists in
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of this connection and its resources in argo/k8s
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
 }
 
 // CreateConnectionValidatorRunResponse contains a response for validator creation
@@ -230,20 +180,9 @@ message GetConnectionValidatorRunsResponse {
 
 // GetConnectionStatusRequest contains options for getting a connections validator run results
 message GetConnectionStatusRequest {
-  // namespace where the connection exists in kubernetes
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of this connection and its resources in argo/k8s
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
   // validator_run_id is the Validator Run ID to get validation metrics for. Omitting this will yield empty/false validation results in the response.
-  string validator_run_id = 3;
+  string validator_run_id = 2;
 }
 
 message GetConnectionStatusResponse {
@@ -280,16 +219,5 @@ message ValidationAttributes {
 }
 
 message DeleteConnectionRequest {
-  // namespace is the kubernetes namespace where the connection exists
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-  // connection_name is the name of the connection to delete
-  string connection_name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 20,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
+  ConnectionScope scope = 1;
 }
