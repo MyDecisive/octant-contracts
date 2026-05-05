@@ -70,7 +70,7 @@ message GetConnectionResponse {
 
 // GetConnectionRequest are fields required to fetch a connection
 message GetConnectionRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }
 
 // GetConnectionsResponse contains a list of all the connections in a namespace
@@ -81,7 +81,7 @@ message GetConnectionsResponse {
 
 // CreateConnectionRequest contains options for creating a connection
 message CreateConnectionRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
   // telemetry_types is used to generate the manifests.
   repeated MLTType telemetry_types = 2 [
     (buf.validate.field).required = true,
@@ -121,7 +121,7 @@ enum IntegrationType {
 }
 
 message GenerateManifestsRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
   // format contains output format of the manifests.
   ManifestOutFormat format = 2 [
     (buf.validate.field).required = true,
@@ -153,17 +153,17 @@ message GenerateManifestsResponse {
 
 // GetConnectionValidatorRunsRequest is a request to get all available connection validator runs
 message GetConnectionValidatorRunsRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }
 
 // CreateConnectionValidatorRunRequest has options for creating a connection validator
 message CreateConnectionValidatorRunRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }
 
 // DeleteConnectionValidatorRequest contains options for deleting a connection validator
 message DeleteConnectionValidatorRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }
 
 // CreateConnectionValidatorRunResponse contains a response for validator creation
@@ -180,7 +180,7 @@ message GetConnectionValidatorRunsResponse {
 
 // GetConnectionStatusRequest contains options for getting a connections validator run results
 message GetConnectionStatusRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
   // validator_run_id is the Validator Run ID to get validation metrics for. Omitting this will yield empty/false validation results in the response.
   string validator_run_id = 2;
 }
@@ -219,5 +219,5 @@ message ValidationAttributes {
 }
 
 message DeleteConnectionRequest {
-  ConnectionScope scope = 1;
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }

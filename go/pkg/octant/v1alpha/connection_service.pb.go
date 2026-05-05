@@ -75,9 +75,9 @@ func (IntegrationType) EnumDescriptor() ([]byte, []int) {
 // ConnectionScope contains identifiers for a connection
 type ConnectionScope struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The namespace the connection is/will be installed into
+	// namespace that the connection is installed in/will be installed into
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// The name of the connection
+	// connection_name is the name of the connection
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -1231,13 +1231,13 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x15GetConnectionResponse\x12@\n" +
 	"\x0ftelemetry_types\x18\x01 \x03(\x0e2\x17.octant.v1alpha.MLTTypeR\x0etelemetryTypes\x12G\n" +
 	"\x0fdeployment_type\x18\x02 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeR\x0edeploymentType\x12H\n" +
-	"\fdestinations\x18\x03 \x03(\v2$.octant.v1alpha.TelemetryDestinationR\fdestinations\"M\n" +
-	"\x14GetConnectionRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\"C\n" +
+	"\fdestinations\x18\x03 \x03(\v2$.octant.v1alpha.TelemetryDestinationR\fdestinations\"U\n" +
+	"\x14GetConnectionRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"C\n" +
 	"\x16GetConnectionsResponse\x12)\n" +
-	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xbc\x02\n" +
-	"\x17CreateConnectionRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\x12T\n" +
+	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xc4\x02\n" +
+	"\x17CreateConnectionRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12T\n" +
 	"\x0ftelemetry_types\x18\x02 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12B\n" +
 	"\n" +
 	"deployment\x18\x03 \x01(\v2\x1a.octant.v1alpha.DeploymentB\x06\xbaH\x03\xc8\x01\x01R\n" +
@@ -1249,28 +1249,28 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\n" +
 	"Deployment\x122\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeR\x04type\x12)\n" +
-	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"\xc5\x02\n" +
-	"\x18GenerateManifestsRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\x12F\n" +
+	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"\xcd\x02\n" +
+	"\x18GenerateManifestsRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12F\n" +
 	"\x06format\x18\x02 \x01(\x0e2!.octant.v1alpha.ManifestOutFormatB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x06format\x12T\n" +
 	"\x0fdeployment_type\x18\x03 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x0edeploymentType\x12T\n" +
 	"\x0ftelemetry_types\x18\x04 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\"Y\n" +
 	"\x19GenerateManifestsResponse\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\fR\x04data\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x04R\x05total\x12\x12\n" +
-	"\x04type\x18\x03 \x01(\tR\x04type\"Z\n" +
-	"!GetConnectionValidatorRunsRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\"\\\n" +
-	"#CreateConnectionValidatorRunRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\"Y\n" +
-	" DeleteConnectionValidatorRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\"P\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type\"b\n" +
+	"!GetConnectionValidatorRunsRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"d\n" +
+	"#CreateConnectionValidatorRunRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"a\n" +
+	" DeleteConnectionValidatorRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"P\n" +
 	"$CreateConnectionValidatorRunResponse\x12(\n" +
 	"\x10validator_run_id\x18\x01 \x01(\tR\x0evalidatorRunId\"P\n" +
 	"\"GetConnectionValidatorRunsResponse\x12*\n" +
-	"\x11validator_run_ids\x18\x01 \x03(\tR\x0fvalidatorRunIds\"}\n" +
-	"\x1aGetConnectionStatusRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope\x12(\n" +
+	"\x11validator_run_ids\x18\x01 \x03(\tR\x0fvalidatorRunIds\"\x85\x01\n" +
+	"\x1aGetConnectionStatusRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12(\n" +
 	"\x10validator_run_id\x18\x02 \x01(\tR\x0evalidatorRunId\"\xe8\x01\n" +
 	"\x1bGetConnectionStatusResponse\x12%\n" +
 	"\x0ereceiving_data\x18\x01 \x01(\bR\rreceivingData\x12!\n" +
@@ -1295,9 +1295,9 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\x1a9\n" +
 	"\vPolicyEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"P\n" +
-	"\x17DeleteConnectionRequest\x125\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeR\x05scope*Q\n" +
+	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"X\n" +
+	"\x17DeleteConnectionRequest\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope*Q\n" +
 	"\x0fIntegrationType\x12 \n" +
 	"\x1cINTEGRATION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18INTEGRATION_TYPE_DATADOG\x10\x012\xe3\a\n" +
