@@ -41,13 +41,13 @@ message Overall {
   message Metric {
     // received represents the total amount of data recieved.
     // For log, the unit is in GB; For trace, the unit is in mm Events.
-    int64 received = 1;
+    double received = 1;
     // sent represents the total amount of data send.
     // For log, the unit is in GB; For trace, the unit is in mm Events.
-    int64 sent = 2;
+    double sent = 2;
     // filtered represents the difference between sent and recieved.
     // For log, the unit is in GB; For trace, the unit is in mm Events.
-    int64 filtered = 3;
+    double filtered = 3;
     // cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
     float cost_rate = 4;
     // pct contains the percentage of total overall cost, rounding to the nearest two decimal places (e.g., 1.23%).
@@ -68,7 +68,7 @@ message Log {
   // name is the service name.
   string name = 1;
   //sent represents the amount of data send (in GB).
-  int64 sent = 3;
+  double sent = 3;
   // pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
   float pct = 4;
   // cost contains the total cost, rounding to the nearest two decimal places.
@@ -78,12 +78,12 @@ message Log {
 message Span {
   // name is the trace root span name.
   string name = 1;
-  // breath contains the span breath.
-  uint32 breath = 2;
+  // breadth contains the span breadth.
+  int64 breadth = 2;
   // depth contains the span depth.
-  uint32 depth = 3;
+  int64 depth = 3;
   // invocations contains the number of invocations.
-  uint32 invocations = 4;
+  int64 invocations = 4;
   // cost contains the total cost, rounding to the nearest two decimal places.
   double cost = 8;
 }
