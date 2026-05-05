@@ -17,7 +17,7 @@ service ConnectionService {
   // DeleteConnection removes an existing connection and its associated resources
   rpc DeleteConnection(DeleteConnectionRequest) returns (google.protobuf.Empty) {}
   // GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
-  rpc GetConnectionValidatorRuns(GetConnectionValidatorRunsRequest) returns (GetConnectionValidatorRunsResponse) {}
+  rpc GetConnectionValidatorRunIds(GetConnectionValidatorRunIdsRequest) returns (GetConnectionValidatorRunIdsResponse) {}
   // CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
   rpc CreateConnectionValidatorRun(CreateConnectionValidatorRunRequest) returns (CreateConnectionValidatorRunResponse) {}
   // DeleteConnectionValidator deletes connection validator resources
@@ -151,18 +151,19 @@ message GenerateManifestsResponse {
   string type = 3;
 }
 
-// GetConnectionValidatorRunsRequest is a request to get all available connection validator runs
-message GetConnectionValidatorRunsRequest {
+// GetConnectionValidatorRunIdsRequest is a request to get all available connection validator runs
+message GetConnectionValidatorRunIdsRequest {
   ConnectionScope scope = 1 [(buf.validate.field).required = true];
+}
+
+// GetConnectionValidatorRunIdsResponse provides all the validator run ids for a connection
+message GetConnectionValidatorRunIdsResponse {
+  // validator_run_ids is the list of validator_run_ids currently available in the metrics set
+  repeated string validator_run_ids = 1;
 }
 
 // CreateConnectionValidatorRunRequest has options for creating a connection validator
 message CreateConnectionValidatorRunRequest {
-  ConnectionScope scope = 1 [(buf.validate.field).required = true];
-}
-
-// DeleteConnectionValidatorRequest contains options for deleting a connection validator
-message DeleteConnectionValidatorRequest {
   ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }
 
@@ -172,10 +173,10 @@ message CreateConnectionValidatorRunResponse {
   string validator_run_id = 1;
 }
 
-// GetConnectionValidatorRunsResponse provides all the validator run ids for a connection
-message GetConnectionValidatorRunsResponse {
-  // validator_run_ids is the list of validator_run_ids currently available in the metrics set
-  repeated string validator_run_ids = 1;
+
+// DeleteConnectionValidatorRequest contains options for deleting a connection validator
+message DeleteConnectionValidatorRequest {
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
 }
 
 // GetConnectionStatusRequest contains options for getting a connections validator run results
