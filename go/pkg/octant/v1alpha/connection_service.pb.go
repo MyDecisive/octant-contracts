@@ -23,11 +23,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// IntegrationType is the type of integration for destinations or deployments
 type IntegrationType int32
 
 const (
+	// INTEGRATION_TYPE_UNSPECIFIED is unsupported and should not be used
 	IntegrationType_INTEGRATION_TYPE_UNSPECIFIED IntegrationType = 0
-	IntegrationType_INTEGRATION_TYPE_DATADOG     IntegrationType = 1
+	// INTEGRATION_TYPE_DATADOG is for datadog telemetry destinations
+	IntegrationType_INTEGRATION_TYPE_DATADOG IntegrationType = 1
 )
 
 // Enum value maps for IntegrationType.
@@ -69,9 +72,10 @@ func (IntegrationType) EnumDescriptor() ([]byte, []int) {
 	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{0}
 }
 
+// GetConnectionsRequest are fields needed to retrieve a list of connection names
 type GetConnectionsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// namespace is the kubernetes namespace to install into.
+	// namespace is the kubernetes namespace to create the connection in. Should be the same as the MDAI Hub install.
 	Namespace     string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -114,13 +118,17 @@ func (x *GetConnectionsRequest) GetNamespace() string {
 	return ""
 }
 
+// GetConnectionResponse has details on a connection
 type GetConnectionResponse struct {
-	state          protoimpl.MessageState  `protogen:"open.v1"`
-	TelemetryTypes []MLTType               `protobuf:"varint,1,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
-	DeploymentType DeploymentType          `protobuf:"varint,2,opt,name=deployment_type,json=deploymentType,proto3,enum=octant.v1alpha.DeploymentType" json:"deployment_type,omitempty"`
-	Destinations   []*TelemetryDestination `protobuf:"bytes,3,rep,name=destinations,proto3" json:"destinations,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// telemetry_types are the MLT telemetry types for this connection
+	TelemetryTypes []MLTType `protobuf:"varint,1,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
+	// deployment_type is the deployment mechanism
+	DeploymentType DeploymentType `protobuf:"varint,2,opt,name=deployment_type,json=deploymentType,proto3,enum=octant.v1alpha.DeploymentType" json:"deployment_type,omitempty"`
+	// destinations are where telemetry for this connection flows to
+	Destinations  []*TelemetryDestination `protobuf:"bytes,3,rep,name=destinations,proto3" json:"destinations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetConnectionResponse) Reset() {
@@ -174,10 +182,13 @@ func (x *GetConnectionResponse) GetDestinations() []*TelemetryDestination {
 	return nil
 }
 
+// GetConnectionRequest are fields required to fetch a connection
 type GetConnectionRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	Namespace      string                 `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	ConnectionName string                 `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// namespace is the k8s namespace the connection is installed in
+	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of the connection to fetch
+	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -226,9 +237,11 @@ func (x *GetConnectionRequest) GetConnectionName() string {
 	return ""
 }
 
+// GetConnectionsResponse contains a list of all the connections in a namespace
 type GetConnectionsResponse struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	ConnectionNames []string               `protobuf:"bytes,1,rep,name=connection_names,json=connectionNames,proto3" json:"connection_names,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// connection_names are the connection names found in the namespace
+	ConnectionNames []string `protobuf:"bytes,1,rep,name=connection_names,json=connectionNames,proto3" json:"connection_names,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -270,6 +283,7 @@ func (x *GetConnectionsResponse) GetConnectionNames() []string {
 	return nil
 }
 
+// CreateConnectionRequest contains options for creating a connection
 type CreateConnectionRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// namespace is the kubernetes namespace to install into.
@@ -277,11 +291,13 @@ type CreateConnectionRequest struct {
 	// connection_name is the name of this connection and its resources in argo/k8s
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
 	// telemetry_types is used to generate the manifests.
-	TelemetryTypes []MLTType               `protobuf:"varint,3,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
-	Deployment     *Deployment             `protobuf:"bytes,4,opt,name=deployment,proto3" json:"deployment,omitempty"`
-	Destinations   []*TelemetryDestination `protobuf:"bytes,5,rep,name=destinations,proto3" json:"destinations,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	TelemetryTypes []MLTType `protobuf:"varint,3,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
+	// deployment contains information required for deploying the connection
+	Deployment *Deployment `protobuf:"bytes,4,opt,name=deployment,proto3" json:"deployment,omitempty"`
+	// destinations are where telemetry from this connection is sent and options needed to send it there
+	Destinations  []*TelemetryDestination `protobuf:"bytes,5,rep,name=destinations,proto3" json:"destinations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateConnectionRequest) Reset() {
@@ -349,10 +365,13 @@ func (x *CreateConnectionRequest) GetDestinations() []*TelemetryDestination {
 	return nil
 }
 
+// TelemetryDestination is information for an integration to send telemetry to from a connection
 type TelemetryDestination struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Type            IntegrationType        `protobuf:"varint,1,opt,name=type,proto3,enum=octant.v1alpha.IntegrationType" json:"type,omitempty"`
-	IntegrationName string                 `protobuf:"bytes,2,opt,name=integration_name,json=integrationName,proto3" json:"integration_name,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// type is the integration type for this integration
+	Type IntegrationType `protobuf:"varint,1,opt,name=type,proto3,enum=octant.v1alpha.IntegrationType" json:"type,omitempty"`
+	// integration_name is the name of a previously created integration with information needed to send telemetry
+	IntegrationName string `protobuf:"bytes,2,opt,name=integration_name,json=integrationName,proto3" json:"integration_name,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -401,10 +420,13 @@ func (x *TelemetryDestination) GetIntegrationName() string {
 	return ""
 }
 
+// Deployment is information needed to deploy a connection
 type Deployment struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Type            DeploymentType         `protobuf:"varint,1,opt,name=type,proto3,enum=octant.v1alpha.DeploymentType" json:"type,omitempty"`
-	IntegrationName string                 `protobuf:"bytes,2,opt,name=integration_name,json=integrationName,proto3" json:"integration_name,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// type indicates what type of deployment mechanism/system to use
+	Type DeploymentType `protobuf:"varint,1,opt,name=type,proto3,enum=octant.v1alpha.DeploymentType" json:"type,omitempty"`
+	// integration_name is the name of the previously created deployment integration to use
+	IntegrationName string `protobuf:"bytes,2,opt,name=integration_name,json=integrationName,proto3" json:"integration_name,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -597,11 +619,12 @@ func (x *GenerateManifestsResponse) GetType() string {
 	return ""
 }
 
+// GetConnectionValidatorRunsRequest is a request to get all available connection validator runs
 type GetConnectionValidatorRunsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// namespace is the kubernetes namespace to install into.
+	// namespace is the namespace the connection and validator are installed into
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// connection_name is the name of this connection and its resources in argo/k8s
+	// connection_name is the name of this connection the validator is assigned to
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -651,9 +674,10 @@ func (x *GetConnectionValidatorRunsRequest) GetConnectionName() string {
 	return ""
 }
 
+// CreateConnectionValidatorRunRequest has options for creating a connection validator
 type CreateConnectionValidatorRunRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// namespace is the kubernetes namespace to install into.
+	// namespace is the kubernetes namespace the connection exists in
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// connection_name is the name of this connection and its resources in argo/k8s
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
@@ -705,9 +729,10 @@ func (x *CreateConnectionValidatorRunRequest) GetConnectionName() string {
 	return ""
 }
 
+// DeleteConnectionValidatorRequest contains options for deleting a connection validator
 type DeleteConnectionValidatorRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// namespace is the kubernetes namespace to install into.
+	// namespace is the kubernetes namespace the connection exists in
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// connection_name is the name of this connection and its resources in argo/k8s
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
@@ -759,6 +784,7 @@ func (x *DeleteConnectionValidatorRequest) GetConnectionName() string {
 	return ""
 }
 
+// CreateConnectionValidatorRunResponse contains a response for validator creation
 type CreateConnectionValidatorRunResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// validator_run_id is the created validator_run_id for the new validator run
@@ -804,6 +830,7 @@ func (x *CreateConnectionValidatorRunResponse) GetValidatorRunId() string {
 	return ""
 }
 
+// GetConnectionValidatorRunsResponse provides all the validator run ids for a connection
 type GetConnectionValidatorRunsResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// validator_run_ids is the list of validator_run_ids currently available in the metrics set
@@ -849,9 +876,10 @@ func (x *GetConnectionValidatorRunsResponse) GetValidatorRunIds() []string {
 	return nil
 }
 
+// GetConnectionStatusRequest contains options for getting a connections validator run results
 type GetConnectionStatusRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// namespace is the kubernetes namespace to install into.
+	// namespace where the connection exists in kubernetes
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// connection_name is the name of this connection and its resources in argo/k8s
 	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`

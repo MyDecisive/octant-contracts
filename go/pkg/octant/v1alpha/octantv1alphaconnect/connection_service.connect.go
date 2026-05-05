@@ -65,8 +65,11 @@ const (
 
 // ConnectionServiceClient is a client for the octant.v1alpha.ConnectionService service.
 type ConnectionServiceClient interface {
+	// GetConnections gets all connection names for a namespace
 	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
+	// GetConnection gets details about a connection
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
+	// CreateConnection creates a connection
 	CreateConnection(context.Context, *connect.Request[v1alpha.CreateConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 	// DeleteConnection removes an existing connection and its associated resources
 	DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error)
@@ -74,6 +77,7 @@ type ConnectionServiceClient interface {
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
 	CreateConnectionValidatorRun(context.Context, *connect.Request[v1alpha.CreateConnectionValidatorRunRequest]) (*connect.Response[v1alpha.CreateConnectionValidatorRunResponse], error)
+	// DeleteConnectionValidator deletes connection validator resources
 	DeleteConnectionValidator(context.Context, *connect.Request[v1alpha.DeleteConnectionValidatorRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
@@ -213,8 +217,11 @@ func (c *connectionServiceClient) GenerateManifests(ctx context.Context, req *co
 
 // ConnectionServiceHandler is an implementation of the octant.v1alpha.ConnectionService service.
 type ConnectionServiceHandler interface {
+	// GetConnections gets all connection names for a namespace
 	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
+	// GetConnection gets details about a connection
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
+	// CreateConnection creates a connection
 	CreateConnection(context.Context, *connect.Request[v1alpha.CreateConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 	// DeleteConnection removes an existing connection and its associated resources
 	DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error)
@@ -222,6 +229,7 @@ type ConnectionServiceHandler interface {
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
 	CreateConnectionValidatorRun(context.Context, *connect.Request[v1alpha.CreateConnectionValidatorRunRequest]) (*connect.Response[v1alpha.CreateConnectionValidatorRunResponse], error)
+	// DeleteConnectionValidator deletes connection validator resources
 	DeleteConnectionValidator(context.Context, *connect.Request[v1alpha.DeleteConnectionValidatorRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)

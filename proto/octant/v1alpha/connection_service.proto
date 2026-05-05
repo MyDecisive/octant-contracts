@@ -8,8 +8,11 @@ import "octant/v1alpha/type.proto";
 
 // ConnectService allows for interacting with MDAI Octant Connections
 service ConnectionService {
+  // GetConnections gets all connection names for a namespace
   rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
+  // GetConnection gets details about a connection
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
+  // CreateConnection creates a connection
   rpc CreateConnection(CreateConnectionRequest) returns (google.protobuf.Empty) {}
   // DeleteConnection removes an existing connection and its associated resources
   rpc DeleteConnection(DeleteConnectionRequest) returns (google.protobuf.Empty) {}
@@ -17,6 +20,7 @@ service ConnectionService {
   rpc GetConnectionValidatorRuns(GetConnectionValidatorRunsRequest) returns (GetConnectionValidatorRunsResponse) {}
   // CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
   rpc CreateConnectionValidatorRun(CreateConnectionValidatorRunRequest) returns (CreateConnectionValidatorRunResponse) {}
+  // DeleteConnectionValidator deletes connection validator resources
   rpc DeleteConnectionValidator(DeleteConnectionValidatorRequest) returns(google.protobuf.Empty) {}
   // GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
   rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {}
@@ -28,8 +32,9 @@ service ConnectionService {
   rpc GenerateManifests(GenerateManifestsRequest) returns (stream GenerateManifestsResponse) {}
 }
 
+// GetConnectionsRequest are fields needed to retrieve a list of connection names
 message GetConnectionsRequest {
-  // namespace is the kubernetes namespace to install into.
+  // namespace is the kubernetes namespace to create the connection in. Should be the same as the MDAI Hub install.
   string namespace = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.max_len = 63,
@@ -37,19 +42,25 @@ message GetConnectionsRequest {
   ];
 }
 
+// GetConnectionResponse has details on a connection
 message GetConnectionResponse {
+  // telemetry_types are the MLT telemetry types for this connection
   repeated MLTType telemetry_types = 1;
+  // deployment_type is the deployment mechanism
   DeploymentType deployment_type = 2;
-
+  // destinations are where telemetry for this connection flows to
   repeated TelemetryDestination destinations = 3;
 }
 
+// GetConnectionRequest are fields required to fetch a connection
 message GetConnectionRequest {
+  // namespace is the k8s namespace the connection is installed in
   string namespace = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.max_len = 63,
     (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
   ];
+  // connection_name is the name of the connection to fetch
   string connection_name = 2 [
     (buf.validate.field).string.min_len = 3,
     (buf.validate.field).string.max_len = 20,
@@ -57,10 +68,13 @@ message GetConnectionRequest {
   ];
 }
 
+// GetConnectionsResponse contains a list of all the connections in a namespace
 message GetConnectionsResponse {
+  // connection_names are the connection names found in the namespace
   repeated string connection_names = 1;
 }
 
+// CreateConnectionRequest contains options for creating a connection
 message CreateConnectionRequest {
   // namespace is the kubernetes namespace to install into.
   string namespace = 1 [
@@ -82,23 +96,33 @@ message CreateConnectionRequest {
       enum: {defined_only: true}
     }
   ];
+  // deployment contains information required for deploying the connection
   Deployment deployment = 4 [(buf.validate.field).required = true];
-
+  // destinations are where telemetry from this connection is sent and options needed to send it there
   repeated TelemetryDestination destinations = 5 [(buf.validate.field).required = true];
 }
 
+// TelemetryDestination is information for an integration to send telemetry to from a connection
 message TelemetryDestination {
+  // type is the integration type for this integration
   IntegrationType type = 1;
+  // integration_name is the name of a previously created integration with information needed to send telemetry
   string integration_name = 2;
 }
 
+// Deployment is information needed to deploy a connection
 message Deployment {
+  // type indicates what type of deployment mechanism/system to use
   DeploymentType type = 1;
+  // integration_name is the name of the previously created deployment integration to use
   string integration_name = 2;
 }
 
+// IntegrationType is the type of integration for destinations or deployments
 enum IntegrationType {
+  // INTEGRATION_TYPE_UNSPECIFIED is unsupported and should not be used
   INTEGRATION_TYPE_UNSPECIFIED = 0;
+  // INTEGRATION_TYPE_DATADOG is for datadog telemetry destinations
   INTEGRATION_TYPE_DATADOG = 1;
 }
 
@@ -144,14 +168,15 @@ message GenerateManifestsResponse {
   string type = 3;
 }
 
+// GetConnectionValidatorRunsRequest is a request to get all available connection validator runs
 message GetConnectionValidatorRunsRequest {
-  // namespace is the kubernetes namespace to install into.
+  // namespace is the namespace the connection and validator are installed into
   string namespace = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.max_len = 63,
     (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
   ];
-  // connection_name is the name of this connection and its resources in argo/k8s
+  // connection_name is the name of this connection the validator is assigned to
   string connection_name = 2 [
     (buf.validate.field).string.min_len = 3,
     (buf.validate.field).string.max_len = 20,
@@ -159,8 +184,9 @@ message GetConnectionValidatorRunsRequest {
   ];
 }
 
+// CreateConnectionValidatorRunRequest has options for creating a connection validator
 message CreateConnectionValidatorRunRequest {
-  // namespace is the kubernetes namespace to install into.
+  // namespace is the kubernetes namespace the connection exists in
   string namespace = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.max_len = 63,
@@ -174,8 +200,9 @@ message CreateConnectionValidatorRunRequest {
   ];
 }
 
+// DeleteConnectionValidatorRequest contains options for deleting a connection validator
 message DeleteConnectionValidatorRequest {
-  // namespace is the kubernetes namespace to install into.
+  // namespace is the kubernetes namespace the connection exists in
   string namespace = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.max_len = 63,
@@ -189,18 +216,21 @@ message DeleteConnectionValidatorRequest {
   ];
 }
 
+// CreateConnectionValidatorRunResponse contains a response for validator creation
 message CreateConnectionValidatorRunResponse {
   // validator_run_id is the created validator_run_id for the new validator run
   string validator_run_id = 1;
 }
 
+// GetConnectionValidatorRunsResponse provides all the validator run ids for a connection
 message GetConnectionValidatorRunsResponse {
   // validator_run_ids is the list of validator_run_ids currently available in the metrics set
   repeated string validator_run_ids = 1;
 }
 
+// GetConnectionStatusRequest contains options for getting a connections validator run results
 message GetConnectionStatusRequest {
-  // namespace is the kubernetes namespace to install into.
+  // namespace where the connection exists in kubernetes
   string namespace = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.max_len = 63,
