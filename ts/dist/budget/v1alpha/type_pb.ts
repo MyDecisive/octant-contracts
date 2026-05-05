@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file budget/v1alpha/type.proto.
  */
 export const file_budget_v1alpha_type: GenFile = /*@__PURE__*/
-  fileDesc("ChlidWRnZXQvdjFhbHBoYS90eXBlLnByb3RvEg5idWRnZXQudjFhbHBoYSJ0CgZGaWx0ZXISNQoEdHlwZRgBIAEoDjIaLmJ1ZGdldC52MWFscGhhLkZpbHRlclR5cGVCC7pICMgBAYIBAhABEh4KC3BjdF9zYW1wbGVkGAIgASgNQgm6SAYqBBBlKAASEwoLaW5jbHVkZV9lcnIYAyABKAgi3QEKB092ZXJhbGwSDAoEY29zdBgBIAEoARIrCgNsb2cYAyABKAsyHi5idWRnZXQudjFhbHBoYS5PdmVyYWxsLk1ldHJpYxItCgV0cmFjZRgEIAEoCzIeLmJ1ZGdldC52MWFscGhhLk92ZXJhbGwuTWV0cmljGmgKBk1ldHJpYxIQCghyZWNlaXZlZBgBIAEoARIMCgRzZW50GAIgASgBEhAKCGZpbHRlcmVkGAMgASgBEhEKCWNvc3RfcmF0ZRgEIAEoAhILCgNwY3QYBSABKAISDAoEY29zdBgGIAEoASI8CgNMb2cSDAoEbmFtZRgBIAEoCRIMCgRzZW50GAMgASgBEgsKA3BjdBgEIAEoAhIMCgRjb3N0GAUgASgBIlcKBFNwYW4SDAoEbmFtZRgBIAEoCRIPCgdicmVhZHRoGAIgASgDEg0KBWRlcHRoGAMgASgDEhMKC2ludm9jYXRpb25zGAQgASgDEgwKBGNvc3QYCCABKAEqXwoJVGltZWZyYW1lEhkKFVRJTUVGUkFNRV9VTlNQRUNJRklFRBAAEhIKDlRJTUVGUkFNRV8yNEhSEAESEQoNVElNRUZSQU1FX01URBACEhAKDFRJTUVGUkFNRV9MTRADKlUKCkZpbHRlclR5cGUSGwoXRklMVEVSX1RZUEVfVU5TUEVDSUZJRUQQABITCg9GSUxURVJfVFlQRV9MT0cQARIVChFGSUxURVJfVFlQRV9UUkFDRRACQsQBChJjb20uYnVkZ2V0LnYxYWxwaGFCCVR5cGVQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvYnVkZ2V0L3YxYWxwaGE7YnVkZ2V0djFhbHBoYaICA0JYWKoCDkJ1ZGdldC5WMWFscGhhygIOQnVkZ2V0XFYxYWxwaGHiAhpCdWRnZXRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD0J1ZGdldDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate]);
+  fileDesc("ChlidWRnZXQvdjFhbHBoYS90eXBlLnByb3RvEg5idWRnZXQudjFhbHBoYSJ0CgZGaWx0ZXISNQoEdHlwZRgBIAEoDjIaLmJ1ZGdldC52MWFscGhhLkZpbHRlclR5cGVCC7pICMgBAYIBAhABEh4KC3BjdF9zYW1wbGVkGAIgASgNQgm6SAYqBBBlKAASEwoLaW5jbHVkZV9lcnIYAyABKAgi3QEKB092ZXJhbGwSDAoEY29zdBgBIAEoARIrCgNsb2cYAyABKAsyHi5idWRnZXQudjFhbHBoYS5PdmVyYWxsLk1ldHJpYxItCgV0cmFjZRgEIAEoCzIeLmJ1ZGdldC52MWFscGhhLk92ZXJhbGwuTWV0cmljGmgKBk1ldHJpYxIQCghyZWNlaXZlZBgBIAEoARIMCgRzZW50GAIgASgBEhAKCGZpbHRlcmVkGAMgASgBEhEKCWNvc3RfcmF0ZRgEIAEoAhILCgNwY3QYBSABKAISDAoEY29zdBgGIAEoASI8CgNMb2cSDAoEbmFtZRgBIAEoCRIMCgRzZW50GAMgASgBEgsKA3BjdBgEIAEoAhIMCgRjb3N0GAUgASgBIlcKBFNwYW4SDAoEbmFtZRgBIAEoCRIPCgdicmVhZHRoGAIgASgBEg0KBWRlcHRoGAMgASgBEhMKC2ludm9jYXRpb25zGAQgASgBEgwKBGNvc3QYCCABKAEqXwoJVGltZWZyYW1lEhkKFVRJTUVGUkFNRV9VTlNQRUNJRklFRBAAEhIKDlRJTUVGUkFNRV8yNEhSEAESEQoNVElNRUZSQU1FX01URBACEhAKDFRJTUVGUkFNRV9MTRADKlUKCkZpbHRlclR5cGUSGwoXRklMVEVSX1RZUEVfVU5TUEVDSUZJRUQQABITCg9GSUxURVJfVFlQRV9MT0cQARIVChFGSUxURVJfVFlQRV9UUkFDRRACQsQBChJjb20uYnVkZ2V0LnYxYWxwaGFCCVR5cGVQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvYnVkZ2V0L3YxYWxwaGE7YnVkZ2V0djFhbHBoYaICA0JYWKoCDkJ1ZGdldC5WMWFscGhhygIOQnVkZ2V0XFYxYWxwaGHiAhpCdWRnZXRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD0J1ZGdldDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate]);
 
 /**
  * @generated from message budget.v1alpha.Filter
@@ -51,7 +51,8 @@ export const FilterSchema: GenMessage<Filter> = /*@__PURE__*/
  */
 export type Overall = Message<"budget.v1alpha.Overall"> & {
   /**
-   * cost contains the total cost for log and trace, rounding to the nearest two decimal places.
+   * cost contains the total cost for log and trace.
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: double cost = 1;
    */
@@ -108,21 +109,24 @@ export type Overall_Metric = Message<"budget.v1alpha.Overall.Metric"> & {
   filtered: number;
 
   /**
-   * cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
+   * cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate.
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: float cost_rate = 4;
    */
   costRate: number;
 
   /**
-   * pct contains the percentage of total overall cost, rounding to the nearest two decimal places (e.g., 1.23%).
+   * pct contains the percentage of total overall cost (e.g., 1.2345%).
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: float pct = 5;
    */
   pct: number;
 
   /**
-   * cost contains the total cost, rounding to the nearest two decimal places.
+   * cost contains the total cost.
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: double cost = 6;
    */
@@ -155,14 +159,16 @@ export type Log = Message<"budget.v1alpha.Log"> & {
   sent: number;
 
   /**
-   * pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
+   * pct contains the percentage of total log cost (e.g., 1.2345%).
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: float pct = 4;
    */
   pct: number;
 
   /**
-   * cost contains the total cost, rounding to the nearest two decimal places.
+   * cost contains the total cost.
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: double cost = 5;
    */
@@ -190,26 +196,27 @@ export type Span = Message<"budget.v1alpha.Span"> & {
   /**
    * breadth contains the span breadth.
    *
-   * @generated from field: int64 breadth = 2;
+   * @generated from field: double breadth = 2;
    */
-  breadth: bigint;
+  breadth: number;
 
   /**
    * depth contains the span depth.
    *
-   * @generated from field: int64 depth = 3;
+   * @generated from field: double depth = 3;
    */
-  depth: bigint;
+  depth: number;
 
   /**
    * invocations contains the number of invocations.
    *
-   * @generated from field: int64 invocations = 4;
+   * @generated from field: double invocations = 4;
    */
-  invocations: bigint;
+  invocations: number;
 
   /**
-   * cost contains the total cost, rounding to the nearest two decimal places.
+   * cost contains the total cost.
+   * Remember to round to the nearest two decimal places.
    *
    * @generated from field: double cost = 8;
    */

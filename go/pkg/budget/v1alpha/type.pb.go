@@ -193,7 +193,8 @@ func (x *Filter) GetIncludeErr() bool {
 
 type Overall struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// cost contains the total cost for log and trace, rounding to the nearest two decimal places.
+	// cost contains the total cost for log and trace.
+	// Remember to round to the nearest two decimal places.
 	Cost float64 `protobuf:"fixed64,1,opt,name=cost,proto3" json:"cost,omitempty"`
 	// log contains overall metric data for logs.
 	Log *Overall_Metric `protobuf:"bytes,3,opt,name=log,proto3" json:"log,omitempty"`
@@ -260,9 +261,11 @@ type Log struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// sent represents the amount of data send (in GB).
 	Sent float64 `protobuf:"fixed64,3,opt,name=sent,proto3" json:"sent,omitempty"`
-	// pct contains the percentage of total log cost, rounding to the nearest two decimal places (e.g., 1.23%).
+	// pct contains the percentage of total log cost (e.g., 1.2345%).
+	// Remember to round to the nearest two decimal places.
 	Pct float32 `protobuf:"fixed32,4,opt,name=pct,proto3" json:"pct,omitempty"`
-	// cost contains the total cost, rounding to the nearest two decimal places.
+	// cost contains the total cost.
+	// Remember to round to the nearest two decimal places.
 	Cost          float64 `protobuf:"fixed64,5,opt,name=cost,proto3" json:"cost,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -331,12 +334,13 @@ type Span struct {
 	// name is the trace root span name.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// breadth contains the span breadth.
-	Breadth int64 `protobuf:"varint,2,opt,name=breadth,proto3" json:"breadth,omitempty"`
+	Breadth float64 `protobuf:"fixed64,2,opt,name=breadth,proto3" json:"breadth,omitempty"`
 	// depth contains the span depth.
-	Depth int64 `protobuf:"varint,3,opt,name=depth,proto3" json:"depth,omitempty"`
+	Depth float64 `protobuf:"fixed64,3,opt,name=depth,proto3" json:"depth,omitempty"`
 	// invocations contains the number of invocations.
-	Invocations int64 `protobuf:"varint,4,opt,name=invocations,proto3" json:"invocations,omitempty"`
-	// cost contains the total cost, rounding to the nearest two decimal places.
+	Invocations float64 `protobuf:"fixed64,4,opt,name=invocations,proto3" json:"invocations,omitempty"`
+	// cost contains the total cost.
+	// Remember to round to the nearest two decimal places.
 	Cost          float64 `protobuf:"fixed64,8,opt,name=cost,proto3" json:"cost,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -379,21 +383,21 @@ func (x *Span) GetName() string {
 	return ""
 }
 
-func (x *Span) GetBreadth() int64 {
+func (x *Span) GetBreadth() float64 {
 	if x != nil {
 		return x.Breadth
 	}
 	return 0
 }
 
-func (x *Span) GetDepth() int64 {
+func (x *Span) GetDepth() float64 {
 	if x != nil {
 		return x.Depth
 	}
 	return 0
 }
 
-func (x *Span) GetInvocations() int64 {
+func (x *Span) GetInvocations() float64 {
 	if x != nil {
 		return x.Invocations
 	}
@@ -418,11 +422,14 @@ type Overall_Metric struct {
 	// filtered represents the difference between sent and recieved.
 	// For log, the unit is in GB; For trace, the unit is in mm Events.
 	Filtered float64 `protobuf:"fixed64,3,opt,name=filtered,proto3" json:"filtered,omitempty"`
-	// cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate, rounding to the nearest two decimal places.
+	// cost_rate contains the per GB (for log) or the per mm Events (for traces) cost rate.
+	// Remember to round to the nearest two decimal places.
 	CostRate float32 `protobuf:"fixed32,4,opt,name=cost_rate,json=costRate,proto3" json:"cost_rate,omitempty"`
-	// pct contains the percentage of total overall cost, rounding to the nearest two decimal places (e.g., 1.23%).
+	// pct contains the percentage of total overall cost (e.g., 1.2345%).
+	// Remember to round to the nearest two decimal places.
 	Pct float32 `protobuf:"fixed32,5,opt,name=pct,proto3" json:"pct,omitempty"`
-	// cost contains the total cost, rounding to the nearest two decimal places.
+	// cost contains the total cost.
+	// Remember to round to the nearest two decimal places.
 	Cost          float64 `protobuf:"fixed64,6,opt,name=cost,proto3" json:"cost,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -529,9 +536,9 @@ const file_budget_v1alpha_type_proto_rawDesc = "" +
 	"\x04cost\x18\x05 \x01(\x01R\x04cost\"\x80\x01\n" +
 	"\x04Span\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
-	"\abreadth\x18\x02 \x01(\x03R\abreadth\x12\x14\n" +
-	"\x05depth\x18\x03 \x01(\x03R\x05depth\x12 \n" +
-	"\vinvocations\x18\x04 \x01(\x03R\vinvocations\x12\x12\n" +
+	"\abreadth\x18\x02 \x01(\x01R\abreadth\x12\x14\n" +
+	"\x05depth\x18\x03 \x01(\x01R\x05depth\x12 \n" +
+	"\vinvocations\x18\x04 \x01(\x01R\vinvocations\x12\x12\n" +
 	"\x04cost\x18\b \x01(\x01R\x04cost*_\n" +
 	"\tTimeframe\x12\x19\n" +
 	"\x15TIMEFRAME_UNSPECIFIED\x10\x00\x12\x12\n" +
