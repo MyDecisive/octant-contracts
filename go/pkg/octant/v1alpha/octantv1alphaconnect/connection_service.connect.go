@@ -52,6 +52,9 @@ const (
 	// ConnectionServiceCreateConnectionValidatorRunProcedure is the fully-qualified name of the
 	// ConnectionService's CreateConnectionValidatorRun RPC.
 	ConnectionServiceCreateConnectionValidatorRunProcedure = "/octant.v1alpha.ConnectionService/CreateConnectionValidatorRun"
+	// ConnectionServiceDeleteConnectionValidatorProcedure is the fully-qualified name of the
+	// ConnectionService's DeleteConnectionValidator RPC.
+	ConnectionServiceDeleteConnectionValidatorProcedure = "/octant.v1alpha.ConnectionService/DeleteConnectionValidator"
 	// ConnectionServiceGetConnectionStatusProcedure is the fully-qualified name of the
 	// ConnectionService's GetConnectionStatus RPC.
 	ConnectionServiceGetConnectionStatusProcedure = "/octant.v1alpha.ConnectionService/GetConnectionStatus"
@@ -71,6 +74,7 @@ type ConnectionServiceClient interface {
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
 	CreateConnectionValidatorRun(context.Context, *connect.Request[v1alpha.CreateConnectionValidatorRunRequest]) (*connect.Response[v1alpha.CreateConnectionValidatorRunResponse], error)
+	DeleteConnectionValidator(context.Context, *connect.Request[v1alpha.DeleteConnectionValidatorRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
 	// GenerateManifests generates the manifest base on the given input and this will returns
@@ -128,6 +132,12 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(connectionServiceMethods.ByName("CreateConnectionValidatorRun")),
 			connect.WithClientOptions(opts...),
 		),
+		deleteConnectionValidator: connect.NewClient[v1alpha.DeleteConnectionValidatorRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ConnectionServiceDeleteConnectionValidatorProcedure,
+			connect.WithSchema(connectionServiceMethods.ByName("DeleteConnectionValidator")),
+			connect.WithClientOptions(opts...),
+		),
 		getConnectionStatus: connect.NewClient[v1alpha.GetConnectionStatusRequest, v1alpha.GetConnectionStatusResponse](
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionStatusProcedure,
@@ -151,6 +161,7 @@ type connectionServiceClient struct {
 	deleteConnection             *connect.Client[v1alpha.DeleteConnectionRequest, emptypb.Empty]
 	getConnectionValidatorRuns   *connect.Client[v1alpha.GetConnectionValidatorRunsRequest, v1alpha.GetConnectionValidatorRunsResponse]
 	createConnectionValidatorRun *connect.Client[v1alpha.CreateConnectionValidatorRunRequest, v1alpha.CreateConnectionValidatorRunResponse]
+	deleteConnectionValidator    *connect.Client[v1alpha.DeleteConnectionValidatorRequest, emptypb.Empty]
 	getConnectionStatus          *connect.Client[v1alpha.GetConnectionStatusRequest, v1alpha.GetConnectionStatusResponse]
 	generateManifests            *connect.Client[v1alpha.GenerateManifestsRequest, v1alpha.GenerateManifestsResponse]
 }
@@ -185,6 +196,11 @@ func (c *connectionServiceClient) CreateConnectionValidatorRun(ctx context.Conte
 	return c.createConnectionValidatorRun.CallUnary(ctx, req)
 }
 
+// DeleteConnectionValidator calls octant.v1alpha.ConnectionService.DeleteConnectionValidator.
+func (c *connectionServiceClient) DeleteConnectionValidator(ctx context.Context, req *connect.Request[v1alpha.DeleteConnectionValidatorRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteConnectionValidator.CallUnary(ctx, req)
+}
+
 // GetConnectionStatus calls octant.v1alpha.ConnectionService.GetConnectionStatus.
 func (c *connectionServiceClient) GetConnectionStatus(ctx context.Context, req *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error) {
 	return c.getConnectionStatus.CallUnary(ctx, req)
@@ -206,6 +222,7 @@ type ConnectionServiceHandler interface {
 	GetConnectionValidatorRuns(context.Context, *connect.Request[v1alpha.GetConnectionValidatorRunsRequest]) (*connect.Response[v1alpha.GetConnectionValidatorRunsResponse], error)
 	// CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
 	CreateConnectionValidatorRun(context.Context, *connect.Request[v1alpha.CreateConnectionValidatorRunRequest]) (*connect.Response[v1alpha.CreateConnectionValidatorRunResponse], error)
+	DeleteConnectionValidator(context.Context, *connect.Request[v1alpha.DeleteConnectionValidatorRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
 	GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error)
 	// GenerateManifests generates the manifest base on the given input and this will returns
@@ -259,6 +276,12 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 		connect.WithSchema(connectionServiceMethods.ByName("CreateConnectionValidatorRun")),
 		connect.WithHandlerOptions(opts...),
 	)
+	connectionServiceDeleteConnectionValidatorHandler := connect.NewUnaryHandler(
+		ConnectionServiceDeleteConnectionValidatorProcedure,
+		svc.DeleteConnectionValidator,
+		connect.WithSchema(connectionServiceMethods.ByName("DeleteConnectionValidator")),
+		connect.WithHandlerOptions(opts...),
+	)
 	connectionServiceGetConnectionStatusHandler := connect.NewUnaryHandler(
 		ConnectionServiceGetConnectionStatusProcedure,
 		svc.GetConnectionStatus,
@@ -285,6 +308,8 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 			connectionServiceGetConnectionValidatorRunsHandler.ServeHTTP(w, r)
 		case ConnectionServiceCreateConnectionValidatorRunProcedure:
 			connectionServiceCreateConnectionValidatorRunHandler.ServeHTTP(w, r)
+		case ConnectionServiceDeleteConnectionValidatorProcedure:
+			connectionServiceDeleteConnectionValidatorHandler.ServeHTTP(w, r)
 		case ConnectionServiceGetConnectionStatusProcedure:
 			connectionServiceGetConnectionStatusHandler.ServeHTTP(w, r)
 		case ConnectionServiceGenerateManifestsProcedure:
@@ -320,6 +345,10 @@ func (UnimplementedConnectionServiceHandler) GetConnectionValidatorRuns(context.
 
 func (UnimplementedConnectionServiceHandler) CreateConnectionValidatorRun(context.Context, *connect.Request[v1alpha.CreateConnectionValidatorRunRequest]) (*connect.Response[v1alpha.CreateConnectionValidatorRunResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.CreateConnectionValidatorRun is not implemented"))
+}
+
+func (UnimplementedConnectionServiceHandler) DeleteConnectionValidator(context.Context, *connect.Request[v1alpha.DeleteConnectionValidatorRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.DeleteConnectionValidator is not implemented"))
 }
 
 func (UnimplementedConnectionServiceHandler) GetConnectionStatus(context.Context, *connect.Request[v1alpha.GetConnectionStatusRequest]) (*connect.Response[v1alpha.GetConnectionStatusResponse], error) {
