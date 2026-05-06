@@ -175,7 +175,6 @@ message CreateConnectionValidatorRunResponse {
   string validator_run_id = 1;
 }
 
-
 // DeleteConnectionValidatorRequest contains options for deleting a connection validator
 message DeleteConnectionValidatorRequest {
   ConnectionScope scope = 1 [(buf.validate.field).required = true];
