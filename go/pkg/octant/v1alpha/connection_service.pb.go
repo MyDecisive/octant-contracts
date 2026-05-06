@@ -942,8 +942,10 @@ type GetConnectionStatusResponse struct {
 	SendingData bool `protobuf:"varint,2,opt,name=sending_data,json=sendingData,proto3" json:"sending_data,omitempty"`
 	// sending_data indicates if the data coming to the Collector fulfills validator parity or policy requirements
 	DataIntegrity bool `protobuf:"varint,3,opt,name=data_integrity,json=dataIntegrity,proto3" json:"data_integrity,omitempty"`
+	// clients_connected indicates if the Connection's Collector is connected for its configured Telemetry types
+	ClientsConnected bool `protobuf:"varint,4,opt,name=clients_connected,json=clientsConnected,proto3" json:"clients_connected,omitempty"`
 	// validation_results is a map of granular validation details per data type (MLT)
-	ValidationResults *ValidationResultsBySignal `protobuf:"bytes,4,opt,name=validation_results,json=validationResults,proto3" json:"validation_results,omitempty"`
+	ValidationResults *ValidationResultsBySignal `protobuf:"bytes,5,opt,name=validation_results,json=validationResults,proto3" json:"validation_results,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -995,6 +997,13 @@ func (x *GetConnectionStatusResponse) GetSendingData() bool {
 func (x *GetConnectionStatusResponse) GetDataIntegrity() bool {
 	if x != nil {
 		return x.DataIntegrity
+	}
+	return false
+}
+
+func (x *GetConnectionStatusResponse) GetClientsConnected() bool {
+	if x != nil {
+		return x.ClientsConnected
 	}
 	return false
 }
@@ -1281,12 +1290,13 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"\x85\x01\n" +
 	"\x1aGetConnectionStatusRequest\x12=\n" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12(\n" +
-	"\x10validator_run_id\x18\x02 \x01(\tR\x0evalidatorRunId\"\xe8\x01\n" +
+	"\x10validator_run_id\x18\x02 \x01(\tR\x0evalidatorRunId\"\x95\x02\n" +
 	"\x1bGetConnectionStatusResponse\x12%\n" +
 	"\x0ereceiving_data\x18\x01 \x01(\bR\rreceivingData\x12!\n" +
 	"\fsending_data\x18\x02 \x01(\bR\vsendingData\x12%\n" +
-	"\x0edata_integrity\x18\x03 \x01(\bR\rdataIntegrity\x12X\n" +
-	"\x12validation_results\x18\x04 \x01(\v2).octant.v1alpha.ValidationResultsBySignalR\x11validationResults\"\xc7\x01\n" +
+	"\x0edata_integrity\x18\x03 \x01(\bR\rdataIntegrity\x12+\n" +
+	"\x11clients_connected\x18\x04 \x01(\bR\x10clientsConnected\x12X\n" +
+	"\x12validation_results\x18\x05 \x01(\v2).octant.v1alpha.ValidationResultsBySignalR\x11validationResults\"\xc7\x01\n" +
 	"\x19ValidationResultsBySignal\x124\n" +
 	"\x04logs\x18\x01 \x01(\v2 .octant.v1alpha.ValidationResultR\x04logs\x12:\n" +
 	"\ametrics\x18\x02 \x01(\v2 .octant.v1alpha.ValidationResultR\ametrics\x128\n" +

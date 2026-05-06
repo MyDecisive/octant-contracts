@@ -194,8 +194,10 @@ message GetConnectionStatusResponse {
   bool sending_data = 2;
   // sending_data indicates if the data coming to the Collector fulfills validator parity or policy requirements
   bool data_integrity = 3;
+  // clients_connected indicates if the Connection's Collector is connected for its configured Telemetry types
+  bool clients_connected = 4;
   // validation_results is a map of granular validation details per data type (MLT)
-  ValidationResultsBySignal validation_results = 4;
+  ValidationResultsBySignal validation_results = 5;
 }
 
 message ValidationResultsBySignal {
