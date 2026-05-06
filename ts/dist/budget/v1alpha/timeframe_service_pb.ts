@@ -56,6 +56,9 @@ export type TimeframeStatusResponse = Message<"budget.v1alpha.TimeframeStatusRes
   /**
    * trace will contain true if there are data for traces.
    * Otherwise, this will contain false.
+   * Note: this containing true just means there are data,
+   * and it doesn't necessarily mean there will be data
+   * for the user's selected timeframe.
    *
    * @generated from field: bool trace = 2;
    */
@@ -64,6 +67,9 @@ export type TimeframeStatusResponse = Message<"budget.v1alpha.TimeframeStatusRes
   /**
    * log will contain true if there are data for logs.
    * Otherwise, this will contain false.
+   * Note: this containing true just means there are data,
+   * and it doesn't necessarily mean there will be data
+   * for the user's selected timeframe.
    *
    * @generated from field: bool log = 3;
    */

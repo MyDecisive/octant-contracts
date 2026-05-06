@@ -139,9 +139,15 @@ type TimeframeStatusResponse struct {
 	Statuses []*TimeframeStatusResponse_Status `protobuf:"bytes,1,rep,name=statuses,proto3" json:"statuses,omitempty"`
 	// trace will contain true if there are data for traces.
 	// Otherwise, this will contain false.
+	// Note: this containing true just means there are data,
+	// and it doesn't necessarily mean there will be data
+	// for the user's selected timeframe.
 	Trace bool `protobuf:"varint,2,opt,name=trace,proto3" json:"trace,omitempty"`
 	// log will contain true if there are data for logs.
 	// Otherwise, this will contain false.
+	// Note: this containing true just means there are data,
+	// and it doesn't necessarily mean there will be data
+	// for the user's selected timeframe.
 	Log           bool `protobuf:"varint,3,opt,name=log,proto3" json:"log,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
