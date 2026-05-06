@@ -140,6 +140,8 @@ message GenerateManifestsRequest {
       enum: {defined_only: true}
     }
   ];
+  // mdai_version is the mdai hub version to use for app install.
+  string mdai_version = 5 [(buf.validate.field).string.pattern = "^(\\d+\\.\\d+\\.\\d+(-[a-z]*)?)|latest$"];
 }
 
 message GenerateManifestsResponse {
