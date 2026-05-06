@@ -637,7 +637,7 @@ export const ConnectionService: GenService<{
     output: typeof GetConnectionResponseSchema;
   },
   /**
-   * CreateConnection creates a connection
+   * CreateConnection creates a connection and deploys it
    *
    * @generated from rpc octant.v1alpha.ConnectionService.CreateConnection
    */

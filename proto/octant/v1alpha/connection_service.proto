@@ -12,7 +12,7 @@ service ConnectionService {
   rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
   // GetConnection gets details about a connection
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
-  // CreateConnection creates a connection
+  // CreateConnection creates a connection and deploys it
   rpc CreateConnection(CreateConnectionRequest) returns (google.protobuf.Empty) {}
   // DeleteConnection removes an existing connection and its associated resources
   rpc DeleteConnection(DeleteConnectionRequest) returns (google.protobuf.Empty) {}

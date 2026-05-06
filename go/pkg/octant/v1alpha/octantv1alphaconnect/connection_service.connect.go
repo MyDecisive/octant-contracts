@@ -69,7 +69,7 @@ type ConnectionServiceClient interface {
 	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
 	// GetConnection gets details about a connection
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
-	// CreateConnection creates a connection
+	// CreateConnection creates a connection and deploys it
 	CreateConnection(context.Context, *connect.Request[v1alpha.CreateConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 	// DeleteConnection removes an existing connection and its associated resources
 	DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error)
@@ -221,7 +221,7 @@ type ConnectionServiceHandler interface {
 	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
 	// GetConnection gets details about a connection
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
-	// CreateConnection creates a connection
+	// CreateConnection creates a connection and deploys it
 	CreateConnection(context.Context, *connect.Request[v1alpha.CreateConnectionRequest]) (*connect.Response[emptypb.Empty], error)
 	// DeleteConnection removes an existing connection and its associated resources
 	DeleteConnection(context.Context, *connect.Request[v1alpha.DeleteConnectionRequest]) (*connect.Response[emptypb.Empty], error)
