@@ -31,11 +31,13 @@ type GenerateManifestsRequest struct {
 	// format contains output format of the manifests.
 	Format ManifestOutFormat `protobuf:"varint,3,opt,name=format,proto3,enum=octant.v1alpha.ManifestOutFormat" json:"format,omitempty"`
 	// deployment_type use to tell the type of manifest to generate.
-	DeploymentType DeploymentType `protobuf:"varint,5,opt,name=deployment_type,json=deploymentType,proto3,enum=octant.v1alpha.DeploymentType" json:"deployment_type,omitempty"`
+	DeploymentType DeploymentType `protobuf:"varint,4,opt,name=deployment_type,json=deploymentType,proto3,enum=octant.v1alpha.DeploymentType" json:"deployment_type,omitempty"`
 	// telemetry_types is used to generate the manifests.
-	TelemetryTypes []MLTType `protobuf:"varint,4,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	TelemetryTypes []MLTType `protobuf:"varint,5,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
+	// mdai_version is the mdai hub version to use for app install.
+	MdaiVersion   string `protobuf:"bytes,6,opt,name=mdai_version,json=mdaiVersion,proto3" json:"mdai_version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GenerateManifestsRequest) Reset() {
@@ -101,6 +103,13 @@ func (x *GenerateManifestsRequest) GetTelemetryTypes() []MLTType {
 		return x.TelemetryTypes
 	}
 	return nil
+}
+
+func (x *GenerateManifestsRequest) GetMdaiVersion() string {
+	if x != nil {
+		return x.MdaiVersion
+	}
+	return ""
 }
 
 type GenerateManifestsResponse struct {
@@ -473,13 +482,14 @@ var File_octant_v1alpha_connection_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\n" +
-	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x19octant/v1alpha/type.proto\"\xae\x03\n" +
+	"'octant/v1alpha/connection_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x19octant/v1alpha/type.proto\"\xfc\x03\n" +
 	"\x18GenerateManifestsRequest\x12I\n" +
 	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12F\n" +
 	"\x06format\x18\x03 \x01(\x0e2!.octant.v1alpha.ManifestOutFormatB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x06format\x12T\n" +
-	"\x0fdeployment_type\x18\x05 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x0edeploymentType\x12T\n" +
-	"\x0ftelemetry_types\x18\x04 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\"Y\n" +
+	"\x0fdeployment_type\x18\x04 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x0edeploymentType\x12T\n" +
+	"\x0ftelemetry_types\x18\x05 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12L\n" +
+	"\fmdai_version\x18\x06 \x01(\tB)\xbaH&r$2\"^(\\d+\\.\\d+\\.\\d+(-[a-z]*)?)|latest$R\vmdaiVersion\"Y\n" +
 	"\x19GenerateManifestsResponse\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\fR\x04data\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x04R\x05total\x12\x12\n" +
