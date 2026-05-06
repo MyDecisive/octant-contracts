@@ -47,4 +47,18 @@ message TimeframeStatusResponse {
   // statuses contains status of each timeframe.
   // Note: this array will not contain duplicate timeframes.
   repeated Status statuses = 1;
+
+  // trace will contain true if there are data for traces.
+  // Otherwise, this will contain false.
+  // Note: this containing true just means there are data,
+  // and it doesn't necessarily mean there will be data
+  // for the user's selected timeframe.
+  bool trace = 2;
+
+  // log will contain true if there are data for logs.
+  // Otherwise, this will contain false.
+  // Note: this containing true just means there are data,
+  // and it doesn't necessarily mean there will be data
+  // for the user's selected timeframe.
+  bool log = 3;
 }

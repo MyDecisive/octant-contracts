@@ -136,7 +136,19 @@ type TimeframeStatusResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// statuses contains status of each timeframe.
 	// Note: this array will not contain duplicate timeframes.
-	Statuses      []*TimeframeStatusResponse_Status `protobuf:"bytes,1,rep,name=statuses,proto3" json:"statuses,omitempty"`
+	Statuses []*TimeframeStatusResponse_Status `protobuf:"bytes,1,rep,name=statuses,proto3" json:"statuses,omitempty"`
+	// trace will contain true if there are data for traces.
+	// Otherwise, this will contain false.
+	// Note: this containing true just means there are data,
+	// and it doesn't necessarily mean there will be data
+	// for the user's selected timeframe.
+	Trace bool `protobuf:"varint,2,opt,name=trace,proto3" json:"trace,omitempty"`
+	// log will contain true if there are data for logs.
+	// Otherwise, this will contain false.
+	// Note: this containing true just means there are data,
+	// and it doesn't necessarily mean there will be data
+	// for the user's selected timeframe.
+	Log           bool `protobuf:"varint,3,opt,name=log,proto3" json:"log,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -176,6 +188,20 @@ func (x *TimeframeStatusResponse) GetStatuses() []*TimeframeStatusResponse_Statu
 		return x.Statuses
 	}
 	return nil
+}
+
+func (x *TimeframeStatusResponse) GetTrace() bool {
+	if x != nil {
+		return x.Trace
+	}
+	return false
+}
+
+func (x *TimeframeStatusResponse) GetLog() bool {
+	if x != nil {
+		return x.Log
+	}
+	return false
 }
 
 type TimeframeStatusResponse_Status struct {
@@ -239,9 +265,11 @@ const file_budget_v1alpha_timeframe_service_proto_rawDesc = "" +
 	"&budget/v1alpha/timeframe_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xb8\x01\n" +
 	"\x16TimeframeStatusRequest\x12S\n" +
 	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\x12I\n" +
-	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"\xc1\x02\n" +
+	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"\xe9\x02\n" +
 	"\x17TimeframeStatusResponse\x12J\n" +
-	"\bstatuses\x18\x01 \x03(\v2..budget.v1alpha.TimeframeStatusResponse.StatusR\bstatuses\x1a\x87\x01\n" +
+	"\bstatuses\x18\x01 \x03(\v2..budget.v1alpha.TimeframeStatusResponse.StatusR\bstatuses\x12\x14\n" +
+	"\x05trace\x18\x02 \x01(\bR\x05trace\x12\x10\n" +
+	"\x03log\x18\x03 \x01(\bR\x03log\x1a\x87\x01\n" +
 	"\x06Status\x127\n" +
 	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeR\ttimeframe\x12D\n" +
 	"\x06status\x18\x03 \x01(\x0e2,.budget.v1alpha.TimeframeStatusResponse.CodeR\x06status\"P\n" +

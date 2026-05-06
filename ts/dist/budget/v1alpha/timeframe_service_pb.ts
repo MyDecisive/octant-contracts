@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file budget/v1alpha/timeframe_service.proto.
  */
 export const file_budget_v1alpha_timeframe_service: GenFile = /*@__PURE__*/
-  fileDesc("CiZidWRnZXQvdjFhbHBoYS90aW1lZnJhbWVfc2VydmljZS5wcm90bxIOYnVkZ2V0LnYxYWxwaGEinQEKFlRpbWVmcmFtZVN0YXR1c1JlcXVlc3QSQwoPY29ubmVjdGlvbl9uYW1lGAEgASgJQiq6SCdyJRADGBQyH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQSPgoJbmFtZXNwYWNlGAIgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kIqMCChdUaW1lZnJhbWVTdGF0dXNSZXNwb25zZRJACghzdGF0dXNlcxgBIAMoCzIuLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZVN0YXR1c1Jlc3BvbnNlLlN0YXR1cxp0CgZTdGF0dXMSLAoJdGltZWZyYW1lGAEgASgOMhkuYnVkZ2V0LnYxYWxwaGEuVGltZWZyYW1lEjwKBnN0YXR1cxgDIAEoDjIsLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZVN0YXR1c1Jlc3BvbnNlLkNvZGUiUAoEQ29kZRIUChBDT0RFX1VOU1BFQ0lGSUVEEAASCwoHQ09ERV9PSxABEhAKDENPREVfTk9fREFUQRACEhMKD0NPREVfTk9UX0VOT1VHSBADMngKEFRpbWVmcmFtZVNlcnZpY2USZAoPVGltZWZyYW1lU3RhdHVzEiYuYnVkZ2V0LnYxYWxwaGEuVGltZWZyYW1lU3RhdHVzUmVxdWVzdBonLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZVN0YXR1c1Jlc3BvbnNlIgBC0AEKEmNvbS5idWRnZXQudjFhbHBoYUIVVGltZWZyYW1lU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9idWRnZXQvdjFhbHBoYTtidWRnZXR2MWFscGhhogIDQlhYqgIOQnVkZ2V0LlYxYWxwaGHKAg5CdWRnZXRcVjFhbHBoYeICGkJ1ZGdldFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPQnVkZ2V0OjpWMWFscGhhYgZwcm90bzM", [file_budget_v1alpha_type, file_buf_validate_validate]);
+  fileDesc("CiZidWRnZXQvdjFhbHBoYS90aW1lZnJhbWVfc2VydmljZS5wcm90bxIOYnVkZ2V0LnYxYWxwaGEinQEKFlRpbWVmcmFtZVN0YXR1c1JlcXVlc3QSQwoPY29ubmVjdGlvbl9uYW1lGAEgASgJQiq6SCdyJRADGBQyH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQSPgoJbmFtZXNwYWNlGAIgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kIr8CChdUaW1lZnJhbWVTdGF0dXNSZXNwb25zZRJACghzdGF0dXNlcxgBIAMoCzIuLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZVN0YXR1c1Jlc3BvbnNlLlN0YXR1cxINCgV0cmFjZRgCIAEoCBILCgNsb2cYAyABKAgadAoGU3RhdHVzEiwKCXRpbWVmcmFtZRgBIAEoDjIZLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZRI8CgZzdGF0dXMYAyABKA4yLC5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWVTdGF0dXNSZXNwb25zZS5Db2RlIlAKBENvZGUSFAoQQ09ERV9VTlNQRUNJRklFRBAAEgsKB0NPREVfT0sQARIQCgxDT0RFX05PX0RBVEEQAhITCg9DT0RFX05PVF9FTk9VR0gQAzJ4ChBUaW1lZnJhbWVTZXJ2aWNlEmQKD1RpbWVmcmFtZVN0YXR1cxImLmJ1ZGdldC52MWFscGhhLlRpbWVmcmFtZVN0YXR1c1JlcXVlc3QaJy5idWRnZXQudjFhbHBoYS5UaW1lZnJhbWVTdGF0dXNSZXNwb25zZSIAQtABChJjb20uYnVkZ2V0LnYxYWxwaGFCFVRpbWVmcmFtZVNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvYnVkZ2V0L3YxYWxwaGE7YnVkZ2V0djFhbHBoYaICA0JYWKoCDkJ1ZGdldC5WMWFscGhhygIOQnVkZ2V0XFYxYWxwaGHiAhpCdWRnZXRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD0J1ZGdldDo6VjFhbHBoYWIGcHJvdG8z", [file_budget_v1alpha_type, file_buf_validate_validate]);
 
 /**
  * @generated from message budget.v1alpha.TimeframeStatusRequest
@@ -52,6 +52,28 @@ export type TimeframeStatusResponse = Message<"budget.v1alpha.TimeframeStatusRes
    * @generated from field: repeated budget.v1alpha.TimeframeStatusResponse.Status statuses = 1;
    */
   statuses: TimeframeStatusResponse_Status[];
+
+  /**
+   * trace will contain true if there are data for traces.
+   * Otherwise, this will contain false.
+   * Note: this containing true just means there are data,
+   * and it doesn't necessarily mean there will be data
+   * for the user's selected timeframe.
+   *
+   * @generated from field: bool trace = 2;
+   */
+  trace: boolean;
+
+  /**
+   * log will contain true if there are data for logs.
+   * Otherwise, this will contain false.
+   * Note: this containing true just means there are data,
+   * and it doesn't necessarily mean there will be data
+   * for the user's selected timeframe.
+   *
+   * @generated from field: bool log = 3;
+   */
+  log: boolean;
 };
 
 /**
