@@ -30,6 +30,7 @@ const (
 	InstallStatus_INSTALL_STATUS_INSTALLING  InstallStatus = 1
 	InstallStatus_INSTALL_STATUS_ERROR       InstallStatus = 2
 	InstallStatus_INSTALL_STATUS_INSTALLED   InstallStatus = 3
+	InstallStatus_INSTALL_STATUS_TIMEOUT     InstallStatus = 4
 )
 
 // Enum value maps for InstallStatus.
@@ -39,12 +40,14 @@ var (
 		1: "INSTALL_STATUS_INSTALLING",
 		2: "INSTALL_STATUS_ERROR",
 		3: "INSTALL_STATUS_INSTALLED",
+		4: "INSTALL_STATUS_TIMEOUT",
 	}
 	InstallStatus_value = map[string]int32{
 		"INSTALL_STATUS_UNSPECIFIED": 0,
 		"INSTALL_STATUS_INSTALLING":  1,
 		"INSTALL_STATUS_ERROR":       2,
 		"INSTALL_STATUS_INSTALLED":   3,
+		"INSTALL_STATUS_TIMEOUT":     4,
 	}
 )
 
@@ -307,12 +310,13 @@ const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\adetails\x18\x02 \x03(\v2\x1f.octant.v1alpha.ResourceDetailsR\adetails\"O\n" +
 	"\x0fResourceDetails\x12\x1a\n" +
 	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\x12 \n" +
-	"\amessage\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\amessage*\x86\x01\n" +
+	"\amessage\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\amessage*\xa2\x01\n" +
 	"\rInstallStatus\x12\x1e\n" +
 	"\x1aINSTALL_STATUS_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19INSTALL_STATUS_INSTALLING\x10\x01\x12\x18\n" +
 	"\x14INSTALL_STATUS_ERROR\x10\x02\x12\x1c\n" +
-	"\x18INSTALL_STATUS_INSTALLED\x10\x032\xce\x01\n" +
+	"\x18INSTALL_STATUS_INSTALLED\x10\x03\x12\x1a\n" +
+	"\x16INSTALL_STATUS_TIMEOUT\x10\x042\xce\x01\n" +
 	"\x0eInstallService\x12Q\n" +
 	"\x0eInstallMDAIHub\x12%.octant.v1alpha.InstallMDAIHubRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n" +
 	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x000\x01B\xce\x01\n" +
