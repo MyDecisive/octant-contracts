@@ -192,9 +192,9 @@ const file_octant_v1alpha_argocd_service_proto_rawDesc = "" +
 	"#octant/v1alpha/argocd_service.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"z\n" +
 	"\x15TestConnectionRequest\x12+\n" +
 	"\rargo_endpoint\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\fargoEndpoint\x124\n" +
-	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"\xa2\x01\n" +
-	"\x19SaveArgoConnectionRequest\x120\n" +
-	"\rargo_endpoint\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x88\x01\x01R\fargoEndpoint\x124\n" +
+	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\"\x9d\x01\n" +
+	"\x19SaveArgoConnectionRequest\x12+\n" +
+	"\rargo_endpoint\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\fargoEndpoint\x124\n" +
 	"\x12argo_account_token\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x10argoAccountToken\x12\x1d\n" +
 	"\x04name\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\x04name\"2\n" +
 	"\x16TestConnectionResponse\x12\x18\n" +
