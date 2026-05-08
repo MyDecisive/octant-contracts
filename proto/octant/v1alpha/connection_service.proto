@@ -84,6 +84,12 @@ message CreateConnectionRequest {
   Deployment deployment = 3 [(buf.validate.field).required = true];
   // destinations are where telemetry from this connection is sent and options needed to send it there
   repeated TelemetryDestination destinations = 4 [(buf.validate.field).required = true];
+  // namespace is the kubernetes namespace the mdai hub is installed in.
+  string namespace = 5 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }
 
 // TelemetryDestination is information for an integration to send telemetry to from a connection

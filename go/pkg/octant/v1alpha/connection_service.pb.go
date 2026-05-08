@@ -291,7 +291,9 @@ type CreateConnectionRequest struct {
 	// deployment contains information required for deploying the connection
 	Deployment *Deployment `protobuf:"bytes,3,opt,name=deployment,proto3" json:"deployment,omitempty"`
 	// destinations are where telemetry from this connection is sent and options needed to send it there
-	Destinations  []*TelemetryDestination `protobuf:"bytes,4,rep,name=destinations,proto3" json:"destinations,omitempty"`
+	Destinations []*TelemetryDestination `protobuf:"bytes,4,rep,name=destinations,proto3" json:"destinations,omitempty"`
+	// namespace is the kubernetes namespace the mdai hub is installed in.
+	Namespace     string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -352,6 +354,13 @@ func (x *CreateConnectionRequest) GetDestinations() []*TelemetryDestination {
 		return x.Destinations
 	}
 	return nil
+}
+
+func (x *CreateConnectionRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
 }
 
 // TelemetryDestination is information for an integration to send telemetry to from a connection
@@ -1205,14 +1214,15 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x14GetConnectionRequest\x12=\n" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"C\n" +
 	"\x16GetConnectionsResponse\x12)\n" +
-	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xc4\x02\n" +
+	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\x8f\x03\n" +
 	"\x17CreateConnectionRequest\x12=\n" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12T\n" +
 	"\x0ftelemetry_types\x18\x02 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12B\n" +
 	"\n" +
 	"deployment\x18\x03 \x01(\v2\x1a.octant.v1alpha.DeploymentB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"deployment\x12P\n" +
-	"\fdestinations\x18\x04 \x03(\v2$.octant.v1alpha.TelemetryDestinationB\x06\xbaH\x03\xc8\x01\x01R\fdestinations\"v\n" +
+	"\fdestinations\x18\x04 \x03(\v2$.octant.v1alpha.TelemetryDestinationB\x06\xbaH\x03\xc8\x01\x01R\fdestinations\x12I\n" +
+	"\tnamespace\x18\x05 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"v\n" +
 	"\x14TelemetryDestination\x123\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1f.octant.v1alpha.IntegrationTypeR\x04type\x12)\n" +
 	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"k\n" +
