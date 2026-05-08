@@ -65,8 +65,8 @@ const (
 
 // ConnectionServiceClient is a client for the octant.v1alpha.ConnectionService service.
 type ConnectionServiceClient interface {
-	// GetConnections gets all connection names for a namespace
-	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
+	// GetConnections gets all existing connection names
+	GetConnections(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
 	// GetConnection gets details about a connection
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
 	// CreateConnection creates a connection and deploys it
@@ -100,7 +100,7 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 	baseURL = strings.TrimRight(baseURL, "/")
 	connectionServiceMethods := v1alpha.File_octant_v1alpha_connection_service_proto.Services().ByName("ConnectionService").Methods()
 	return &connectionServiceClient{
-		getConnections: connect.NewClient[v1alpha.GetConnectionsRequest, v1alpha.GetConnectionsResponse](
+		getConnections: connect.NewClient[emptypb.Empty, v1alpha.GetConnectionsResponse](
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionsProcedure,
 			connect.WithSchema(connectionServiceMethods.ByName("GetConnections")),
@@ -159,7 +159,7 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 
 // connectionServiceClient implements ConnectionServiceClient.
 type connectionServiceClient struct {
-	getConnections               *connect.Client[v1alpha.GetConnectionsRequest, v1alpha.GetConnectionsResponse]
+	getConnections               *connect.Client[emptypb.Empty, v1alpha.GetConnectionsResponse]
 	getConnection                *connect.Client[v1alpha.GetConnectionRequest, v1alpha.GetConnectionResponse]
 	createConnection             *connect.Client[v1alpha.CreateConnectionRequest, emptypb.Empty]
 	deleteConnection             *connect.Client[v1alpha.DeleteConnectionRequest, emptypb.Empty]
@@ -171,7 +171,7 @@ type connectionServiceClient struct {
 }
 
 // GetConnections calls octant.v1alpha.ConnectionService.GetConnections.
-func (c *connectionServiceClient) GetConnections(ctx context.Context, req *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error) {
+func (c *connectionServiceClient) GetConnections(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetConnectionsResponse], error) {
 	return c.getConnections.CallUnary(ctx, req)
 }
 
@@ -217,8 +217,8 @@ func (c *connectionServiceClient) GenerateManifests(ctx context.Context, req *co
 
 // ConnectionServiceHandler is an implementation of the octant.v1alpha.ConnectionService service.
 type ConnectionServiceHandler interface {
-	// GetConnections gets all connection names for a namespace
-	GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
+	// GetConnections gets all existing connection names
+	GetConnections(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetConnectionsResponse], error)
 	// GetConnection gets details about a connection
 	GetConnection(context.Context, *connect.Request[v1alpha.GetConnectionRequest]) (*connect.Response[v1alpha.GetConnectionResponse], error)
 	// CreateConnection creates a connection and deploys it
@@ -331,7 +331,7 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 // UnimplementedConnectionServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedConnectionServiceHandler struct{}
 
-func (UnimplementedConnectionServiceHandler) GetConnections(context.Context, *connect.Request[v1alpha.GetConnectionsRequest]) (*connect.Response[v1alpha.GetConnectionsResponse], error) {
+func (UnimplementedConnectionServiceHandler) GetConnections(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetConnectionsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ConnectionService.GetConnections is not implemented"))
 }
 
