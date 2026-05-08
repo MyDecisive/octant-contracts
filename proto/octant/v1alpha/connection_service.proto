@@ -60,7 +60,12 @@ message GetConnectionResponse {
 
 // GetConnectionRequest are fields required to fetch a connection
 message GetConnectionRequest {
-  ConnectionScope scope = 1 [(buf.validate.field).required = true];
+  // connection_name is the name of the connection
+  string connection_name = 1 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }
 
 // GetConnectionsResponse contains a list of all the connections in a namespace
@@ -84,12 +89,6 @@ message CreateConnectionRequest {
   Deployment deployment = 3 [(buf.validate.field).required = true];
   // destinations are where telemetry from this connection is sent and options needed to send it there
   repeated TelemetryDestination destinations = 4 [(buf.validate.field).required = true];
-  // namespace is the kubernetes namespace the mdai hub is installed in.
-  string namespace = 5 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
 }
 
 // TelemetryDestination is information for an integration to send telemetry to from a connection
@@ -219,5 +218,10 @@ message ValidationAttributes {
 }
 
 message DeleteConnectionRequest {
-  ConnectionScope scope = 1 [(buf.validate.field).required = true];
+  // connection_name is the name of the connection to delete
+  string connection_name = 1 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }

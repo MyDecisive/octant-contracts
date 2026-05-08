@@ -193,10 +193,11 @@ func (x *GetConnectionResponse) GetDestinations() []*TelemetryDestination {
 
 // GetConnectionRequest are fields required to fetch a connection
 type GetConnectionRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Scope         *ConnectionScope       `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// connection_name is the name of the connection
+	ConnectionName string `protobuf:"bytes,1,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetConnectionRequest) Reset() {
@@ -229,11 +230,11 @@ func (*GetConnectionRequest) Descriptor() ([]byte, []int) {
 	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetConnectionRequest) GetScope() *ConnectionScope {
+func (x *GetConnectionRequest) GetConnectionName() string {
 	if x != nil {
-		return x.Scope
+		return x.ConnectionName
 	}
-	return nil
+	return ""
 }
 
 // GetConnectionsResponse contains a list of all the connections in a namespace
@@ -291,9 +292,7 @@ type CreateConnectionRequest struct {
 	// deployment contains information required for deploying the connection
 	Deployment *Deployment `protobuf:"bytes,3,opt,name=deployment,proto3" json:"deployment,omitempty"`
 	// destinations are where telemetry from this connection is sent and options needed to send it there
-	Destinations []*TelemetryDestination `protobuf:"bytes,4,rep,name=destinations,proto3" json:"destinations,omitempty"`
-	// namespace is the kubernetes namespace the mdai hub is installed in.
-	Namespace     string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	Destinations  []*TelemetryDestination `protobuf:"bytes,4,rep,name=destinations,proto3" json:"destinations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -354,13 +353,6 @@ func (x *CreateConnectionRequest) GetDestinations() []*TelemetryDestination {
 		return x.Destinations
 	}
 	return nil
-}
-
-func (x *CreateConnectionRequest) GetNamespace() string {
-	if x != nil {
-		return x.Namespace
-	}
-	return ""
 }
 
 // TelemetryDestination is information for an integration to send telemetry to from a connection
@@ -1156,10 +1148,11 @@ func (x *ValidationAttributes) GetPolicy() map[string]bool {
 }
 
 type DeleteConnectionRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Scope         *ConnectionScope       `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// connection_name is the name of the connection to delete
+	ConnectionName string `protobuf:"bytes,1,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DeleteConnectionRequest) Reset() {
@@ -1192,11 +1185,11 @@ func (*DeleteConnectionRequest) Descriptor() ([]byte, []int) {
 	return file_octant_v1alpha_connection_service_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *DeleteConnectionRequest) GetScope() *ConnectionScope {
+func (x *DeleteConnectionRequest) GetConnectionName() string {
 	if x != nil {
-		return x.Scope
+		return x.ConnectionName
 	}
-	return nil
+	return ""
 }
 
 var File_octant_v1alpha_connection_service_proto protoreflect.FileDescriptor
@@ -1210,19 +1203,18 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x15GetConnectionResponse\x12@\n" +
 	"\x0ftelemetry_types\x18\x01 \x03(\x0e2\x17.octant.v1alpha.MLTTypeR\x0etelemetryTypes\x12G\n" +
 	"\x0fdeployment_type\x18\x02 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeR\x0edeploymentType\x12H\n" +
-	"\fdestinations\x18\x03 \x03(\v2$.octant.v1alpha.TelemetryDestinationR\fdestinations\"U\n" +
-	"\x14GetConnectionRequest\x12=\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"C\n" +
+	"\fdestinations\x18\x03 \x03(\v2$.octant.v1alpha.TelemetryDestinationR\fdestinations\"k\n" +
+	"\x14GetConnectionRequest\x12S\n" +
+	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"C\n" +
 	"\x16GetConnectionsResponse\x12)\n" +
-	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\x8f\x03\n" +
+	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"\xc4\x02\n" +
 	"\x17CreateConnectionRequest\x12=\n" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12T\n" +
 	"\x0ftelemetry_types\x18\x02 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12B\n" +
 	"\n" +
 	"deployment\x18\x03 \x01(\v2\x1a.octant.v1alpha.DeploymentB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"deployment\x12P\n" +
-	"\fdestinations\x18\x04 \x03(\v2$.octant.v1alpha.TelemetryDestinationB\x06\xbaH\x03\xc8\x01\x01R\fdestinations\x12I\n" +
-	"\tnamespace\x18\x05 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"v\n" +
+	"\fdestinations\x18\x04 \x03(\v2$.octant.v1alpha.TelemetryDestinationB\x06\xbaH\x03\xc8\x01\x01R\fdestinations\"v\n" +
 	"\x14TelemetryDestination\x123\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1f.octant.v1alpha.IntegrationTypeR\x04type\x12)\n" +
 	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"k\n" +
@@ -1277,9 +1269,9 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\x1a9\n" +
 	"\vPolicyEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"X\n" +
-	"\x17DeleteConnectionRequest\x12=\n" +
-	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope*Q\n" +
+	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"n\n" +
+	"\x17DeleteConnectionRequest\x12S\n" +
+	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName*Q\n" +
 	"\x0fIntegrationType\x12 \n" +
 	"\x1cINTEGRATION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18INTEGRATION_TYPE_DATADOG\x10\x012\xda\a\n" +
@@ -1342,52 +1334,50 @@ var file_octant_v1alpha_connection_service_proto_depIdxs = []int32{
 	23, // 0: octant.v1alpha.GetConnectionResponse.telemetry_types:type_name -> octant.v1alpha.MLTType
 	24, // 1: octant.v1alpha.GetConnectionResponse.deployment_type:type_name -> octant.v1alpha.DeploymentType
 	6,  // 2: octant.v1alpha.GetConnectionResponse.destinations:type_name -> octant.v1alpha.TelemetryDestination
-	1,  // 3: octant.v1alpha.GetConnectionRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	1,  // 4: octant.v1alpha.CreateConnectionRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	23, // 5: octant.v1alpha.CreateConnectionRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
-	7,  // 6: octant.v1alpha.CreateConnectionRequest.deployment:type_name -> octant.v1alpha.Deployment
-	6,  // 7: octant.v1alpha.CreateConnectionRequest.destinations:type_name -> octant.v1alpha.TelemetryDestination
-	0,  // 8: octant.v1alpha.TelemetryDestination.type:type_name -> octant.v1alpha.IntegrationType
-	24, // 9: octant.v1alpha.Deployment.type:type_name -> octant.v1alpha.DeploymentType
-	1,  // 10: octant.v1alpha.GenerateManifestsRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	25, // 11: octant.v1alpha.GenerateManifestsRequest.format:type_name -> octant.v1alpha.ManifestOutFormat
-	24, // 12: octant.v1alpha.GenerateManifestsRequest.deployment_type:type_name -> octant.v1alpha.DeploymentType
-	23, // 13: octant.v1alpha.GenerateManifestsRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
-	1,  // 14: octant.v1alpha.GetConnectionValidatorRunIdsRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	1,  // 15: octant.v1alpha.CreateConnectionValidatorRunRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	1,  // 16: octant.v1alpha.DeleteConnectionValidatorRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	1,  // 17: octant.v1alpha.GetConnectionStatusRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	17, // 18: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
-	18, // 19: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
-	18, // 20: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
-	18, // 21: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
-	19, // 22: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
-	21, // 23: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
-	22, // 24: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
-	1,  // 25: octant.v1alpha.DeleteConnectionRequest.scope:type_name -> octant.v1alpha.ConnectionScope
-	26, // 26: octant.v1alpha.ConnectionService.GetConnections:input_type -> google.protobuf.Empty
-	3,  // 27: octant.v1alpha.ConnectionService.GetConnection:input_type -> octant.v1alpha.GetConnectionRequest
-	5,  // 28: octant.v1alpha.ConnectionService.CreateConnection:input_type -> octant.v1alpha.CreateConnectionRequest
-	20, // 29: octant.v1alpha.ConnectionService.DeleteConnection:input_type -> octant.v1alpha.DeleteConnectionRequest
-	10, // 30: octant.v1alpha.ConnectionService.GetConnectionValidatorRunIds:input_type -> octant.v1alpha.GetConnectionValidatorRunIdsRequest
-	12, // 31: octant.v1alpha.ConnectionService.CreateConnectionValidatorRun:input_type -> octant.v1alpha.CreateConnectionValidatorRunRequest
-	14, // 32: octant.v1alpha.ConnectionService.DeleteConnectionValidator:input_type -> octant.v1alpha.DeleteConnectionValidatorRequest
-	15, // 33: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
-	8,  // 34: octant.v1alpha.ConnectionService.GenerateManifests:input_type -> octant.v1alpha.GenerateManifestsRequest
-	4,  // 35: octant.v1alpha.ConnectionService.GetConnections:output_type -> octant.v1alpha.GetConnectionsResponse
-	2,  // 36: octant.v1alpha.ConnectionService.GetConnection:output_type -> octant.v1alpha.GetConnectionResponse
-	26, // 37: octant.v1alpha.ConnectionService.CreateConnection:output_type -> google.protobuf.Empty
-	26, // 38: octant.v1alpha.ConnectionService.DeleteConnection:output_type -> google.protobuf.Empty
-	11, // 39: octant.v1alpha.ConnectionService.GetConnectionValidatorRunIds:output_type -> octant.v1alpha.GetConnectionValidatorRunIdsResponse
-	13, // 40: octant.v1alpha.ConnectionService.CreateConnectionValidatorRun:output_type -> octant.v1alpha.CreateConnectionValidatorRunResponse
-	26, // 41: octant.v1alpha.ConnectionService.DeleteConnectionValidator:output_type -> google.protobuf.Empty
-	16, // 42: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
-	9,  // 43: octant.v1alpha.ConnectionService.GenerateManifests:output_type -> octant.v1alpha.GenerateManifestsResponse
-	35, // [35:44] is the sub-list for method output_type
-	26, // [26:35] is the sub-list for method input_type
-	26, // [26:26] is the sub-list for extension type_name
-	26, // [26:26] is the sub-list for extension extendee
-	0,  // [0:26] is the sub-list for field type_name
+	1,  // 3: octant.v1alpha.CreateConnectionRequest.scope:type_name -> octant.v1alpha.ConnectionScope
+	23, // 4: octant.v1alpha.CreateConnectionRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
+	7,  // 5: octant.v1alpha.CreateConnectionRequest.deployment:type_name -> octant.v1alpha.Deployment
+	6,  // 6: octant.v1alpha.CreateConnectionRequest.destinations:type_name -> octant.v1alpha.TelemetryDestination
+	0,  // 7: octant.v1alpha.TelemetryDestination.type:type_name -> octant.v1alpha.IntegrationType
+	24, // 8: octant.v1alpha.Deployment.type:type_name -> octant.v1alpha.DeploymentType
+	1,  // 9: octant.v1alpha.GenerateManifestsRequest.scope:type_name -> octant.v1alpha.ConnectionScope
+	25, // 10: octant.v1alpha.GenerateManifestsRequest.format:type_name -> octant.v1alpha.ManifestOutFormat
+	24, // 11: octant.v1alpha.GenerateManifestsRequest.deployment_type:type_name -> octant.v1alpha.DeploymentType
+	23, // 12: octant.v1alpha.GenerateManifestsRequest.telemetry_types:type_name -> octant.v1alpha.MLTType
+	1,  // 13: octant.v1alpha.GetConnectionValidatorRunIdsRequest.scope:type_name -> octant.v1alpha.ConnectionScope
+	1,  // 14: octant.v1alpha.CreateConnectionValidatorRunRequest.scope:type_name -> octant.v1alpha.ConnectionScope
+	1,  // 15: octant.v1alpha.DeleteConnectionValidatorRequest.scope:type_name -> octant.v1alpha.ConnectionScope
+	1,  // 16: octant.v1alpha.GetConnectionStatusRequest.scope:type_name -> octant.v1alpha.ConnectionScope
+	17, // 17: octant.v1alpha.GetConnectionStatusResponse.validation_results:type_name -> octant.v1alpha.ValidationResultsBySignal
+	18, // 18: octant.v1alpha.ValidationResultsBySignal.logs:type_name -> octant.v1alpha.ValidationResult
+	18, // 19: octant.v1alpha.ValidationResultsBySignal.metrics:type_name -> octant.v1alpha.ValidationResult
+	18, // 20: octant.v1alpha.ValidationResultsBySignal.traces:type_name -> octant.v1alpha.ValidationResult
+	19, // 21: octant.v1alpha.ValidationResult.attributes:type_name -> octant.v1alpha.ValidationAttributes
+	21, // 22: octant.v1alpha.ValidationAttributes.parity:type_name -> octant.v1alpha.ValidationAttributes.ParityEntry
+	22, // 23: octant.v1alpha.ValidationAttributes.policy:type_name -> octant.v1alpha.ValidationAttributes.PolicyEntry
+	26, // 24: octant.v1alpha.ConnectionService.GetConnections:input_type -> google.protobuf.Empty
+	3,  // 25: octant.v1alpha.ConnectionService.GetConnection:input_type -> octant.v1alpha.GetConnectionRequest
+	5,  // 26: octant.v1alpha.ConnectionService.CreateConnection:input_type -> octant.v1alpha.CreateConnectionRequest
+	20, // 27: octant.v1alpha.ConnectionService.DeleteConnection:input_type -> octant.v1alpha.DeleteConnectionRequest
+	10, // 28: octant.v1alpha.ConnectionService.GetConnectionValidatorRunIds:input_type -> octant.v1alpha.GetConnectionValidatorRunIdsRequest
+	12, // 29: octant.v1alpha.ConnectionService.CreateConnectionValidatorRun:input_type -> octant.v1alpha.CreateConnectionValidatorRunRequest
+	14, // 30: octant.v1alpha.ConnectionService.DeleteConnectionValidator:input_type -> octant.v1alpha.DeleteConnectionValidatorRequest
+	15, // 31: octant.v1alpha.ConnectionService.GetConnectionStatus:input_type -> octant.v1alpha.GetConnectionStatusRequest
+	8,  // 32: octant.v1alpha.ConnectionService.GenerateManifests:input_type -> octant.v1alpha.GenerateManifestsRequest
+	4,  // 33: octant.v1alpha.ConnectionService.GetConnections:output_type -> octant.v1alpha.GetConnectionsResponse
+	2,  // 34: octant.v1alpha.ConnectionService.GetConnection:output_type -> octant.v1alpha.GetConnectionResponse
+	26, // 35: octant.v1alpha.ConnectionService.CreateConnection:output_type -> google.protobuf.Empty
+	26, // 36: octant.v1alpha.ConnectionService.DeleteConnection:output_type -> google.protobuf.Empty
+	11, // 37: octant.v1alpha.ConnectionService.GetConnectionValidatorRunIds:output_type -> octant.v1alpha.GetConnectionValidatorRunIdsResponse
+	13, // 38: octant.v1alpha.ConnectionService.CreateConnectionValidatorRun:output_type -> octant.v1alpha.CreateConnectionValidatorRunResponse
+	26, // 39: octant.v1alpha.ConnectionService.DeleteConnectionValidator:output_type -> google.protobuf.Empty
+	16, // 40: octant.v1alpha.ConnectionService.GetConnectionStatus:output_type -> octant.v1alpha.GetConnectionStatusResponse
+	9,  // 41: octant.v1alpha.ConnectionService.GenerateManifests:output_type -> octant.v1alpha.GenerateManifestsResponse
+	33, // [33:42] is the sub-list for method output_type
+	24, // [24:33] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_octant_v1alpha_connection_service_proto_init() }
