@@ -8,8 +8,8 @@ import "octant/v1alpha/type.proto";
 
 // ConnectService allows for interacting with MDAI Octant Connections
 service ConnectionService {
-  // GetConnections gets all connection names for a namespace
-  rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
+  // GetConnections gets all existing connection names
+  rpc GetConnections(google.protobuf.Empty) returns (GetConnectionsResponse) {}
   // GetConnection gets details about a connection
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
   // CreateConnection creates a connection and deploys it
@@ -48,16 +48,6 @@ message ConnectionScope {
   ];
 }
 
-// GetConnectionsRequest are fields needed to retrieve a list of connection names
-message GetConnectionsRequest {
-  // namespace is the kubernetes namespace to create the connection in. Should be the same as the MDAI Hub install.
-  string namespace = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.max_len = 63,
-    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-  ];
-}
-
 // GetConnectionResponse has details on a connection
 message GetConnectionResponse {
   // telemetry_types are the MLT telemetry types for this connection
@@ -70,7 +60,12 @@ message GetConnectionResponse {
 
 // GetConnectionRequest are fields required to fetch a connection
 message GetConnectionRequest {
-  ConnectionScope scope = 1 [(buf.validate.field).required = true];
+  // connection_name is the name of the connection
+  string connection_name = 1 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }
 
 // GetConnectionsResponse contains a list of all the connections in a namespace
@@ -223,5 +218,10 @@ message ValidationAttributes {
 }
 
 message DeleteConnectionRequest {
-  ConnectionScope scope = 1 [(buf.validate.field).required = true];
+  // connection_name is the name of the connection to delete
+  string connection_name = 1 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
 }
