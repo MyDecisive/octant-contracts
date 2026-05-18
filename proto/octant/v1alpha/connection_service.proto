@@ -9,21 +9,29 @@ import "octant/v1alpha/type.proto";
 // ConnectService allows for interacting with MDAI Octant Connections
 service ConnectionService {
   // GetConnections gets all existing connection names
-  rpc GetConnections(google.protobuf.Empty) returns (GetConnectionsResponse) {}
+  rpc GetConnections(google.protobuf.Empty) returns (GetConnectionsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
   // GetConnection gets details about a connection
-  rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
+  rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
   // CreateConnection creates a connection and deploys it
   rpc CreateConnection(CreateConnectionRequest) returns (google.protobuf.Empty) {}
   // DeleteConnection removes an existing connection and its associated resources
   rpc DeleteConnection(DeleteConnectionRequest) returns (google.protobuf.Empty) {}
   // GetConnectionValidatorRuns gets the validator runs that exist in the validation dataset
-  rpc GetConnectionValidatorRunIds(GetConnectionValidatorRunIdsRequest) returns (GetConnectionValidatorRunIdsResponse) {}
+  rpc GetConnectionValidatorRunIds(GetConnectionValidatorRunIdsRequest) returns (GetConnectionValidatorRunIdsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
   // CreateConnectionValidatorRun creates a new validator run for the given connection. Will create a new validator run if one already exists.
   rpc CreateConnectionValidatorRun(CreateConnectionValidatorRunRequest) returns (CreateConnectionValidatorRunResponse) {}
   // DeleteConnectionValidator deletes connection validator resources
   rpc DeleteConnectionValidator(DeleteConnectionValidatorRequest) returns (google.protobuf.Empty) {}
   // GetConnectionStatus gets the status of a connection based on dataflow and validation metrics
-  rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {}
+  rpc GetConnectionStatus(GetConnectionStatusRequest) returns (GetConnectionStatusResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
   // GenerateManifests generates the manifest base on the given input and this will returns
   // the compressed zip file containing the manifests as a stream of raw bytes.
   // Note: To create a download link in the FE, the stream of file content data should be stored
@@ -184,13 +192,13 @@ message GetConnectionStatusRequest {
 
 message GetConnectionStatusResponse {
   // receiving_data indicates if the Connection's Collector is receiving telemetry for its configured Telemetry types
-  bool receiving_data = 1;
+  bool receiving_data = 1 [(buf.validate.field).required = true];
   // sending_data indicates if the Connection's Collector is sending telemetry for its configured Telemetry types
-  bool sending_data = 2;
+  bool sending_data = 2 [(buf.validate.field).required = true];
   // sending_data indicates if the data coming to the Collector fulfills validator parity or policy requirements
-  bool data_integrity = 3;
+  bool data_integrity = 3 [(buf.validate.field).required = true];
   // clients_connected indicates if the Connection's Collector is connected for its configured Telemetry types
-  bool clients_connected = 4;
+  bool clients_connected = 4 [(buf.validate.field).required = true];
   // validation_results is a map of granular validation details per data type (MLT)
   ValidationResultsBySignal validation_results = 5;
 }

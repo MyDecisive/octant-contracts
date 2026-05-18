@@ -277,9 +277,9 @@ const file_budget_v1alpha_timeframe_service_proto_rawDesc = "" +
 	"\x10CODE_UNSPECIFIED\x10\x00\x12\v\n" +
 	"\aCODE_OK\x10\x01\x12\x10\n" +
 	"\fCODE_NO_DATA\x10\x02\x12\x13\n" +
-	"\x0fCODE_NOT_ENOUGH\x10\x032x\n" +
-	"\x10TimeframeService\x12d\n" +
-	"\x0fTimeframeStatus\x12&.budget.v1alpha.TimeframeStatusRequest\x1a'.budget.v1alpha.TimeframeStatusResponse\"\x00B\xd0\x01\n" +
+	"\x0fCODE_NOT_ENOUGH\x10\x032{\n" +
+	"\x10TimeframeService\x12g\n" +
+	"\x0fTimeframeStatus\x12&.budget.v1alpha.TimeframeStatusRequest\x1a'.budget.v1alpha.TimeframeStatusResponse\"\x03\x90\x02\x01B\xd0\x01\n" +
 	"\x12com.budget.v1alphaB\x15TimeframeServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/budget/v1alpha;budgetv1alpha\xa2\x02\x03BXX\xaa\x02\x0eBudget.V1alpha\xca\x02\x0eBudget\\V1alpha\xe2\x02\x1aBudget\\V1alpha\\GPBMetadata\xea\x02\x0fBudget::V1alphab\x06proto3"
 
 var (

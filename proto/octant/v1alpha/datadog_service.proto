@@ -7,7 +7,9 @@ import "google/protobuf/empty.proto";
 
 service DatadogService {
   // GetDatadogIntegrations returns list of datadog integration names.
-  rpc GetDatadogIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {}
+  rpc GetDatadogIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
   // SaveDatadogIntegration saves the given datadog integration.
   // If the integration already exists, this will override the saved data with the one provided.
   rpc SaveDatadogIntegration(SaveDatadogIntegrationRequest) returns (google.protobuf.Empty) {}

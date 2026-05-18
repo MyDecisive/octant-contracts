@@ -438,11 +438,11 @@ const file_budget_v1alpha_budget_service_proto_rawDesc = "" +
 	"\x0fconnection_name\x18\x06 \x01(\tB-\xbaH*\xc8\x01\x01r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"a\n" +
 	"\rTraceResponse\x12(\n" +
 	"\x04data\x18\x01 \x03(\v2\x14.budget.v1alpha.SpanR\x04data\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xe7\x01\n" +
-	"\rBudgetService\x12L\n" +
-	"\aOverall\x12\x1e.budget.v1alpha.OverallRequest\x1a\x1f.budget.v1alpha.OverallResponse\"\x00\x12@\n" +
-	"\x03Log\x12\x1a.budget.v1alpha.LogRequest\x1a\x1b.budget.v1alpha.LogResponse\"\x00\x12F\n" +
-	"\x05Trace\x12\x1c.budget.v1alpha.TraceRequest\x1a\x1d.budget.v1alpha.TraceResponse\"\x00B\xcd\x01\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xf0\x01\n" +
+	"\rBudgetService\x12O\n" +
+	"\aOverall\x12\x1e.budget.v1alpha.OverallRequest\x1a\x1f.budget.v1alpha.OverallResponse\"\x03\x90\x02\x01\x12C\n" +
+	"\x03Log\x12\x1a.budget.v1alpha.LogRequest\x1a\x1b.budget.v1alpha.LogResponse\"\x03\x90\x02\x01\x12I\n" +
+	"\x05Trace\x12\x1c.budget.v1alpha.TraceRequest\x1a\x1d.budget.v1alpha.TraceResponse\"\x03\x90\x02\x01B\xcd\x01\n" +
 	"\x12com.budget.v1alphaB\x12BudgetServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/budget/v1alpha;budgetv1alpha\xa2\x02\x03BXX\xaa\x02\x0eBudget.V1alpha\xca\x02\x0eBudget\\V1alpha\xe2\x02\x1aBudget\\V1alpha\\GPBMetadata\xea\x02\x0fBudget::V1alphab\x06proto3"
 
 var (

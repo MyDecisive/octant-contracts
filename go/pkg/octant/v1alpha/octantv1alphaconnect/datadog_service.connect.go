@@ -66,6 +66,7 @@ func NewDatadogServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			httpClient,
 			baseURL+DatadogServiceGetDatadogIntegrationsProcedure,
 			connect.WithSchema(datadogServiceMethods.ByName("GetDatadogIntegrations")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		saveDatadogIntegration: connect.NewClient[v1alpha.SaveDatadogIntegrationRequest, emptypb.Empty](
@@ -113,6 +114,7 @@ func NewDatadogServiceHandler(svc DatadogServiceHandler, opts ...connect.Handler
 		DatadogServiceGetDatadogIntegrationsProcedure,
 		svc.GetDatadogIntegrations,
 		connect.WithSchema(datadogServiceMethods.ByName("GetDatadogIntegrations")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	datadogServiceSaveDatadogIntegrationHandler := connect.NewUnaryHandler(

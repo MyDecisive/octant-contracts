@@ -20,5 +20,13 @@ plugins:
     out: ts/dist
     opt: target=ts
     include_imports: true
+  - local: protoc-gen-openapiv2
+    out: swagger
+    opt:
+      - allow_merge=true
+      - merge_file_name=octant_docs
+      - json_names_for_fields=true # Ensures field names match Connect's JSON camelCase output
+      - use_go_templates=true       # Helps format descriptions correctly
+      - generate_unbound_methods=true
 inputs:
   - directory: proto

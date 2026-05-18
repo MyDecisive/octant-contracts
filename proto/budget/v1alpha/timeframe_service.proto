@@ -7,7 +7,9 @@ import "buf/validate/validate.proto";
 
 service TimeframeService {
   // TimeframeStatus returns timeframe status for each timeframe.
-  rpc TimeframeStatus(TimeframeStatusRequest) returns (TimeframeStatusResponse) {}
+  rpc TimeframeStatus(TimeframeStatusRequest) returns (TimeframeStatusResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
 }
 
 message TimeframeStatusRequest {

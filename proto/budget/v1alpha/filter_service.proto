@@ -8,7 +8,9 @@ import "buf/validate/validate.proto";
 service FilterService {
   // GetFilter returns the current filter setting of the given filter type.
   // If  an update is in progress, this will return with an error code `unavailable`.
-  rpc GetFilter(GetFilterRequest) returns (GetFilterResponse) {}
+  rpc GetFilter(GetFilterRequest) returns (GetFilterResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
   // UpdateFilter attempts to update filter setting of the given filter type.
   // If an update is in progress, this will immediately return with an error code `unavailable`.
   // Otherwise, this will continuously give update until the update is complete or errored.

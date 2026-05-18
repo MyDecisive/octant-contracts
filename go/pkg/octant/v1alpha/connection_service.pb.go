@@ -1244,12 +1244,12 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\"\x85\x01\n" +
 	"\x1aGetConnectionStatusRequest\x12=\n" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12(\n" +
-	"\x10validator_run_id\x18\x02 \x01(\tR\x0evalidatorRunId\"\x95\x02\n" +
-	"\x1bGetConnectionStatusResponse\x12%\n" +
-	"\x0ereceiving_data\x18\x01 \x01(\bR\rreceivingData\x12!\n" +
-	"\fsending_data\x18\x02 \x01(\bR\vsendingData\x12%\n" +
-	"\x0edata_integrity\x18\x03 \x01(\bR\rdataIntegrity\x12+\n" +
-	"\x11clients_connected\x18\x04 \x01(\bR\x10clientsConnected\x12X\n" +
+	"\x10validator_run_id\x18\x02 \x01(\tR\x0evalidatorRunId\"\xb5\x02\n" +
+	"\x1bGetConnectionStatusResponse\x12-\n" +
+	"\x0ereceiving_data\x18\x01 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\rreceivingData\x12)\n" +
+	"\fsending_data\x18\x02 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\vsendingData\x12-\n" +
+	"\x0edata_integrity\x18\x03 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\rdataIntegrity\x123\n" +
+	"\x11clients_connected\x18\x04 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\x10clientsConnected\x12X\n" +
 	"\x12validation_results\x18\x05 \x01(\v2).octant.v1alpha.ValidationResultsBySignalR\x11validationResults\"\xc7\x01\n" +
 	"\x19ValidationResultsBySignal\x124\n" +
 	"\x04logs\x18\x01 \x01(\v2 .octant.v1alpha.ValidationResultR\x04logs\x12:\n" +
@@ -1274,16 +1274,16 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName*Q\n" +
 	"\x0fIntegrationType\x12 \n" +
 	"\x1cINTEGRATION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
-	"\x18INTEGRATION_TYPE_DATADOG\x10\x012\xda\a\n" +
-	"\x11ConnectionService\x12R\n" +
-	"\x0eGetConnections\x12\x16.google.protobuf.Empty\x1a&.octant.v1alpha.GetConnectionsResponse\"\x00\x12^\n" +
-	"\rGetConnection\x12$.octant.v1alpha.GetConnectionRequest\x1a%.octant.v1alpha.GetConnectionResponse\"\x00\x12U\n" +
+	"\x18INTEGRATION_TYPE_DATADOG\x10\x012\xe6\a\n" +
+	"\x11ConnectionService\x12U\n" +
+	"\x0eGetConnections\x12\x16.google.protobuf.Empty\x1a&.octant.v1alpha.GetConnectionsResponse\"\x03\x90\x02\x01\x12a\n" +
+	"\rGetConnection\x12$.octant.v1alpha.GetConnectionRequest\x1a%.octant.v1alpha.GetConnectionResponse\"\x03\x90\x02\x01\x12U\n" +
 	"\x10CreateConnection\x12'.octant.v1alpha.CreateConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12U\n" +
-	"\x10DeleteConnection\x12'.octant.v1alpha.DeleteConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x8b\x01\n" +
-	"\x1cGetConnectionValidatorRunIds\x123.octant.v1alpha.GetConnectionValidatorRunIdsRequest\x1a4.octant.v1alpha.GetConnectionValidatorRunIdsResponse\"\x00\x12\x8b\x01\n" +
+	"\x10DeleteConnection\x12'.octant.v1alpha.DeleteConnectionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x8e\x01\n" +
+	"\x1cGetConnectionValidatorRunIds\x123.octant.v1alpha.GetConnectionValidatorRunIdsRequest\x1a4.octant.v1alpha.GetConnectionValidatorRunIdsResponse\"\x03\x90\x02\x01\x12\x8b\x01\n" +
 	"\x1cCreateConnectionValidatorRun\x123.octant.v1alpha.CreateConnectionValidatorRunRequest\x1a4.octant.v1alpha.CreateConnectionValidatorRunResponse\"\x00\x12g\n" +
-	"\x19DeleteConnectionValidator\x120.octant.v1alpha.DeleteConnectionValidatorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12p\n" +
-	"\x13GetConnectionStatus\x12*.octant.v1alpha.GetConnectionStatusRequest\x1a+.octant.v1alpha.GetConnectionStatusResponse\"\x00\x12l\n" +
+	"\x19DeleteConnectionValidator\x120.octant.v1alpha.DeleteConnectionValidatorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12s\n" +
+	"\x13GetConnectionStatus\x12*.octant.v1alpha.GetConnectionStatusRequest\x1a+.octant.v1alpha.GetConnectionStatusResponse\"\x03\x90\x02\x01\x12l\n" +
 	"\x11GenerateManifests\x12(.octant.v1alpha.GenerateManifestsRequest\x1a).octant.v1alpha.GenerateManifestsResponse\"\x000\x01B\xd1\x01\n" +
 	"\x12com.octant.v1alphaB\x16ConnectionServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
