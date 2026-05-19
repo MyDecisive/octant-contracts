@@ -71,6 +71,7 @@ func NewInstallServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			httpClient,
 			baseURL+InstallServiceGetInstallStatusProcedure,
 			connect.WithSchema(installServiceMethods.ByName("GetInstallStatus")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -117,6 +118,7 @@ func NewInstallServiceHandler(svc InstallServiceHandler, opts ...connect.Handler
 		InstallServiceGetInstallStatusProcedure,
 		svc.GetInstallStatus,
 		connect.WithSchema(installServiceMethods.ByName("GetInstallStatus")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/octant.v1alpha.InstallService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

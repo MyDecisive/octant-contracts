@@ -66,6 +66,7 @@ func NewFilterServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			httpClient,
 			baseURL+FilterServiceGetFilterProcedure,
 			connect.WithSchema(filterServiceMethods.ByName("GetFilter")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		updateFilter: connect.NewClient[v1alpha.UpdateFilterRequest, v1alpha.UpdateFilterResponse](
@@ -115,6 +116,7 @@ func NewFilterServiceHandler(svc FilterServiceHandler, opts ...connect.HandlerOp
 		FilterServiceGetFilterProcedure,
 		svc.GetFilter,
 		connect.WithSchema(filterServiceMethods.ByName("GetFilter")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	filterServiceUpdateFilterHandler := connect.NewServerStreamHandler(

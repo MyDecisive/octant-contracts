@@ -6,7 +6,9 @@ GO_LDFLAGS=-ldflags "-extldflags -static -s -w"
 install-tools:
 	@go install github.com/bufbuild/buf/cmd/buf@v1.57.0
 	@go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+	@go install github.com/sudorandom/protoc-gen-connect-openapi@latest
+	# @go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 .PHONY: rpcgen
-rpcgen:
+rpcgen: install-tools
 	@buf generate

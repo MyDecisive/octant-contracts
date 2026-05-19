@@ -316,10 +316,10 @@ const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\x19INSTALL_STATUS_INSTALLING\x10\x01\x12\x18\n" +
 	"\x14INSTALL_STATUS_ERROR\x10\x02\x12\x1c\n" +
 	"\x18INSTALL_STATUS_INSTALLED\x10\x03\x12\x1a\n" +
-	"\x16INSTALL_STATUS_TIMEOUT\x10\x042\xce\x01\n" +
+	"\x16INSTALL_STATUS_TIMEOUT\x10\x042\xd1\x01\n" +
 	"\x0eInstallService\x12Q\n" +
-	"\x0eInstallMDAIHub\x12%.octant.v1alpha.InstallMDAIHubRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n" +
-	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x000\x01B\xce\x01\n" +
+	"\x0eInstallMDAIHub\x12%.octant.v1alpha.InstallMDAIHubRequest\x1a\x16.google.protobuf.Empty\"\x00\x12l\n" +
+	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x03\x90\x02\x010\x01B\xce\x01\n" +
 	"\x12com.octant.v1alphaB\x13InstallServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
 var (

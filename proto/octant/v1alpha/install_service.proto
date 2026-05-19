@@ -10,7 +10,9 @@ service InstallService {
   // InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
   rpc InstallMDAIHub(InstallMDAIHubRequest) returns (google.protobuf.Empty) {}
   // GetInstallStatus creates a response stream with mdai install status updates.
-  rpc GetInstallStatus(GetInstallStatusRequest) returns (stream GetInstallStatusResponse) {}
+  rpc GetInstallStatus(GetInstallStatusRequest) returns (stream GetInstallStatusResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
 }
 
 message InstallMDAIHubRequest {

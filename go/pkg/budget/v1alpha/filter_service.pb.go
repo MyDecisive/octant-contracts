@@ -313,9 +313,9 @@ const file_budget_v1alpha_filter_service_proto_rawDesc = "" +
 	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14STATUS_VALUE_UPDATED\x10\x01\x12\x1b\n" +
 	"\x17STATUS_WAIT_PROPAGATION\x10\x02\x12\x14\n" +
-	"\x10STATUS_COMPLETED\x10\x032\xc2\x01\n" +
-	"\rFilterService\x12R\n" +
-	"\tGetFilter\x12 .budget.v1alpha.GetFilterRequest\x1a!.budget.v1alpha.GetFilterResponse\"\x00\x12]\n" +
+	"\x10STATUS_COMPLETED\x10\x032\xc5\x01\n" +
+	"\rFilterService\x12U\n" +
+	"\tGetFilter\x12 .budget.v1alpha.GetFilterRequest\x1a!.budget.v1alpha.GetFilterResponse\"\x03\x90\x02\x01\x12]\n" +
 	"\fUpdateFilter\x12#.budget.v1alpha.UpdateFilterRequest\x1a$.budget.v1alpha.UpdateFilterResponse\"\x000\x01B\xcd\x01\n" +
 	"\x12com.budget.v1alphaB\x12FilterServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/budget/v1alpha;budgetv1alpha\xa2\x02\x03BXX\xaa\x02\x0eBudget.V1alpha\xca\x02\x0eBudget\\V1alpha\xe2\x02\x1aBudget\\V1alpha\\GPBMetadata\xea\x02\x0fBudget::V1alphab\x06proto3"
 

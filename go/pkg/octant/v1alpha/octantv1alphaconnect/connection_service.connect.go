@@ -104,12 +104,14 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionsProcedure,
 			connect.WithSchema(connectionServiceMethods.ByName("GetConnections")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		getConnection: connect.NewClient[v1alpha.GetConnectionRequest, v1alpha.GetConnectionResponse](
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionProcedure,
 			connect.WithSchema(connectionServiceMethods.ByName("GetConnection")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		createConnection: connect.NewClient[v1alpha.CreateConnectionRequest, emptypb.Empty](
@@ -128,6 +130,7 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionValidatorRunIdsProcedure,
 			connect.WithSchema(connectionServiceMethods.ByName("GetConnectionValidatorRunIds")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		createConnectionValidatorRun: connect.NewClient[v1alpha.CreateConnectionValidatorRunRequest, v1alpha.CreateConnectionValidatorRunResponse](
@@ -146,6 +149,7 @@ func NewConnectionServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			httpClient,
 			baseURL+ConnectionServiceGetConnectionStatusProcedure,
 			connect.WithSchema(connectionServiceMethods.ByName("GetConnectionStatus")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		generateManifests: connect.NewClient[v1alpha.GenerateManifestsRequest, v1alpha.GenerateManifestsResponse](
@@ -252,12 +256,14 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 		ConnectionServiceGetConnectionsProcedure,
 		svc.GetConnections,
 		connect.WithSchema(connectionServiceMethods.ByName("GetConnections")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	connectionServiceGetConnectionHandler := connect.NewUnaryHandler(
 		ConnectionServiceGetConnectionProcedure,
 		svc.GetConnection,
 		connect.WithSchema(connectionServiceMethods.ByName("GetConnection")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	connectionServiceCreateConnectionHandler := connect.NewUnaryHandler(
@@ -276,6 +282,7 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 		ConnectionServiceGetConnectionValidatorRunIdsProcedure,
 		svc.GetConnectionValidatorRunIds,
 		connect.WithSchema(connectionServiceMethods.ByName("GetConnectionValidatorRunIds")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	connectionServiceCreateConnectionValidatorRunHandler := connect.NewUnaryHandler(
@@ -294,6 +301,7 @@ func NewConnectionServiceHandler(svc ConnectionServiceHandler, opts ...connect.H
 		ConnectionServiceGetConnectionStatusProcedure,
 		svc.GetConnectionStatus,
 		connect.WithSchema(connectionServiceMethods.ByName("GetConnectionStatus")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	connectionServiceGenerateManifestsHandler := connect.NewServerStreamHandler(

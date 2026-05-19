@@ -59,6 +59,7 @@ func NewTimeframeServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			httpClient,
 			baseURL+TimeframeServiceTimeframeStatusProcedure,
 			connect.WithSchema(timeframeServiceMethods.ByName("TimeframeStatus")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -91,6 +92,7 @@ func NewTimeframeServiceHandler(svc TimeframeServiceHandler, opts ...connect.Han
 		TimeframeServiceTimeframeStatusProcedure,
 		svc.TimeframeStatus,
 		connect.WithSchema(timeframeServiceMethods.ByName("TimeframeStatus")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/budget.v1alpha.TimeframeService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

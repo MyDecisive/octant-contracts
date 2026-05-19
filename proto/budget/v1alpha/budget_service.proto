@@ -7,11 +7,17 @@ import "buf/validate/validate.proto";
 
 service BudgetService {
   // Overall returns budeget stats.
-  rpc Overall(OverallRequest) returns (OverallResponse) {}
-  // Log returns budeget stats for logs.
-  rpc Log(LogRequest) returns (LogResponse) {}
-  // Trace returns budeget stats for traces.
-  rpc Trace(TraceRequest) returns (TraceResponse) {}
+  rpc Overall(OverallRequest) returns (OverallResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+  // Log returns budget stats for logs.
+  rpc Log(LogRequest) returns (LogResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+  // Trace returns budget stats for traces.
+  rpc Trace(TraceRequest) returns (TraceResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
 }
 
 message OverallRequest {

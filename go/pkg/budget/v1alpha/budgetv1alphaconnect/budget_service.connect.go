@@ -45,9 +45,9 @@ const (
 type BudgetServiceClient interface {
 	// Overall returns budeget stats.
 	Overall(context.Context, *connect.Request[v1alpha.OverallRequest]) (*connect.Response[v1alpha.OverallResponse], error)
-	// Log returns budeget stats for logs.
+	// Log returns budget stats for logs.
 	Log(context.Context, *connect.Request[v1alpha.LogRequest]) (*connect.Response[v1alpha.LogResponse], error)
-	// Trace returns budeget stats for traces.
+	// Trace returns budget stats for traces.
 	Trace(context.Context, *connect.Request[v1alpha.TraceRequest]) (*connect.Response[v1alpha.TraceResponse], error)
 }
 
@@ -66,18 +66,21 @@ func NewBudgetServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			httpClient,
 			baseURL+BudgetServiceOverallProcedure,
 			connect.WithSchema(budgetServiceMethods.ByName("Overall")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		log: connect.NewClient[v1alpha.LogRequest, v1alpha.LogResponse](
 			httpClient,
 			baseURL+BudgetServiceLogProcedure,
 			connect.WithSchema(budgetServiceMethods.ByName("Log")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		trace: connect.NewClient[v1alpha.TraceRequest, v1alpha.TraceResponse](
 			httpClient,
 			baseURL+BudgetServiceTraceProcedure,
 			connect.WithSchema(budgetServiceMethods.ByName("Trace")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -109,9 +112,9 @@ func (c *budgetServiceClient) Trace(ctx context.Context, req *connect.Request[v1
 type BudgetServiceHandler interface {
 	// Overall returns budeget stats.
 	Overall(context.Context, *connect.Request[v1alpha.OverallRequest]) (*connect.Response[v1alpha.OverallResponse], error)
-	// Log returns budeget stats for logs.
+	// Log returns budget stats for logs.
 	Log(context.Context, *connect.Request[v1alpha.LogRequest]) (*connect.Response[v1alpha.LogResponse], error)
-	// Trace returns budeget stats for traces.
+	// Trace returns budget stats for traces.
 	Trace(context.Context, *connect.Request[v1alpha.TraceRequest]) (*connect.Response[v1alpha.TraceResponse], error)
 }
 
@@ -126,18 +129,21 @@ func NewBudgetServiceHandler(svc BudgetServiceHandler, opts ...connect.HandlerOp
 		BudgetServiceOverallProcedure,
 		svc.Overall,
 		connect.WithSchema(budgetServiceMethods.ByName("Overall")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	budgetServiceLogHandler := connect.NewUnaryHandler(
 		BudgetServiceLogProcedure,
 		svc.Log,
 		connect.WithSchema(budgetServiceMethods.ByName("Log")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	budgetServiceTraceHandler := connect.NewUnaryHandler(
 		BudgetServiceTraceProcedure,
 		svc.Trace,
 		connect.WithSchema(budgetServiceMethods.ByName("Trace")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/budget.v1alpha.BudgetService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
