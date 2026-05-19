@@ -10,5 +10,5 @@ install-tools:
 	# @go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 .PHONY: rpcgen
-rpcgen:
+rpcgen: install-tools
 	@buf generate

@@ -31,6 +31,7 @@ jobs:
           archive: false
       - name: Check Buf Generate
         run: |
+          go install github.com/sudorandom/protoc-gen-connect-openapi@latest
           buf generate --error-format github-actions
           if output=$(git status --porcelain) && [ -n "$output" ]; then
             echo "Please run 'buf generate' to update the following generated code:"
