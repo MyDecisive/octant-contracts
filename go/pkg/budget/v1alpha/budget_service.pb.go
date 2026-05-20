@@ -408,15 +408,17 @@ var File_budget_v1alpha_budget_service_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_budget_service_proto_rawDesc = "" +
 	"\n" +
-	"#budget/v1alpha/budget_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xa1\x01\n" +
-	"\x0eOverallRequest\x12D\n" +
-	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\x12I\n" +
+	"#budget/v1alpha/budget_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xa3\x01\n" +
+	"\x0eOverallRequest\x12F\n" +
+	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\r\xbaH\n" +
+	"\xc8\x01\x01\x82\x01\x04\x10\x01 \x00R\ttimeframe\x12I\n" +
 	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\">\n" +
 	"\x0fOverallResponse\x12+\n" +
-	"\x04data\x18\x01 \x01(\v2\x17.budget.v1alpha.OverallR\x04data\"\xd8\x02\n" +
+	"\x04data\x18\x01 \x01(\v2\x17.budget.v1alpha.OverallR\x04data\"\xda\x02\n" +
 	"\n" +
-	"LogRequest\x12D\n" +
-	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\x12!\n" +
+	"LogRequest\x12F\n" +
+	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\r\xbaH\n" +
+	"\xc8\x01\x01\x82\x01\x04\x10\x01 \x00R\ttimeframe\x12!\n" +
 	"\x04size\x18\x02 \x01(\rB\r\xbaH\n" +
 	"\xc8\x01\x01*\x05\x10\xfb\x01 \x00R\x04size\x12\x1d\n" +
 	"\n" +
@@ -426,9 +428,10 @@ const file_budget_v1alpha_budget_service_proto_rawDesc = "" +
 	"\x0fconnection_name\x18\x06 \x01(\tB-\xbaH*\xc8\x01\x01r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"^\n" +
 	"\vLogResponse\x12'\n" +
 	"\x04data\x18\x01 \x03(\v2\x13.budget.v1alpha.LogR\x04data\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xda\x02\n" +
-	"\fTraceRequest\x12D\n" +
-	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\ttimeframe\x12!\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xdc\x02\n" +
+	"\fTraceRequest\x12F\n" +
+	"\ttimeframe\x18\x01 \x01(\x0e2\x19.budget.v1alpha.TimeframeB\r\xbaH\n" +
+	"\xc8\x01\x01\x82\x01\x04\x10\x01 \x00R\ttimeframe\x12!\n" +
 	"\x04size\x18\x02 \x01(\rB\r\xbaH\n" +
 	"\xc8\x01\x01*\x05\x10\xfb\x01 \x00R\x04size\x12\x1d\n" +
 	"\n" +
