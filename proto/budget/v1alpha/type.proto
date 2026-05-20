@@ -26,7 +26,10 @@ message Filter {
   // type contains the filter type.
   FilterType type = 1 [
     (buf.validate.field).required = true,
-    (buf.validate.field).enum.defined_only = true
+    (buf.validate.field).enum = {
+      defined_only: true
+      not_in: [0]
+    }
   ];
   // pct_sampled contains the sampling percentage.
   uint32 pct_sampled = 2 [(buf.validate.field).uint32 = {
