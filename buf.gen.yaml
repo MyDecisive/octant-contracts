@@ -20,9 +20,8 @@ plugins:
     out: ts/dist
     opt: target=ts
     include_imports: true
-  - local: protoc-gen-connect-openapi
+  - remote: buf.build/community/sudorandom-connect-openapi:v0.25.6
     out: swagger
-    strategy: all
     opt:
       - format=yaml
       - allow-get
