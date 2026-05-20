@@ -296,9 +296,10 @@ var File_budget_v1alpha_filter_service_proto protoreflect.FileDescriptor
 
 const file_budget_v1alpha_filter_service_proto_rawDesc = "" +
 	"\n" +
-	"#budget/v1alpha/filter_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xef\x01\n" +
-	"\x10GetFilterRequest\x12;\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1a.budget.v1alpha.FilterTypeB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x04type\x12I\n" +
+	"#budget/v1alpha/filter_service.proto\x12\x0ebudget.v1alpha\x1a\x19budget/v1alpha/type.proto\x1a\x1bbuf/validate/validate.proto\"\xf1\x01\n" +
+	"\x10GetFilterRequest\x12=\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x1a.budget.v1alpha.FilterTypeB\r\xbaH\n" +
+	"\xc8\x01\x01\x82\x01\x04\x10\x01 \x00R\x04type\x12I\n" +
 	"\tnamespace\x18\x02 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
 	"\x0fconnection_name\x18\x03 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"?\n" +
 	"\x11GetFilterResponse\x12*\n" +

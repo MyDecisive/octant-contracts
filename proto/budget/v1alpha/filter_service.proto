@@ -21,7 +21,10 @@ message GetFilterRequest {
   // type contains the type of the filter to retrieve.
   FilterType type = 1 [
     (buf.validate.field).required = true,
-    (buf.validate.field).enum.defined_only = true
+    (buf.validate.field).enum = {
+      defined_only: true
+      not_in: [0]
+    }
   ];
   // namespace is the kubernetes namespace to install into.
   string namespace = 2 [
