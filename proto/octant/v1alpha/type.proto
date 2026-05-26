@@ -71,7 +71,7 @@ message ConnectionData {
     (buf.validate.field).repeated.unique = true,
     (buf.validate.field).repeated.items = {
       enum: {
-        defined_only: true,
+        defined_only: true
         not_in: [0]
       }
     }
