@@ -70,7 +70,10 @@ message ConnectionData {
     (buf.validate.field).required = true,
     (buf.validate.field).repeated.unique = true,
     (buf.validate.field).repeated.items = {
-      enum: {defined_only: true, not_in: [0]}
+      enum: {
+        defined_only: true,
+        not_in: [0]
+      }
     }
   ];
   // deployment contains information required for deploying the connection
