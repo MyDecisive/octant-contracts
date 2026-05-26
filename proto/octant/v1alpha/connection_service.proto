@@ -63,7 +63,7 @@ message GetConnectionsResponse {
 
 // CreateConnectionRequest contains options for creating a connection
 message CreateConnectionRequest {
-  ConnectionData connection_data = 1;
+  ConnectionData connection_data = 1 [(buf.validate.field).required = true];
 }
 
 message GenerateManifestsRequest {

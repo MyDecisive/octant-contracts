@@ -942,9 +942,9 @@ const file_octant_v1alpha_connection_service_proto_rawDesc = "" +
 	"\x14GetConnectionRequest\x12S\n" +
 	"\x0fconnection_name\x18\x01 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"C\n" +
 	"\x16GetConnectionsResponse\x12)\n" +
-	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"b\n" +
-	"\x17CreateConnectionRequest\x12G\n" +
-	"\x0fconnection_data\x18\x01 \x01(\v2\x1e.octant.v1alpha.ConnectionDataR\x0econnectionData\"\x9b\x03\n" +
+	"\x10connection_names\x18\x01 \x03(\tR\x0fconnectionNames\"j\n" +
+	"\x17CreateConnectionRequest\x12O\n" +
+	"\x0fconnection_data\x18\x01 \x01(\v2\x1e.octant.v1alpha.ConnectionDataB\x06\xbaH\x03\xc8\x01\x01R\x0econnectionData\"\x9b\x03\n" +
 	"\x18GenerateManifestsRequest\x12=\n" +
 	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12F\n" +
 	"\x06format\x18\x02 \x01(\x0e2!.octant.v1alpha.ManifestOutFormatB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x06format\x12T\n" +
