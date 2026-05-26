@@ -42,7 +42,7 @@ service ConnectionService {
 
 // GetConnectionResponse has details on a connection
 message GetConnectionResponse {
-  ConnectionData connection_data = 1 [(buf.validate.field).required = true];
+  ConnectionData connection_data = 1;
 }
 
 // GetConnectionRequest are fields required to fetch a connection
@@ -63,7 +63,7 @@ message GetConnectionsResponse {
 
 // CreateConnectionRequest contains options for creating a connection
 message CreateConnectionRequest {
-  ConnectionData connection_data = 1 [(buf.validate.field).required = true];
+  ConnectionData connection_data = 1;
 }
 
 message GenerateManifestsRequest {
