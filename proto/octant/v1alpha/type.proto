@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package octant.v1alpha;
 
+import "buf/validate/validate.proto";
+
 enum ManifestOutFormat {
   MANIFEST_OUT_FORMAT_UNSPECIFIED = 0;
   MANIFEST_OUT_FORMAT_JSON = 1;
@@ -19,4 +21,63 @@ enum MLTType {
   MLT_TYPE_METRIC = 1;
   MLT_TYPE_TRACE = 2;
   MLT_TYPE_LOG = 3;
+}
+
+// ConnectionScope contains identifiers for a connection
+message ConnectionScope {
+  // namespace that the connection is installed in/will be installed into
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+  // connection_name is the name of the connection
+  string connection_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
+// IntegrationType is the type of integration for destinations or deployments
+enum IntegrationType {
+  // INTEGRATION_TYPE_UNSPECIFIED is unsupported and should not be used
+  INTEGRATION_TYPE_UNSPECIFIED = 0;
+  // INTEGRATION_TYPE_DATADOG is for datadog telemetry destinations
+  INTEGRATION_TYPE_DATADOG = 1;
+}
+
+// Deployment is information needed to deploy a connection
+message Deployment {
+  // type indicates what type of deployment mechanism/system to use
+  DeploymentType type = 1;
+  // integration_name is the name of the previously created deployment integration to use
+  string integration_name = 2;
+}
+
+// TelemetryDestination is information for an integration to send telemetry to from a connection
+message TelemetryDestination {
+  // type is the integration type for this integration
+  IntegrationType type = 1;
+  // integration_name is the name of a previously created integration with information needed to send telemetry
+  string integration_name = 2;
+}
+
+message ConnectionData {
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
+  // telemetry_types is used to generate the manifests.
+  repeated MLTType telemetry_types = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      enum: {
+        defined_only: true
+        not_in: [0]
+      }
+    }
+  ];
+  // deployment contains information required for deploying the connection
+  Deployment deployment = 3 [(buf.validate.field).required = true];
+  // destinations are where telemetry from this connection is sent and options needed to send it there
+  repeated TelemetryDestination destinations = 4 [(buf.validate.field).required = true];
 }

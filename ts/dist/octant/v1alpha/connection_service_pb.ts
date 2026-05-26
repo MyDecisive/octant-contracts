@@ -2,12 +2,12 @@
 // @generated from file octant/v1alpha/connection_service.proto (package octant.v1alpha, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { EmptySchema } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
-import type { DeploymentType, ManifestOutFormat, MLTType } from "./type_pb";
+import type { ConnectionData, ConnectionScope, DeploymentType, ManifestOutFormat, MLTType } from "./type_pb";
 import { file_octant_v1alpha_type } from "./type_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -15,35 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/connection_service.proto.
  */
 export const file_octant_v1alpha_connection_service: GenFile = /*@__PURE__*/
-  fileDesc("CidvY3RhbnQvdjFhbHBoYS9jb25uZWN0aW9uX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIpYBCg9Db25uZWN0aW9uU2NvcGUSPgoJbmFtZXNwYWNlGAEgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEkMKD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIqukgnciUQAxgUMh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kIr4BChVHZXRDb25uZWN0aW9uUmVzcG9uc2USMAoPdGVsZW1ldHJ5X3R5cGVzGAEgAygOMhcub2N0YW50LnYxYWxwaGEuTUxUVHlwZRI3Cg9kZXBsb3ltZW50X3R5cGUYAiABKA4yHi5vY3RhbnQudjFhbHBoYS5EZXBsb3ltZW50VHlwZRI6CgxkZXN0aW5hdGlvbnMYAyADKAsyJC5vY3RhbnQudjFhbHBoYS5UZWxlbWV0cnlEZXN0aW5hdGlvbiJbChRHZXRDb25uZWN0aW9uUmVxdWVzdBJDCg9jb25uZWN0aW9uX25hbWUYASABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCIyChZHZXRDb25uZWN0aW9uc1Jlc3BvbnNlEhgKEGNvbm5lY3Rpb25fbmFtZXMYASADKAkikwIKF0NyZWF0ZUNvbm5lY3Rpb25SZXF1ZXN0EjYKBXNjb3BlGAEgASgLMh8ub2N0YW50LnYxYWxwaGEuQ29ubmVjdGlvblNjb3BlQga6SAPIAQESRAoPdGVsZW1ldHJ5X3R5cGVzGAIgAygOMhcub2N0YW50LnYxYWxwaGEuTUxUVHlwZUISukgPyAEBkgEJGAEiBYIBAhABEjYKCmRlcGxveW1lbnQYAyABKAsyGi5vY3RhbnQudjFhbHBoYS5EZXBsb3ltZW50Qga6SAPIAQESQgoMZGVzdGluYXRpb25zGAQgAygLMiQub2N0YW50LnYxYWxwaGEuVGVsZW1ldHJ5RGVzdGluYXRpb25CBrpIA8gBASJfChRUZWxlbWV0cnlEZXN0aW5hdGlvbhItCgR0eXBlGAEgASgOMh8ub2N0YW50LnYxYWxwaGEuSW50ZWdyYXRpb25UeXBlEhgKEGludGVncmF0aW9uX25hbWUYAiABKAkiVAoKRGVwbG95bWVudBIsCgR0eXBlGAEgASgOMh4ub2N0YW50LnYxYWxwaGEuRGVwbG95bWVudFR5cGUSGAoQaW50ZWdyYXRpb25fbmFtZRgCIAEoCSLfAgoYR2VuZXJhdGVNYW5pZmVzdHNSZXF1ZXN0EjYKBXNjb3BlGAEgASgLMh8ub2N0YW50LnYxYWxwaGEuQ29ubmVjdGlvblNjb3BlQga6SAPIAQESPgoGZm9ybWF0GAIgASgOMiEub2N0YW50LnYxYWxwaGEuTWFuaWZlc3RPdXRGb3JtYXRCC7pICMgBAYIBAhABEkQKD2RlcGxveW1lbnRfdHlwZRgDIAEoDjIeLm9jdGFudC52MWFscGhhLkRlcGxveW1lbnRUeXBlQgu6SAjIAQGCAQIQARJECg90ZWxlbWV0cnlfdHlwZXMYBCADKA4yFy5vY3RhbnQudjFhbHBoYS5NTFRUeXBlQhK6SA/IAQGSAQkYASIFggECEAESPwoMbWRhaV92ZXJzaW9uGAUgASgJQim6SCZyJDIiXihcZCtcLlxkK1wuXGQrKC1bYS16XSopPyl8bGF0ZXN0JCJGChlHZW5lcmF0ZU1hbmlmZXN0c1Jlc3BvbnNlEgwKBGRhdGEYASABKAwSDQoFdG90YWwYAiABKAQSDAoEdHlwZRgDIAEoCSJdCiNHZXRDb25uZWN0aW9uVmFsaWRhdG9yUnVuSWRzUmVxdWVzdBI2CgVzY29wZRgBIAEoCzIfLm9jdGFudC52MWFscGhhLkNvbm5lY3Rpb25TY29wZUIGukgDyAEBIkEKJEdldENvbm5lY3Rpb25WYWxpZGF0b3JSdW5JZHNSZXNwb25zZRIZChF2YWxpZGF0b3JfcnVuX2lkcxgBIAMoCSJdCiNDcmVhdGVDb25uZWN0aW9uVmFsaWRhdG9yUnVuUmVxdWVzdBI2CgVzY29wZRgBIAEoCzIfLm9jdGFudC52MWFscGhhLkNvbm5lY3Rpb25TY29wZUIGukgDyAEBIkAKJENyZWF0ZUNvbm5lY3Rpb25WYWxpZGF0b3JSdW5SZXNwb25zZRIYChB2YWxpZGF0b3JfcnVuX2lkGAEgASgJIloKIERlbGV0ZUNvbm5lY3Rpb25WYWxpZGF0b3JSZXF1ZXN0EjYKBXNjb3BlGAEgASgLMh8ub2N0YW50LnYxYWxwaGEuQ29ubmVjdGlvblNjb3BlQga6SAPIAQEibgoaR2V0Q29ubmVjdGlvblN0YXR1c1JlcXVlc3QSNgoFc2NvcGUYASABKAsyHy5vY3RhbnQudjFhbHBoYS5Db25uZWN0aW9uU2NvcGVCBrpIA8gBARIYChB2YWxpZGF0b3JfcnVuX2lkGAIgASgJIuUBChtHZXRDb25uZWN0aW9uU3RhdHVzUmVzcG9uc2USHgoOcmVjZWl2aW5nX2RhdGEYASABKAhCBrpIA8gBARIcCgxzZW5kaW5nX2RhdGEYAiABKAhCBrpIA8gBARIeCg5kYXRhX2ludGVncml0eRgDIAEoCEIGukgDyAEBEiEKEWNsaWVudHNfY29ubmVjdGVkGAQgASgIQga6SAPIAQESRQoSdmFsaWRhdGlvbl9yZXN1bHRzGAUgASgLMikub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbCKwAQoZVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbBIuCgRsb2dzGAEgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIxCgdtZXRyaWNzGAIgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIwCgZ0cmFjZXMYAyABKAsyIC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0ImwKEFZhbGlkYXRpb25SZXN1bHQSDgoGcGFyaXR5GAEgASgIEg4KBnBvbGljeRgCIAEoCBI4CgphdHRyaWJ1dGVzGAMgASgLMiQub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMi+AEKFFZhbGlkYXRpb25BdHRyaWJ1dGVzEkAKBnBhcml0eRgBIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBhcml0eUVudHJ5EkAKBnBvbGljeRgCIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBvbGljeUVudHJ5Gi0KC1Bhcml0eUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCDoCOAEaLQoLUG9saWN5RW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgIOgI4ASJeChdEZWxldGVDb25uZWN0aW9uUmVxdWVzdBJDCg9jb25uZWN0aW9uX25hbWUYASABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCpRCg9JbnRlZ3JhdGlvblR5cGUSIAocSU5URUdSQVRJT05fVFlQRV9VTlNQRUNJRklFRBAAEhwKGElOVEVHUkFUSU9OX1RZUEVfREFUQURPRxABMuYHChFDb25uZWN0aW9uU2VydmljZRJVCg5HZXRDb25uZWN0aW9ucxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRomLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25zUmVzcG9uc2UiA5ACARJhCg1HZXRDb25uZWN0aW9uEiQub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblJlcXVlc3QaJS5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uUmVzcG9uc2UiA5ACARJVChBDcmVhdGVDb25uZWN0aW9uEicub2N0YW50LnYxYWxwaGEuQ3JlYXRlQ29ubmVjdGlvblJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiABJVChBEZWxldGVDb25uZWN0aW9uEicub2N0YW50LnYxYWxwaGEuRGVsZXRlQ29ubmVjdGlvblJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiABKOAQocR2V0Q29ubmVjdGlvblZhbGlkYXRvclJ1bklkcxIzLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25WYWxpZGF0b3JSdW5JZHNSZXF1ZXN0GjQub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblZhbGlkYXRvclJ1bklkc1Jlc3BvbnNlIgOQAgESiwEKHENyZWF0ZUNvbm5lY3Rpb25WYWxpZGF0b3JSdW4SMy5vY3RhbnQudjFhbHBoYS5DcmVhdGVDb25uZWN0aW9uVmFsaWRhdG9yUnVuUmVxdWVzdBo0Lm9jdGFudC52MWFscGhhLkNyZWF0ZUNvbm5lY3Rpb25WYWxpZGF0b3JSdW5SZXNwb25zZSIAEmcKGURlbGV0ZUNvbm5lY3Rpb25WYWxpZGF0b3ISMC5vY3RhbnQudjFhbHBoYS5EZWxldGVDb25uZWN0aW9uVmFsaWRhdG9yUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEnMKE0dldENvbm5lY3Rpb25TdGF0dXMSKi5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uU3RhdHVzUmVxdWVzdBorLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25TdGF0dXNSZXNwb25zZSIDkAIBEmwKEUdlbmVyYXRlTWFuaWZlc3RzEigub2N0YW50LnYxYWxwaGEuR2VuZXJhdGVNYW5pZmVzdHNSZXF1ZXN0Gikub2N0YW50LnYxYWxwaGEuR2VuZXJhdGVNYW5pZmVzdHNSZXNwb25zZSIAMAFC0QEKEmNvbS5vY3RhbnQudjFhbHBoYUIWQ29ubmVjdGlvblNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_empty, file_octant_v1alpha_type]);
-
-/**
- * ConnectionScope contains identifiers for a connection
- *
- * @generated from message octant.v1alpha.ConnectionScope
- */
-export type ConnectionScope = Message<"octant.v1alpha.ConnectionScope"> & {
-  /**
-   * namespace that the connection is installed in/will be installed into
-   *
-   * @generated from field: string namespace = 1;
-   */
-  namespace: string;
-
-  /**
-   * connection_name is the name of the connection
-   *
-   * @generated from field: string connection_name = 2;
-   */
-  connectionName: string;
-};
-
-/**
- * Describes the message octant.v1alpha.ConnectionScope.
- * Use `create(ConnectionScopeSchema)` to create a new message.
- */
-export const ConnectionScopeSchema: GenMessage<ConnectionScope> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 0);
+  fileDesc("CidvY3RhbnQvdjFhbHBoYS9jb25uZWN0aW9uX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIlAKFUdldENvbm5lY3Rpb25SZXNwb25zZRI3Cg9jb25uZWN0aW9uX2RhdGEYASABKAsyHi5vY3RhbnQudjFhbHBoYS5Db25uZWN0aW9uRGF0YSJbChRHZXRDb25uZWN0aW9uUmVxdWVzdBJDCg9jb25uZWN0aW9uX25hbWUYASABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCIyChZHZXRDb25uZWN0aW9uc1Jlc3BvbnNlEhgKEGNvbm5lY3Rpb25fbmFtZXMYASADKAkiWgoXQ3JlYXRlQ29ubmVjdGlvblJlcXVlc3QSPwoPY29ubmVjdGlvbl9kYXRhGAEgASgLMh4ub2N0YW50LnYxYWxwaGEuQ29ubmVjdGlvbkRhdGFCBrpIA8gBASLfAgoYR2VuZXJhdGVNYW5pZmVzdHNSZXF1ZXN0EjYKBXNjb3BlGAEgASgLMh8ub2N0YW50LnYxYWxwaGEuQ29ubmVjdGlvblNjb3BlQga6SAPIAQESPgoGZm9ybWF0GAIgASgOMiEub2N0YW50LnYxYWxwaGEuTWFuaWZlc3RPdXRGb3JtYXRCC7pICMgBAYIBAhABEkQKD2RlcGxveW1lbnRfdHlwZRgDIAEoDjIeLm9jdGFudC52MWFscGhhLkRlcGxveW1lbnRUeXBlQgu6SAjIAQGCAQIQARJECg90ZWxlbWV0cnlfdHlwZXMYBCADKA4yFy5vY3RhbnQudjFhbHBoYS5NTFRUeXBlQhK6SA/IAQGSAQkYASIFggECEAESPwoMbWRhaV92ZXJzaW9uGAUgASgJQim6SCZyJDIiXihcZCtcLlxkK1wuXGQrKC1bYS16XSopPyl8bGF0ZXN0JCJGChlHZW5lcmF0ZU1hbmlmZXN0c1Jlc3BvbnNlEgwKBGRhdGEYASABKAwSDQoFdG90YWwYAiABKAQSDAoEdHlwZRgDIAEoCSJdCiNHZXRDb25uZWN0aW9uVmFsaWRhdG9yUnVuSWRzUmVxdWVzdBI2CgVzY29wZRgBIAEoCzIfLm9jdGFudC52MWFscGhhLkNvbm5lY3Rpb25TY29wZUIGukgDyAEBIkEKJEdldENvbm5lY3Rpb25WYWxpZGF0b3JSdW5JZHNSZXNwb25zZRIZChF2YWxpZGF0b3JfcnVuX2lkcxgBIAMoCSJdCiNDcmVhdGVDb25uZWN0aW9uVmFsaWRhdG9yUnVuUmVxdWVzdBI2CgVzY29wZRgBIAEoCzIfLm9jdGFudC52MWFscGhhLkNvbm5lY3Rpb25TY29wZUIGukgDyAEBIkAKJENyZWF0ZUNvbm5lY3Rpb25WYWxpZGF0b3JSdW5SZXNwb25zZRIYChB2YWxpZGF0b3JfcnVuX2lkGAEgASgJIloKIERlbGV0ZUNvbm5lY3Rpb25WYWxpZGF0b3JSZXF1ZXN0EjYKBXNjb3BlGAEgASgLMh8ub2N0YW50LnYxYWxwaGEuQ29ubmVjdGlvblNjb3BlQga6SAPIAQEibgoaR2V0Q29ubmVjdGlvblN0YXR1c1JlcXVlc3QSNgoFc2NvcGUYASABKAsyHy5vY3RhbnQudjFhbHBoYS5Db25uZWN0aW9uU2NvcGVCBrpIA8gBARIYChB2YWxpZGF0b3JfcnVuX2lkGAIgASgJIuUBChtHZXRDb25uZWN0aW9uU3RhdHVzUmVzcG9uc2USHgoOcmVjZWl2aW5nX2RhdGEYASABKAhCBrpIA8gBARIcCgxzZW5kaW5nX2RhdGEYAiABKAhCBrpIA8gBARIeCg5kYXRhX2ludGVncml0eRgDIAEoCEIGukgDyAEBEiEKEWNsaWVudHNfY29ubmVjdGVkGAQgASgIQga6SAPIAQESRQoSdmFsaWRhdGlvbl9yZXN1bHRzGAUgASgLMikub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbCKwAQoZVmFsaWRhdGlvblJlc3VsdHNCeVNpZ25hbBIuCgRsb2dzGAEgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIxCgdtZXRyaWNzGAIgASgLMiAub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvblJlc3VsdBIwCgZ0cmFjZXMYAyABKAsyIC5vY3RhbnQudjFhbHBoYS5WYWxpZGF0aW9uUmVzdWx0ImwKEFZhbGlkYXRpb25SZXN1bHQSDgoGcGFyaXR5GAEgASgIEg4KBnBvbGljeRgCIAEoCBI4CgphdHRyaWJ1dGVzGAMgASgLMiQub2N0YW50LnYxYWxwaGEuVmFsaWRhdGlvbkF0dHJpYnV0ZXMi+AEKFFZhbGlkYXRpb25BdHRyaWJ1dGVzEkAKBnBhcml0eRgBIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBhcml0eUVudHJ5EkAKBnBvbGljeRgCIAMoCzIwLm9jdGFudC52MWFscGhhLlZhbGlkYXRpb25BdHRyaWJ1dGVzLlBvbGljeUVudHJ5Gi0KC1Bhcml0eUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCDoCOAEaLQoLUG9saWN5RW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgIOgI4ASJeChdEZWxldGVDb25uZWN0aW9uUmVxdWVzdBJDCg9jb25uZWN0aW9uX25hbWUYASABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JDLmBwoRQ29ubmVjdGlvblNlcnZpY2USVQoOR2V0Q29ubmVjdGlvbnMSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaJi5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uc1Jlc3BvbnNlIgOQAgESYQoNR2V0Q29ubmVjdGlvbhIkLm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25SZXF1ZXN0GiUub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblJlc3BvbnNlIgOQAgESVQoQQ3JlYXRlQ29ubmVjdGlvbhInLm9jdGFudC52MWFscGhhLkNyZWF0ZUNvbm5lY3Rpb25SZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASVQoQRGVsZXRlQ29ubmVjdGlvbhInLm9jdGFudC52MWFscGhhLkRlbGV0ZUNvbm5lY3Rpb25SZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASjgEKHEdldENvbm5lY3Rpb25WYWxpZGF0b3JSdW5JZHMSMy5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uVmFsaWRhdG9yUnVuSWRzUmVxdWVzdBo0Lm9jdGFudC52MWFscGhhLkdldENvbm5lY3Rpb25WYWxpZGF0b3JSdW5JZHNSZXNwb25zZSIDkAIBEosBChxDcmVhdGVDb25uZWN0aW9uVmFsaWRhdG9yUnVuEjMub2N0YW50LnYxYWxwaGEuQ3JlYXRlQ29ubmVjdGlvblZhbGlkYXRvclJ1blJlcXVlc3QaNC5vY3RhbnQudjFhbHBoYS5DcmVhdGVDb25uZWN0aW9uVmFsaWRhdG9yUnVuUmVzcG9uc2UiABJnChlEZWxldGVDb25uZWN0aW9uVmFsaWRhdG9yEjAub2N0YW50LnYxYWxwaGEuRGVsZXRlQ29ubmVjdGlvblZhbGlkYXRvclJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiABJzChNHZXRDb25uZWN0aW9uU3RhdHVzEioub2N0YW50LnYxYWxwaGEuR2V0Q29ubmVjdGlvblN0YXR1c1JlcXVlc3QaKy5vY3RhbnQudjFhbHBoYS5HZXRDb25uZWN0aW9uU3RhdHVzUmVzcG9uc2UiA5ACARJsChFHZW5lcmF0ZU1hbmlmZXN0cxIoLm9jdGFudC52MWFscGhhLkdlbmVyYXRlTWFuaWZlc3RzUmVxdWVzdBopLm9jdGFudC52MWFscGhhLkdlbmVyYXRlTWFuaWZlc3RzUmVzcG9uc2UiADABQtEBChJjb20ub2N0YW50LnYxYWxwaGFCFkNvbm5lY3Rpb25TZXJ2aWNlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_empty, file_octant_v1alpha_type]);
 
 /**
  * GetConnectionResponse has details on a connection
@@ -52,25 +24,9 @@ export const ConnectionScopeSchema: GenMessage<ConnectionScope> = /*@__PURE__*/
  */
 export type GetConnectionResponse = Message<"octant.v1alpha.GetConnectionResponse"> & {
   /**
-   * telemetry_types are the MLT telemetry types for this connection
-   *
-   * @generated from field: repeated octant.v1alpha.MLTType telemetry_types = 1;
+   * @generated from field: octant.v1alpha.ConnectionData connection_data = 1;
    */
-  telemetryTypes: MLTType[];
-
-  /**
-   * deployment_type is the deployment mechanism
-   *
-   * @generated from field: octant.v1alpha.DeploymentType deployment_type = 2;
-   */
-  deploymentType: DeploymentType;
-
-  /**
-   * destinations are where telemetry for this connection flows to
-   *
-   * @generated from field: repeated octant.v1alpha.TelemetryDestination destinations = 3;
-   */
-  destinations: TelemetryDestination[];
+  connectionData?: ConnectionData;
 };
 
 /**
@@ -78,7 +34,7 @@ export type GetConnectionResponse = Message<"octant.v1alpha.GetConnectionRespons
  * Use `create(GetConnectionResponseSchema)` to create a new message.
  */
 export const GetConnectionResponseSchema: GenMessage<GetConnectionResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 1);
+  messageDesc(file_octant_v1alpha_connection_service, 0);
 
 /**
  * GetConnectionRequest are fields required to fetch a connection
@@ -99,7 +55,7 @@ export type GetConnectionRequest = Message<"octant.v1alpha.GetConnectionRequest"
  * Use `create(GetConnectionRequestSchema)` to create a new message.
  */
 export const GetConnectionRequestSchema: GenMessage<GetConnectionRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 2);
+  messageDesc(file_octant_v1alpha_connection_service, 1);
 
 /**
  * GetConnectionsResponse contains a list of all the connections in a namespace
@@ -120,7 +76,7 @@ export type GetConnectionsResponse = Message<"octant.v1alpha.GetConnectionsRespo
  * Use `create(GetConnectionsResponseSchema)` to create a new message.
  */
 export const GetConnectionsResponseSchema: GenMessage<GetConnectionsResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 3);
+  messageDesc(file_octant_v1alpha_connection_service, 2);
 
 /**
  * CreateConnectionRequest contains options for creating a connection
@@ -129,30 +85,9 @@ export const GetConnectionsResponseSchema: GenMessage<GetConnectionsResponse> = 
  */
 export type CreateConnectionRequest = Message<"octant.v1alpha.CreateConnectionRequest"> & {
   /**
-   * @generated from field: octant.v1alpha.ConnectionScope scope = 1;
+   * @generated from field: octant.v1alpha.ConnectionData connection_data = 1;
    */
-  scope?: ConnectionScope;
-
-  /**
-   * telemetry_types is used to generate the manifests.
-   *
-   * @generated from field: repeated octant.v1alpha.MLTType telemetry_types = 2;
-   */
-  telemetryTypes: MLTType[];
-
-  /**
-   * deployment contains information required for deploying the connection
-   *
-   * @generated from field: octant.v1alpha.Deployment deployment = 3;
-   */
-  deployment?: Deployment;
-
-  /**
-   * destinations are where telemetry from this connection is sent and options needed to send it there
-   *
-   * @generated from field: repeated octant.v1alpha.TelemetryDestination destinations = 4;
-   */
-  destinations: TelemetryDestination[];
+  connectionData?: ConnectionData;
 };
 
 /**
@@ -160,63 +95,7 @@ export type CreateConnectionRequest = Message<"octant.v1alpha.CreateConnectionRe
  * Use `create(CreateConnectionRequestSchema)` to create a new message.
  */
 export const CreateConnectionRequestSchema: GenMessage<CreateConnectionRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 4);
-
-/**
- * TelemetryDestination is information for an integration to send telemetry to from a connection
- *
- * @generated from message octant.v1alpha.TelemetryDestination
- */
-export type TelemetryDestination = Message<"octant.v1alpha.TelemetryDestination"> & {
-  /**
-   * type is the integration type for this integration
-   *
-   * @generated from field: octant.v1alpha.IntegrationType type = 1;
-   */
-  type: IntegrationType;
-
-  /**
-   * integration_name is the name of a previously created integration with information needed to send telemetry
-   *
-   * @generated from field: string integration_name = 2;
-   */
-  integrationName: string;
-};
-
-/**
- * Describes the message octant.v1alpha.TelemetryDestination.
- * Use `create(TelemetryDestinationSchema)` to create a new message.
- */
-export const TelemetryDestinationSchema: GenMessage<TelemetryDestination> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 5);
-
-/**
- * Deployment is information needed to deploy a connection
- *
- * @generated from message octant.v1alpha.Deployment
- */
-export type Deployment = Message<"octant.v1alpha.Deployment"> & {
-  /**
-   * type indicates what type of deployment mechanism/system to use
-   *
-   * @generated from field: octant.v1alpha.DeploymentType type = 1;
-   */
-  type: DeploymentType;
-
-  /**
-   * integration_name is the name of the previously created deployment integration to use
-   *
-   * @generated from field: string integration_name = 2;
-   */
-  integrationName: string;
-};
-
-/**
- * Describes the message octant.v1alpha.Deployment.
- * Use `create(DeploymentSchema)` to create a new message.
- */
-export const DeploymentSchema: GenMessage<Deployment> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 6);
+  messageDesc(file_octant_v1alpha_connection_service, 3);
 
 /**
  * @generated from message octant.v1alpha.GenerateManifestsRequest
@@ -261,7 +140,7 @@ export type GenerateManifestsRequest = Message<"octant.v1alpha.GenerateManifests
  * Use `create(GenerateManifestsRequestSchema)` to create a new message.
  */
 export const GenerateManifestsRequestSchema: GenMessage<GenerateManifestsRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 7);
+  messageDesc(file_octant_v1alpha_connection_service, 4);
 
 /**
  * @generated from message octant.v1alpha.GenerateManifestsResponse
@@ -294,7 +173,7 @@ export type GenerateManifestsResponse = Message<"octant.v1alpha.GenerateManifest
  * Use `create(GenerateManifestsResponseSchema)` to create a new message.
  */
 export const GenerateManifestsResponseSchema: GenMessage<GenerateManifestsResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 8);
+  messageDesc(file_octant_v1alpha_connection_service, 5);
 
 /**
  * GetConnectionValidatorRunIdsRequest is a request to get all available connection validator runs
@@ -313,7 +192,7 @@ export type GetConnectionValidatorRunIdsRequest = Message<"octant.v1alpha.GetCon
  * Use `create(GetConnectionValidatorRunIdsRequestSchema)` to create a new message.
  */
 export const GetConnectionValidatorRunIdsRequestSchema: GenMessage<GetConnectionValidatorRunIdsRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 9);
+  messageDesc(file_octant_v1alpha_connection_service, 6);
 
 /**
  * GetConnectionValidatorRunIdsResponse provides all the validator run ids for a connection
@@ -334,7 +213,7 @@ export type GetConnectionValidatorRunIdsResponse = Message<"octant.v1alpha.GetCo
  * Use `create(GetConnectionValidatorRunIdsResponseSchema)` to create a new message.
  */
 export const GetConnectionValidatorRunIdsResponseSchema: GenMessage<GetConnectionValidatorRunIdsResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 10);
+  messageDesc(file_octant_v1alpha_connection_service, 7);
 
 /**
  * CreateConnectionValidatorRunRequest has options for creating a connection validator
@@ -353,7 +232,7 @@ export type CreateConnectionValidatorRunRequest = Message<"octant.v1alpha.Create
  * Use `create(CreateConnectionValidatorRunRequestSchema)` to create a new message.
  */
 export const CreateConnectionValidatorRunRequestSchema: GenMessage<CreateConnectionValidatorRunRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 11);
+  messageDesc(file_octant_v1alpha_connection_service, 8);
 
 /**
  * CreateConnectionValidatorRunResponse contains a response for validator creation
@@ -374,7 +253,7 @@ export type CreateConnectionValidatorRunResponse = Message<"octant.v1alpha.Creat
  * Use `create(CreateConnectionValidatorRunResponseSchema)` to create a new message.
  */
 export const CreateConnectionValidatorRunResponseSchema: GenMessage<CreateConnectionValidatorRunResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 12);
+  messageDesc(file_octant_v1alpha_connection_service, 9);
 
 /**
  * DeleteConnectionValidatorRequest contains options for deleting a connection validator
@@ -393,7 +272,7 @@ export type DeleteConnectionValidatorRequest = Message<"octant.v1alpha.DeleteCon
  * Use `create(DeleteConnectionValidatorRequestSchema)` to create a new message.
  */
 export const DeleteConnectionValidatorRequestSchema: GenMessage<DeleteConnectionValidatorRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 13);
+  messageDesc(file_octant_v1alpha_connection_service, 10);
 
 /**
  * GetConnectionStatusRequest contains options for getting a connections validator run results
@@ -419,7 +298,7 @@ export type GetConnectionStatusRequest = Message<"octant.v1alpha.GetConnectionSt
  * Use `create(GetConnectionStatusRequestSchema)` to create a new message.
  */
 export const GetConnectionStatusRequestSchema: GenMessage<GetConnectionStatusRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 14);
+  messageDesc(file_octant_v1alpha_connection_service, 11);
 
 /**
  * @generated from message octant.v1alpha.GetConnectionStatusResponse
@@ -466,7 +345,7 @@ export type GetConnectionStatusResponse = Message<"octant.v1alpha.GetConnectionS
  * Use `create(GetConnectionStatusResponseSchema)` to create a new message.
  */
 export const GetConnectionStatusResponseSchema: GenMessage<GetConnectionStatusResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 15);
+  messageDesc(file_octant_v1alpha_connection_service, 12);
 
 /**
  * @generated from message octant.v1alpha.ValidationResultsBySignal
@@ -493,7 +372,7 @@ export type ValidationResultsBySignal = Message<"octant.v1alpha.ValidationResult
  * Use `create(ValidationResultsBySignalSchema)` to create a new message.
  */
 export const ValidationResultsBySignalSchema: GenMessage<ValidationResultsBySignal> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 16);
+  messageDesc(file_octant_v1alpha_connection_service, 13);
 
 /**
  * @generated from message octant.v1alpha.ValidationResult
@@ -526,7 +405,7 @@ export type ValidationResult = Message<"octant.v1alpha.ValidationResult"> & {
  * Use `create(ValidationResultSchema)` to create a new message.
  */
 export const ValidationResultSchema: GenMessage<ValidationResult> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 17);
+  messageDesc(file_octant_v1alpha_connection_service, 14);
 
 /**
  * @generated from message octant.v1alpha.ValidationAttributes
@@ -552,7 +431,7 @@ export type ValidationAttributes = Message<"octant.v1alpha.ValidationAttributes"
  * Use `create(ValidationAttributesSchema)` to create a new message.
  */
 export const ValidationAttributesSchema: GenMessage<ValidationAttributes> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 18);
+  messageDesc(file_octant_v1alpha_connection_service, 15);
 
 /**
  * @generated from message octant.v1alpha.DeleteConnectionRequest
@@ -571,34 +450,7 @@ export type DeleteConnectionRequest = Message<"octant.v1alpha.DeleteConnectionRe
  * Use `create(DeleteConnectionRequestSchema)` to create a new message.
  */
 export const DeleteConnectionRequestSchema: GenMessage<DeleteConnectionRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_connection_service, 19);
-
-/**
- * IntegrationType is the type of integration for destinations or deployments
- *
- * @generated from enum octant.v1alpha.IntegrationType
- */
-export enum IntegrationType {
-  /**
-   * INTEGRATION_TYPE_UNSPECIFIED is unsupported and should not be used
-   *
-   * @generated from enum value: INTEGRATION_TYPE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * INTEGRATION_TYPE_DATADOG is for datadog telemetry destinations
-   *
-   * @generated from enum value: INTEGRATION_TYPE_DATADOG = 1;
-   */
-  DATADOG = 1,
-}
-
-/**
- * Describes the enum octant.v1alpha.IntegrationType.
- */
-export const IntegrationTypeSchema: GenEnum<IntegrationType> = /*@__PURE__*/
-  enumDesc(file_octant_v1alpha_connection_service, 0);
+  messageDesc(file_octant_v1alpha_connection_service, 16);
 
 /**
  * ConnectService allows for interacting with MDAI Octant Connections
