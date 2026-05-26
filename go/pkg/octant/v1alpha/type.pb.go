@@ -7,6 +7,7 @@
 package octantv1alpha
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -171,11 +172,313 @@ func (MLTType) EnumDescriptor() ([]byte, []int) {
 	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{2}
 }
 
+// IntegrationType is the type of integration for destinations or deployments
+type IntegrationType int32
+
+const (
+	// INTEGRATION_TYPE_UNSPECIFIED is unsupported and should not be used
+	IntegrationType_INTEGRATION_TYPE_UNSPECIFIED IntegrationType = 0
+	// INTEGRATION_TYPE_DATADOG is for datadog telemetry destinations
+	IntegrationType_INTEGRATION_TYPE_DATADOG IntegrationType = 1
+)
+
+// Enum value maps for IntegrationType.
+var (
+	IntegrationType_name = map[int32]string{
+		0: "INTEGRATION_TYPE_UNSPECIFIED",
+		1: "INTEGRATION_TYPE_DATADOG",
+	}
+	IntegrationType_value = map[string]int32{
+		"INTEGRATION_TYPE_UNSPECIFIED": 0,
+		"INTEGRATION_TYPE_DATADOG":     1,
+	}
+)
+
+func (x IntegrationType) Enum() *IntegrationType {
+	p := new(IntegrationType)
+	*p = x
+	return p
+}
+
+func (x IntegrationType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (IntegrationType) Descriptor() protoreflect.EnumDescriptor {
+	return file_octant_v1alpha_type_proto_enumTypes[3].Descriptor()
+}
+
+func (IntegrationType) Type() protoreflect.EnumType {
+	return &file_octant_v1alpha_type_proto_enumTypes[3]
+}
+
+func (x IntegrationType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use IntegrationType.Descriptor instead.
+func (IntegrationType) EnumDescriptor() ([]byte, []int) {
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{3}
+}
+
+// ConnectionScope contains identifiers for a connection
+type ConnectionScope struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// namespace that the connection is installed in/will be installed into
+	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// connection_name is the name of the connection
+	ConnectionName string `protobuf:"bytes,2,opt,name=connection_name,json=connectionName,proto3" json:"connection_name,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ConnectionScope) Reset() {
+	*x = ConnectionScope{}
+	mi := &file_octant_v1alpha_type_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConnectionScope) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConnectionScope) ProtoMessage() {}
+
+func (x *ConnectionScope) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_type_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConnectionScope.ProtoReflect.Descriptor instead.
+func (*ConnectionScope) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ConnectionScope) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *ConnectionScope) GetConnectionName() string {
+	if x != nil {
+		return x.ConnectionName
+	}
+	return ""
+}
+
+// Deployment is information needed to deploy a connection
+type Deployment struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// type indicates what type of deployment mechanism/system to use
+	Type DeploymentType `protobuf:"varint,1,opt,name=type,proto3,enum=octant.v1alpha.DeploymentType" json:"type,omitempty"`
+	// integration_name is the name of the previously created deployment integration to use
+	IntegrationName string `protobuf:"bytes,2,opt,name=integration_name,json=integrationName,proto3" json:"integration_name,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Deployment) Reset() {
+	*x = Deployment{}
+	mi := &file_octant_v1alpha_type_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Deployment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Deployment) ProtoMessage() {}
+
+func (x *Deployment) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_type_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Deployment.ProtoReflect.Descriptor instead.
+func (*Deployment) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Deployment) GetType() DeploymentType {
+	if x != nil {
+		return x.Type
+	}
+	return DeploymentType_DEPLOYMENT_TYPE_UNSPECIFIED
+}
+
+func (x *Deployment) GetIntegrationName() string {
+	if x != nil {
+		return x.IntegrationName
+	}
+	return ""
+}
+
+// TelemetryDestination is information for an integration to send telemetry to from a connection
+type TelemetryDestination struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// type is the integration type for this integration
+	Type IntegrationType `protobuf:"varint,1,opt,name=type,proto3,enum=octant.v1alpha.IntegrationType" json:"type,omitempty"`
+	// integration_name is the name of a previously created integration with information needed to send telemetry
+	IntegrationName string `protobuf:"bytes,2,opt,name=integration_name,json=integrationName,proto3" json:"integration_name,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *TelemetryDestination) Reset() {
+	*x = TelemetryDestination{}
+	mi := &file_octant_v1alpha_type_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryDestination) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryDestination) ProtoMessage() {}
+
+func (x *TelemetryDestination) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_type_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryDestination.ProtoReflect.Descriptor instead.
+func (*TelemetryDestination) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TelemetryDestination) GetType() IntegrationType {
+	if x != nil {
+		return x.Type
+	}
+	return IntegrationType_INTEGRATION_TYPE_UNSPECIFIED
+}
+
+func (x *TelemetryDestination) GetIntegrationName() string {
+	if x != nil {
+		return x.IntegrationName
+	}
+	return ""
+}
+
+type ConnectionData struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Scope *ConnectionScope       `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`
+	// telemetry_types is used to generate the manifests.
+	TelemetryTypes []MLTType `protobuf:"varint,2,rep,packed,name=telemetry_types,json=telemetryTypes,proto3,enum=octant.v1alpha.MLTType" json:"telemetry_types,omitempty"`
+	// deployment contains information required for deploying the connection
+	Deployment *Deployment `protobuf:"bytes,3,opt,name=deployment,proto3" json:"deployment,omitempty"`
+	// destinations are where telemetry from this connection is sent and options needed to send it there
+	Destinations  []*TelemetryDestination `protobuf:"bytes,4,rep,name=destinations,proto3" json:"destinations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConnectionData) Reset() {
+	*x = ConnectionData{}
+	mi := &file_octant_v1alpha_type_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConnectionData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConnectionData) ProtoMessage() {}
+
+func (x *ConnectionData) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_type_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConnectionData.ProtoReflect.Descriptor instead.
+func (*ConnectionData) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_type_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ConnectionData) GetScope() *ConnectionScope {
+	if x != nil {
+		return x.Scope
+	}
+	return nil
+}
+
+func (x *ConnectionData) GetTelemetryTypes() []MLTType {
+	if x != nil {
+		return x.TelemetryTypes
+	}
+	return nil
+}
+
+func (x *ConnectionData) GetDeployment() *Deployment {
+	if x != nil {
+		return x.Deployment
+	}
+	return nil
+}
+
+func (x *ConnectionData) GetDestinations() []*TelemetryDestination {
+	if x != nil {
+		return x.Destinations
+	}
+	return nil
+}
+
 var File_octant_v1alpha_type_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_type_proto_rawDesc = "" +
 	"\n" +
-	"\x19octant/v1alpha/type.proto\x12\x0eoctant.v1alpha*t\n" +
+	"\x19octant/v1alpha/type.proto\x12\x0eoctant.v1alpha\x1a\x1bbuf/validate/validate.proto\"\xb1\x01\n" +
+	"\x0fConnectionScope\x12I\n" +
+	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\x12S\n" +
+	"\x0fconnection_name\x18\x02 \x01(\tB*\xbaH'r%\x10\x03\x18\x142\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\x0econnectionName\"k\n" +
+	"\n" +
+	"Deployment\x122\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x1e.octant.v1alpha.DeploymentTypeR\x04type\x12)\n" +
+	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"v\n" +
+	"\x14TelemetryDestination\x123\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x1f.octant.v1alpha.IntegrationTypeR\x04type\x12)\n" +
+	"\x10integration_name\x18\x02 \x01(\tR\x0fintegrationName\"\xbb\x02\n" +
+	"\x0eConnectionData\x12=\n" +
+	"\x05scope\x18\x01 \x01(\v2\x1f.octant.v1alpha.ConnectionScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12T\n" +
+	"\x0ftelemetry_types\x18\x02 \x03(\x0e2\x17.octant.v1alpha.MLTTypeB\x12\xbaH\x0f\xc8\x01\x01\x92\x01\t\x18\x01\"\x05\x82\x01\x02\x10\x01R\x0etelemetryTypes\x12B\n" +
+	"\n" +
+	"deployment\x18\x03 \x01(\v2\x1a.octant.v1alpha.DeploymentB\x06\xbaH\x03\xc8\x01\x01R\n" +
+	"deployment\x12P\n" +
+	"\fdestinations\x18\x04 \x03(\v2$.octant.v1alpha.TelemetryDestinationB\x06\xbaH\x03\xc8\x01\x01R\fdestinations*t\n" +
 	"\x11ManifestOutFormat\x12#\n" +
 	"\x1fMANIFEST_OUT_FORMAT_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18MANIFEST_OUT_FORMAT_JSON\x10\x01\x12\x1c\n" +
@@ -188,7 +491,10 @@ const file_octant_v1alpha_type_proto_rawDesc = "" +
 	"\x14MLT_TYPE_UNSPECIFIED\x10\x00\x12\x13\n" +
 	"\x0fMLT_TYPE_METRIC\x10\x01\x12\x12\n" +
 	"\x0eMLT_TYPE_TRACE\x10\x02\x12\x10\n" +
-	"\fMLT_TYPE_LOG\x10\x03B\xc4\x01\n" +
+	"\fMLT_TYPE_LOG\x10\x03*Q\n" +
+	"\x0fIntegrationType\x12 \n" +
+	"\x1cINTEGRATION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18INTEGRATION_TYPE_DATADOG\x10\x01B\xc4\x01\n" +
 	"\x12com.octant.v1alphaB\tTypeProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
 var (
@@ -203,18 +509,30 @@ func file_octant_v1alpha_type_proto_rawDescGZIP() []byte {
 	return file_octant_v1alpha_type_proto_rawDescData
 }
 
-var file_octant_v1alpha_type_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_octant_v1alpha_type_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_octant_v1alpha_type_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_octant_v1alpha_type_proto_goTypes = []any{
-	(ManifestOutFormat)(0), // 0: octant.v1alpha.ManifestOutFormat
-	(DeploymentType)(0),    // 1: octant.v1alpha.DeploymentType
-	(MLTType)(0),           // 2: octant.v1alpha.MLTType
+	(ManifestOutFormat)(0),       // 0: octant.v1alpha.ManifestOutFormat
+	(DeploymentType)(0),          // 1: octant.v1alpha.DeploymentType
+	(MLTType)(0),                 // 2: octant.v1alpha.MLTType
+	(IntegrationType)(0),         // 3: octant.v1alpha.IntegrationType
+	(*ConnectionScope)(nil),      // 4: octant.v1alpha.ConnectionScope
+	(*Deployment)(nil),           // 5: octant.v1alpha.Deployment
+	(*TelemetryDestination)(nil), // 6: octant.v1alpha.TelemetryDestination
+	(*ConnectionData)(nil),       // 7: octant.v1alpha.ConnectionData
 }
 var file_octant_v1alpha_type_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: octant.v1alpha.Deployment.type:type_name -> octant.v1alpha.DeploymentType
+	3, // 1: octant.v1alpha.TelemetryDestination.type:type_name -> octant.v1alpha.IntegrationType
+	4, // 2: octant.v1alpha.ConnectionData.scope:type_name -> octant.v1alpha.ConnectionScope
+	2, // 3: octant.v1alpha.ConnectionData.telemetry_types:type_name -> octant.v1alpha.MLTType
+	5, // 4: octant.v1alpha.ConnectionData.deployment:type_name -> octant.v1alpha.Deployment
+	6, // 5: octant.v1alpha.ConnectionData.destinations:type_name -> octant.v1alpha.TelemetryDestination
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_octant_v1alpha_type_proto_init() }
@@ -227,14 +545,15 @@ func file_octant_v1alpha_type_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_octant_v1alpha_type_proto_rawDesc), len(file_octant_v1alpha_type_proto_rawDesc)),
-			NumEnums:      3,
-			NumMessages:   0,
+			NumEnums:      4,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_octant_v1alpha_type_proto_goTypes,
 		DependencyIndexes: file_octant_v1alpha_type_proto_depIdxs,
 		EnumInfos:         file_octant_v1alpha_type_proto_enumTypes,
+		MessageInfos:      file_octant_v1alpha_type_proto_msgTypes,
 	}.Build()
 	File_octant_v1alpha_type_proto = out.File
 	file_octant_v1alpha_type_proto_goTypes = nil

@@ -2,14 +2,138 @@
 // @generated from file octant/v1alpha/type.proto (package octant.v1alpha, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
+import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file octant/v1alpha/type.proto.
  */
 export const file_octant_v1alpha_type: GenFile = /*@__PURE__*/
-  fileDesc("ChlvY3RhbnQvdjFhbHBoYS90eXBlLnByb3RvEg5vY3RhbnQudjFhbHBoYSp0ChFNYW5pZmVzdE91dEZvcm1hdBIjCh9NQU5JRkVTVF9PVVRfRk9STUFUX1VOU1BFQ0lGSUVEEAASHAoYTUFOSUZFU1RfT1VUX0ZPUk1BVF9KU09OEAESHAoYTUFOSUZFU1RfT1VUX0ZPUk1BVF9ZQU1MEAIqdwoORGVwbG95bWVudFR5cGUSHwobREVQTE9ZTUVOVF9UWVBFX1VOU1BFQ0lGSUVEEAASIQodREVQTE9ZTUVOVF9UWVBFX0FSR09fU0lERUxPQUQQARIhCh1ERVBMT1lNRU5UX1RZUEVfQVJHT19NQU5JRkVTVBACKl4KB01MVFR5cGUSGAoUTUxUX1RZUEVfVU5TUEVDSUZJRUQQABITCg9NTFRfVFlQRV9NRVRSSUMQARISCg5NTFRfVFlQRV9UUkFDRRACEhAKDE1MVF9UWVBFX0xPRxADQsQBChJjb20ub2N0YW50LnYxYWxwaGFCCVR5cGVQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z");
+  fileDesc("ChlvY3RhbnQvdjFhbHBoYS90eXBlLnByb3RvEg5vY3RhbnQudjFhbHBoYSKWAQoPQ29ubmVjdGlvblNjb3BlEj4KCW5hbWVzcGFjZRgBIAEoCUIrukgoyAEBciMYPzIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JBJDCg9jb25uZWN0aW9uX25hbWUYAiABKAlCKrpIJ3IlEAMYFDIfXlthLXowLTldKFstYS16MC05XSpbYS16MC05XSk/JCJUCgpEZXBsb3ltZW50EiwKBHR5cGUYASABKA4yHi5vY3RhbnQudjFhbHBoYS5EZXBsb3ltZW50VHlwZRIYChBpbnRlZ3JhdGlvbl9uYW1lGAIgASgJIl8KFFRlbGVtZXRyeURlc3RpbmF0aW9uEi0KBHR5cGUYASABKA4yHy5vY3RhbnQudjFhbHBoYS5JbnRlZ3JhdGlvblR5cGUSGAoQaW50ZWdyYXRpb25fbmFtZRgCIAEoCSKKAgoOQ29ubmVjdGlvbkRhdGESNgoFc2NvcGUYASABKAsyHy5vY3RhbnQudjFhbHBoYS5Db25uZWN0aW9uU2NvcGVCBrpIA8gBARJECg90ZWxlbWV0cnlfdHlwZXMYAiADKA4yFy5vY3RhbnQudjFhbHBoYS5NTFRUeXBlQhK6SA/IAQGSAQkYASIFggECEAESNgoKZGVwbG95bWVudBgDIAEoCzIaLm9jdGFudC52MWFscGhhLkRlcGxveW1lbnRCBrpIA8gBARJCCgxkZXN0aW5hdGlvbnMYBCADKAsyJC5vY3RhbnQudjFhbHBoYS5UZWxlbWV0cnlEZXN0aW5hdGlvbkIGukgDyAEBKnQKEU1hbmlmZXN0T3V0Rm9ybWF0EiMKH01BTklGRVNUX09VVF9GT1JNQVRfVU5TUEVDSUZJRUQQABIcChhNQU5JRkVTVF9PVVRfRk9STUFUX0pTT04QARIcChhNQU5JRkVTVF9PVVRfRk9STUFUX1lBTUwQAip3Cg5EZXBsb3ltZW50VHlwZRIfChtERVBMT1lNRU5UX1RZUEVfVU5TUEVDSUZJRUQQABIhCh1ERVBMT1lNRU5UX1RZUEVfQVJHT19TSURFTE9BRBABEiEKHURFUExPWU1FTlRfVFlQRV9BUkdPX01BTklGRVNUEAIqXgoHTUxUVHlwZRIYChRNTFRfVFlQRV9VTlNQRUNJRklFRBAAEhMKD01MVF9UWVBFX01FVFJJQxABEhIKDk1MVF9UWVBFX1RSQUNFEAISEAoMTUxUX1RZUEVfTE9HEAMqUQoPSW50ZWdyYXRpb25UeXBlEiAKHElOVEVHUkFUSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIcChhJTlRFR1JBVElPTl9UWVBFX0RBVEFET0cQAULEAQoSY29tLm9jdGFudC52MWFscGhhQglUeXBlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate]);
+
+/**
+ * ConnectionScope contains identifiers for a connection
+ *
+ * @generated from message octant.v1alpha.ConnectionScope
+ */
+export type ConnectionScope = Message<"octant.v1alpha.ConnectionScope"> & {
+  /**
+   * namespace that the connection is installed in/will be installed into
+   *
+   * @generated from field: string namespace = 1;
+   */
+  namespace: string;
+
+  /**
+   * connection_name is the name of the connection
+   *
+   * @generated from field: string connection_name = 2;
+   */
+  connectionName: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.ConnectionScope.
+ * Use `create(ConnectionScopeSchema)` to create a new message.
+ */
+export const ConnectionScopeSchema: GenMessage<ConnectionScope> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_type, 0);
+
+/**
+ * Deployment is information needed to deploy a connection
+ *
+ * @generated from message octant.v1alpha.Deployment
+ */
+export type Deployment = Message<"octant.v1alpha.Deployment"> & {
+  /**
+   * type indicates what type of deployment mechanism/system to use
+   *
+   * @generated from field: octant.v1alpha.DeploymentType type = 1;
+   */
+  type: DeploymentType;
+
+  /**
+   * integration_name is the name of the previously created deployment integration to use
+   *
+   * @generated from field: string integration_name = 2;
+   */
+  integrationName: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.Deployment.
+ * Use `create(DeploymentSchema)` to create a new message.
+ */
+export const DeploymentSchema: GenMessage<Deployment> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_type, 1);
+
+/**
+ * TelemetryDestination is information for an integration to send telemetry to from a connection
+ *
+ * @generated from message octant.v1alpha.TelemetryDestination
+ */
+export type TelemetryDestination = Message<"octant.v1alpha.TelemetryDestination"> & {
+  /**
+   * type is the integration type for this integration
+   *
+   * @generated from field: octant.v1alpha.IntegrationType type = 1;
+   */
+  type: IntegrationType;
+
+  /**
+   * integration_name is the name of a previously created integration with information needed to send telemetry
+   *
+   * @generated from field: string integration_name = 2;
+   */
+  integrationName: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.TelemetryDestination.
+ * Use `create(TelemetryDestinationSchema)` to create a new message.
+ */
+export const TelemetryDestinationSchema: GenMessage<TelemetryDestination> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_type, 2);
+
+/**
+ * @generated from message octant.v1alpha.ConnectionData
+ */
+export type ConnectionData = Message<"octant.v1alpha.ConnectionData"> & {
+  /**
+   * @generated from field: octant.v1alpha.ConnectionScope scope = 1;
+   */
+  scope?: ConnectionScope;
+
+  /**
+   * telemetry_types is used to generate the manifests.
+   *
+   * @generated from field: repeated octant.v1alpha.MLTType telemetry_types = 2;
+   */
+  telemetryTypes: MLTType[];
+
+  /**
+   * deployment contains information required for deploying the connection
+   *
+   * @generated from field: octant.v1alpha.Deployment deployment = 3;
+   */
+  deployment?: Deployment;
+
+  /**
+   * destinations are where telemetry from this connection is sent and options needed to send it there
+   *
+   * @generated from field: repeated octant.v1alpha.TelemetryDestination destinations = 4;
+   */
+  destinations: TelemetryDestination[];
+};
+
+/**
+ * Describes the message octant.v1alpha.ConnectionData.
+ * Use `create(ConnectionDataSchema)` to create a new message.
+ */
+export const ConnectionDataSchema: GenMessage<ConnectionData> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_type, 3);
 
 /**
  * @generated from enum octant.v1alpha.ManifestOutFormat
@@ -93,4 +217,31 @@ export enum MLTType {
  */
 export const MLTTypeSchema: GenEnum<MLTType> = /*@__PURE__*/
   enumDesc(file_octant_v1alpha_type, 2);
+
+/**
+ * IntegrationType is the type of integration for destinations or deployments
+ *
+ * @generated from enum octant.v1alpha.IntegrationType
+ */
+export enum IntegrationType {
+  /**
+   * INTEGRATION_TYPE_UNSPECIFIED is unsupported and should not be used
+   *
+   * @generated from enum value: INTEGRATION_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * INTEGRATION_TYPE_DATADOG is for datadog telemetry destinations
+   *
+   * @generated from enum value: INTEGRATION_TYPE_DATADOG = 1;
+   */
+  DATADOG = 1,
+}
+
+/**
+ * Describes the enum octant.v1alpha.IntegrationType.
+ */
+export const IntegrationTypeSchema: GenEnum<IntegrationType> = /*@__PURE__*/
+  enumDesc(file_octant_v1alpha_type, 3);
 
