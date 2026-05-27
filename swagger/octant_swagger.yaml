@@ -1483,13 +1483,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/octant.v1alpha.GetDatadogIntegrationByNameResponse'
-  /octant.v1alpha.DatadogService/GetIntegrations:
+  /octant.v1alpha.DatadogService/GetDatadogIntegrations:
     get:
       tags:
         - DatadogService
-      summary: GetIntegrations
+      summary: GetDatadogIntegrations
       description: GetIntegrations returns list of datadog integration names.
-      operationId: octant.v1alpha.DatadogService.GetIntegrations.get
+      operationId: octant.v1alpha.DatadogService.GetDatadogIntegrations.get
       parameters:
         - name: Connect-Protocol-Version
           in: header
@@ -1539,9 +1539,9 @@ paths:
     post:
       tags:
         - DatadogService
-      summary: GetIntegrations
+      summary: GetDatadogIntegrations
       description: GetIntegrations returns list of datadog integration names.
-      operationId: octant.v1alpha.DatadogService.GetIntegrations
+      operationId: octant.v1alpha.DatadogService.GetDatadogIntegrations
       parameters:
         - name: Connect-Protocol-Version
           in: header

@@ -235,9 +235,9 @@ const file_octant_v1alpha_datadog_service_proto_rawDesc = "" +
 	"\x1dSaveDatadogIntegrationRequest\x12\x1d\n" +
 	"\x04name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18dR\x04name\x12$\n" +
 	"\aapi_key\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x98\x01 R\x06apiKey\x12\x18\n" +
-	"\x03url\x18\x03 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x03url2\xe1\x02\n" +
-	"\x0eDatadogService\x12^\n" +
-	"\x0fGetIntegrations\x12\x16.google.protobuf.Empty\x1a..octant.v1alpha.GetDatadogIntegrationsResponse\"\x03\x90\x02\x01\x12\x8b\x01\n" +
+	"\x03url\x18\x03 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x03url2\xe8\x02\n" +
+	"\x0eDatadogService\x12e\n" +
+	"\x16GetDatadogIntegrations\x12\x16.google.protobuf.Empty\x1a..octant.v1alpha.GetDatadogIntegrationsResponse\"\x03\x90\x02\x01\x12\x8b\x01\n" +
 	"\x1bGetDatadogIntegrationByName\x122.octant.v1alpha.GetDatadogIntegrationByNameRequest\x1a3.octant.v1alpha.GetDatadogIntegrationByNameResponse\"\x03\x90\x02\x01\x12a\n" +
 	"\x16SaveDatadogIntegration\x12-.octant.v1alpha.SaveDatadogIntegrationRequest\x1a\x16.google.protobuf.Empty\"\x00B\xce\x01\n" +
 	"\x12com.octant.v1alphaB\x13DatadogServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
@@ -263,10 +263,10 @@ var file_octant_v1alpha_datadog_service_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),                       // 4: google.protobuf.Empty
 }
 var file_octant_v1alpha_datadog_service_proto_depIdxs = []int32{
-	4, // 0: octant.v1alpha.DatadogService.GetIntegrations:input_type -> google.protobuf.Empty
+	4, // 0: octant.v1alpha.DatadogService.GetDatadogIntegrations:input_type -> google.protobuf.Empty
 	0, // 1: octant.v1alpha.DatadogService.GetDatadogIntegrationByName:input_type -> octant.v1alpha.GetDatadogIntegrationByNameRequest
 	3, // 2: octant.v1alpha.DatadogService.SaveDatadogIntegration:input_type -> octant.v1alpha.SaveDatadogIntegrationRequest
-	2, // 3: octant.v1alpha.DatadogService.GetIntegrations:output_type -> octant.v1alpha.GetDatadogIntegrationsResponse
+	2, // 3: octant.v1alpha.DatadogService.GetDatadogIntegrations:output_type -> octant.v1alpha.GetDatadogIntegrationsResponse
 	1, // 4: octant.v1alpha.DatadogService.GetDatadogIntegrationByName:output_type -> octant.v1alpha.GetDatadogIntegrationByNameResponse
 	4, // 5: octant.v1alpha.DatadogService.SaveDatadogIntegration:output_type -> google.protobuf.Empty
 	3, // [3:6] is the sub-list for method output_type

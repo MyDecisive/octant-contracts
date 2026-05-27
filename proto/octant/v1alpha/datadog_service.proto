@@ -7,7 +7,7 @@ import "google/protobuf/empty.proto";
 
 service DatadogService {
   // GetIntegrations returns list of datadog integration names.
-  rpc GetIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {
+  rpc GetDatadogIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
   }
   // GetDatadogIntegrationByName returns list of datadog integration names.
