@@ -6,8 +6,12 @@ import "buf/validate/validate.proto";
 import "google/protobuf/empty.proto";
 
 service DatadogService {
-  // GetDatadogIntegrations returns list of datadog integration names.
+  // GetIntegrations returns list of datadog integration names.
   rpc GetDatadogIntegrations(google.protobuf.Empty) returns (GetDatadogIntegrationsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+  // GetDatadogIntegrationByName returns list of datadog integration names.
+  rpc GetDatadogIntegrationByName(GetDatadogIntegrationByNameRequest) returns (GetDatadogIntegrationByNameResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
   }
   // SaveDatadogIntegration saves the given datadog integration.
@@ -15,8 +19,21 @@ service DatadogService {
   rpc SaveDatadogIntegration(SaveDatadogIntegrationRequest) returns (google.protobuf.Empty) {}
 }
 
+message GetDatadogIntegrationByNameRequest {
+  // name contains name of the integration to retrieve
+  string name = 1 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 100
+  ];
+}
+
+message GetDatadogIntegrationByNameResponse {
+  // url is the datadog api url to send telemetry data to.
+  string url = 1 [(buf.validate.field).required = true];
+}
+
 message GetDatadogIntegrationsResponse {
-  // names contains the list of datadog integration names
+  // names contains the list of integration names
   repeated string names = 1;
 }
 
@@ -26,9 +43,11 @@ message SaveDatadogIntegrationRequest {
     (buf.validate.field).string.min_len = 5,
     (buf.validate.field).string.max_len = 100
   ];
+  // api_key is the 32-character api key generated from datadog.
   string api_key = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.len = 32
   ];
+  // url is the datadog api url to send telemetry data to.
   string url = 3 [(buf.validate.field).required = true];
 }
