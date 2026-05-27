@@ -151,7 +151,9 @@ export const UpdateResponse_StatusSchema: GenEnum<UpdateResponse_Status> = /*@__
 export const SettingService: GenService<{
   /**
    * Update updates the relevant configmap/secret and then redeploy necessary collectors to relfect the changes.
-   * If this returns an error code (https://connectrpc.com/docs/protocol/#error-codes), it means the update failed.
+   * If an update is in progress, this will immediately return with an error code `unavailable`.
+   * Otherwise, this will continuously give update until the update is complete or errored.
+   * Note: Please take a look at https://connectrpc.com/docs/protocol/#error-codes for all other possible error codes.
    *
    * @generated from rpc octant.v1alpha.SettingService.Update
    */
