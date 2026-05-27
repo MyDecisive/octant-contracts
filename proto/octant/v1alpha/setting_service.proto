@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package octant.v1alpha;
+
+import "buf/validate/validate.proto";
+import "octant/v1alpha/type.proto";
+
+// ConnectService allows for interacting with MDAI Octant Connections
+service SettingService {
+  // Update updates the relevant configmap/secret and then redeploy necessary collectors to relfect the changes.
+  // If this returns an error code (https://connectrpc.com/docs/protocol/#error-codes), it means the update failed.
+  rpc Update(UpdateRequest) returns (stream UpdateResponse) {}
+}
+
+message UpdateRequest {
+  // scope indicates which connection to modify.
+  ConnectionScope scope = 1 [(buf.validate.field).required = true];
+  // telemetry_types contains the new telemetry types to enable for the given connection.
+  // If telemetry_types is empty, the connection's current telemetry_types will not be modified.
+  // If telemetry_types is not empty, the octant connection cofigmap will be updated with the new telemetry_types,
+  // lb collector will be updated to include relevant pipelines, and relevant sampling collectors will be spinned up/down.
+  repeated MLTType telemetry_types = 2 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      enum: {
+        defined_only: true
+        not_in: [
+          0, // MLT_TYPE_UNSPECIFIED
+          1 // MLT_TYPE_METRIC
+        ]
+      }
+    }
+  ];
+  // datadog_url contains the new datadog URL to be applied.
+  // If datadog_url is empty, existing URL will not be modified.
+  // If datadog_url is not empty, the datadog integration secret will be updated with the new URL,
+  // and the sampling collectors will be restarted to use the new data.
+  string datadog_url = 3;
+  // datadog_api_key contains the new datadog API key to be applied.
+  // If datadog_api_key is empty, existing API key will not be modified.
+  // If datadog_api_key is not empty, the datadog integration secret will be updated with the new API key,
+  // and the sampling collectors will be restarted to use the new data.
+  string datadog_api_key = 4 [(buf.validate.field).cel = {
+    id: "empty_or_32"
+    message: "should either be empty or have exactly 32 characters"
+    expression: "size(this) == 0 || size(this) == 32"
+  }];
+}
+
+message UpdateResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    // STATUS_UPDATING means we are still updating the configmap/secret with the given changes.
+    STATUS_UPDATING = 1;
+    // STATUS_UPDATED means changes have been updated in the configmap/secret.
+    STATUS_UPDATED = 2;
+    // STATUS_DEPLOY means we are deploying collectors to reflect the changes.
+    STATUS_DEPLOY = 3;
+    // STATUS_WAIT means we are waiting for the collectors deployment to be complete.
+    STATUS_WAIT = 4;
+    // STATUS_COMPLETED means update are complete.
+    STATUS_COMPLETED = 5;
+    // STATUS_TIMEOUT means Octant timed out while waiting for collector to be deployed.
+    // Note: This doesn't necessarily means the collectors aren't deployed.
+    STATUS_TIMEOUT = 6;
+  }
+  // status indicates current status of the update.
+  // For more details, see comments in Status enum.
+  Status status = 1;
+}
