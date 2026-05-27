@@ -34,9 +34,12 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// DatadogServiceGetDatadogIntegrationsProcedure is the fully-qualified name of the DatadogService's
-	// GetDatadogIntegrations RPC.
-	DatadogServiceGetDatadogIntegrationsProcedure = "/octant.v1alpha.DatadogService/GetDatadogIntegrations"
+	// DatadogServiceGetIntegrationsProcedure is the fully-qualified name of the DatadogService's
+	// GetIntegrations RPC.
+	DatadogServiceGetIntegrationsProcedure = "/octant.v1alpha.DatadogService/GetIntegrations"
+	// DatadogServiceGetDatadogIntegrationByNameProcedure is the fully-qualified name of the
+	// DatadogService's GetDatadogIntegrationByName RPC.
+	DatadogServiceGetDatadogIntegrationByNameProcedure = "/octant.v1alpha.DatadogService/GetDatadogIntegrationByName"
 	// DatadogServiceSaveDatadogIntegrationProcedure is the fully-qualified name of the DatadogService's
 	// SaveDatadogIntegration RPC.
 	DatadogServiceSaveDatadogIntegrationProcedure = "/octant.v1alpha.DatadogService/SaveDatadogIntegration"
@@ -44,8 +47,10 @@ const (
 
 // DatadogServiceClient is a client for the octant.v1alpha.DatadogService service.
 type DatadogServiceClient interface {
-	// GetDatadogIntegrations returns list of datadog integration names.
-	GetDatadogIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error)
+	// GetIntegrations returns list of datadog integration names.
+	GetIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error)
+	// GetDatadogIntegrationByName returns list of datadog integration names.
+	GetDatadogIntegrationByName(context.Context, *connect.Request[v1alpha.GetDatadogIntegrationByNameRequest]) (*connect.Response[v1alpha.GetDatadogIntegrationByNameResponse], error)
 	// SaveDatadogIntegration saves the given datadog integration.
 	// If the integration already exists, this will override the saved data with the one provided.
 	SaveDatadogIntegration(context.Context, *connect.Request[v1alpha.SaveDatadogIntegrationRequest]) (*connect.Response[emptypb.Empty], error)
@@ -62,10 +67,17 @@ func NewDatadogServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 	baseURL = strings.TrimRight(baseURL, "/")
 	datadogServiceMethods := v1alpha.File_octant_v1alpha_datadog_service_proto.Services().ByName("DatadogService").Methods()
 	return &datadogServiceClient{
-		getDatadogIntegrations: connect.NewClient[emptypb.Empty, v1alpha.GetDatadogIntegrationsResponse](
+		getIntegrations: connect.NewClient[emptypb.Empty, v1alpha.GetDatadogIntegrationsResponse](
 			httpClient,
-			baseURL+DatadogServiceGetDatadogIntegrationsProcedure,
-			connect.WithSchema(datadogServiceMethods.ByName("GetDatadogIntegrations")),
+			baseURL+DatadogServiceGetIntegrationsProcedure,
+			connect.WithSchema(datadogServiceMethods.ByName("GetIntegrations")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
+		getDatadogIntegrationByName: connect.NewClient[v1alpha.GetDatadogIntegrationByNameRequest, v1alpha.GetDatadogIntegrationByNameResponse](
+			httpClient,
+			baseURL+DatadogServiceGetDatadogIntegrationByNameProcedure,
+			connect.WithSchema(datadogServiceMethods.ByName("GetDatadogIntegrationByName")),
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
@@ -80,13 +92,19 @@ func NewDatadogServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 
 // datadogServiceClient implements DatadogServiceClient.
 type datadogServiceClient struct {
-	getDatadogIntegrations *connect.Client[emptypb.Empty, v1alpha.GetDatadogIntegrationsResponse]
-	saveDatadogIntegration *connect.Client[v1alpha.SaveDatadogIntegrationRequest, emptypb.Empty]
+	getIntegrations             *connect.Client[emptypb.Empty, v1alpha.GetDatadogIntegrationsResponse]
+	getDatadogIntegrationByName *connect.Client[v1alpha.GetDatadogIntegrationByNameRequest, v1alpha.GetDatadogIntegrationByNameResponse]
+	saveDatadogIntegration      *connect.Client[v1alpha.SaveDatadogIntegrationRequest, emptypb.Empty]
 }
 
-// GetDatadogIntegrations calls octant.v1alpha.DatadogService.GetDatadogIntegrations.
-func (c *datadogServiceClient) GetDatadogIntegrations(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error) {
-	return c.getDatadogIntegrations.CallUnary(ctx, req)
+// GetIntegrations calls octant.v1alpha.DatadogService.GetIntegrations.
+func (c *datadogServiceClient) GetIntegrations(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error) {
+	return c.getIntegrations.CallUnary(ctx, req)
+}
+
+// GetDatadogIntegrationByName calls octant.v1alpha.DatadogService.GetDatadogIntegrationByName.
+func (c *datadogServiceClient) GetDatadogIntegrationByName(ctx context.Context, req *connect.Request[v1alpha.GetDatadogIntegrationByNameRequest]) (*connect.Response[v1alpha.GetDatadogIntegrationByNameResponse], error) {
+	return c.getDatadogIntegrationByName.CallUnary(ctx, req)
 }
 
 // SaveDatadogIntegration calls octant.v1alpha.DatadogService.SaveDatadogIntegration.
@@ -96,8 +114,10 @@ func (c *datadogServiceClient) SaveDatadogIntegration(ctx context.Context, req *
 
 // DatadogServiceHandler is an implementation of the octant.v1alpha.DatadogService service.
 type DatadogServiceHandler interface {
-	// GetDatadogIntegrations returns list of datadog integration names.
-	GetDatadogIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error)
+	// GetIntegrations returns list of datadog integration names.
+	GetIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error)
+	// GetDatadogIntegrationByName returns list of datadog integration names.
+	GetDatadogIntegrationByName(context.Context, *connect.Request[v1alpha.GetDatadogIntegrationByNameRequest]) (*connect.Response[v1alpha.GetDatadogIntegrationByNameResponse], error)
 	// SaveDatadogIntegration saves the given datadog integration.
 	// If the integration already exists, this will override the saved data with the one provided.
 	SaveDatadogIntegration(context.Context, *connect.Request[v1alpha.SaveDatadogIntegrationRequest]) (*connect.Response[emptypb.Empty], error)
@@ -110,10 +130,17 @@ type DatadogServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewDatadogServiceHandler(svc DatadogServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	datadogServiceMethods := v1alpha.File_octant_v1alpha_datadog_service_proto.Services().ByName("DatadogService").Methods()
-	datadogServiceGetDatadogIntegrationsHandler := connect.NewUnaryHandler(
-		DatadogServiceGetDatadogIntegrationsProcedure,
-		svc.GetDatadogIntegrations,
-		connect.WithSchema(datadogServiceMethods.ByName("GetDatadogIntegrations")),
+	datadogServiceGetIntegrationsHandler := connect.NewUnaryHandler(
+		DatadogServiceGetIntegrationsProcedure,
+		svc.GetIntegrations,
+		connect.WithSchema(datadogServiceMethods.ByName("GetIntegrations")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
+	datadogServiceGetDatadogIntegrationByNameHandler := connect.NewUnaryHandler(
+		DatadogServiceGetDatadogIntegrationByNameProcedure,
+		svc.GetDatadogIntegrationByName,
+		connect.WithSchema(datadogServiceMethods.ByName("GetDatadogIntegrationByName")),
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
@@ -125,8 +152,10 @@ func NewDatadogServiceHandler(svc DatadogServiceHandler, opts ...connect.Handler
 	)
 	return "/octant.v1alpha.DatadogService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case DatadogServiceGetDatadogIntegrationsProcedure:
-			datadogServiceGetDatadogIntegrationsHandler.ServeHTTP(w, r)
+		case DatadogServiceGetIntegrationsProcedure:
+			datadogServiceGetIntegrationsHandler.ServeHTTP(w, r)
+		case DatadogServiceGetDatadogIntegrationByNameProcedure:
+			datadogServiceGetDatadogIntegrationByNameHandler.ServeHTTP(w, r)
 		case DatadogServiceSaveDatadogIntegrationProcedure:
 			datadogServiceSaveDatadogIntegrationHandler.ServeHTTP(w, r)
 		default:
@@ -138,8 +167,12 @@ func NewDatadogServiceHandler(svc DatadogServiceHandler, opts ...connect.Handler
 // UnimplementedDatadogServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedDatadogServiceHandler struct{}
 
-func (UnimplementedDatadogServiceHandler) GetDatadogIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.DatadogService.GetDatadogIntegrations is not implemented"))
+func (UnimplementedDatadogServiceHandler) GetIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetDatadogIntegrationsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.DatadogService.GetIntegrations is not implemented"))
+}
+
+func (UnimplementedDatadogServiceHandler) GetDatadogIntegrationByName(context.Context, *connect.Request[v1alpha.GetDatadogIntegrationByNameRequest]) (*connect.Response[v1alpha.GetDatadogIntegrationByNameResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.DatadogService.GetDatadogIntegrationByName is not implemented"))
 }
 
 func (UnimplementedDatadogServiceHandler) SaveDatadogIntegration(context.Context, *connect.Request[v1alpha.SaveDatadogIntegrationRequest]) (*connect.Response[emptypb.Empty], error) {

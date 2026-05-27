@@ -13,14 +13,52 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/datadog_service.proto.
  */
 export const file_octant_v1alpha_datadog_service: GenFile = /*@__PURE__*/
-  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9kYXRhZG9nX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIi8KHkdldERhdGFkb2dJbnRlZ3JhdGlvbnNSZXNwb25zZRINCgVuYW1lcxgBIAMoCSJrCh1TYXZlRGF0YWRvZ0ludGVncmF0aW9uUmVxdWVzdBIXCgRuYW1lGAEgASgJQgm6SAZyBBAFGGQSHAoHYXBpX2tleRgCIAEoCUILukgIyAEBcgOYASASEwoDdXJsGAMgASgJQga6SAPIAQEy2gEKDkRhdGFkb2dTZXJ2aWNlEmUKFkdldERhdGFkb2dJbnRlZ3JhdGlvbnMSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaLi5vY3RhbnQudjFhbHBoYS5HZXREYXRhZG9nSW50ZWdyYXRpb25zUmVzcG9uc2UiA5ACARJhChZTYXZlRGF0YWRvZ0ludGVncmF0aW9uEi0ub2N0YW50LnYxYWxwaGEuU2F2ZURhdGFkb2dJbnRlZ3JhdGlvblJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiAELOAQoSY29tLm9jdGFudC52MWFscGhhQhNEYXRhZG9nU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_empty]);
+  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9kYXRhZG9nX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIj0KIkdldERhdGFkb2dJbnRlZ3JhdGlvbkJ5TmFtZVJlcXVlc3QSFwoEbmFtZRgBIAEoCUIJukgGcgQQAxhkIjoKI0dldERhdGFkb2dJbnRlZ3JhdGlvbkJ5TmFtZVJlc3BvbnNlEhMKA3VybBgBIAEoCUIGukgDyAEBIi8KHkdldERhdGFkb2dJbnRlZ3JhdGlvbnNSZXNwb25zZRINCgVuYW1lcxgBIAMoCSJrCh1TYXZlRGF0YWRvZ0ludGVncmF0aW9uUmVxdWVzdBIXCgRuYW1lGAEgASgJQgm6SAZyBBAFGGQSHAoHYXBpX2tleRgCIAEoCUILukgIyAEBcgOYASASEwoDdXJsGAMgASgJQga6SAPIAQEy4QIKDkRhdGFkb2dTZXJ2aWNlEl4KD0dldEludGVncmF0aW9ucxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRouLm9jdGFudC52MWFscGhhLkdldERhdGFkb2dJbnRlZ3JhdGlvbnNSZXNwb25zZSIDkAIBEosBChtHZXREYXRhZG9nSW50ZWdyYXRpb25CeU5hbWUSMi5vY3RhbnQudjFhbHBoYS5HZXREYXRhZG9nSW50ZWdyYXRpb25CeU5hbWVSZXF1ZXN0GjMub2N0YW50LnYxYWxwaGEuR2V0RGF0YWRvZ0ludGVncmF0aW9uQnlOYW1lUmVzcG9uc2UiA5ACARJhChZTYXZlRGF0YWRvZ0ludGVncmF0aW9uEi0ub2N0YW50LnYxYWxwaGEuU2F2ZURhdGFkb2dJbnRlZ3JhdGlvblJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiAELOAQoSY29tLm9jdGFudC52MWFscGhhQhNEYXRhZG9nU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_empty]);
+
+/**
+ * @generated from message octant.v1alpha.GetDatadogIntegrationByNameRequest
+ */
+export type GetDatadogIntegrationByNameRequest = Message<"octant.v1alpha.GetDatadogIntegrationByNameRequest"> & {
+  /**
+   * name contains name of the integration to retrieve
+   *
+   * @generated from field: string name = 1;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.GetDatadogIntegrationByNameRequest.
+ * Use `create(GetDatadogIntegrationByNameRequestSchema)` to create a new message.
+ */
+export const GetDatadogIntegrationByNameRequestSchema: GenMessage<GetDatadogIntegrationByNameRequest> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_datadog_service, 0);
+
+/**
+ * @generated from message octant.v1alpha.GetDatadogIntegrationByNameResponse
+ */
+export type GetDatadogIntegrationByNameResponse = Message<"octant.v1alpha.GetDatadogIntegrationByNameResponse"> & {
+  /**
+   * url is the datadog api url to send telemetry data to.
+   *
+   * @generated from field: string url = 1;
+   */
+  url: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.GetDatadogIntegrationByNameResponse.
+ * Use `create(GetDatadogIntegrationByNameResponseSchema)` to create a new message.
+ */
+export const GetDatadogIntegrationByNameResponseSchema: GenMessage<GetDatadogIntegrationByNameResponse> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_datadog_service, 1);
 
 /**
  * @generated from message octant.v1alpha.GetDatadogIntegrationsResponse
  */
 export type GetDatadogIntegrationsResponse = Message<"octant.v1alpha.GetDatadogIntegrationsResponse"> & {
   /**
-   * names contains the list of datadog integration names
+   * names contains the list of integration names
    *
    * @generated from field: repeated string names = 1;
    */
@@ -32,7 +70,7 @@ export type GetDatadogIntegrationsResponse = Message<"octant.v1alpha.GetDatadogI
  * Use `create(GetDatadogIntegrationsResponseSchema)` to create a new message.
  */
 export const GetDatadogIntegrationsResponseSchema: GenMessage<GetDatadogIntegrationsResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_datadog_service, 0);
+  messageDesc(file_octant_v1alpha_datadog_service, 2);
 
 /**
  * @generated from message octant.v1alpha.SaveDatadogIntegrationRequest
@@ -46,11 +84,15 @@ export type SaveDatadogIntegrationRequest = Message<"octant.v1alpha.SaveDatadogI
   name: string;
 
   /**
+   * api_key is the 32-character api key generated from datadog.
+   *
    * @generated from field: string api_key = 2;
    */
   apiKey: string;
 
   /**
+   * url is the datadog api url to send telemetry data to.
+   *
    * @generated from field: string url = 3;
    */
   url: string;
@@ -61,21 +103,31 @@ export type SaveDatadogIntegrationRequest = Message<"octant.v1alpha.SaveDatadogI
  * Use `create(SaveDatadogIntegrationRequestSchema)` to create a new message.
  */
 export const SaveDatadogIntegrationRequestSchema: GenMessage<SaveDatadogIntegrationRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_datadog_service, 1);
+  messageDesc(file_octant_v1alpha_datadog_service, 3);
 
 /**
  * @generated from service octant.v1alpha.DatadogService
  */
 export const DatadogService: GenService<{
   /**
-   * GetDatadogIntegrations returns list of datadog integration names.
+   * GetIntegrations returns list of datadog integration names.
    *
-   * @generated from rpc octant.v1alpha.DatadogService.GetDatadogIntegrations
+   * @generated from rpc octant.v1alpha.DatadogService.GetIntegrations
    */
-  getDatadogIntegrations: {
+  getIntegrations: {
     methodKind: "unary";
     input: typeof EmptySchema;
     output: typeof GetDatadogIntegrationsResponseSchema;
+  },
+  /**
+   * GetDatadogIntegrationByName returns list of datadog integration names.
+   *
+   * @generated from rpc octant.v1alpha.DatadogService.GetDatadogIntegrationByName
+   */
+  getDatadogIntegrationByName: {
+    methodKind: "unary";
+    input: typeof GetDatadogIntegrationByNameRequestSchema;
+    output: typeof GetDatadogIntegrationByNameResponseSchema;
   },
   /**
    * SaveDatadogIntegration saves the given datadog integration.

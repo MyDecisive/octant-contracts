@@ -11,6 +11,32 @@ service ArgoCDService {
   rpc TestConnection(TestConnectionRequest) returns (TestConnectionResponse) {}
   // SaveArgoConnection saves the argo connection details.
   rpc SaveArgoConnection(SaveArgoConnectionRequest) returns (google.protobuf.Empty) {}
+  // GetIntegrations returns list of argo integration names.
+  rpc GetArgoIntegrations(google.protobuf.Empty) returns (GetArgoIntegrationsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+  // GetIntegrations returns list of argo integration names.
+  rpc GetArgoIntegrationByName(GetArgoIntegrationByNameRequest) returns (GetArgoIntegrationByNameResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+}
+
+message GetArgoIntegrationsResponse {
+  // names contains the list of integration names
+  repeated string names = 1;
+}
+
+message GetArgoIntegrationByNameRequest {
+  // name contains name of the integration to retrieve
+  string name = 1 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 100
+  ];
+}
+
+message GetArgoIntegrationByNameResponse {
+  // argo_endpoint is the endpoint to the argo cd cluster to communicate with.
+  string argo_endpoint = 1 [(buf.validate.field).required = true];
 }
 
 message TestConnectionRequest {

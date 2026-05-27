@@ -13,7 +13,64 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/argocd_service.proto.
  */
 export const file_octant_v1alpha_argocd_service: GenFile = /*@__PURE__*/
-  fileDesc("CiNvY3RhbnQvdjFhbHBoYS9hcmdvY2Rfc2VydmljZS5wcm90bxIOb2N0YW50LnYxYWxwaGEiWgoVVGVzdENvbm5lY3Rpb25SZXF1ZXN0Eh0KDWFyZ29fZW5kcG9pbnQYASABKAlCBrpIA8gBARIiChJhcmdvX2FjY291bnRfdG9rZW4YAiABKAlCBrpIA8gBASJ3ChlTYXZlQXJnb0Nvbm5lY3Rpb25SZXF1ZXN0Eh0KDWFyZ29fZW5kcG9pbnQYASABKAlCBrpIA8gBARIiChJhcmdvX2FjY291bnRfdG9rZW4YAiABKAlCBrpIA8gBARIXCgRuYW1lGAMgASgJQgm6SAZyBBADGGQiKQoWVGVzdENvbm5lY3Rpb25SZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIMs0BCg1BcmdvQ0RTZXJ2aWNlEmEKDlRlc3RDb25uZWN0aW9uEiUub2N0YW50LnYxYWxwaGEuVGVzdENvbm5lY3Rpb25SZXF1ZXN0GiYub2N0YW50LnYxYWxwaGEuVGVzdENvbm5lY3Rpb25SZXNwb25zZSIAElkKElNhdmVBcmdvQ29ubmVjdGlvbhIpLm9jdGFudC52MWFscGhhLlNhdmVBcmdvQ29ubmVjdGlvblJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiAELNAQoSY29tLm9jdGFudC52MWFscGhhQhJBcmdvY2RTZXJ2aWNlUHJvdG9QAVpKZ2l0aHViLmNvbS9NeURlY2lzaXZlL29jdGFudC1jb250cmFjdHMvZ28vcGtnL29jdGFudC92MWFscGhhO29jdGFudHYxYWxwaGGiAgNPWFiqAg5PY3RhbnQuVjFhbHBoYcoCDk9jdGFudFxWMWFscGhh4gIaT2N0YW50XFYxYWxwaGFcR1BCTWV0YWRhdGHqAg9PY3RhbnQ6OlYxYWxwaGFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_empty]);
+  fileDesc("CiNvY3RhbnQvdjFhbHBoYS9hcmdvY2Rfc2VydmljZS5wcm90bxIOb2N0YW50LnYxYWxwaGEiLAobR2V0QXJnb0ludGVncmF0aW9uc1Jlc3BvbnNlEg0KBW5hbWVzGAEgAygJIjoKH0dldEFyZ29JbnRlZ3JhdGlvbkJ5TmFtZVJlcXVlc3QSFwoEbmFtZRgBIAEoCUIJukgGcgQQAxhkIkEKIEdldEFyZ29JbnRlZ3JhdGlvbkJ5TmFtZVJlc3BvbnNlEh0KDWFyZ29fZW5kcG9pbnQYASABKAlCBrpIA8gBASJaChVUZXN0Q29ubmVjdGlvblJlcXVlc3QSHQoNYXJnb19lbmRwb2ludBgBIAEoCUIGukgDyAEBEiIKEmFyZ29fYWNjb3VudF90b2tlbhgCIAEoCUIGukgDyAEBIncKGVNhdmVBcmdvQ29ubmVjdGlvblJlcXVlc3QSHQoNYXJnb19lbmRwb2ludBgBIAEoCUIGukgDyAEBEiIKEmFyZ29fYWNjb3VudF90b2tlbhgCIAEoCUIGukgDyAEBEhcKBG5hbWUYAyABKAlCCbpIBnIEEAMYZCIpChZUZXN0Q29ubmVjdGlvblJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgyswMKDUFyZ29DRFNlcnZpY2USYQoOVGVzdENvbm5lY3Rpb24SJS5vY3RhbnQudjFhbHBoYS5UZXN0Q29ubmVjdGlvblJlcXVlc3QaJi5vY3RhbnQudjFhbHBoYS5UZXN0Q29ubmVjdGlvblJlc3BvbnNlIgASWQoSU2F2ZUFyZ29Db25uZWN0aW9uEikub2N0YW50LnYxYWxwaGEuU2F2ZUFyZ29Db25uZWN0aW9uUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEl8KE0dldEFyZ29JbnRlZ3JhdGlvbnMSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaKy5vY3RhbnQudjFhbHBoYS5HZXRBcmdvSW50ZWdyYXRpb25zUmVzcG9uc2UiA5ACARKCAQoYR2V0QXJnb0ludGVncmF0aW9uQnlOYW1lEi8ub2N0YW50LnYxYWxwaGEuR2V0QXJnb0ludGVncmF0aW9uQnlOYW1lUmVxdWVzdBowLm9jdGFudC52MWFscGhhLkdldEFyZ29JbnRlZ3JhdGlvbkJ5TmFtZVJlc3BvbnNlIgOQAgFCzQEKEmNvbS5vY3RhbnQudjFhbHBoYUISQXJnb2NkU2VydmljZVByb3RvUAFaSmdpdGh1Yi5jb20vTXlEZWNpc2l2ZS9vY3RhbnQtY29udHJhY3RzL2dvL3BrZy9vY3RhbnQvdjFhbHBoYTtvY3RhbnR2MWFscGhhogIDT1hYqgIOT2N0YW50LlYxYWxwaGHKAg5PY3RhbnRcVjFhbHBoYeICGk9jdGFudFxWMWFscGhhXEdQQk1ldGFkYXRh6gIPT2N0YW50OjpWMWFscGhhYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_empty]);
+
+/**
+ * @generated from message octant.v1alpha.GetArgoIntegrationsResponse
+ */
+export type GetArgoIntegrationsResponse = Message<"octant.v1alpha.GetArgoIntegrationsResponse"> & {
+  /**
+   * names contains the list of integration names
+   *
+   * @generated from field: repeated string names = 1;
+   */
+  names: string[];
+};
+
+/**
+ * Describes the message octant.v1alpha.GetArgoIntegrationsResponse.
+ * Use `create(GetArgoIntegrationsResponseSchema)` to create a new message.
+ */
+export const GetArgoIntegrationsResponseSchema: GenMessage<GetArgoIntegrationsResponse> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_argocd_service, 0);
+
+/**
+ * @generated from message octant.v1alpha.GetArgoIntegrationByNameRequest
+ */
+export type GetArgoIntegrationByNameRequest = Message<"octant.v1alpha.GetArgoIntegrationByNameRequest"> & {
+  /**
+   * name contains name of the integration to retrieve
+   *
+   * @generated from field: string name = 1;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.GetArgoIntegrationByNameRequest.
+ * Use `create(GetArgoIntegrationByNameRequestSchema)` to create a new message.
+ */
+export const GetArgoIntegrationByNameRequestSchema: GenMessage<GetArgoIntegrationByNameRequest> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_argocd_service, 1);
+
+/**
+ * @generated from message octant.v1alpha.GetArgoIntegrationByNameResponse
+ */
+export type GetArgoIntegrationByNameResponse = Message<"octant.v1alpha.GetArgoIntegrationByNameResponse"> & {
+  /**
+   * argo_endpoint is the endpoint to the argo cd cluster to communicate with.
+   *
+   * @generated from field: string argo_endpoint = 1;
+   */
+  argoEndpoint: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.GetArgoIntegrationByNameResponse.
+ * Use `create(GetArgoIntegrationByNameResponseSchema)` to create a new message.
+ */
+export const GetArgoIntegrationByNameResponseSchema: GenMessage<GetArgoIntegrationByNameResponse> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_argocd_service, 2);
 
 /**
  * @generated from message octant.v1alpha.TestConnectionRequest
@@ -39,7 +96,7 @@ export type TestConnectionRequest = Message<"octant.v1alpha.TestConnectionReques
  * Use `create(TestConnectionRequestSchema)` to create a new message.
  */
 export const TestConnectionRequestSchema: GenMessage<TestConnectionRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_argocd_service, 0);
+  messageDesc(file_octant_v1alpha_argocd_service, 3);
 
 /**
  * @generated from message octant.v1alpha.SaveArgoConnectionRequest
@@ -72,7 +129,7 @@ export type SaveArgoConnectionRequest = Message<"octant.v1alpha.SaveArgoConnecti
  * Use `create(SaveArgoConnectionRequestSchema)` to create a new message.
  */
 export const SaveArgoConnectionRequestSchema: GenMessage<SaveArgoConnectionRequest> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_argocd_service, 1);
+  messageDesc(file_octant_v1alpha_argocd_service, 4);
 
 /**
  * @generated from message octant.v1alpha.TestConnectionResponse
@@ -91,7 +148,7 @@ export type TestConnectionResponse = Message<"octant.v1alpha.TestConnectionRespo
  * Use `create(TestConnectionResponseSchema)` to create a new message.
  */
 export const TestConnectionResponseSchema: GenMessage<TestConnectionResponse> = /*@__PURE__*/
-  messageDesc(file_octant_v1alpha_argocd_service, 2);
+  messageDesc(file_octant_v1alpha_argocd_service, 5);
 
 /**
  * ArgoCDService provides an interface for managing an argo cd integration.
@@ -118,6 +175,26 @@ export const ArgoCDService: GenService<{
     methodKind: "unary";
     input: typeof SaveArgoConnectionRequestSchema;
     output: typeof EmptySchema;
+  },
+  /**
+   * GetIntegrations returns list of argo integration names.
+   *
+   * @generated from rpc octant.v1alpha.ArgoCDService.GetArgoIntegrations
+   */
+  getArgoIntegrations: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
+    output: typeof GetArgoIntegrationsResponseSchema;
+  },
+  /**
+   * GetIntegrations returns list of argo integration names.
+   *
+   * @generated from rpc octant.v1alpha.ArgoCDService.GetArgoIntegrationByName
+   */
+  getArgoIntegrationByName: {
+    methodKind: "unary";
+    input: typeof GetArgoIntegrationByNameRequestSchema;
+    output: typeof GetArgoIntegrationByNameResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_octant_v1alpha_argocd_service, 0);

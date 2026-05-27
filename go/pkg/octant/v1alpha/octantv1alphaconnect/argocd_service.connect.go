@@ -40,6 +40,12 @@ const (
 	// ArgoCDServiceSaveArgoConnectionProcedure is the fully-qualified name of the ArgoCDService's
 	// SaveArgoConnection RPC.
 	ArgoCDServiceSaveArgoConnectionProcedure = "/octant.v1alpha.ArgoCDService/SaveArgoConnection"
+	// ArgoCDServiceGetArgoIntegrationsProcedure is the fully-qualified name of the ArgoCDService's
+	// GetArgoIntegrations RPC.
+	ArgoCDServiceGetArgoIntegrationsProcedure = "/octant.v1alpha.ArgoCDService/GetArgoIntegrations"
+	// ArgoCDServiceGetArgoIntegrationByNameProcedure is the fully-qualified name of the ArgoCDService's
+	// GetArgoIntegrationByName RPC.
+	ArgoCDServiceGetArgoIntegrationByNameProcedure = "/octant.v1alpha.ArgoCDService/GetArgoIntegrationByName"
 )
 
 // ArgoCDServiceClient is a client for the octant.v1alpha.ArgoCDService service.
@@ -48,6 +54,10 @@ type ArgoCDServiceClient interface {
 	TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error)
 	// SaveArgoConnection saves the argo connection details.
 	SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error)
+	// GetIntegrations returns list of argo integration names.
+	GetArgoIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetArgoIntegrationsResponse], error)
+	// GetIntegrations returns list of argo integration names.
+	GetArgoIntegrationByName(context.Context, *connect.Request[v1alpha.GetArgoIntegrationByNameRequest]) (*connect.Response[v1alpha.GetArgoIntegrationByNameResponse], error)
 }
 
 // NewArgoCDServiceClient constructs a client for the octant.v1alpha.ArgoCDService service. By
@@ -73,13 +83,29 @@ func NewArgoCDServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(argoCDServiceMethods.ByName("SaveArgoConnection")),
 			connect.WithClientOptions(opts...),
 		),
+		getArgoIntegrations: connect.NewClient[emptypb.Empty, v1alpha.GetArgoIntegrationsResponse](
+			httpClient,
+			baseURL+ArgoCDServiceGetArgoIntegrationsProcedure,
+			connect.WithSchema(argoCDServiceMethods.ByName("GetArgoIntegrations")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
+		getArgoIntegrationByName: connect.NewClient[v1alpha.GetArgoIntegrationByNameRequest, v1alpha.GetArgoIntegrationByNameResponse](
+			httpClient,
+			baseURL+ArgoCDServiceGetArgoIntegrationByNameProcedure,
+			connect.WithSchema(argoCDServiceMethods.ByName("GetArgoIntegrationByName")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // argoCDServiceClient implements ArgoCDServiceClient.
 type argoCDServiceClient struct {
-	testConnection     *connect.Client[v1alpha.TestConnectionRequest, v1alpha.TestConnectionResponse]
-	saveArgoConnection *connect.Client[v1alpha.SaveArgoConnectionRequest, emptypb.Empty]
+	testConnection           *connect.Client[v1alpha.TestConnectionRequest, v1alpha.TestConnectionResponse]
+	saveArgoConnection       *connect.Client[v1alpha.SaveArgoConnectionRequest, emptypb.Empty]
+	getArgoIntegrations      *connect.Client[emptypb.Empty, v1alpha.GetArgoIntegrationsResponse]
+	getArgoIntegrationByName *connect.Client[v1alpha.GetArgoIntegrationByNameRequest, v1alpha.GetArgoIntegrationByNameResponse]
 }
 
 // TestConnection calls octant.v1alpha.ArgoCDService.TestConnection.
@@ -92,12 +118,26 @@ func (c *argoCDServiceClient) SaveArgoConnection(ctx context.Context, req *conne
 	return c.saveArgoConnection.CallUnary(ctx, req)
 }
 
+// GetArgoIntegrations calls octant.v1alpha.ArgoCDService.GetArgoIntegrations.
+func (c *argoCDServiceClient) GetArgoIntegrations(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetArgoIntegrationsResponse], error) {
+	return c.getArgoIntegrations.CallUnary(ctx, req)
+}
+
+// GetArgoIntegrationByName calls octant.v1alpha.ArgoCDService.GetArgoIntegrationByName.
+func (c *argoCDServiceClient) GetArgoIntegrationByName(ctx context.Context, req *connect.Request[v1alpha.GetArgoIntegrationByNameRequest]) (*connect.Response[v1alpha.GetArgoIntegrationByNameResponse], error) {
+	return c.getArgoIntegrationByName.CallUnary(ctx, req)
+}
+
 // ArgoCDServiceHandler is an implementation of the octant.v1alpha.ArgoCDService service.
 type ArgoCDServiceHandler interface {
 	// TestConnection uses the provided request data to test the argo connection.
 	TestConnection(context.Context, *connect.Request[v1alpha.TestConnectionRequest]) (*connect.Response[v1alpha.TestConnectionResponse], error)
 	// SaveArgoConnection saves the argo connection details.
 	SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error)
+	// GetIntegrations returns list of argo integration names.
+	GetArgoIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetArgoIntegrationsResponse], error)
+	// GetIntegrations returns list of argo integration names.
+	GetArgoIntegrationByName(context.Context, *connect.Request[v1alpha.GetArgoIntegrationByNameRequest]) (*connect.Response[v1alpha.GetArgoIntegrationByNameResponse], error)
 }
 
 // NewArgoCDServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -119,12 +159,30 @@ func NewArgoCDServiceHandler(svc ArgoCDServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(argoCDServiceMethods.ByName("SaveArgoConnection")),
 		connect.WithHandlerOptions(opts...),
 	)
+	argoCDServiceGetArgoIntegrationsHandler := connect.NewUnaryHandler(
+		ArgoCDServiceGetArgoIntegrationsProcedure,
+		svc.GetArgoIntegrations,
+		connect.WithSchema(argoCDServiceMethods.ByName("GetArgoIntegrations")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
+	argoCDServiceGetArgoIntegrationByNameHandler := connect.NewUnaryHandler(
+		ArgoCDServiceGetArgoIntegrationByNameProcedure,
+		svc.GetArgoIntegrationByName,
+		connect.WithSchema(argoCDServiceMethods.ByName("GetArgoIntegrationByName")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/octant.v1alpha.ArgoCDService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ArgoCDServiceTestConnectionProcedure:
 			argoCDServiceTestConnectionHandler.ServeHTTP(w, r)
 		case ArgoCDServiceSaveArgoConnectionProcedure:
 			argoCDServiceSaveArgoConnectionHandler.ServeHTTP(w, r)
+		case ArgoCDServiceGetArgoIntegrationsProcedure:
+			argoCDServiceGetArgoIntegrationsHandler.ServeHTTP(w, r)
+		case ArgoCDServiceGetArgoIntegrationByNameProcedure:
+			argoCDServiceGetArgoIntegrationByNameHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -140,4 +198,12 @@ func (UnimplementedArgoCDServiceHandler) TestConnection(context.Context, *connec
 
 func (UnimplementedArgoCDServiceHandler) SaveArgoConnection(context.Context, *connect.Request[v1alpha.SaveArgoConnectionRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ArgoCDService.SaveArgoConnection is not implemented"))
+}
+
+func (UnimplementedArgoCDServiceHandler) GetArgoIntegrations(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v1alpha.GetArgoIntegrationsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ArgoCDService.GetArgoIntegrations is not implemented"))
+}
+
+func (UnimplementedArgoCDServiceHandler) GetArgoIntegrationByName(context.Context, *connect.Request[v1alpha.GetArgoIntegrationByNameRequest]) (*connect.Response[v1alpha.GetArgoIntegrationByNameResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.ArgoCDService.GetArgoIntegrationByName is not implemented"))
 }
