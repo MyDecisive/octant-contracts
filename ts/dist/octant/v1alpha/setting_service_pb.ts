@@ -144,8 +144,6 @@ export const UpdateResponse_StatusSchema: GenEnum<UpdateResponse_Status> = /*@__
   enumDesc(file_octant_v1alpha_setting_service, 1, 0);
 
 /**
- * ConnectService allows for interacting with MDAI Octant Connections
- *
  * @generated from service octant.v1alpha.SettingService
  */
 export const SettingService: GenService<{

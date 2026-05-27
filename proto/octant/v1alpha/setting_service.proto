@@ -5,7 +5,6 @@ package octant.v1alpha;
 import "buf/validate/validate.proto";
 import "octant/v1alpha/type.proto";
 
-// ConnectService allows for interacting with MDAI Octant Connections
 service SettingService {
   // Update updates the relevant configmap/secret and then redeploy necessary collectors to relfect the changes.
   // If an update is in progress, this will immediately return with an error code `unavailable`.

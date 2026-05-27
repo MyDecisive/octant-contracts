@@ -2625,4 +2625,3 @@ tags:
   - name: InstallService
     description: InstallService provides an interface for managing the MDAI smart hub installation.
   - name: SettingService
-    description: ConnectService allows for interacting with MDAI Octant Connections
