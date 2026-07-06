@@ -164,8 +164,8 @@ type SaveDatadogIntegrationRequest struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// api_key is the 32-character api key generated from datadog.
 	ApiKey string `protobuf:"bytes,2,opt,name=api_key,json=apiKey,proto3" json:"api_key,omitempty"`
-	// url is the datadog api url to send telemetry data to.
-	Url           string `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
+	// site_host is the datadog api domain to send telemetry data to.
+	SiteHost      string `protobuf:"bytes,4,opt,name=site_host,json=siteHost,proto3" json:"site_host,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,9 +214,9 @@ func (x *SaveDatadogIntegrationRequest) GetApiKey() string {
 	return ""
 }
 
-func (x *SaveDatadogIntegrationRequest) GetUrl() string {
+func (x *SaveDatadogIntegrationRequest) GetSiteHost() string {
 	if x != nil {
-		return x.Url
+		return x.SiteHost
 	}
 	return ""
 }
@@ -231,11 +231,12 @@ const file_octant_v1alpha_datadog_service_proto_rawDesc = "" +
 	"#GetDatadogIntegrationByNameResponse\x12\x18\n" +
 	"\x03url\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x03url\"6\n" +
 	"\x1eGetDatadogIntegrationsResponse\x12\x14\n" +
-	"\x05names\x18\x01 \x03(\tR\x05names\"~\n" +
+	"\x05names\x18\x01 \x03(\tR\x05names\"\xf5\x01\n" +
 	"\x1dSaveDatadogIntegrationRequest\x12\x1d\n" +
 	"\x04name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\x04name\x12$\n" +
-	"\aapi_key\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x98\x01 R\x06apiKey\x12\x18\n" +
-	"\x03url\x18\x03 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x03url2\xe8\x02\n" +
+	"\aapi_key\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\x98\x01 R\x06apiKey\x12\x8e\x01\n" +
+	"\tsite_host\x18\x04 \x01(\tBq\xbaHn\xba\x01k\n" +
+	"'SaveDatadogIntegrationRequest.site_host\x12-Site host must be a valid hostname, not a URI\x1a\x11this.isHostname()R\bsiteHost2\xe8\x02\n" +
 	"\x0eDatadogService\x12e\n" +
 	"\x16GetDatadogIntegrations\x12\x16.google.protobuf.Empty\x1a..octant.v1alpha.GetDatadogIntegrationsResponse\"\x03\x90\x02\x01\x12\x8b\x01\n" +
 	"\x1bGetDatadogIntegrationByName\x122.octant.v1alpha.GetDatadogIntegrationByNameRequest\x1a3.octant.v1alpha.GetDatadogIntegrationByNameResponse\"\x03\x90\x02\x01\x12a\n" +
