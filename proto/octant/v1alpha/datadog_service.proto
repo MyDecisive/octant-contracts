@@ -49,11 +49,9 @@ message SaveDatadogIntegrationRequest {
     (buf.validate.field).string.len = 32
   ];
   // site_host is the datadog api domain to send telemetry data to.
-  string site_host = 4 [
-    (buf.validate.field).cel = {
-      id: "SaveDatadogIntegrationRequest.site_host",
-      message: "Site host must be a valid hostname, not a URI",
-      expression: "this.isHostname()"
-    }
-  ];
+  string site_host = 4 [(buf.validate.field).cel = {
+    id: "SaveDatadogIntegrationRequest.site_host"
+    message: "Site host must be a valid hostname, not a URI"
+    expression: "this.isHostname()"
+  }];
 }
