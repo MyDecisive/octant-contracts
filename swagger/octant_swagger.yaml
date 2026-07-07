@@ -2754,10 +2754,10 @@ components:
           type: string
           title: api_key
           description: api_key is the 32-character api key generated from datadog.
-        url:
+        siteHost:
           type: string
-          title: url
-          description: url is the datadog api url to send telemetry data to.
+          title: site_host
+          description: site_host is the datadog api domain to send telemetry data to.
       title: SaveDatadogIntegrationRequest
       additionalProperties: false
     octant.v1alpha.TelemetryDestination:
