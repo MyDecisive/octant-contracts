@@ -78,6 +78,182 @@ func (InstallStatus) EnumDescriptor() ([]byte, []int) {
 	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{0}
 }
 
+type OctantInstallEventResultCode int32
+
+const (
+	OctantInstallEventResultCode_OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED OctantInstallEventResultCode = 0
+	// Indicates that this event was completely successful and the system is ready to progress
+	OctantInstallEventResultCode_OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS OctantInstallEventResultCode = 1
+	// Indicates a complete failure of the attempted action, meaning that no state change was achieved
+	OctantInstallEventResultCode_OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE OctantInstallEventResultCode = 2
+	// Indicates that this event was only partially successful, tainting the destination system
+	OctantInstallEventResultCode_OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS OctantInstallEventResultCode = 3
+)
+
+// Enum value maps for OctantInstallEventResultCode.
+var (
+	OctantInstallEventResultCode_name = map[int32]string{
+		0: "OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED",
+		1: "OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS",
+		2: "OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE",
+		3: "OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS",
+	}
+	OctantInstallEventResultCode_value = map[string]int32{
+		"OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED":     0,
+		"OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS":         1,
+		"OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE":         2,
+		"OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS": 3,
+	}
+)
+
+func (x OctantInstallEventResultCode) Enum() *OctantInstallEventResultCode {
+	p := new(OctantInstallEventResultCode)
+	*p = x
+	return p
+}
+
+func (x OctantInstallEventResultCode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OctantInstallEventResultCode) Descriptor() protoreflect.EnumDescriptor {
+	return file_octant_v1alpha_install_service_proto_enumTypes[1].Descriptor()
+}
+
+func (OctantInstallEventResultCode) Type() protoreflect.EnumType {
+	return &file_octant_v1alpha_install_service_proto_enumTypes[1]
+}
+
+func (x OctantInstallEventResultCode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OctantInstallEventResultCode.Descriptor instead.
+func (OctantInstallEventResultCode) EnumDescriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{1}
+}
+
+type OctantInstallEventAction int32
+
+const (
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED OctantInstallEventAction = 0
+	// Action of creating an integration within Octant that allows for modifying the destination cluster.
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION OctantInstallEventAction = 1
+	// Action of installing the MDAI hub components.
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB OctantInstallEventAction = 2
+	// Action of creating a telemetry destination integration that connections can consume.
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION OctantInstallEventAction = 3
+	// Action of creating a connection and all underlying infrastructure.
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION OctantInstallEventAction = 4
+	// Action of completing the envoy connected clients validation loop.
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED OctantInstallEventAction = 5
+	// Action of completing the ingress validation loop (data has been received).
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED OctantInstallEventAction = 6
+	// Action of completing the egress validation loop (data has been sent).
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED OctantInstallEventAction = 7
+	// Action of completing the policy or parity data validation loop.
+	OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED OctantInstallEventAction = 8
+)
+
+// Enum value maps for OctantInstallEventAction.
+var (
+	OctantInstallEventAction_name = map[int32]string{
+		0: "OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED",
+		1: "OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION",
+		2: "OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB",
+		3: "OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION",
+		4: "OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION",
+		5: "OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED",
+		6: "OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED",
+		7: "OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED",
+		8: "OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED",
+	}
+	OctantInstallEventAction_value = map[string]int32{
+		"OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED":                    0,
+		"OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION":      1,
+		"OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB":               2,
+		"OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION": 3,
+		"OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION":              4,
+		"OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED":     5,
+		"OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED":               6,
+		"OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED":                7,
+		"OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED":              8,
+	}
+)
+
+func (x OctantInstallEventAction) Enum() *OctantInstallEventAction {
+	p := new(OctantInstallEventAction)
+	*p = x
+	return p
+}
+
+func (x OctantInstallEventAction) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OctantInstallEventAction) Descriptor() protoreflect.EnumDescriptor {
+	return file_octant_v1alpha_install_service_proto_enumTypes[2].Descriptor()
+}
+
+func (OctantInstallEventAction) Type() protoreflect.EnumType {
+	return &file_octant_v1alpha_install_service_proto_enumTypes[2]
+}
+
+func (x OctantInstallEventAction) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OctantInstallEventAction.Descriptor instead.
+func (OctantInstallEventAction) EnumDescriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{2}
+}
+
+type OctantInstallLogEventActionDeployIntegrationSubtype int32
+
+const (
+	OctantInstallLogEventActionDeployIntegrationSubtype_OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED OctantInstallLogEventActionDeployIntegrationSubtype = 0
+	OctantInstallLogEventActionDeployIntegrationSubtype_OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD      OctantInstallLogEventActionDeployIntegrationSubtype = 1
+)
+
+// Enum value maps for OctantInstallLogEventActionDeployIntegrationSubtype.
+var (
+	OctantInstallLogEventActionDeployIntegrationSubtype_name = map[int32]string{
+		0: "OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED",
+		1: "OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD",
+	}
+	OctantInstallLogEventActionDeployIntegrationSubtype_value = map[string]int32{
+		"OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED": 0,
+		"OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD":      1,
+	}
+)
+
+func (x OctantInstallLogEventActionDeployIntegrationSubtype) Enum() *OctantInstallLogEventActionDeployIntegrationSubtype {
+	p := new(OctantInstallLogEventActionDeployIntegrationSubtype)
+	*p = x
+	return p
+}
+
+func (x OctantInstallLogEventActionDeployIntegrationSubtype) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OctantInstallLogEventActionDeployIntegrationSubtype) Descriptor() protoreflect.EnumDescriptor {
+	return file_octant_v1alpha_install_service_proto_enumTypes[3].Descriptor()
+}
+
+func (OctantInstallLogEventActionDeployIntegrationSubtype) Type() protoreflect.EnumType {
+	return &file_octant_v1alpha_install_service_proto_enumTypes[3]
+}
+
+func (x OctantInstallLogEventActionDeployIntegrationSubtype) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OctantInstallLogEventActionDeployIntegrationSubtype.Descriptor instead.
+func (OctantInstallLogEventActionDeployIntegrationSubtype) EnumDescriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{3}
+}
+
 type InstallMDAIHubRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// namespace is the kubernetes namespace to install into.
@@ -294,6 +470,196 @@ func (x *ResourceDetails) GetMessage() string {
 	return ""
 }
 
+// GetInstallLogsRequest requests the install log events.
+type GetInstallLogsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Namespace     string                 `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInstallLogsRequest) Reset() {
+	*x = GetInstallLogsRequest{}
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInstallLogsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInstallLogsRequest) ProtoMessage() {}
+
+func (x *GetInstallLogsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInstallLogsRequest.ProtoReflect.Descriptor instead.
+func (*GetInstallLogsRequest) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetInstallLogsRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+// GetInstallLogsResponse contains the array of log events.
+type GetInstallLogsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Events        []*OctantInstallEvent  `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInstallLogsResponse) Reset() {
+	*x = GetInstallLogsResponse{}
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInstallLogsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInstallLogsResponse) ProtoMessage() {}
+
+func (x *GetInstallLogsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInstallLogsResponse.ProtoReflect.Descriptor instead.
+func (*GetInstallLogsResponse) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetInstallLogsResponse) GetEvents() []*OctantInstallEvent {
+	if x != nil {
+		return x.Events
+	}
+	return nil
+}
+
+// OctantInstallEvent defines the structure for individual log entries.
+type OctantInstallEvent struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Action is the type of step in progressing the Octant/MDAI system towards the installed state
+	Action OctantInstallEventAction `protobuf:"varint,1,opt,name=action,proto3,enum=octant.v1alpha.OctantInstallEventAction" json:"action,omitempty"`
+	// Timestamp is the timestamp of when this state change was observed
+	Timestamp string `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	// Result is the success/partial-success/failure state of this event
+	Result OctantInstallEventResultCode `protobuf:"varint,3,opt,name=result,proto3,enum=octant.v1alpha.OctantInstallEventResultCode" json:"result,omitempty"`
+	// Namespace is the namespace this event took place in
+	Namespace string `protobuf:"bytes,4,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// Ref is the integration/connection/other resource that this action targeted
+	Ref string `protobuf:"bytes,5,opt,name=ref,proto3" json:"ref,omitempty"`
+	// Subtype is the specific underlying type of the integration/other (Argo for deploy integration, Datadog for destination)
+	Subtype string `protobuf:"bytes,6,opt,name=subtype,proto3" json:"subtype,omitempty"`
+	// Message is an optional message to help further diagnosis of failure/partial-success events
+	Message       string `protobuf:"bytes,7,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OctantInstallEvent) Reset() {
+	*x = OctantInstallEvent{}
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OctantInstallEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OctantInstallEvent) ProtoMessage() {}
+
+func (x *OctantInstallEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_octant_v1alpha_install_service_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OctantInstallEvent.ProtoReflect.Descriptor instead.
+func (*OctantInstallEvent) Descriptor() ([]byte, []int) {
+	return file_octant_v1alpha_install_service_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *OctantInstallEvent) GetAction() OctantInstallEventAction {
+	if x != nil {
+		return x.Action
+	}
+	return OctantInstallEventAction_OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED
+}
+
+func (x *OctantInstallEvent) GetTimestamp() string {
+	if x != nil {
+		return x.Timestamp
+	}
+	return ""
+}
+
+func (x *OctantInstallEvent) GetResult() OctantInstallEventResultCode {
+	if x != nil {
+		return x.Result
+	}
+	return OctantInstallEventResultCode_OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED
+}
+
+func (x *OctantInstallEvent) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *OctantInstallEvent) GetRef() string {
+	if x != nil {
+		return x.Ref
+	}
+	return ""
+}
+
+func (x *OctantInstallEvent) GetSubtype() string {
+	if x != nil {
+		return x.Subtype
+	}
+	return ""
+}
+
+func (x *OctantInstallEvent) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_octant_v1alpha_install_service_proto protoreflect.FileDescriptor
 
 const file_octant_v1alpha_install_service_proto_rawDesc = "" +
@@ -310,16 +676,47 @@ const file_octant_v1alpha_install_service_proto_rawDesc = "" +
 	"\adetails\x18\x02 \x03(\v2\x1f.octant.v1alpha.ResourceDetailsR\adetails\"O\n" +
 	"\x0fResourceDetails\x12\x1a\n" +
 	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\x12 \n" +
-	"\amessage\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\amessage*\xa2\x01\n" +
+	"\amessage\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\amessage\"b\n" +
+	"\x15GetInstallLogsRequest\x12I\n" +
+	"\tnamespace\x18\x01 \x01(\tB+\xbaH(\xc8\x01\x01r#\x18?2\x1f^[a-z0-9]([-a-z0-9]*[a-z0-9])?$R\tnamespace\"T\n" +
+	"\x16GetInstallLogsResponse\x12:\n" +
+	"\x06events\x18\x01 \x03(\v2\".octant.v1alpha.OctantInstallEventR\x06events\"\x9e\x02\n" +
+	"\x12OctantInstallEvent\x12@\n" +
+	"\x06action\x18\x01 \x01(\x0e2(.octant.v1alpha.OctantInstallEventActionR\x06action\x12\x1c\n" +
+	"\ttimestamp\x18\x02 \x01(\tR\ttimestamp\x12D\n" +
+	"\x06result\x18\x03 \x01(\x0e2,.octant.v1alpha.OctantInstallEventResultCodeR\x06result\x12\x1c\n" +
+	"\tnamespace\x18\x04 \x01(\tR\tnamespace\x12\x10\n" +
+	"\x03ref\x18\x05 \x01(\tR\x03ref\x12\x18\n" +
+	"\asubtype\x18\x06 \x01(\tR\asubtype\x12\x18\n" +
+	"\amessage\x18\a \x01(\tR\amessage*\xa2\x01\n" +
 	"\rInstallStatus\x12\x1e\n" +
 	"\x1aINSTALL_STATUS_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19INSTALL_STATUS_INSTALLING\x10\x01\x12\x18\n" +
 	"\x14INSTALL_STATUS_ERROR\x10\x02\x12\x1c\n" +
 	"\x18INSTALL_STATUS_INSTALLED\x10\x03\x12\x1a\n" +
-	"\x16INSTALL_STATUS_TIMEOUT\x10\x042\xd1\x01\n" +
+	"\x16INSTALL_STATUS_TIMEOUT\x10\x04*\xe2\x01\n" +
+	"\x1cOctantInstallEventResultCode\x120\n" +
+	",OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED\x10\x00\x12,\n" +
+	"(OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS\x10\x01\x12,\n" +
+	"(OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE\x10\x02\x124\n" +
+	"0OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS\x10\x03*\xf9\x03\n" +
+	"\x18OctantInstallEventAction\x12+\n" +
+	"'OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED\x10\x00\x129\n" +
+	"5OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION\x10\x01\x120\n" +
+	",OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB\x10\x02\x12>\n" +
+	":OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION\x10\x03\x121\n" +
+	"-OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION\x10\x04\x12:\n" +
+	"6OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED\x10\x05\x120\n" +
+	",OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED\x10\x06\x12/\n" +
+	"+OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED\x10\a\x121\n" +
+	"-OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED\x10\b*\xc8\x01\n" +
+	"3OctantInstallLogEventActionDeployIntegrationSubtype\x12J\n" +
+	"FOCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED\x10\x00\x12E\n" +
+	"AOCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD\x10\x012\xb7\x02\n" +
 	"\x0eInstallService\x12Q\n" +
 	"\x0eInstallMDAIHub\x12%.octant.v1alpha.InstallMDAIHubRequest\x1a\x16.google.protobuf.Empty\"\x00\x12l\n" +
-	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x03\x90\x02\x010\x01B\xce\x01\n" +
+	"\x10GetInstallStatus\x12'.octant.v1alpha.GetInstallStatusRequest\x1a(.octant.v1alpha.GetInstallStatusResponse\"\x03\x90\x02\x010\x01\x12d\n" +
+	"\x0eGetInstallLogs\x12%.octant.v1alpha.GetInstallLogsRequest\x1a&.octant.v1alpha.GetInstallLogsResponse\"\x03\x90\x02\x01B\xce\x01\n" +
 	"\x12com.octant.v1alphaB\x13InstallServiceProtoP\x01ZJgithub.com/MyDecisive/octant-contracts/go/pkg/octant/v1alpha;octantv1alpha\xa2\x02\x03OXX\xaa\x02\x0eOctant.V1alpha\xca\x02\x0eOctant\\V1alpha\xe2\x02\x1aOctant\\V1alpha\\GPBMetadata\xea\x02\x0fOctant::V1alphab\x06proto3"
 
 var (
@@ -334,28 +731,39 @@ func file_octant_v1alpha_install_service_proto_rawDescGZIP() []byte {
 	return file_octant_v1alpha_install_service_proto_rawDescData
 }
 
-var file_octant_v1alpha_install_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_octant_v1alpha_install_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_octant_v1alpha_install_service_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_octant_v1alpha_install_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_octant_v1alpha_install_service_proto_goTypes = []any{
-	(InstallStatus)(0),               // 0: octant.v1alpha.InstallStatus
-	(*InstallMDAIHubRequest)(nil),    // 1: octant.v1alpha.InstallMDAIHubRequest
-	(*GetInstallStatusRequest)(nil),  // 2: octant.v1alpha.GetInstallStatusRequest
-	(*GetInstallStatusResponse)(nil), // 3: octant.v1alpha.GetInstallStatusResponse
-	(*ResourceDetails)(nil),          // 4: octant.v1alpha.ResourceDetails
-	(*emptypb.Empty)(nil),            // 5: google.protobuf.Empty
+	(InstallStatus)(0),                                       // 0: octant.v1alpha.InstallStatus
+	(OctantInstallEventResultCode)(0),                        // 1: octant.v1alpha.OctantInstallEventResultCode
+	(OctantInstallEventAction)(0),                            // 2: octant.v1alpha.OctantInstallEventAction
+	(OctantInstallLogEventActionDeployIntegrationSubtype)(0), // 3: octant.v1alpha.OctantInstallLogEventActionDeployIntegrationSubtype
+	(*InstallMDAIHubRequest)(nil),                            // 4: octant.v1alpha.InstallMDAIHubRequest
+	(*GetInstallStatusRequest)(nil),                          // 5: octant.v1alpha.GetInstallStatusRequest
+	(*GetInstallStatusResponse)(nil),                         // 6: octant.v1alpha.GetInstallStatusResponse
+	(*ResourceDetails)(nil),                                  // 7: octant.v1alpha.ResourceDetails
+	(*GetInstallLogsRequest)(nil),                            // 8: octant.v1alpha.GetInstallLogsRequest
+	(*GetInstallLogsResponse)(nil),                           // 9: octant.v1alpha.GetInstallLogsResponse
+	(*OctantInstallEvent)(nil),                               // 10: octant.v1alpha.OctantInstallEvent
+	(*emptypb.Empty)(nil),                                    // 11: google.protobuf.Empty
 }
 var file_octant_v1alpha_install_service_proto_depIdxs = []int32{
-	0, // 0: octant.v1alpha.GetInstallStatusResponse.install_status:type_name -> octant.v1alpha.InstallStatus
-	4, // 1: octant.v1alpha.GetInstallStatusResponse.details:type_name -> octant.v1alpha.ResourceDetails
-	1, // 2: octant.v1alpha.InstallService.InstallMDAIHub:input_type -> octant.v1alpha.InstallMDAIHubRequest
-	2, // 3: octant.v1alpha.InstallService.GetInstallStatus:input_type -> octant.v1alpha.GetInstallStatusRequest
-	5, // 4: octant.v1alpha.InstallService.InstallMDAIHub:output_type -> google.protobuf.Empty
-	3, // 5: octant.v1alpha.InstallService.GetInstallStatus:output_type -> octant.v1alpha.GetInstallStatusResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0,  // 0: octant.v1alpha.GetInstallStatusResponse.install_status:type_name -> octant.v1alpha.InstallStatus
+	7,  // 1: octant.v1alpha.GetInstallStatusResponse.details:type_name -> octant.v1alpha.ResourceDetails
+	10, // 2: octant.v1alpha.GetInstallLogsResponse.events:type_name -> octant.v1alpha.OctantInstallEvent
+	2,  // 3: octant.v1alpha.OctantInstallEvent.action:type_name -> octant.v1alpha.OctantInstallEventAction
+	1,  // 4: octant.v1alpha.OctantInstallEvent.result:type_name -> octant.v1alpha.OctantInstallEventResultCode
+	4,  // 5: octant.v1alpha.InstallService.InstallMDAIHub:input_type -> octant.v1alpha.InstallMDAIHubRequest
+	5,  // 6: octant.v1alpha.InstallService.GetInstallStatus:input_type -> octant.v1alpha.GetInstallStatusRequest
+	8,  // 7: octant.v1alpha.InstallService.GetInstallLogs:input_type -> octant.v1alpha.GetInstallLogsRequest
+	11, // 8: octant.v1alpha.InstallService.InstallMDAIHub:output_type -> google.protobuf.Empty
+	6,  // 9: octant.v1alpha.InstallService.GetInstallStatus:output_type -> octant.v1alpha.GetInstallStatusResponse
+	9,  // 10: octant.v1alpha.InstallService.GetInstallLogs:output_type -> octant.v1alpha.GetInstallLogsResponse
+	8,  // [8:11] is the sub-list for method output_type
+	5,  // [5:8] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_octant_v1alpha_install_service_proto_init() }
@@ -368,8 +776,8 @@ func file_octant_v1alpha_install_service_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_octant_v1alpha_install_service_proto_rawDesc), len(file_octant_v1alpha_install_service_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   4,
+			NumEnums:      4,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

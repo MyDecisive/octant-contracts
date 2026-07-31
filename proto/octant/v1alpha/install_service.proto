@@ -8,9 +8,15 @@ import "google/protobuf/empty.proto";
 // InstallService provides an interface for managing the MDAI smart hub installation.
 service InstallService {
   // InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
-  rpc InstallMDAIHub(InstallMDAIHubRequest) returns (google.protobuf.Empty) {}
+  rpc InstallMDAIHub(InstallMDAIHubRequest) returns (google.protobuf.Empty) {} 
+
   // GetInstallStatus creates a response stream with mdai install status updates.
   rpc GetInstallStatus(GetInstallStatusRequest) returns (stream GetInstallStatusResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+
+  // GetInstallLogs returns the install log entries.
+  rpc GetInstallLogs(GetInstallLogsRequest) returns (GetInstallLogsResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
   }
 }
@@ -57,4 +63,71 @@ enum InstallStatus {
   INSTALL_STATUS_ERROR = 2;
   INSTALL_STATUS_INSTALLED = 3;
   INSTALL_STATUS_TIMEOUT = 4;
+}
+
+// GetInstallLogsRequest requests the install log events.
+message GetInstallLogsRequest {
+  string namespace = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 63,
+    (buf.validate.field).string.pattern = "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+  ];
+}
+
+// GetInstallLogsResponse contains the array of log events.
+message GetInstallLogsResponse {
+  repeated OctantInstallEvent events = 1;
+}
+
+// OctantInstallEvent defines the structure for individual log entries.
+message OctantInstallEvent {
+  // Action is the type of step in progressing the Octant/MDAI system towards the installed state
+  OctantInstallEventAction action = 1;
+  // Timestamp is the timestamp of when this state change was observed
+  string timestamp = 2;
+  // Result is the success/partial-success/failure state of this event
+  OctantInstallEventResultCode result = 3;
+  // Namespace is the namespace this event took place in
+  string namespace = 4;
+  // Ref is the integration/connection/other resource that this action targeted
+  string ref = 5;
+  // Subtype is the specific underlying type of the integration/other (Argo for deploy integration, Datadog for destination)
+  string subtype = 6;
+  // Message is an optional message to help further diagnosis of failure/partial-success events
+  string message = 7;
+}
+
+enum OctantInstallEventResultCode {
+  OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED = 0;
+  // Indicates that this event was completely successful and the system is ready to progress
+  OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS = 1;
+  // Indicates a complete failure of the attempted action, meaning that no state change was achieved
+  OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE = 2;
+  // Indicates that this event was only partially successful, tainting the destination system
+  OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS = 3;
+}
+
+enum OctantInstallEventAction {
+  OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED = 0;
+  // Action of creating an integration within Octant that allows for modifying the destination cluster.
+  OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION = 1;
+  // Action of installing the MDAI hub components.
+  OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB = 2;
+  // Action of creating a telemetry destination integration that connections can consume.
+  OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION = 3;
+  // Action of creating a connection and all underlying infrastructure.
+  OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION = 4;
+  // Action of completing the envoy connected clients validation loop.
+  OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED = 5;
+  // Action of completing the ingress validation loop (data has been received).
+  OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED = 6;
+  // Action of completing the egress validation loop (data has been sent).
+  OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED = 7;
+  // Action of completing the policy or parity data validation loop.
+  OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED = 8;
+}
+
+enum OctantInstallLogEventActionDeployIntegrationSubtype {
+  OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED = 0;
+  OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD = 1;
 }

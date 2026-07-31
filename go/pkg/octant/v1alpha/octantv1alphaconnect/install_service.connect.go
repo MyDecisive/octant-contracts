@@ -40,6 +40,9 @@ const (
 	// InstallServiceGetInstallStatusProcedure is the fully-qualified name of the InstallService's
 	// GetInstallStatus RPC.
 	InstallServiceGetInstallStatusProcedure = "/octant.v1alpha.InstallService/GetInstallStatus"
+	// InstallServiceGetInstallLogsProcedure is the fully-qualified name of the InstallService's
+	// GetInstallLogs RPC.
+	InstallServiceGetInstallLogsProcedure = "/octant.v1alpha.InstallService/GetInstallLogs"
 )
 
 // InstallServiceClient is a client for the octant.v1alpha.InstallService service.
@@ -48,6 +51,8 @@ type InstallServiceClient interface {
 	InstallMDAIHub(context.Context, *connect.Request[v1alpha.InstallMDAIHubRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetInstallStatus creates a response stream with mdai install status updates.
 	GetInstallStatus(context.Context, *connect.Request[v1alpha.GetInstallStatusRequest]) (*connect.ServerStreamForClient[v1alpha.GetInstallStatusResponse], error)
+	// GetInstallLogs returns the install log entries.
+	GetInstallLogs(context.Context, *connect.Request[v1alpha.GetInstallLogsRequest]) (*connect.Response[v1alpha.GetInstallLogsResponse], error)
 }
 
 // NewInstallServiceClient constructs a client for the octant.v1alpha.InstallService service. By
@@ -74,6 +79,13 @@ func NewInstallServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
+		getInstallLogs: connect.NewClient[v1alpha.GetInstallLogsRequest, v1alpha.GetInstallLogsResponse](
+			httpClient,
+			baseURL+InstallServiceGetInstallLogsProcedure,
+			connect.WithSchema(installServiceMethods.ByName("GetInstallLogs")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -81,6 +93,7 @@ func NewInstallServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 type installServiceClient struct {
 	installMDAIHub   *connect.Client[v1alpha.InstallMDAIHubRequest, emptypb.Empty]
 	getInstallStatus *connect.Client[v1alpha.GetInstallStatusRequest, v1alpha.GetInstallStatusResponse]
+	getInstallLogs   *connect.Client[v1alpha.GetInstallLogsRequest, v1alpha.GetInstallLogsResponse]
 }
 
 // InstallMDAIHub calls octant.v1alpha.InstallService.InstallMDAIHub.
@@ -93,12 +106,19 @@ func (c *installServiceClient) GetInstallStatus(ctx context.Context, req *connec
 	return c.getInstallStatus.CallServerStream(ctx, req)
 }
 
+// GetInstallLogs calls octant.v1alpha.InstallService.GetInstallLogs.
+func (c *installServiceClient) GetInstallLogs(ctx context.Context, req *connect.Request[v1alpha.GetInstallLogsRequest]) (*connect.Response[v1alpha.GetInstallLogsResponse], error) {
+	return c.getInstallLogs.CallUnary(ctx, req)
+}
+
 // InstallServiceHandler is an implementation of the octant.v1alpha.InstallService service.
 type InstallServiceHandler interface {
 	// InstallMDAIHub initiates installing the mdai smart hub with the provided request data.
 	InstallMDAIHub(context.Context, *connect.Request[v1alpha.InstallMDAIHubRequest]) (*connect.Response[emptypb.Empty], error)
 	// GetInstallStatus creates a response stream with mdai install status updates.
 	GetInstallStatus(context.Context, *connect.Request[v1alpha.GetInstallStatusRequest], *connect.ServerStream[v1alpha.GetInstallStatusResponse]) error
+	// GetInstallLogs returns the install log entries.
+	GetInstallLogs(context.Context, *connect.Request[v1alpha.GetInstallLogsRequest]) (*connect.Response[v1alpha.GetInstallLogsResponse], error)
 }
 
 // NewInstallServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -121,12 +141,21 @@ func NewInstallServiceHandler(svc InstallServiceHandler, opts ...connect.Handler
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
+	installServiceGetInstallLogsHandler := connect.NewUnaryHandler(
+		InstallServiceGetInstallLogsProcedure,
+		svc.GetInstallLogs,
+		connect.WithSchema(installServiceMethods.ByName("GetInstallLogs")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/octant.v1alpha.InstallService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case InstallServiceInstallMDAIHubProcedure:
 			installServiceInstallMDAIHubHandler.ServeHTTP(w, r)
 		case InstallServiceGetInstallStatusProcedure:
 			installServiceGetInstallStatusHandler.ServeHTTP(w, r)
+		case InstallServiceGetInstallLogsProcedure:
+			installServiceGetInstallLogsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -142,4 +171,8 @@ func (UnimplementedInstallServiceHandler) InstallMDAIHub(context.Context, *conne
 
 func (UnimplementedInstallServiceHandler) GetInstallStatus(context.Context, *connect.Request[v1alpha.GetInstallStatusRequest], *connect.ServerStream[v1alpha.GetInstallStatusResponse]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.InstallService.GetInstallStatus is not implemented"))
+}
+
+func (UnimplementedInstallServiceHandler) GetInstallLogs(context.Context, *connect.Request[v1alpha.GetInstallLogsRequest]) (*connect.Response[v1alpha.GetInstallLogsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("octant.v1alpha.InstallService.GetInstallLogs is not implemented"))
 }
