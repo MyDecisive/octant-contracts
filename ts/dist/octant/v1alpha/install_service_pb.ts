@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file octant/v1alpha/install_service.proto.
  */
 export const file_octant_v1alpha_install_service: GenFile = /*@__PURE__*/
-  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9pbnN0YWxsX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIt0BChVJbnN0YWxsTURBSUh1YlJlcXVlc3QSPgoJbmFtZXNwYWNlGAEgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEkMKD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIqukgnciUQAxgUMh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEj8KDG1kYWlfdmVyc2lvbhgDIAEoCUIpukgmciQyIl4oXGQrXC5cZCtcLlxkKygtW2Etel0qKT8pfGxhdGVzdCQiOgoXR2V0SW5zdGFsbFN0YXR1c1JlcXVlc3QSHwoPY29ubmVjdGlvbl9uYW1lGAEgASgJQga6SAPIAQEiiwEKGEdldEluc3RhbGxTdGF0dXNSZXNwb25zZRI9Cg5pbnN0YWxsX3N0YXR1cxgBIAEoDjIdLm9jdGFudC52MWFscGhhLkluc3RhbGxTdGF0dXNCBrpIA8gBARIwCgdkZXRhaWxzGAIgAygLMh8ub2N0YW50LnYxYWxwaGEuUmVzb3VyY2VEZXRhaWxzIkAKD1Jlc291cmNlRGV0YWlscxIUCgRuYW1lGAEgASgJQga6SAPIAQESFwoHbWVzc2FnZRgCIAEoCUIGukgDyAEBKqIBCg1JbnN0YWxsU3RhdHVzEh4KGklOU1RBTExfU1RBVFVTX1VOU1BFQ0lGSUVEEAASHQoZSU5TVEFMTF9TVEFUVVNfSU5TVEFMTElORxABEhgKFElOU1RBTExfU1RBVFVTX0VSUk9SEAISHAoYSU5TVEFMTF9TVEFUVVNfSU5TVEFMTEVEEAMSGgoWSU5TVEFMTF9TVEFUVVNfVElNRU9VVBAEMtEBCg5JbnN0YWxsU2VydmljZRJRCg5JbnN0YWxsTURBSUh1YhIlLm9jdGFudC52MWFscGhhLkluc3RhbGxNREFJSHViUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEmwKEEdldEluc3RhbGxTdGF0dXMSJy5vY3RhbnQudjFhbHBoYS5HZXRJbnN0YWxsU3RhdHVzUmVxdWVzdBooLm9jdGFudC52MWFscGhhLkdldEluc3RhbGxTdGF0dXNSZXNwb25zZSIDkAIBMAFCzgEKEmNvbS5vY3RhbnQudjFhbHBoYUITSW5zdGFsbFNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_empty]);
+  fileDesc("CiRvY3RhbnQvdjFhbHBoYS9pbnN0YWxsX3NlcnZpY2UucHJvdG8SDm9jdGFudC52MWFscGhhIt0BChVJbnN0YWxsTURBSUh1YlJlcXVlc3QSPgoJbmFtZXNwYWNlGAEgASgJQiu6SCjIAQFyIxg/Mh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEkMKD2Nvbm5lY3Rpb25fbmFtZRgCIAEoCUIqukgnciUQAxgUMh9eW2EtejAtOV0oWy1hLXowLTldKlthLXowLTldKT8kEj8KDG1kYWlfdmVyc2lvbhgDIAEoCUIpukgmciQyIl4oXGQrXC5cZCtcLlxkKygtW2Etel0qKT8pfGxhdGVzdCQiOgoXR2V0SW5zdGFsbFN0YXR1c1JlcXVlc3QSHwoPY29ubmVjdGlvbl9uYW1lGAEgASgJQga6SAPIAQEiiwEKGEdldEluc3RhbGxTdGF0dXNSZXNwb25zZRI9Cg5pbnN0YWxsX3N0YXR1cxgBIAEoDjIdLm9jdGFudC52MWFscGhhLkluc3RhbGxTdGF0dXNCBrpIA8gBARIwCgdkZXRhaWxzGAIgAygLMh8ub2N0YW50LnYxYWxwaGEuUmVzb3VyY2VEZXRhaWxzIkAKD1Jlc291cmNlRGV0YWlscxIUCgRuYW1lGAEgASgJQga6SAPIAQESFwoHbWVzc2FnZRgCIAEoCUIGukgDyAEBIlcKFUdldEluc3RhbGxMb2dzUmVxdWVzdBI+CgluYW1lc3BhY2UYASABKAlCK7pIKMgBAXIjGD8yH15bYS16MC05XShbLWEtejAtOV0qW2EtejAtOV0pPyQiTAoWR2V0SW5zdGFsbExvZ3NSZXNwb25zZRIyCgZldmVudHMYASADKAsyIi5vY3RhbnQudjFhbHBoYS5PY3RhbnRJbnN0YWxsRXZlbnQi4QEKEk9jdGFudEluc3RhbGxFdmVudBI4CgZhY3Rpb24YASABKA4yKC5vY3RhbnQudjFhbHBoYS5PY3RhbnRJbnN0YWxsRXZlbnRBY3Rpb24SEQoJdGltZXN0YW1wGAIgASgJEjwKBnJlc3VsdBgDIAEoDjIsLm9jdGFudC52MWFscGhhLk9jdGFudEluc3RhbGxFdmVudFJlc3VsdENvZGUSEQoJbmFtZXNwYWNlGAQgASgJEgsKA3JlZhgFIAEoCRIPCgdzdWJ0eXBlGAYgASgJEg8KB21lc3NhZ2UYByABKAkqogEKDUluc3RhbGxTdGF0dXMSHgoaSU5TVEFMTF9TVEFUVVNfVU5TUEVDSUZJRUQQABIdChlJTlNUQUxMX1NUQVRVU19JTlNUQUxMSU5HEAESGAoUSU5TVEFMTF9TVEFUVVNfRVJST1IQAhIcChhJTlNUQUxMX1NUQVRVU19JTlNUQUxMRUQQAxIaChZJTlNUQUxMX1NUQVRVU19USU1FT1VUEAQq4gEKHE9jdGFudEluc3RhbGxFdmVudFJlc3VsdENvZGUSMAosT0NUQU5UX0lOU1RBTExfRVZFTlRfUkVTVUxUX0NPREVfVU5TUEVDSUZJRUQQABIsCihPQ1RBTlRfSU5TVEFMTF9FVkVOVF9SRVNVTFRfQ09ERV9TVUNDRVNTEAESLAooT0NUQU5UX0lOU1RBTExfRVZFTlRfUkVTVUxUX0NPREVfRkFJTFVSRRACEjQKME9DVEFOVF9JTlNUQUxMX0VWRU5UX1JFU1VMVF9DT0RFX1BBUlRJQUxfU1VDQ0VTUxADKvkDChhPY3RhbnRJbnN0YWxsRXZlbnRBY3Rpb24SKwonT0NUQU5UX0lOU1RBTExfRVZFTlRfQUNUSU9OX1VOU1BFQ0lGSUVEEAASOQo1T0NUQU5UX0lOU1RBTExfRVZFTlRfQUNUSU9OX0NSRUFURV9ERVBMT1lfSU5URUdSQVRJT04QARIwCixPQ1RBTlRfSU5TVEFMTF9FVkVOVF9BQ1RJT05fSU5TVEFMTF9NREFJX0hVQhACEj4KOk9DVEFOVF9JTlNUQUxMX0VWRU5UX0FDVElPTl9DUkVBVEVfREVTVElOQVRJT05fSU5URUdSQVRJT04QAxIxCi1PQ1RBTlRfSU5TVEFMTF9FVkVOVF9BQ1RJT05fQ1JFQVRFX0NPTk5FQ1RJT04QBBI6CjZPQ1RBTlRfSU5TVEFMTF9FVkVOVF9BQ1RJT05fVkVSSUZJRURfQ0xJRU5UU19DT05ORUNURUQQBRIwCixPQ1RBTlRfSU5TVEFMTF9FVkVOVF9BQ1RJT05fSU5HUkVTU19WRVJJRklFRBAGEi8KK09DVEFOVF9JTlNUQUxMX0VWRU5UX0FDVElPTl9FR1JFU1NfVkVSSUZJRUQQBxIxCi1PQ1RBTlRfSU5TVEFMTF9FVkVOVF9BQ1RJT05fVkFMSURBVElPTl9QQVNTRUQQCCrIAQozT2N0YW50SW5zdGFsbExvZ0V2ZW50QWN0aW9uRGVwbG95SW50ZWdyYXRpb25TdWJ0eXBlEkoKRk9DVEFOVF9JTlNUQUxMX0xPR19FVkVOVF9BQ1RJT05fREVQTE9ZX0lOVEVHUkFUSU9OX1NVQlRZUEVfVU5TUEVDSUZJRUQQABJFCkFPQ1RBTlRfSU5TVEFMTF9MT0dfRVZFTlRfQUNUSU9OX0RFUExPWV9JTlRFR1JBVElPTl9TVUJUWVBFX0FSR09DRBABMrcCCg5JbnN0YWxsU2VydmljZRJRCg5JbnN0YWxsTURBSUh1YhIlLm9jdGFudC52MWFscGhhLkluc3RhbGxNREFJSHViUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEmwKEEdldEluc3RhbGxTdGF0dXMSJy5vY3RhbnQudjFhbHBoYS5HZXRJbnN0YWxsU3RhdHVzUmVxdWVzdBooLm9jdGFudC52MWFscGhhLkdldEluc3RhbGxTdGF0dXNSZXNwb25zZSIDkAIBMAESZAoOR2V0SW5zdGFsbExvZ3MSJS5vY3RhbnQudjFhbHBoYS5HZXRJbnN0YWxsTG9nc1JlcXVlc3QaJi5vY3RhbnQudjFhbHBoYS5HZXRJbnN0YWxsTG9nc1Jlc3BvbnNlIgOQAgFCzgEKEmNvbS5vY3RhbnQudjFhbHBoYUITSW5zdGFsbFNlcnZpY2VQcm90b1ABWkpnaXRodWIuY29tL015RGVjaXNpdmUvb2N0YW50LWNvbnRyYWN0cy9nby9wa2cvb2N0YW50L3YxYWxwaGE7b2N0YW50djFhbHBoYaICA09YWKoCDk9jdGFudC5WMWFscGhhygIOT2N0YW50XFYxYWxwaGHiAhpPY3RhbnRcVjFhbHBoYVxHUEJNZXRhZGF0YeoCD09jdGFudDo6VjFhbHBoYWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_empty]);
 
 /**
  * @generated from message octant.v1alpha.InstallMDAIHubRequest
@@ -120,6 +120,107 @@ export const ResourceDetailsSchema: GenMessage<ResourceDetails> = /*@__PURE__*/
   messageDesc(file_octant_v1alpha_install_service, 3);
 
 /**
+ * GetInstallLogsRequest requests the install log events.
+ *
+ * @generated from message octant.v1alpha.GetInstallLogsRequest
+ */
+export type GetInstallLogsRequest = Message<"octant.v1alpha.GetInstallLogsRequest"> & {
+  /**
+   * @generated from field: string namespace = 1;
+   */
+  namespace: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.GetInstallLogsRequest.
+ * Use `create(GetInstallLogsRequestSchema)` to create a new message.
+ */
+export const GetInstallLogsRequestSchema: GenMessage<GetInstallLogsRequest> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_install_service, 4);
+
+/**
+ * GetInstallLogsResponse contains the array of log events.
+ *
+ * @generated from message octant.v1alpha.GetInstallLogsResponse
+ */
+export type GetInstallLogsResponse = Message<"octant.v1alpha.GetInstallLogsResponse"> & {
+  /**
+   * @generated from field: repeated octant.v1alpha.OctantInstallEvent events = 1;
+   */
+  events: OctantInstallEvent[];
+};
+
+/**
+ * Describes the message octant.v1alpha.GetInstallLogsResponse.
+ * Use `create(GetInstallLogsResponseSchema)` to create a new message.
+ */
+export const GetInstallLogsResponseSchema: GenMessage<GetInstallLogsResponse> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_install_service, 5);
+
+/**
+ * OctantInstallEvent defines the structure for individual log entries.
+ *
+ * @generated from message octant.v1alpha.OctantInstallEvent
+ */
+export type OctantInstallEvent = Message<"octant.v1alpha.OctantInstallEvent"> & {
+  /**
+   * Action is the type of step in progressing the Octant/MDAI system towards the installed state
+   *
+   * @generated from field: octant.v1alpha.OctantInstallEventAction action = 1;
+   */
+  action: OctantInstallEventAction;
+
+  /**
+   * Timestamp is the timestamp of when this state change was observed
+   *
+   * @generated from field: string timestamp = 2;
+   */
+  timestamp: string;
+
+  /**
+   * Result is the success/partial-success/failure state of this event
+   *
+   * @generated from field: octant.v1alpha.OctantInstallEventResultCode result = 3;
+   */
+  result: OctantInstallEventResultCode;
+
+  /**
+   * Namespace is the namespace this event took place in
+   *
+   * @generated from field: string namespace = 4;
+   */
+  namespace: string;
+
+  /**
+   * Ref is the integration/connection/other resource that this action targeted
+   *
+   * @generated from field: string ref = 5;
+   */
+  ref: string;
+
+  /**
+   * Subtype is the specific underlying type of the integration/other (Argo for deploy integration, Datadog for destination)
+   *
+   * @generated from field: string subtype = 6;
+   */
+  subtype: string;
+
+  /**
+   * Message is an optional message to help further diagnosis of failure/partial-success events
+   *
+   * @generated from field: string message = 7;
+   */
+  message: string;
+};
+
+/**
+ * Describes the message octant.v1alpha.OctantInstallEvent.
+ * Use `create(OctantInstallEventSchema)` to create a new message.
+ */
+export const OctantInstallEventSchema: GenMessage<OctantInstallEvent> = /*@__PURE__*/
+  messageDesc(file_octant_v1alpha_install_service, 6);
+
+/**
  * @generated from enum octant.v1alpha.InstallStatus
  */
 export enum InstallStatus {
@@ -156,6 +257,136 @@ export const InstallStatusSchema: GenEnum<InstallStatus> = /*@__PURE__*/
   enumDesc(file_octant_v1alpha_install_service, 0);
 
 /**
+ * @generated from enum octant.v1alpha.OctantInstallEventResultCode
+ */
+export enum OctantInstallEventResultCode {
+  /**
+   * @generated from enum value: OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Indicates that this event was completely successful and the system is ready to progress
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS = 1;
+   */
+  SUCCESS = 1,
+
+  /**
+   * Indicates a complete failure of the attempted action, meaning that no state change was achieved
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE = 2;
+   */
+  FAILURE = 2,
+
+  /**
+   * Indicates that this event was only partially successful, tainting the destination system
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS = 3;
+   */
+  PARTIAL_SUCCESS = 3,
+}
+
+/**
+ * Describes the enum octant.v1alpha.OctantInstallEventResultCode.
+ */
+export const OctantInstallEventResultCodeSchema: GenEnum<OctantInstallEventResultCode> = /*@__PURE__*/
+  enumDesc(file_octant_v1alpha_install_service, 1);
+
+/**
+ * @generated from enum octant.v1alpha.OctantInstallEventAction
+ */
+export enum OctantInstallEventAction {
+  /**
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Action of creating an integration within Octant that allows for modifying the destination cluster.
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION = 1;
+   */
+  CREATE_DEPLOY_INTEGRATION = 1,
+
+  /**
+   * Action of installing the MDAI hub components.
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB = 2;
+   */
+  INSTALL_MDAI_HUB = 2,
+
+  /**
+   * Action of creating a telemetry destination integration that connections can consume.
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION = 3;
+   */
+  CREATE_DESTINATION_INTEGRATION = 3,
+
+  /**
+   * Action of creating a connection and all underlying infrastructure.
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION = 4;
+   */
+  CREATE_CONNECTION = 4,
+
+  /**
+   * Action of completing the envoy connected clients validation loop.
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED = 5;
+   */
+  VERIFIED_CLIENTS_CONNECTED = 5,
+
+  /**
+   * Action of completing the ingress validation loop (data has been received).
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED = 6;
+   */
+  INGRESS_VERIFIED = 6,
+
+  /**
+   * Action of completing the egress validation loop (data has been sent).
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED = 7;
+   */
+  EGRESS_VERIFIED = 7,
+
+  /**
+   * Action of completing the policy or parity data validation loop.
+   *
+   * @generated from enum value: OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED = 8;
+   */
+  VALIDATION_PASSED = 8,
+}
+
+/**
+ * Describes the enum octant.v1alpha.OctantInstallEventAction.
+ */
+export const OctantInstallEventActionSchema: GenEnum<OctantInstallEventAction> = /*@__PURE__*/
+  enumDesc(file_octant_v1alpha_install_service, 2);
+
+/**
+ * @generated from enum octant.v1alpha.OctantInstallLogEventActionDeployIntegrationSubtype
+ */
+export enum OctantInstallLogEventActionDeployIntegrationSubtype {
+  /**
+   * @generated from enum value: OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD = 1;
+   */
+  ARGOCD = 1,
+}
+
+/**
+ * Describes the enum octant.v1alpha.OctantInstallLogEventActionDeployIntegrationSubtype.
+ */
+export const OctantInstallLogEventActionDeployIntegrationSubtypeSchema: GenEnum<OctantInstallLogEventActionDeployIntegrationSubtype> = /*@__PURE__*/
+  enumDesc(file_octant_v1alpha_install_service, 3);
+
+/**
  * InstallService provides an interface for managing the MDAI smart hub installation.
  *
  * @generated from service octant.v1alpha.InstallService
@@ -180,6 +411,16 @@ export const InstallService: GenService<{
     methodKind: "server_streaming";
     input: typeof GetInstallStatusRequestSchema;
     output: typeof GetInstallStatusResponseSchema;
+  },
+  /**
+   * GetInstallLogs returns the install log entries.
+   *
+   * @generated from rpc octant.v1alpha.InstallService.GetInstallLogs
+   */
+  getInstallLogs: {
+    methodKind: "unary";
+    input: typeof GetInstallLogsRequestSchema;
+    output: typeof GetInstallLogsResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_octant_v1alpha_install_service, 0);

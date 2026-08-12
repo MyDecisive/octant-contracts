@@ -1609,6 +1609,94 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/google.protobuf.Empty'
+  /octant.v1alpha.InstallService/GetInstallLogs:
+    get:
+      tags:
+        - InstallService
+      summary: GetInstallLogs
+      description: GetInstallLogs returns the install log entries.
+      operationId: octant.v1alpha.InstallService.GetInstallLogs.get
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+        - name: message
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/octant.v1alpha.GetInstallLogsRequest'
+        - name: encoding
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/encoding'
+        - name: base64
+          in: query
+          schema:
+            $ref: '#/components/schemas/base64'
+        - name: compression
+          in: query
+          schema:
+            $ref: '#/components/schemas/compression'
+        - name: connect
+          in: query
+          schema:
+            $ref: '#/components/schemas/connect'
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/octant.v1alpha.GetInstallLogsResponse'
+    post:
+      tags:
+        - InstallService
+      summary: GetInstallLogs
+      description: GetInstallLogs returns the install log entries.
+      operationId: octant.v1alpha.InstallService.GetInstallLogs
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/octant.v1alpha.GetInstallLogsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/octant.v1alpha.GetInstallLogsResponse'
   /octant.v1alpha.InstallService/GetInstallStatus:
     post:
       tags:
@@ -2641,6 +2729,26 @@ components:
           description: names contains the list of integration names
       title: GetDatadogIntegrationsResponse
       additionalProperties: false
+    octant.v1alpha.GetInstallLogsRequest:
+      type: object
+      properties:
+        namespace:
+          type: string
+          title: namespace
+      title: GetInstallLogsRequest
+      additionalProperties: false
+      description: GetInstallLogsRequest requests the install log events.
+    octant.v1alpha.GetInstallLogsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/octant.v1alpha.OctantInstallEvent'
+          title: events
+      title: GetInstallLogsResponse
+      additionalProperties: false
+      description: GetInstallLogsResponse contains the array of log events.
     octant.v1alpha.GetInstallStatusRequest:
       type: object
       properties:
@@ -2713,6 +2821,67 @@ components:
         - MANIFEST_OUT_FORMAT_UNSPECIFIED
         - MANIFEST_OUT_FORMAT_JSON
         - MANIFEST_OUT_FORMAT_YAML
+    octant.v1alpha.OctantInstallEvent:
+      type: object
+      properties:
+        action:
+          title: action
+          description: Action is the type of step in progressing the Octant/MDAI system towards the installed state
+          $ref: '#/components/schemas/octant.v1alpha.OctantInstallEventAction'
+        timestamp:
+          type: string
+          title: timestamp
+          description: Timestamp is the timestamp of when this state change was observed
+        result:
+          title: result
+          description: Result is the success/partial-success/failure state of this event
+          $ref: '#/components/schemas/octant.v1alpha.OctantInstallEventResultCode'
+        namespace:
+          type: string
+          title: namespace
+          description: Namespace is the namespace this event took place in
+        ref:
+          type: string
+          title: ref
+          description: Ref is the integration/connection/other resource that this action targeted
+        subtype:
+          type: string
+          title: subtype
+          description: Subtype is the specific underlying type of the integration/other (Argo for deploy integration, Datadog for destination)
+        message:
+          type: string
+          title: message
+          description: Message is an optional message to help further diagnosis of failure/partial-success events
+      title: OctantInstallEvent
+      additionalProperties: false
+      description: OctantInstallEvent defines the structure for individual log entries.
+    octant.v1alpha.OctantInstallEventAction:
+      type: string
+      title: OctantInstallEventAction
+      enum:
+        - OCTANT_INSTALL_EVENT_ACTION_UNSPECIFIED
+        - OCTANT_INSTALL_EVENT_ACTION_CREATE_DEPLOY_INTEGRATION
+        - OCTANT_INSTALL_EVENT_ACTION_INSTALL_MDAI_HUB
+        - OCTANT_INSTALL_EVENT_ACTION_CREATE_DESTINATION_INTEGRATION
+        - OCTANT_INSTALL_EVENT_ACTION_CREATE_CONNECTION
+        - OCTANT_INSTALL_EVENT_ACTION_VERIFIED_CLIENTS_CONNECTED
+        - OCTANT_INSTALL_EVENT_ACTION_INGRESS_VERIFIED
+        - OCTANT_INSTALL_EVENT_ACTION_EGRESS_VERIFIED
+        - OCTANT_INSTALL_EVENT_ACTION_VALIDATION_PASSED
+    octant.v1alpha.OctantInstallEventResultCode:
+      type: string
+      title: OctantInstallEventResultCode
+      enum:
+        - OCTANT_INSTALL_EVENT_RESULT_CODE_UNSPECIFIED
+        - OCTANT_INSTALL_EVENT_RESULT_CODE_SUCCESS
+        - OCTANT_INSTALL_EVENT_RESULT_CODE_FAILURE
+        - OCTANT_INSTALL_EVENT_RESULT_CODE_PARTIAL_SUCCESS
+    octant.v1alpha.OctantInstallLogEventActionDeployIntegrationSubtype:
+      type: string
+      title: OctantInstallLogEventActionDeployIntegrationSubtype
+      enum:
+        - OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_UNSPECIFIED
+        - OCTANT_INSTALL_LOG_EVENT_ACTION_DEPLOY_INTEGRATION_SUBTYPE_ARGOCD
     octant.v1alpha.ResourceDetails:
       type: object
       properties:
